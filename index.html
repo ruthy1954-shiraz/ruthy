@@ -3,72 +3,79 @@
 <head>
 <meta charset="UTF-8">
 <title>ספר השירים</title>
+
 <style>
     body {
-        font-family: "Assistant", sans-serif;
-        background: #f7f3f0;
         margin: 0;
         padding: 0;
-        text-align: center;
+        font-family: "Assistant", sans-serif;
+        background: linear-gradient(#f7f3f0, #f0e8e4);
         color: #4a3f35;
+        text-align: center;
     }
 
-    .container {
-        max-width: 700px;
+    .wrapper {
+        max-width: 800px;
         margin: 60px auto;
-        background: #ffffffcc;
+        background: #ffffffdd;
         padding: 40px;
-        border-radius: 18px;
-        box-shadow: 0 4px 18px rgba(0,0,0,0.08);
-        border: 1px solid #e8ddd7;
+        border-radius: 20px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        border: 1px solid #e7dcd5;
     }
 
     h1 {
-        font-size: 2.4em;
+        font-size: 2.6em;
         margin-bottom: 10px;
         color: #6b4f4f;
     }
 
-    p.subtitle {
+    h2 {
+        font-size: 1.6em;
+        margin-top: 40px;
+        color: #7a5e5e;
+    }
+
+    p {
         font-size: 1.2em;
-        margin-bottom: 30px;
-        color: #8a6f63;
+        color: #7a6a63;
     }
 
     .btn {
         display: inline-block;
-        margin: 10px;
-        padding: 14px 28px;
+        margin: 12px;
+        padding: 14px 30px;
         font-size: 1.1em;
         border-radius: 12px;
         border: none;
         cursor: pointer;
         transition: 0.25s;
         text-decoration: none;
-        color: white;
     }
 
-    .btn-primary {
+    .btn-main {
         background: #c9a9a6;
+        color: white;
     }
-    .btn-primary:hover {
+    .btn-main:hover {
         background: #b8928f;
     }
 
-    .btn-secondary {
-        background: #d8cfc4;
+    .btn-light {
+        background: #e8ddd7;
         color: #4a3f35;
     }
-    .btn-secondary:hover {
-        background: #c7bdb2;
+    .btn-light:hover {
+        background: #d6cbc4;
     }
 
     .frame {
         margin-top: 40px;
-        padding: 20px;
+        padding: 25px;
         border: 2px dashed #d8cfc4;
-        border-radius: 12px;
+        border-radius: 14px;
         background: #faf7f5;
+        font-size: 1.1em;
         color: #6b4f4f;
     }
 </style>
@@ -76,17 +83,24 @@
 
 <body>
 
-<div class="container">
+<div class="wrapper">
     <h1>ספר השירים</h1>
-    <p class="subtitle">מילים שנולדו מלב רך</p>
+    <p>מילים שנולדו מלב רך</p>
 
-    <a href="#" class="btn btn-primary">לקריאת השירים</a>
-    <a href="#" class="btn btn-secondary">על המחברת</a>
+    <a href="#poems" class="btn btn-main">לקריאת השירים</a>
+    <a href="#about" class="btn btn-light">על המחברת</a>
 
     <div class="frame">
-        זה המקום להוסיף משפט פתיחה, ציטוט, או הקדמה קצרה שתכניס את הקורא לאווירה.
+        כאן אפשר להוסיף משפט פתיחה, ציטוט אהוב, או הקדמה קצרה שמכניסה את הקורא לאווירה.
     </div>
+
+    <h2 id="poems">השירים</h2>
+    <p>כאן יופיעו השירים שלך…</p>
+
+    <h2 id="about">על המחברת</h2>
+    <p>כאן אפשר לכתוב כמה מילים עלייך, על המסע, על ההשראה.</p>
 </div>
 
 </body>
 </html>
+
