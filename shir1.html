@@ -31,26 +31,32 @@
     }
 
     /* שיר מימין, ציור משמאל */
-    .content-box {
-        display: flex;
-        flex-direction: row-reverse;
-        gap: 10px;
-        align-items: flex-start;
-    }
+ /* שיר מימין, ציור משמאל */
 
-    .art-box img {
-        width: 150px; /* ציור גדול יותר */
-        border-radius: 10px;
-        box-shadow: 0 3px 10px rgba(0,0,0,0.15);
-    }
+.content-box {
+    display: flex !important;
+    flex-direction: row-reverse !important; /* שיר מימין, ציור משמאל */
+    gap: 12px !important;
+    align-items: flex-start !important;
+}
 
-    .poem {
-        white-space: pre-line;
-        font-size: 0.78em;
-        line-height: 1.18;
-        flex: 1;
-        margin-top: 0;
-        color: #4a3f35;
+.art-box {
+    order: 2 !important; /* הציור משמאל */
+}
+
+.poem {
+    order: 1 !important; /* השיר מימין */
+    color: #4a3f35 !important; /* הצבע שהיה בחוץ */
+}
+
+.art-box img {
+    width: 150px !important; /* גודל ציור */
+    border-radius: 10px !important;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15) !important;
+}
+
+}
+   color: #4a3f35;
     }
 
     .back {
