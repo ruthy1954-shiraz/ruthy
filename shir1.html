@@ -28,20 +28,18 @@
         font-size: 1.28em;
         margin-bottom: 4px; /* רווח קטן מאוד */
         color: #6b4f4f;
-    }
+   .content-box {
+    display: flex;
+    flex-direction: row-reverse; /* שיר מימין, ציור משמאל */
+    gap: 6px;
+    align-items: flex-start;
+}
 
-    .content-box {
-        display: flex;
-        flex-direction: row-reverse; /* שיר מימין, ציור משמאל */
-        gap: 6px;
-        align-items: flex-start;
-    }
-
-    .art-box img {
-        width: 85px; /* ציור קטן */
-        border-radius: 10px;
-        box-shadow: 0 3px 10px rgba(0,0,0,0.15);
-    }
+.art-box img {
+    width: 130px; /* הגדלתי את הציור */
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+}
 
     .poem {
         white-space: pre-line;
