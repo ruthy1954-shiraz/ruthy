@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
@@ -38,15 +37,15 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 45px;
+        gap: 25px; /* מרווח קטן יותר בין חלקי השיר */
         margin: 0 auto;
         max-width: 700px;
     }
 
-    /* מסגרת עדינה סביב השיר */
+    /* מסגרת עדינה סביב חלקי השיר */
     .poem-box {
         border: 1px solid #e2d6cf;
-        padding: 30px;
+        padding: 20px; /* פחות רווח */
         border-radius: 12px;
         background: #fffdfb;
         width: 100%;
@@ -54,9 +53,8 @@
 
     .poem {
         white-space: pre-line;
-        .poem {
         font-size: 1.9em;
-        line-height: 1.6;   /* פחות רווח בין שורות */
+        line-height: 1.6; /* פחות רווח בין שורות */
         text-align: center;
         color: #4a3f35;
     }
@@ -69,19 +67,19 @@
         box-shadow: 0 3px 12px rgba(0,0,0,0.18);
     }
 
+    /* כפתורים יפים וגדולים */
     .back {
-    display: inline-block;
-    padding: 16px 32px;        /* ריווח גדול ונעים */
-    background: #c9a9a6;       /* צבע הכפתור */
-    color: white;              /* צבע טקסט */
-    border-radius: 14px;       /* עיגול פינות */
-    text-decoration: none;     /* בלי קו תחתון */
-    transition: 0.25s;
-    margin: 8px;
-    font-size: 1.5em;          /* פונט גדול */
-    font-weight: 600;          /* מודגש */
-    letter-spacing: 0.5px;     /* ריווח עדין בין אותיות */
-
+        display: inline-block;
+        padding: 16px 32px;
+        background: #c9a9a6;
+        color: white;
+        border-radius: 14px;
+        text-decoration: none;
+        transition: 0.25s;
+        margin: 8px;
+        font-size: 1.5em;
+        font-weight: 600;
+        letter-spacing: 0.5px;
     }
 
     .back:hover {
@@ -100,12 +98,17 @@
 
         .poem {
             font-size: 2.2em;
-            line-height: 2.4;
+            line-height: 1.7;
         }
 
         .art-box img {
             width: 95%;
             max-width: 380px;
+        }
+
+        .back {
+            font-size: 1.8em;
+            padding: 18px 34px;
         }
     }
 </style>
@@ -165,3 +168,4 @@
 
 </body>
 </html>
+
