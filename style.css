@@ -1,11 +1,40 @@
-<link rel="stylesheet" href="style.css">
-.content-box {
-    background-color: #ffffff;
-    width: 60%;
-    margin: 40px auto;
+.song-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.song-box {
     padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border: 1px solid #ccc;
+    background: #ffffff;
+    direction: rtl;
     text-align: right;
-    line-height: 1.6;
+}
+
+.song-box h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.song-box p {
+    font-size: 24px;
+    line-height: 1.8;
+    margin: 5px 0;
+}
+
+.drawing-box {
+    padding: 25px;
+    border: 1px solid #ccc;
+    background: #fafafa;
+    min-height: 250px;
+    text-align: center;
+}
+
+.back {
+    display: inline-block;
+    margin-top: 30px;
+    font-size: 20px;
+    text-decoration: none;
+    color: #333;
 }
