@@ -7,50 +7,50 @@ body {
     text-align: center;
 }
 
-/* התאמה כללית */
+/* קופסה מרכזית */
 .wrapper {
     max-width: 800px;
     margin: 40px auto;
     background: #ffffffdd;
-    padding: 40px;
-    border-radius: 20px;
+    padding: 50px;
+    border-radius: 22px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.08);
     border: 1px solid #e7dcd5;
 }
 
-/* כותרות גדולות יותר */
+/* כותרות גדולות במיוחד */
 h1 {
-    font-size: 3em;
-    margin-bottom: 10px;
+    font-size: 3.4em;
+    margin-bottom: 20px;
     color: #6b4f4f;
 }
 
 h2 {
-    font-size: 2em;
-    margin-top: 40px;
+    font-size: 2.4em;
+    margin-top: 50px;
     color: #7a5e5e;
 }
 
 p {
-    font-size: 1.4em;
+    font-size: 1.6em;
     color: #7a6a63;
+    line-height: 1.8;
 }
 
 /* כפתורים גדולים ורחבים */
 .btn {
     display: block;
-    width: 90%;
-    margin: 15px auto;
-    padding: 18px 0;
-    font-size: 1.3em;
-    border-radius: 14px;
+    width: 95%;
+    margin: 18px auto;
+    padding: 20px 0;
+    font-size: 1.5em;
+    border-radius: 16px;
     border: none;
     cursor: pointer;
     transition: 0.25s;
     text-decoration: none;
 }
 
-/* צבעים */
 .btn-main {
     background: #c9a9a6;
     color: white;
@@ -69,21 +69,23 @@ p {
 
 /* מסגרת הציטוט */
 .frame {
-    margin-top: 40px;
-    padding: 30px;
+    margin-top: 50px;
+    padding: 35px;
     border: 2px dashed #d8cfc4;
-    border-radius: 14px;
+    border-radius: 16px;
     background: #faf7f5;
-    font-size: 1.3em;
+    font-size: 1.5em;
     color: #6b4f4f;
-    line-height: 1.9;
+    line-height: 2;
 }
 
 /* התאמה לנייד */
 @media (max-width: 600px) {
-    h1 { font-size: 2.4em; }
-    h2 { font-size: 1.8em; }
-    p { font-size: 1.3em; }
-    .wrapper { padding: 25px; }
-    .frame { font-size: 1.2em; padding: 20px; }
+    h1 { font-size: 2.8em; }
+    h2 { font-size: 2em; }
+    p { font-size: 1.5em; }
+    .wrapper { padding: 30px; }
+    .frame { font-size: 1.4em; padding: 25px; }
+    .btn { font-size: 1.4em; padding: 18px 0; }
 }
+
