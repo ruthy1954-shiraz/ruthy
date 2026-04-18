@@ -18,7 +18,7 @@ body {
     border: 1px solid #e7dcd5;
 }
 
-/* כותרות גדולות במיוחד */
+/* כותרות */
 h1 {
     font-size: 3.4em;
     margin-bottom: 20px;
@@ -31,13 +31,14 @@ h2 {
     color: #7a5e5e;
 }
 
+/* פסקאות כלליות */
 p {
     font-size: 1.2em;
     color: #7a6a63;
     line-height: 1.8;
 }
 
-/* כפתורים גדולים ורחבים */
+/* כפתורים */
 .btn {
     display: block;
     width: 95%;
@@ -67,7 +68,7 @@ p {
     background: #d6cbc4;
 }
 
-/* מסגרת הציטוט */
+/* מסגרת ציטוט */
 .frame {
     margin-top: 50px;
     padding: 35px;
@@ -79,18 +80,53 @@ p {
     line-height: 2;
 }
 
+/* ריווח צפוף לשירים */
+.song-box p {
+    margin: 4px 0;
+    line-height: 1.4;
+}
+
+/* פריסה של שיר + תמונה לצד */
+.song-layout {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 40px auto;
+    max-width: 900px;
+}
+
+.song-text {
+    width: 55%;
+    text-align: right;
+}
+
+.song-image img {
+    width: 100%;
+    max-width: 350px;
+    border-radius: 16px;
+}
+
 /* התאמה לנייד */
 @media (max-width: 600px) {
+
     h1 { font-size: 2.8em; }
     h2 { font-size: 2em; }
     p { font-size: 1.5em; }
     .wrapper { padding: 30px; }
     .frame { font-size: 1.4em; padding: 25px; }
     .btn { font-size: 1.4em; padding: 18px 0; }
-}
 
-/* ✨ ריווח צפוף ויפה לשורות בשירים */
-.song-box p {
-    margin: 4px 0;
-    line-height: 1.4;
+    .song-layout {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .song-text {
+        width: 100%;
+    }
+
+    .song-image img {
+        max-width: 80%;
+    }
 }
