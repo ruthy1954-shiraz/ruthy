@@ -89,3 +89,8 @@ p {
     .btn { font-size: 1.4em; padding: 18px 0; }
 }
 
+/* ✨ ריווח צפוף ויפה לשורות בשירים */
+.song-box p {
+    margin: 4px 0;
+    line-height: 1.4;
+}
