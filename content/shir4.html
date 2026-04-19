@@ -48,7 +48,7 @@
 
         <!-- תמונת השיר -->
         <div class="song-image">
-            <img src="images/shir4.jpeg" alt="ציור לשיר">
+            <img src="images/shir4.jpeg" alt="ציור לשיר" style="max-width: 420px;">
         </div>
 
     </div> <!-- סוף song-layout -->
@@ -71,9 +71,7 @@
         const note = document.getElementById("userNote").value;
         const encoded = encodeURIComponent(note);
 
-        // מספר הווטסאפ שלך
         const phone = "972545305123";
-
         const link = `https://wa.me/${phone}?text=${encoded}`;
         document.getElementById("waLink").href = link;
     }
@@ -88,3 +86,4 @@
 
 </body>
 </html>
+
