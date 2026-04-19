@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>הותר לפרסום / רות שנן</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <div class="song-layout">
+
+        <!-- טקסט השיר -->
+        <div class="song-text">
+
+            <h1 class="song-title">הותר לפרסום</h1>
+            <h2 class="song-author">רות שנן</h2>
+
+            <p>"הותר לפרסום",</p>
+            <p>ובפייסבוק שוב מופיע ריבוע שחור</p>
+            <p>על מועד ההלוויה.</p>
+            <p>העולם גולל מטה,</p>
+            <p>ואני גוללת פנימה.</p>
+
+            <br>
+
+            <p>מרבים אל הפרט,</p>
+            <p>אל השם, אל הגיל, אל התמונה,</p>
+            <p>אל השכול המתרחב כמו כתם דיו</p>
+            <p>על דף שכבר מזמן לא לבן.</p>
+
+            <br>
+
+            <p>"הותר לפרסום",</p>
+            <p>צביטה מוכרת בלב,</p>
+            <p>דלת נטרקת ברוח.</p>
+            <p>עוד חיל מצטרף לרשימות ללא סוף,</p>
+            <p>גדלות איתנו,</p>
+            <p>גדולות עלינו.</p>
+
+            <br>
+
+            <p>שואלת,</p>
+            <p>איך הלב עדיין מוצא מקום</p>
+            <p>לעוד שם,</p>
+            <p>לעוד סיפור,</p>
+            <p>לעוד ריבוע שחור</p>
+            <p>עם כיתוב משתנה,</p>
+            <p>לעיתים קרובות מדי,</p>
+            <p>המשאיר חלל שלא נגמר?</p>
+
+        </div>
+
+        <!-- תמונת השיר -->
+        <div class="song-image">
+            <img src="images/shir8.jpeg" alt="ציור לשיר" style="max-width: 600px;">
+        </div>
+
+    </div> <!-- סוף song-layout -->
+
+    <!-- משבצת הערות + שליחה לוואטסאפ -->
+    <div class="notes-box">
+        <h3>הערות והתרשמויות</h3>
+
+        <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
+
+        <a id="waLink" class="btn btn-main" target="_blank">
+            שליחת ההערה בווטסאפ
+        </a>
+
+        <p class="note-info">ההודעה תישלח ישירות לרות שנן</p>
+    </div>
+
+    <script>
+    function updateWhatsAppLink() {
+        const note = document.getElementById("userNote").value;
+        const encoded = encodeURIComponent(note);
+
+        const phone = "972545305123";
+        const link = `https://wa.me/${phone}?text=${encoded}`;
+        document.getElementById("waLink").href = link;
+    }
+
+    document.getElementById("userNote").addEventListener("input", updateWhatsAppLink);
+    </script>
+
+    <a href="../index.html" class="btn btn-main">עמוד ראשי</a>
+    <a href="songs.html" class="btn btn-light">חזרה לרשימת השירים</a>
+
+</div> <!-- סוף wrapper -->
+
+</body>
+</html>
