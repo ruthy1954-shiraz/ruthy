@@ -80,11 +80,30 @@
 
     </div> <!-- סוף song-layout -->
 
-    <!-- משבצת הערות -->
+    <!-- משבצת הערות + שליחה לוואטסאפ -->
     <div class="notes-box">
         <h3>הערות והתרשמויות</h3>
-        <p class="notes-placeholder">כאן אפשר לכתוב מחשבות, תחושות או פרשנות אישית לשיר...</p>
+        <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
+
+        <a id="waLink" class="btn btn-main" target="_blank">
+            שליחת ההערה בווטסאפ
+        </a>
     </div>
+
+    <script>
+    function updateWhatsAppLink() {
+        const note = document.getElementById("userNote").value;
+        const encoded = encodeURIComponent(note);
+
+        // כאן את מכניסה את מספר הווטסאפ שלך
+        const phone = "972545305123";
+
+        const link = `https://wa.me/${phone}?text=${encoded}`;
+        document.getElementById("waLink").href = link;
+    }
+
+    document.getElementById("userNote").addEventListener("input", updateWhatsAppLink);
+    </script>
 
     <a href="../index.html" class="btn btn-main">עמוד ראשי</a>
     <a href="songs.html" class="btn btn-light">חזרה לרשימת השירים</a>
@@ -93,6 +112,7 @@
 
 </body>
 </html>
+
 
 
 
