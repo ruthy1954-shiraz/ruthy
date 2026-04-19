@@ -157,3 +157,14 @@ p {
     font-style: italic;
 }
 
+.notes-box textarea {
+    width: 100%;
+    height: 120px;
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    resize: vertical;
+    font-family: "Assistant", sans-serif;
+    margin-bottom: 15px;
+}
