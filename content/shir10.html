@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מילים כלואות / רות שנן</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <div class="song-layout">
+
+        <!-- טקסט השיר -->
+        <div class="song-text">
+
+            <h1 class="song-title">מילים כלואות</h1>
+            <h2 class="song-author">רות שנן</h2>
+
+            <p>ים מילים בחדרים צרים,</p>
+            <p>לב המבקש לנשום,</p>
+            <p>מילים שמורות,</p>
+            <p>לב מפחד לדבר.</p>
+
+            <br>
+
+            <p>יש בי</p>
+            <p>מילים שלא מצאו נתיב,</p>
+            <p>המחפשות חלון לברוח.</p>
+            <p>עומדת מול עצמי,</p>
+            <p>מקשיבה לשקט המבקש לצמוח.</p>
+
+            <br>
+
+            <p>ומבעד נקיקים דקים</p>
+            <p>נוזלת הבנה ראשונה,</p>
+            <p>נוגעת בפחדים,</p>
+            <p>מפעילה פעמוני זמן חולף.</p>
+
+            <br>
+
+            <p>יש בי</p>
+            <p>מילים צורבות</p>
+            <p>בקצות אצבעותיי,</p>
+            <p>המבקשות שחרור,</p>
+            <p>מהכואב,</p>
+            <p>מהאכזבה,</p>
+            <p>מתקוות נמוגות.</p>
+            <p>לצאת ללא סדר,</p>
+            <p>ללא הגיון.</p>
+
+            <br>
+
+            <p>ומאי שם, בקול חנוק,</p>
+            <p>המילים לוחשות בי:</p>
+            <p>"גם תוכן כלוא</p>
+            <p>יכול להפוך לכנפיים,</p>
+            <p>לנוע בעולם בחופשיות".</p>
+
+        </div>
+
+        <!-- תמונת השיר -->
+        <div class="song-image">
+            <img src="images/shir10.jpeg" alt="ציור לשיר" style="max-width: 600px;">
+        </div>
+
+    </div> <!-- סוף song-layout -->
+
+    <!-- משבצת הערות + שליחה לוואטסאפ -->
+    <div class="notes-box">
+        <h3>הערות והתרשמויות</h3>
+
+        <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
+
+        <a id="waLink" class="btn btn-main" target="_blank">
+            שליחת ההערה בווטסאפ
+        </a>
+
+        <p class="note-info">ההודעה תישלח ישירות לרות שנן</p>
+    </div>
+
+    <script>
+    function updateWhatsAppLink() {
+        const note = document.getElementById("userNote").value;
+        const encoded = encodeURIComponent(note);
+
+        const phone = "972545305123";
+        const link = `https://wa.me/${phone}?text=${encoded}`;
+        document.getElementById("waLink").href = link;
+    }
+
+    document.getElementById("userNote").addEventListener("input", updateWhatsAppLink);
+    </script>
+
+    <a href="../index.html" class="btn btn-main">עמוד ראשי</a>
+    <a href="songs.html" class="btn btn-light">חזרה לרשימת השירים</a>
+
+</div> <!-- סוף wrapper -->
+
+</body>
+</html>
