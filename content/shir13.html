@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>מי ייתן לי כוח</title>
-
+    <title>מי ייתן לי כוח / רות שנן</title>
     <link rel="stylesheet" href="../style.css">
 </head>
 
@@ -14,8 +13,11 @@
 
     <div class="song-layout">
 
+        <!-- טקסט השיר -->
         <div class="song-text">
+
             <h1 class="song-title">מי ייתן לי כוח</h1>
+            <h2 class="song-author">רות שנן</h2>
 
             <p>
                 אני צריכה לב המחזיק את עצמו כשהעולם גועש. <br>
@@ -23,19 +25,49 @@
                 מבקשת עיניים שלא יעצמו מול המציאות ההזויה. <br>
                 צריכה שקט כשכל הגוף צועק מעייפות. <br>
                 מי ייתן לי כוח שלא נראה מבחוץ אבל מציל מבפנים? <br>
-                מי???? 
+                מי????
             </p>
 
         </div>
 
-        <!-- אם תרצי בעתיד תמונה לשיר 13, נוסיף כאן בלוק song-image -->
+        <!-- תמונת השיר -->
+        <div class="song-image">
+            <img src="images/shir13.jpeg" alt="ציור לשיר" style="max-width: 600px;">
+        </div>
 
     </div> <!-- סוף song-layout -->
 
-    <a href="../index.html" class="btn btn-main">עמוד ראשי</a>
-    <a href="songs.html" class="btn btn-light">לרשימת השירים</a>
+    <!-- משבצת הערות + שליחה לוואטסאפ -->
+    <div class="notes-box">
+        <h3>הערות והתרשמויות</h3>
 
-</div> <!-- סוף wrapper -->
+        <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
+
+        <a id="waLink" class="btn btn-main" target="_blank">
+            שליחת ההערה בווטסאפ
+        </a>
+
+        <p class="note-info">ההודעה תישלח ישירות לרות שנן</p>
+    </div>
+
+    <script>
+    function updateWhatsAppLink() {
+        const note = document.getElementById("userNote").value;
+        const encoded = encodeURIComponent(note);
+
+        const phone = "972545305123";
+        const link = `https://wa.me/${phone}?text=${encoded}`;
+        document.getElementById("waLink").href = link;
+    }
+
+    document.getElementById("userNote").addEventListener("input", updateWhatsAppLink);
+    </script>
+
+    <a href="../index.html" class="btn btn-main">עמוד ראשי</a>
+    <a href="songs.html" class="btn btn-light">חזרה לרשימת השירים</a>
+
+</div> <!-- wrapper -->
 
 </body>
 </html>
+
