@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>אזעקה / רות שנן</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <div class="song-layout">
+
+        <!-- טקסט השיר -->
+        <div class="song-text">
+            <h1>אזעקה / רות שנן</h1>
+
+            <p>שלוש לפנות בוקר,<br>
+            אזעקה קורעת אותי מהמיטה,<br>
+            מתעוררת לתוך בהלה חדה,<br>
+            רצה למרחב מוגן.</p>
+
+            <br>
+
+            <p>קמתי מהר מדי,<br>
+            החלום עוד דבוק לי לעור,<br>
+            והלב דופק,<br>
+            יש משהו המנסה<br>
+            לברוח מתוכי.</p>
+
+            <br>
+
+            <p>שוכחת את המשקפיים,<br>
+            שעל השידה, עדות חדה,<br>
+            לכמה מעט אני רואה<br>
+            וכמה הרבה אני מרגישה.<br>
+            העולם מטושטש,<br>
+            אבל הפחד, חד מדי.</p>
+
+            <br>
+
+            <p>יוצאת מהמיטה החמה<br>
+            והלב חשוף,<br>
+            הקירות שהכירו אותי<br>
+            נשארים מאחור,<br>
+            ואני לא יודעת<br>
+            אם אחזור אליהם כמו שהיו!<br>
+            משהו בי כבר משתנה.</p>
+
+            <br>
+
+            <p>ובתוך הבלבול הזה,<br>
+            שואלת את עצמי<br>
+            איך ממשיכים לנשום<br>
+            כשכל מה שמוכר<br>
+            מרגיש פתאום רחוק ושביר.</p>
+
+            <br>
+
+            <p>מתוך הערפל הזה,<br>
+            מגלה משהו קטן בי<br>
+            שלא נשבר, למרות הכול!<br>
+            העובדה שאני ממשיכה לנוע,<br>
+            גם בלי לראות ברור.</p>
+
+            <br>
+
+            <p>העיניים אולי מטושטשות,<br>
+            אבל עמוק בפנים,<br>
+            יש נקודה אחת שלא כבתה,<br>
+            נקודה שיודעת!<br>
+            אני עוד אחזור לעצמי.</p>
+        </div>
+
+        <!-- תמונת השיר -->
+        <div class="song-image">
+            <img src="images/shir18.jpeg" alt="ציור לשיר">
+        </div>
+
+    </div> <!-- סוף song-layout -->
+
+    <!-- משבצת הערות + שליחה לוואטסאפ -->
+    <div class="notes-box">
+        <h3>הערות והתרשמויות</h3>
+
+        <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
+
+        <a id="waLink" class="btn btn-main" target="_blank">
+            שליחת ההערה בווטסאפ
+        </a>
+
+        <p class="note-info">ההודעה תישלח ישירות לרות שנן</p>
+    </div>
+
+    <script>
+    function updateWhatsAppLink() {
+        const note = document.getElementById("userNote").value;
+        const encoded = encodeURIComponent(note);
+
+        const phone = "972545305123";
+        const link = `https://wa.me/${phone}?text=${encoded}`;
+        document.getElementById("waLink").href = link;
+    }
+
+    document.getElementById("userNote").addEventListener("input", updateWhatsAppLink);
+    </script>
+
+    <a href="../index.html" class="btn btn-main">עמוד ראשי</a>
+    <a href="songs.html" class="btn btn-light">חזרה לרשימת השירים</a>
+
+</div> <!-- סוף wrapper -->
+
+</body>
+</html>
