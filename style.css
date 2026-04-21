@@ -1,3 +1,4 @@
+/* רקע כללי */
 body {
     margin: 0;
     padding: 0;
@@ -7,15 +8,15 @@ body {
     text-align: center;
 }
 
-/* קופסה מרכזית */
+/* קופסה מרכזית – מסגרת מצומצמת + הבלטה */
 .wrapper {
     max-width: 800px;
     margin: 20px auto;
-    background: #ffffffdd;
-    padding: 50px;
+    background: #ffffffee;
+    padding: 28px;                     /* צמצום המסגרת */
     border-radius: 22px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    border: 1px solid #e7dcd5;
+    border: 2px solid #e0d5cd;         /* מסגרת מודגשת ועדינה */
+    box-shadow: 0 6px 26px rgba(0,0,0,0.12); /* הבלטה יפה */
 }
 
 /* כותרות */
@@ -31,7 +32,7 @@ h2 {
     color: #7a5e5e;
 }
 
-/* פסקאות כלליות */
+/* פסקאות */
 p {
     font-size: 1.2em;
     color: #7a6a63;
@@ -68,13 +69,14 @@ p {
     background: #d6cbc4;
 }
 
-/* מסגרת ציטוט */
+/* מסגרת ציטוט – משודרגת */
 .frame {
     margin-top: 50px;
-    padding: 35px;
-    border: 2px dashed #d8cfc4;
+    padding: 28px;
+    border: 2px dashed #c9bfb5;
     border-radius: 16px;
-    background: #faf7f5;
+    background: #fdfaf8;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.08);
     font-size: 1.5em;
     color: #6b4f4f;
     line-height: 2;
@@ -86,7 +88,7 @@ p {
     line-height: 1.4;
 }
 
-/* פריסה של שיר + תמונה לצד */
+/* פריסה של שיר + תמונה */
 .song-layout {
     display: flex;
     gap: 30px;
@@ -96,48 +98,22 @@ p {
     max-width: 900px;
 }
 
+/* טקסט שיר */
 .song-text {
     width: 55%;
     text-align: right;
 }
 
+/* תמונה – הבלטה מיוחדת */
 .song-image img {
     width: 100%;
     max-width: 500px;
-    border-radius: 16px;
+    border-radius: 18px;
+    border: 2px solid #e8ddd7;               /* מסגרת עדינה */
+    box-shadow: 0 8px 22px rgba(0,0,0,0.18);  /* הבלטה יפה */
 }
 
-/* התאמה לנייד */
-@media (max-width: 600px) {
-
-    h1 { font-size: 2.4em; }
-    h2 { font-size: 1.8em; }
-    p { font-size: 1.2em; }
-
-    .wrapper { padding: 30px; }
-    .frame { font-size: 1.3em; padding: 25px; }
-    .btn { font-size: 1.3em; padding: 18px 0; }
-
-    /* שיר + תמונה בנייד */
-    .song-layout {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .song-text {
-        width: 100%;
-    }
-
-    /* ריווח שורות קטן יותר בנייד */
-    .song-text p {
-        margin: 2.5px 0;
-        line-height: 1 ;
-    }
-
-    .song-image img {
-        max-width: 80%;
-    }
-}
+/* תיבת הערות */
 .notes-box {
     border: 1px solid #ccc;
     padding: 15px;
@@ -152,11 +128,6 @@ p {
     color: #444;
 }
 
-.notes-placeholder {
-    color: #777;
-    font-style: italic;
-}
-
 .notes-box textarea {
     width: 100%;
     height: 400px;
@@ -168,11 +139,14 @@ p {
     font-family: "Assistant", sans-serif;
     margin-bottom: 15px;
 }
+
 .note-info {
     font-size: 0.9em;
     color: #7a6a63;
     margin-top: 8px;
 }
+
+/* כותרות שיר */
 .song-title {
     font-size: 2.2rem;
     font-weight: bold;
@@ -183,8 +157,38 @@ p {
 .song-author {
     font-size: 1.2rem;
     font-weight: normal;
-    margin: 0;
-    margin-bottom: 20px;
+    margin: 0 0 20px 0;
     color: #555;
 }
+
+/* התאמה לנייד */
+@media (max-width: 600px) {
+
+    h1 { font-size: 2.4em; }
+    h2 { font-size: 1.8em; }
+    p { font-size: 1.2em; }
+
+    .wrapper { padding: 22px; }
+    .frame { font-size: 1.3em; padding: 25px; }
+    .btn { font-size: 1.3em; padding: 18px 0; }
+
+    .song-layout {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .song-text {
+        width: 100%;
+    }
+
+    .song-text p {
+        margin: 2.5px 0;
+        line-height: 1;
+    }
+
+    .song-image img {
+        max-width: 80%;
+    }
+}
+
 
