@@ -10,7 +10,7 @@ body {
 /* קופסה מרכזית */
 .wrapper {
     max-width: 800px;
-    margin: 40px auto;
+    margin: 20px auto;
     background: #ffffffdd;
     padding: 50px;
     border-radius: 22px;
