@@ -196,12 +196,13 @@ p {
     .song-image img {
         max-width: 80%;
     }
-
-    .author {
-    font-size: 1rem;
-    margin-top: -10px;
-    letter-spacing: 0.5px;
+.author {
+    font-size: 1rem;      /* מקטין את השם */
+    margin-top: -10px;    /* מקרב אותו לכותרת */
+    font-weight: normal;  /* עדין יותר */
+    color: #444;          /* אופציונלי – רך ואלגנטי */
 }
+
 
 
 
