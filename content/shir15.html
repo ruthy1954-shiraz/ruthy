@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>השמש בחיי – רות שנן</title>
+    <title>השמש בחיי / רות שנן</title>
     <link rel="stylesheet" href="../style.css">
 </head>
 
@@ -14,67 +14,55 @@
     <div class="song-layout">
 
         <div class="song-text">
+            <h1>השמש בחיי / רות שנן</h1>
 
-            <h1 class="song-title">השמש בחיי</h1>
-            <h2 class="song-author">רות שנן</h2>
+            <p>אני זקוקה לשמש.<br>
+            כמו זו שנגעה בי היום.<br>
+            עומדת, פני אל הים,<br>
+            מקשיבה לקולות השקיעה,<br>
+            לרגעים שסיימו את יומם,<br>
+            ולאחרים…<br>
+            המחכים מעבר לאופק.</p>
 
-            <div class="song-box">
+            <br>
 
-                <p>
-                    אני זקוקה לשמש.<br>
-                    כמו זו שנגעה בי היום.<br>
-                    עומדת, פני אל הים,<br>
-                    מקשיבה לקולות השקיעה,<br>
-                    לרגעים שסיימו את יומם,<br>
-                    ולאחרים…<br>
-                    המחכים מעבר לאופק.
-                </p>
+            <p>ישנם רגעים,<br>
+            עננים מכסים שקיעות יפות.<br>
+            ואז,<br>
+            קרני אור חצופים<br>
+            מבליחים ביניהם,<br>
+            מקרינים אור חד, ברור,<br>
+            על מחשבות שלא העזתי לחשוב,<br>
+            ועל כאב קטן<br>
+            שלא ידעתי שקיים.</p>
 
-                <p>
-                    ישנם רגעים,<br>
-                    עננים מכסים שקיעות יפות.<br>
-                    ואז,<br>
-                    קרני אור חצופים<br>
-                    מבליחים ביניהם,<br>
-                    מקרינים אור חד, ברור,<br>
-                    על מחשבות שלא העזתי לחשוב,<br>
-                    ועל כאב קטן<br>
-                    שלא ידעתי שקיים.
-                </p>
+            <br>
 
-                <p>
-                    לאט… לאט…<br>
-                    בין אור מלטף<br>
-                    לבין ענן המבקש מקום,<br>
-                    אני מגלה עוד משהו קטן על עצמי.
-                </p>
+            <p>לאט… לאט…<br>
+            בין אור מלטף<br>
+            לבין ענן המבקש מקום,<br>
+            אני מגלה עוד משהו קטן על עצמי.</p>
 
-                <p>
-                    על הכוח שיש<br>
-                    בשבריר של תקווה.<br>
-                    על היופי<br>
-                    שבפחד אשר נרגע.<br>
-                    ועל הלב שלי,<br>
-                    היודע לנשום לכל היופי הזה!
-                </p>
+            <br>
 
-            </div>
+            <p>על הכוח שיש<br>
+            בשבריר של תקווה.<br>
+            על היופי<br>
+            שבפחד אשר נרגע.<br>
+            ועל הלב שלי,<br>
+            היודע לנשום לכל היופי הזה!</p>
         </div>
 
         <div class="song-image">
-            <!-- התמונה תופיע ברגע שתעלי אותה -->
-            <!-- <img src="../content/images/shir15.jpeg" alt="ציור לשיר"> -->
+            <img src="images/shir15.jpeg" alt="ציור לשיר">
         </div>
 
     </div>
 
     <div class="notes-box">
-        <h3>מה השיר עורר בך</h3>
-
+        <h3>הערות והתרשמויות</h3>
         <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
-
-        <a id="waLink" class="btn btn-main" target="_blank">שליחת ההתרשמות בווטסאפ</a>
-
+        <a id="waLink" class="btn btn-main" target="_blank">שליחת ההערה בווטסאפ</a>
         <p class="note-info">ההודעה תישלח ישירות לרות שנן</p>
     </div>
 
@@ -83,14 +71,13 @@
         const note = document.getElementById("userNote").value;
         const encoded = encodeURIComponent(note);
         const phone = "972545305123";
-        const link = `https://wa.me/${phone}?text=${encoded}`;
-        document.getElementById("waLink").href = link;
+        document.getElementById("waLink").href = `https://wa.me/${phone}?text=${encoded}`;
     }
     document.getElementById("userNote").addEventListener("input", updateWhatsAppLink);
     </script>
 
     <a href="../index.html" class="btn btn-main">עמוד ראשי</a>
-    <a href="songs.html" class="btn btn-light">לרשימת השירים</a>
+    <a href="songs.html" class="btn btn-light">חזרה לרשימת השירים</a>
 
 </div>
 
