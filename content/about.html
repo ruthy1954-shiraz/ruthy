@@ -63,13 +63,40 @@
 
     </div> <!-- סוף song-layout -->
 
+    <!-- ריבוע הערות כללי -->
+    <div class="notes-box">
+        <h3>התרשמות כללית מהספר</h3>
+
+        <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על הספר כולו..."></textarea>
+
+        <a id="waLink" class="btn btn-main" target="_blank">
+            שליחת ההתרשמות בווטסאפ
+        </a>
+
+        <p class="note-info">ההודעה תישלח ישירות לרות שנן</p>
+    </div>
+
+    <script>
+    function updateWhatsAppLink() {
+        const note = document.getElementById("userNote").value;
+        const encoded = encodeURIComponent(note);
+
+        const phone = "972545305123"; 
+        const link = `https://wa.me/${phone}?text=${encoded}`;
+        document.getElementById("waLink").href = link;
+    }
+
+    document.getElementById("userNote").addEventListener("input", updateWhatsAppLink);
+    </script>
+
     <a href="../index.html" class="btn btn-main">עמוד ראשי</a>
     <a href="songs.html" class="btn btn-light">לרשימת השירים</a>
 
-</div> <!-- סוף wrapper -->
+</div> <!-- wrapper -->
 
 </body>
 </html>
+
 
 
 
