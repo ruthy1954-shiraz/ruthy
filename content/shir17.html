@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>הסערה – רות שנן</title>
+    <title>הסערה / רות שנן</title>
     <link rel="stylesheet" href="../style.css">
 </head>
 
@@ -15,66 +15,58 @@
 
         <!-- טקסט השיר -->
         <div class="song-text">
+            <h1>הסערה / רות שנן</h1>
 
-            <h1 class="song-title">הסערה</h1>
-            <h2 class="song-author">רות שנן</h2>
+            <p>הלילה נפלתי לתוך עצמי.<br>
+            האדמה הייתה קרובה מדי.<br>
+            הפחד לחש לי לוותר,<br>
+            אני המשכתי לנשום.</p>
 
-            <div class="song-box">
+            <br>
 
-                <p>
-                    הלילה נפלתי לתוך עצמי.<br>
-                    האדמה הייתה קרובה מדי.<br>
-                    הפחד לחש לי לוותר,<br>
-                    אני המשכתי לנשום.
-                </p>
+            <p>דרך השפל,<br>
+            במקומות שאף אחד לא רואה,<br>
+            בתוך הסדקים של חיי,<br>
+            מצאתי ניצוץ שלא מוותר עליי.</p>
 
-                <p>
-                    דרך השפל,<br>
-                    במקומות שאף אחד לא רואה,<br>
-                    בתוך הסדקים של חיי,<br>
-                    מצאתי ניצוץ שלא מוותר עליי.
-                </p>
+            <br>
 
-                <p>
-                    הסערה לא ביקשה רשות.<br>
-                    היא הגיעה,<br>
-                    ניערה את מה שחשבתי שאני,<br>
-                    והשאירה אותי חשופה מול האמת.
-                </p>
+            <p>הסערה לא ביקשה רשות.<br>
+            היא הגיעה,<br>
+            ניערה את מה שחשבתי שאני,<br>
+            והשאירה אותי חשופה מול האמת.</p>
 
-                <p>
-                    ושם, מול הרוח,<br>
-                    כשאני רועדת,<br>
-                    הבנתי: רגעי השקט<br>
-                    לא מחכים לי בסוף הדרך.
-                </p>
+            <br>
 
-                <p>
-                    הם נבנים בי,<br>
-                    מסערה לסערה,<br>
-                    בכל פעם שאני קמה.<br>
-                    הם לא ניצחון על העולם,<br>
-                    הם פיוס עם עצמי.
-                </p>
+            <p>ושם, מול הרוח,<br>
+            כשאני רועדת,<br>
+            הבנתי: רגעי השקט<br>
+            לא מחכים לי בסוף הדרך.</p>
 
-            </div>
+            <br>
+
+            <p>הם נבנים בי,<br>
+            מסערה לסערה,<br>
+            בכל פעם שאני קמה.<br>
+            הם לא ניצחון על העולם,<br>
+            הם פיוס עם עצמי.</p>
         </div>
 
-        <!-- תמונה (תעלה כשתהיה מוכנה) -->
+        <!-- תמונת השיר -->
         <div class="song-image">
-            <!-- <img src="../content/images/shir17.jpeg" alt="ציור לשיר"> -->
+            <img src="images/shir17.jpeg" alt="ציור לשיר">
         </div>
 
-    </div> <!-- song-layout -->
+    </div> <!-- סוף song-layout -->
 
-    <!-- תיבת הערות -->
+    <!-- משבצת הערות + שליחה לוואטסאפ -->
     <div class="notes-box">
-        <h3>מה השיר עורר בך</h3>
+        <h3>הערות והתרשמויות</h3>
 
         <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
 
         <a id="waLink" class="btn btn-main" target="_blank">
-            שליחת ההתרשמות בווטסאפ
+            שליחת ההערה בווטסאפ
         </a>
 
         <p class="note-info">ההודעה תישלח ישירות לרות שנן</p>
@@ -84,17 +76,19 @@
     function updateWhatsAppLink() {
         const note = document.getElementById("userNote").value;
         const encoded = encodeURIComponent(note);
+
         const phone = "972545305123";
         const link = `https://wa.me/${phone}?text=${encoded}`;
         document.getElementById("waLink").href = link;
     }
+
     document.getElementById("userNote").addEventListener("input", updateWhatsAppLink);
     </script>
 
     <a href="../index.html" class="btn btn-main">עמוד ראשי</a>
-    <a href="songs.html" class="btn btn-light">לרשימת השירים</a>
+    <a href="songs.html" class="btn btn-light">חזרה לרשימת השירים</a>
 
-</div> <!-- wrapper -->
+</div> <!-- סוף wrapper -->
 
 </body>
 </html>
