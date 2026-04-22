@@ -72,6 +72,7 @@
 
         <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
 
+        <!-- כפתור וואטסאפ -->
         <a id="waLink" class="btn btn-main" target="_blank">
             שליחת ההערה בווטסאפ
         </a>
@@ -109,16 +110,24 @@
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
 
+  // שמירת הערה
   async function saveNote(name, note) {
+    if (!name || !note) {
+      alert("נא למלא שם והערה");
+      return;
+    }
+
     await addDoc(collection(db, "notes"), {
       name: name,
       note: note,
       timestamp: new Date()
     });
+
     alert("ההערה נשמרה בהצלחה!");
     loadNotes();
   }
 
+  // טעינת הערות
   async function loadNotes() {
     const querySnapshot = await getDocs(collection(db, "notes"));
     let html = "";
@@ -129,10 +138,22 @@
     document.getElementById("notes").innerHTML = html;
   }
 
-  window.saveNote = saveNote;
-  window.loadNotes = loadNotes;
+  // עדכון קישור וואטסאפ
+  function updateWhatsAppLink() {
+    const name = document.getElementById("userName").value;
+    const note = document.getElementById("userNote").value;
 
-  // טוען הערות אוטומטית כשנכנסים לדף
+    const text = `שם: ${name}\nהערה: ${note}`;
+    const url = "https://wa.me/972528200770?text=" + encodeURIComponent(text);
+
+    document.getElementById("waLink").href = url;
+  }
+
+  // מעדכן את הקישור בכל הקלדה
+  document.getElementById("userName").addEventListener("input", updateWhatsAppLink);
+  document.getElementById("userNote").addEventListener("input", updateWhatsAppLink);
+
+  // טוען הערות אוטומטית
   loadNotes();
 </script>
 
@@ -143,3 +164,4 @@
 
 </body>
 </html>
+
