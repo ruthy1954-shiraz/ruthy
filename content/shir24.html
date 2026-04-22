@@ -78,16 +78,12 @@
         </a>
 
         <!-- כפתור שמירת הערה לענן -->
-        <button class="btn btn-light" onclick="saveNote(
-            document.getElementById('userName').value,
-            document.getElementById('userNote').value
-        )">שמירת ההערה בענן</button>
+        <button class="btn btn-light" id="saveBtn">שמירת ההערה בענן</button>
 
         <p class="note-info">ההודעה תישלח ישירות לרות שנן</p>
 
         <h4>הערות שנשמרו:</h4>
 
-        <!-- כאן יוצגו ההערות מהענן -->
         <div id="notes"></div>
     </div>
 
@@ -111,7 +107,10 @@
   const db = getFirestore(app);
 
   // שמירת הערה
-  async function saveNote(name, note) {
+  async function saveNote() {
+    const name = document.getElementById("userName").value;
+    const note = document.getElementById("userNote").value;
+
     if (!name || !note) {
       alert("נא למלא שם והערה");
       return;
@@ -149,11 +148,12 @@
     document.getElementById("waLink").href = url;
   }
 
-  // מעדכן את הקישור בכל הקלדה
+  // מאזינים
   document.getElementById("userName").addEventListener("input", updateWhatsAppLink);
   document.getElementById("userNote").addEventListener("input", updateWhatsAppLink);
+  document.getElementById("saveBtn").addEventListener("click", saveNote);
 
-  // טוען הערות אוטומטית
+  // טעינה ראשונית
   loadNotes();
 </script>
 
@@ -164,4 +164,5 @@
 
 </body>
 </html>
+
 
