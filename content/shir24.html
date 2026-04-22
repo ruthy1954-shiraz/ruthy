@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מחפשת שלווה / רות שנן</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <div class="song-layout">
+
+        <!-- טקסט השיר -->
+        <div class="song-text">
+            <h1>מחפשת שלווה</h1>
+            <h2 class="author">רות שנן</h2>
+
+            <p>בין אזעקה לאזעקה,<br>
+            ישנו רגע דקיק, כמעט שקוף,<br>
+            בו הנשימה חוזרת אל עצמה<br>
+            כמו ים המחפש שוב את החוף.</p>
+
+            <br>
+
+            <p>מחפשת את השלווה בכתיבה.<br>
+            נוחתת לשלווה בין המילים,<br>
+            הן נפתחות כמו חלון קטן<br>
+            ומכניסות אור שאי־אפשר להשתיק.</p>
+
+            <br>
+
+            <p>ידיי מחפשות את הצבעים.<br>
+            יוצאת בדמיוני לטיול.<br>
+            מחפשת נוף על גב מכחול.<br>
+            בתנועה עדינה על גבי הקנבס,<br>
+            יוצרת עולם מלא צבעים,<br>
+            הממשיך לנוע.</p>
+
+            <br>
+
+            <p>ובין לבין,<br>
+            אוספת רגעים קטנים של שקט:<br>
+            כוס תה בכפות הידיים,<br>
+            נשימה עמוקה המלטפת את החזה,<br>
+            מבט אחד לשמיים,<br>
+            פותח בפני מארג שלם של אפשרויות.</p>
+
+            <br>
+
+            <p>מבינה, ששלווה לא מגיעה בבת אחת.<br>
+            לפעמים מתגנבת פנימה,<br>
+            בין פעימה לפעימה,<br>
+            מוצאת מקום קטן,<br>
+            בו הלב יכול לנוח.</p>
+        </div>
+
+        <!-- תמונת השיר -->
+        <div class="song-image">
+            <img src="images/shir24.jpeg" alt="ציור לשיר מחפשת שלווה">
+        </div>
+
+    </div> <!-- סוף song-layout -->
+
+    <!-- משבצת הערות + שליחה לוואטסאפ -->
+    <div class="notes-box">
+        <h3>הערות והתרשמויות</h3>
+
+        <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
+
+        <a id="waLink" class="btn btn-main" target="_blank">
+            שליחת ההערה בווטסאפ
+        </a>
+
+        <p class="note-info">ההודעה תישלח ישירות לרות שנן</p>
+    </div>
+
+    <script>
+    function updateWhatsAppLink() {
+        const note = document.getElementById("userNote").value;
+        const encoded = encodeURIComponent(note);
+
+        const phone = "972545305123";
+        const link = `https://wa.me/${phone}?text=${encoded}`;
+        document.getElementById("waLink").href = link;
+    }
+
+    document.getElementById("userNote").addEventListener("input", updateWhatsAppLink);
+    </script>
+
+    <a href="../index.html" class="btn btn-main">עמוד ראשי</a>
+    <a href="songs.html" class="btn btn-light">חזרה לרשימת השירים</a>
+
+</div> <!-- סוף wrapper -->
+
+</body>
+</html>
