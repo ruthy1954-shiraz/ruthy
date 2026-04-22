@@ -5,10 +5,7 @@
     <title>לגעת – ספר השירים של רות שנן</title>
 
     <style>
-        /* בסיס אחיד לכל המכשירים */
-        html {
-            font-size: 16px;
-        }
+        html { font-size: 16px; }
 
         body {
             font-family: "David", "Arial", sans-serif;
@@ -22,9 +19,7 @@
             box-sizing: border-box;
         }
 
-        .cover {
-            margin-top: 20px;
-        }
+        .cover { margin-top: 20px; }
 
         .cover img {
             width: 70%;
@@ -34,7 +29,7 @@
         }
 
         h1 {
-            font-size: 72px;   /* יציב בכל מסך */
+            font-size: 72px;
             margin-top: 30px;
             color: #5a4a3f;
         }
@@ -53,9 +48,7 @@
             line-height: 1.8;
         }
 
-        .buttons {
-            margin-top: 40px;
-        }
+        .buttons { margin-top: 40px; }
 
         .buttons a {
             display: inline-block;
@@ -69,25 +62,56 @@
             transition: background-color 0.3s;
         }
 
-        .buttons a:hover {
+        .buttons a:hover { background-color: #c0a98b; }
+
+        .notes-box {
+            margin-top: 50px;
+            padding: 20px;
+            background: #fafafa;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .notes-box textarea {
+            width: 100%;
+            height: 200px;
+            font-size: 18px;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            resize: vertical;
+        }
+
+        .notes-box button {
+            margin-top: 15px;
+            padding: 12px 25px;
+            font-size: 20px;
+            background-color: #d8c3a5;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .notes-box button:hover {
             background-color: #c0a98b;
         }
 
-        /* התאמה למסכים קטנים */
+        #savedNotes {
+            margin-top: 20px;
+            text-align: right;
+            font-size: 20px;
+            line-height: 1.6;
+        }
+
         @media (max-width: 600px) {
-            h1 {
-                font-size: 48px;
-            }
-            h2 {
-                font-size: 28px;
-            }
-            p {
-                font-size: 22px;
-            }
-            .buttons a {
-                font-size: 22px;
-                padding: 16px 30px;
-            }
+            h1 { font-size: 48px; }
+            h2 { font-size: 28px; }
+            p { font-size: 22px; }
+            .buttons a { font-size: 22px; padding: 16px 30px; }
         }
     </style>
 </head>
@@ -95,7 +119,7 @@
 <body>
 
 <div class="cover">
-    <img src="content/images/shir.jpeg" alt="יד כותבת מעל דף חלק">
+    <img src="content/images/shir.jpeg" alt="יד כותבת מילים">
 </div>
 
 <h1>לגעת</h1>
@@ -109,15 +133,29 @@
 </p>
 
 <div class="buttons">
-   <a href="content/songs.html">שירים</a>
-   <a href="content/about.html">על הספר</a>
+    <a href="content/songs.html">שירים</a>
+    <a href="content/about.html">על הספר</a>
 </div>
 
+<!-- תיבת ההערות -->
+<div class="notes-box">
+    <h3>הערות שנשמרו:</h3>
+
+    <textarea id="noteText" placeholder="כתבי כאן את ההערה שלך..."></textarea>
+
+    <button onclick="saveNote()">שמירת הערה בענן</button>
+
+    <div id="savedNotes"></div>
+</div>
+
+<!-- Firebase + notes.js -->
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
 <script src="notes.js"></script>
 
+</body>
 </html>
+
 
 
 
