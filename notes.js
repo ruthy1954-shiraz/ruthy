@@ -1,12 +1,12 @@
 // --- Firebase config ---
-// שימי כאן את הפרטים מה-Firebase שלך
 const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
+    apiKey: "AIzaSyDMepXTjui58oUJ0aVQgmXo8L0IjT1pPxQ",
     authDomain: "ruthy-notes.firebaseapp.com",
     projectId: "ruthy-notes",
-    storageBucket: "ruthy-notes.appspot.com",
-    messagingSenderId: "YOUR_SENDER_ID",
-    appId: "YOUR_APP_ID"
+    storageBucket: "ruthy-notes.firebasestorage.app",
+    messagingSenderId: "276333962292",
+    appId: "1:276333962292:web:298a0e8db8b5f77c359661",
+    measurementId: "G-6MDZNCXET4"
 };
 
 // --- Initialize Firebase ---
@@ -48,3 +48,4 @@ async function loadNotes() {
 
 // טוען את ההערות ברגע שהדף נפתח
 window.onload = loadNotes;
+
