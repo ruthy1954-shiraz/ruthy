@@ -13,10 +13,10 @@ body {
     max-width: 800px;
     margin: 20px auto;
     background: #ffffffee;
-    padding: 28px;                     /* צמצום המסגרת */
+    padding: 28px;
     border-radius: 22px;
-    border: 2px solid #e0d5cd;         /* מסגרת מודגשת ועדינה */
-    box-shadow: 0 6px 26px rgba(0,0,0,0.12); /* הבלטה יפה */
+    border: 2px solid #e0d5cd;
+    box-shadow: 0 6px 26px rgba(0,0,0,0.12);
 }
 
 /* כותרות */
@@ -69,6 +69,15 @@ p {
     background: #d6cbc4;
 }
 
+/* כפתור מחיקה */
+.btn-danger {
+    background: #d88c8c;
+    color: white;
+}
+.btn-danger:hover {
+    background: #c67878;
+}
+
 /* מסגרת ציטוט – משודרגת */
 .frame {
     margin-top: 50px;
@@ -109,8 +118,8 @@ p {
     width: 100%;
     max-width: 500px;
     border-radius: 18px;
-    border: 2px solid #e8ddd7;               /* מסגרת עדינה */
-    box-shadow: 0 8px 22px rgba(0,0,0,0.18);  /* הבלטה יפה */
+    border: 2px solid #e8ddd7;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.18);
 }
 
 /* תיבת הערות */
@@ -146,6 +155,17 @@ p {
     margin-top: 8px;
 }
 
+/* ריווח בין רכיבי תיבת ההערות */
+.notes-box > * {
+    margin-bottom: 18px;
+}
+
+/* ריווח בין כפתורים */
+.notes-box .btn {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 /* כותרות שיר */
 .song-title {
     font-size: 2.2rem;
@@ -175,13 +195,12 @@ p {
     .song-layout {
         flex-direction: column;
         align-items: center;
+    }
 
-       .author {
-    font-size: 0.95rem;
-    margin-top: -12px;
-    letter-spacing: 0.5px;
-}
- 
+    .author {
+        font-size: 0.95rem;
+        margin-top: -12px;
+        letter-spacing: 0.5px;
     }
 
     .song-text {
@@ -196,13 +215,7 @@ p {
     .song-image img {
         max-width: 80%;
     }
-.author {
-    font-size: 1rem;      /* מקטין את השם */
-    margin-top: -10px;    /* מקרב אותו לכותרת */
-    font-weight: normal;  /* עדין יותר */
-    color: #444;          /* אופציונלי – רך ואלגנטי */
 }
-
 
 
 
