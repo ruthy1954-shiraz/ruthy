@@ -1,51 +1,109 @@
-// --- Firebase config ---
+// Firebase SDKs
+import { 
+  initializeApp 
+} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+
+import { 
+  getFirestore, collection, addDoc, getDocs, deleteDoc, doc 
+} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+
+// -------------------------
+// 1. הגדרות Firebase
+// -------------------------
 const firebaseConfig = {
-    apiKey: "AIzaSyDMepXTjui58oUJ0aVQgmXo8L0IjT1pPxQ",
-    authDomain: "ruthy-notes.firebaseapp.com",
-    projectId: "ruthy-notes",
-    storageBucket: "ruthy-notes.firebasestorage.app",
-    messagingSenderId: "276333962292",
-    appId: "1:276333962292:web:298a0e8db8b5f77c359661",
-    measurementId: "G-6MDZNCXET4"
+  apiKey: "AIzaSyDMepXTjui58oUJOaVQgmXo8L0IjT1pPxQ",
+  authDomain: "ruthy-notes.firebaseapp.com",
+  projectId: "ruthy-notes",
+  storageBucket: "ruthy-notes.firebasestorage.app",
+  messagingSenderId: "276333962292",
+  appId: "1:276333962292:web:298a0e8db8b5f77c359661",
+  measurementId: "G-6MDZNCXET4"
 };
 
-// --- Initialize Firebase ---
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-// --- Save note to Firestore ---
-async function saveNote() {
-    const text = document.getElementById("noteText").value;
 
-    if (!text.trim()) {
-        alert("אי אפשר לשמור הודעה ריקה");
-        return;
-    }
+// -------------------------
+// 2. שמירת הערה
+// -------------------------
+export async function saveNote() {
+  const name = document.getElementById("userName").value;
+  const note = document.getElementById("userNote").value;
 
-    await db.collection("notes").add({
-        name: "רותי",
-        note: text
-    });
+  if (!name || !note) {
+    alert("נא למלא שם והערה");
+    return;
+  }
 
-    document.getElementById("noteText").value = "";
-    loadNotes();
+  await addDoc(collection(db, "notes"), {
+    name: name,
+    note: note,
+    timestamp: new Date()
+  });
+
+  alert("ההערה נשמרה בהצלחה!");
+  loadNotes();
 }
 
-// --- Load notes from Firestore ---
-async function loadNotes() {
-    const list = document.getElementById("savedNotes");
-    list.innerHTML = "";
 
-    const snapshot = await db.collection("notes").get();
+// -------------------------
+// 3. טעינת הערות + כפתור מחיקה
+// -------------------------
+export async function loadNotes() {
+  const querySnapshot = await getDocs(collection(db, "notes"));
+  let html = "";
 
-    snapshot.forEach(doc => {
-        const data = doc.data();
-        const p = document.createElement("p");
-        p.textContent = `${data.name}: ${data.note}`;
-        list.appendChild(p);
-    });
+  querySnapshot.forEach((docItem) => {
+    const data = docItem.data();
+
+    html += `
+      <div class="note-item">
+        <p><strong>${data.name}:</strong> ${data.note}</p>
+        <button class="delete-btn" onclick="deleteNote('${docItem.id}')">מחיקה</button>
+      </div>
+    `;
+  });
+
+  document.getElementById("notes").innerHTML = html;
 }
 
-// טוען את ההערות ברגע שהדף נפתח
-window.onload = loadNotes;
+
+// -------------------------
+// 4. מחיקת הערה
+// -------------------------
+export async function deleteNote(id) {
+  if (!confirm("למחוק את ההערה?")) return;
+
+  await deleteDoc(doc(db, "notes", id));
+  loadNotes();
+}
+
+
+// -------------------------
+// 5. עדכון קישור וואטסאפ
+// -------------------------
+export function updateWhatsAppLink() {
+  const name = document.getElementById("userName").value;
+  const note = document.getElementById("userNote").value;
+
+  const text = `שם: ${name}\nהערה: ${note}`;
+  const url = "https://wa.me/972545305123?text=" + encodeURIComponent(text);
+
+  document.getElementById("waLink").href = url;
+}
+
+
+// -------------------------
+// 6. הפעלת מאזינים
+// -------------------------
+export function initNoteSystem() {
+  document.getElementById("userName").addEventListener("input", updateWhatsAppLink);
+  document.getElementById("userNote").addEventListener("input", updateWhatsAppLink);
+  document.getElementById("saveBtn").addEventListener("click", saveNote);
+
+  loadNotes();
+}
+
 
