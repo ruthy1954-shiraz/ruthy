@@ -11,83 +11,73 @@
 
 <div class="wrapper">
 
-    <div class="song-layout">
+    <!-- תמונת השיר -->
+    <div class="song-image">
+        <img src="images/shir1.jpeg" alt="ציור לשיר בגידה">
+    </div>
 
-        <!-- טקסט השיר -->
-        <div class="song-text">
-            <h1>בגידה / רות שנן</h1>
+    <!-- כותרות -->
+    <h1 class="song-title">בגידה</h1>
+    <h2 class="song-author">רות שנן</h2>
 
-            <p>משהו שבר את האמון שלי.</p>
-            <p>הגוף התכווץ באחת,</p>
-            <p>כאילו מישהו כיבה</p>
-            <p>את האוויר בריאותיי.</p>
+    <!-- טקסט השיר -->
+    <div class="song-box">
+        <p>משהו שבר את האמון שלי.<br>
+        הגוף התכווץ באחת,<br>
+        כאילו מישהו כיבה<br>
+        את האוויר בריאותיי.</p>
 
-            <br>
+        <p>הרוח רעדה בין הצלעות<br>
+        מרוב אמת צורבת, כואבת,<br>
+        כזו המגיעה בלי אזהרה<br>
+        ומפילה על הברכיים.</p>
 
-            <p>הרוח רעדה בין הצלעות</p>
-            <p>מרוב אמת צורבת, כואבת,</p>
-            <p>כזו המגיעה בלי אזהרה</p>
-            <p>ומפילה על הברכיים.</p>
+        <p>רגע אחד של שקט רועם.<br>
+        הלב, מבולבל, מחפש יד,<br>
+        מחפש תשובה,<br>
+        מופתע לגלות<br>
+        שהדופק עדיין פועם.</p>
 
-            <br>
+        <p>אוספת את עצמי<br>
+        חתיכה אחרי חתיכה,<br>
+        בלי למהר, בלי לזייף נחמה.<br>
+        כמו ים המחזיר גל ועוד גל<br>
+        עד שהוא נרגע.</p>
+    </div>
 
-            <p>רגע אחד של שקט רועם.</p>
-            <p>הלב, מבולבל, מחפש יד,</p>
-            <p>מחפש תשובה,</p>
-            <p>מופתע לגלות</p>
-            <p>שהדופק עדיין פועם.</p>
-
-            <br>
-
-            <p>אוספת את עצמי</p>
-            <p>חתיכה אחרי חתיכה,</p>
-            <p>בלי למהר, בלי לזייף נחמה.</p>
-            <p>כמו ים המחזיר גל ועוד גל</p>
-            <p>עד שהוא נרגע.</p>
-        </div>
-
-        <!-- תמונת השיר -->
-        <div class="song-image">
-            <img src="images/shir1.jpeg" alt="ציור לשיר">
-        </div>
-
-    </div> <!-- סוף song-layout -->
-
-    <!-- משבצת הערות + שליחה לוואטסאפ -->
+    <!-- תיבת הערות -->
     <div class="notes-box">
-        <h3>הערות והתרשמויות</h3>
+        <h3>כתיבת הערות והארות</h3>
+
+        <input id="userName" placeholder="השם שלכם..." />
 
         <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
 
-        <a id="waLink" class="btn btn-main" target="_blank">
-            שליחת ההערה בווטסאפ
-        </a>
+        <!-- כפתורים בשורה אחת -->
+        <div class="btn-row">
+            <a id="waLink" class="btn btn-main" target="_blank">ווצאפ לכותבת</a>
+            <button class="btn btn-light" id="saveBtn">שמירת הערה</button>
+        </div>
 
-        <p class="note-info">ההודעה תישלח ישירות לרות שנן</p>
+        <h4>הערות קוראים שנשמרו:</h4>
+        <div id="notes"></div>
     </div>
 
-    <script>
-    function updateWhatsAppLink() {
-        const note = document.getElementById("userNote").value;
-        const encoded = encodeURIComponent(note);
+    <!-- כפתורי ניווט -->
+    <a href="../index.html" class="btn btn-main">עמוד ראשי</a>
+    <a href="songs.html" class="btn btn-light">חזרה לשירים</a>
 
-        // מספר הווטסאפ שלך
-        const phone = "972545305123";
-
-        const link = `https://wa.me/${phone}?text=${encoded}`;
-        document.getElementById("waLink").href = link;
-    }
-
-    document.getElementById("userNote").addEventListener("input", updateWhatsAppLink);
+    <!-- מערכת ההערות -->
+    <script type="module">
+        import { initNoteSystem } from "../notes.js";
+        initNoteSystem();
     </script>
 
-    <a href="../index.html" class="btn btn-main">עמוד ראשי</a>
-    <a href="songs.html" class="btn btn-light">חזרה לרשימת השירים</a>
-
-</div> <!-- סוף wrapper -->
+</div>
 
 </body>
 </html>
+
 
 
 
