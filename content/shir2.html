@@ -11,110 +11,93 @@
 
 <div class="wrapper">
 
-    <div class="song-layout">
+    <!-- תמונת השיר -->
+    <div class="song-image">
+        <img src="images/shir2.jpeg" alt="ציור לשיר בין תשומת הלב לאהבה">
+    </div>
 
-        <!-- טקסט השיר -->
-        <div class="song-text">
-            <h1>בין תשומת הלב לאהבה / רות שנן</h1>
+    <!-- כותרות -->
+    <h1 class="song-title">בין תשומת הלב לאהבה</h1>
+    <h2 class="song-author">רות שנן</h2>
 
-            <p>שתי דמויות בחיי.</p>
-            <p>האחת מאוד מורגשת,</p>
-            <p>אור חד על פני מים,</p>
-            <p>מעלה בי רטט של עכשיו,</p>
-            <p>מבקשת תשובה מיידית.</p>
+    <!-- טקסט השיר -->
+    <div class="song-box">
+        <p>שתי דמויות בחיי.<br>
+        האחת מאוד מורגשת,<br>
+        אור חד על פני מים,<br>
+        מעלה בי רטט של עכשיו,<br>
+        מבקשת תשובה מיידית.</p>
 
-            <br>
+        <p>השנייה יודעת את מפת הלב שלי,<br>
+        מבינה אותי<br>
+        דרך שכבות של שקט<br>
+        לעומקם של שנים.<br>
+        לא זקוקה להופיע כדי להיות.</p>
 
-            <p>השנייה יודעת את מפת הלב שלי,</p>
-            <p>מבינה אותי</p>
-            <p>דרך שכבות של שקט</p>
-            <p>לעומקם של שנים.</p>
-            <p>לא זקוקה להופיע כדי להיות.</p>
+        <p>כשהן נפגשות,<br>
+        זהו רגע נדיר שבו הברק של האחת<br>
+        נשען על העומק של השנייה,<br>
+        והעולם מתיישר סביבי<br>
+        לרגעים של קסם אמיתי.</p>
 
-            <br>
+        <p>כאשר אני צריכה לבחור,<br>
+        תשומת הלב כובשת,<br>
+        מנצנצת כמו הבטחה<br>
+        שנולדה רק עכשיו.</p>
 
-            <p>כשהן נפגשות,</p>
-            <p>זהו רגע נדיר שבו הברק של האחת</p>
-            <p>נשען על העומק של השנייה,</p>
-            <p>והעולם מתיישר סביבי</p>
-            <p>לרגעים של קסם אמיתי.</p>
+        <p>האהבה ממתינה,<br>
+        לא מתוך חולשה,<br>
+        אלא מתוך ידיעה קדומה<br>
+        שמה שנועד להישאר<br>
+        אינו צריך לרדוף.</p>
 
-            <br>
+        <p>אני עומדת ביניהן,<br>
+        האחת מורגשת על עורי,<br>
+        שופעת הבטחות.<br>
+        השנייה מהדהדת אל ליבי<br>
+        מבלי לומר דבר.</p>
 
-            <p>כאשר אני צריכה לבחור,</p>
-            <p>תשומת הלב כובשת,</p>
-            <p>מנצנצת כמו הבטחה</p>
-            <p>שנולדה רק עכשיו.</p>
+        <p>ומתוך הרווח הדק ביניהן<br>
+        אני לומדת את עצמי מחדש:<br>
+        כמה קל להימשך לאור חולף,<br>
+        וכמה עמוק הדבר<br>
+        שאינו מבקש דבר<br>
+        ובכל זאת נשאר.</p>
+    </div>
 
-            <br>
-
-            <p>האהבה ממתינה,</p>
-            <p>לא מתוך חולשה,</p>
-            <p>אלא מתוך ידיעה קדומה</p>
-            <p>שמה שנועד להישאר</p>
-            <p>אינו צריך לרדוף.</p>
-
-            <br>
-
-            <p>אני עומדת ביניהן,</p>
-            <p>האחת מורגשת על עורי,</p>
-            <p>שופעת הבטחות.</p>
-            <p>השנייה מהדהדת אל ליבי</p>
-            <p>מבלי לומר דבר.</p>
-
-            <br>
-
-            <p>ומתוך הרווח הדק ביניהן</p>
-            <p>אני לומדת את עצמי מחדש:</p>
-            <p>כמה קל להימשך לאור חולף,</p>
-            <p>וכמה עמוק הדבר</p>
-            <p>שאינו מבקש דבר</p>
-            <p>ובכל זאת נשאר.</p>
-
-        </div>
-
-        <!-- תמונת השיר -->
-        <div class="song-image">
-            <img src="images/shir2.jpeg" alt="ציור לשיר">
-        </div>
-
-    </div> <!-- סוף song-layout -->
-
-    <!-- משבצת הערות + שליחה לוואטסאפ -->
+    <!-- תיבת הערות -->
     <div class="notes-box">
-        <h3>הערות והתרשמויות</h3>
+        <h3>כתיבת הערות והארות</h3>
+
+        <input id="userName" placeholder="השם שלכם..." />
 
         <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
 
-        <a id="waLink" class="btn btn-main" target="_blank">
-            שליחת ההערה בווטסאפ
-        </a>
+        <!-- כפתורים בשורה אחת -->
+        <div class="btn-row">
+            <a id="waLink" class="btn btn-main" target="_blank">ווצאפ לכותבת</a>
+            <button class="btn btn-light" id="saveBtn">שמירת הערה</button>
+        </div>
 
-        <p class="note-info">ההודעה תישלח ישירות לרות שנן</p>
+        <h4>הערות קוראים שנשמרו:</h4>
+        <div id="notes"></div>
     </div>
 
-    <script>
-    function updateWhatsAppLink() {
-        const note = document.getElementById("userNote").value;
-        const encoded = encodeURIComponent(note);
-
-        // מספר הווטסאפ שלך
-        const phone = "972545305123";
-
-        const link = `https://wa.me/${phone}?text=${encoded}`;
-        document.getElementById("waLink").href = link;
-    }
-
-    document.getElementById("userNote").addEventListener("input", updateWhatsAppLink);
-    </script>
-
+    <!-- כפתורי ניווט -->
     <a href="../index.html" class="btn btn-main">עמוד ראשי</a>
-    <a href="songs.html" class="btn btn-light">חזרה לרשימת השירים</a>
+    <a href="songs.html" class="btn btn-light">חזרה לשירים</a>
+
+    <!-- מערכת ההערות -->
+    <script type="module">
+        import { initNoteSystem } from "../notes.js";
+        initNoteSystem();
+    </script>
 
 </div>
 
 </body>
 </html>
+
 
 
 
