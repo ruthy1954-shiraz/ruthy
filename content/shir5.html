@@ -11,89 +11,80 @@
 
 <div class="wrapper">
 
-    <div class="song-layout">
+    <!-- תמונת השיר -->
+    <div class="song-image">
+        <img src="images/shir5.jpeg" alt="ציור לשיר בחג חירותי">
+    </div>
 
-        <!-- טקסט השיר -->
-        <div class="song-text">
-            <h1>בחג חירותי / רותי שנן</h1>
+    <!-- כותרות -->
+    <h1 class="song-title">בחג חירותי</h1>
+    <h2 class="song-author">רותי שנן</h2>
 
-            <p>בחג חירותי,</p>
-            <p>מתחילה לנשום נשימות גדולת לבטן.</p>
-            <p>קוראת דרור למחשבות המיותרות.</p>
-            <p>הן יוצאות ממני אחת־אחת,</p>
-            <p>ומשאירות בי רגעי שקט וחסד.</p>
+    <!-- טקסט השיר -->
+    <div class="song-box">
+        <p>בחג חירותי,<br>
+        מתחילה לנשום נשימות גדולת לבטן.<br>
+        קוראת דרור למחשבות המיותרות.<br>
+        הן יוצאות ממני אחת־אחת,<br>
+        ומשאירות בי רגעי שקט וחסד.</p>
 
-            <br>
+        <p>בחג חירותי<br>
+        משחררת טינה וכעס,<br>
+        מכינה מנות גדושות של שמחה ואושר,<br>
+        ומגישה אותן על צלחות של אהבה.</p>
 
-            <p>בחג חירותי</p>
-            <p>משחררת טינה וכעס,</p>
-            <p>מכינה מנות גדושות של שמחה ואושר,</p>
-            <p>ומגישה אותן על צלחות של אהבה.</p>
-            <p>בחג חירותי</p>
-            <p>מוזגת לעצמי כוסות של קלות וזרימה,</p>
-            <p>וכוס אחת משאירה לכל דכפין.</p>
+        <p>בחג חירותי<br>
+        מוזגת לעצמי כוסות של קלות וזרימה,<br>
+        וכוס אחת משאירה לכל דכפין.</p>
 
-            <br>
+        <p>בחג חירותי<br>
+        נותנת דרור לרגשות, למילים הטובות.<br>
+        הן יוצאות מגרוני במחול מסתלסל,<br>
+        הופכות למשפטים שרציתי מזמן לומר, לשחרר.</p>
 
-            <p>בחג חירותי</p>
-            <p>נותנת דרור לרגשות, למילים הטובות.</p>
-            <p>הן יוצאות מגרוני במחול מסתלסל,</p>
-            <p>הופכות למשפטים שרציתי מזמן לומר, לשחרר.</p>
+        <p>בחג חירותי<br>
+        אשב לסדר עם עצמי,<br>
+        אברור את העיקר,<br>
+        את אשר אהבה נפשי.<br>
+        את החמץ שבי אבער,<br>
+        את המיותר אשליך.</p>
 
-            <br>
+        <p>ואחגוג עם מה שיש בי,<br>
+        את חירות נפשי,<br>
+        את אביב חיי,<br>
+        את האהבה שבי.</p>
+    </div>
 
-            <p>בחג חירותי</p>
-            <p>אשב לסדר עם עצמי,</p>
-            <p>אברור את העיקר,</p>
-            <p>את אשר אהבה נפשי.</p>
-            <p>את החמץ שבי אבער,</p>
-            <p>את המיותר אשליך.</p>
-
-            <br>
-
-            <p>ואחגוג עם מה שיש בי,</p>
-            <p>את חירות נפשי,</p>
-            <p>את אביב חיי,</p>
-            <p>את האהבה שבי.</p>
-        </div>
-
-        <!-- תמונת השיר -->
-        <div class="song-image">
-            <img src="images/shir5.jpeg" alt="ציור לשיר" style="max-width: 600px;">
-        </div>
-
-    </div> <!-- סוף song-layout -->
-
-    <!-- משבצת הערות + שליחה לוואטסאפ -->
+    <!-- תיבת הערות -->
     <div class="notes-box">
-        <h3>הערות והתרשמויות</h3>
+        <h3>כתיבת הערות והארות</h3>
+
+        <input id="userName" placeholder="השם שלכם..." />
 
         <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
 
-        <a id="waLink" class="btn btn-main" target="_blank">
-            שליחת ההערה בווטסאפ
-        </a>
+        <!-- כפתורים בשורה אחת -->
+        <div class="btn-row">
+            <a id="waLink" class="btn btn-main" target="_blank">ווצאפ לכותבת</a>
+            <button class="btn btn-light" id="saveBtn">שמירת הערה</button>
+        </div>
 
-        <p class="note-info">ההודעה תישלח ישירות לרות שנן</p>
+        <h4>הערות קוראים שנשמרו:</h4>
+        <div id="notes"></div>
     </div>
 
-    <script>
-    function updateWhatsAppLink() {
-        const note = document.getElementById("userNote").value;
-        const encoded = encodeURIComponent(note);
+    <!-- כפתורי ניווט -->
+    <a href="../index.html" class="btn btn-main">עמוד ראשי</a>
+    <a href="songs.html" class="btn btn-light">חזרה לשירים</a>
 
-        const phone = "972545305123";
-        const link = `https://wa.me/${phone}?text=${encoded}`;
-        document.getElementById("waLink").href = link;
-    }
-
-    document.getElementById("userNote").addEventListener("input", updateWhatsAppLink);
+    <!-- מערכת ההערות -->
+    <script type="module">
+        import { initNoteSystem } from "../notes.js";
+        initNoteSystem();
     </script>
 
-    <a href="../index.html" class="btn btn-main">עמוד ראשי</a>
-    <a href="songs.html" class="btn btn-light">חזרה לרשימת השירים</a>
-
-</div> <!-- סוף wrapper -->
+</div>
 
 </body>
 </html>
+
