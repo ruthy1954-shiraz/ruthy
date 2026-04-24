@@ -99,14 +99,6 @@ body {
     background: #d6cbc4;
 }
 
-.btn-danger {
-    background: #d88c8c;
-    color: white;
-}
-.btn-danger:hover {
-    background: #c67878;
-}
-
 /* כפתורים בשורה */
 .btn-row {
     display: flex;
