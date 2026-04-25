@@ -69,12 +69,26 @@
 
     <!-- ⭐⭐ מזהה ייחודי לשיר ⭐⭐ -->
     <script>
-        var songId = "shir1";   /* ← התיקון החשוב */
+        var songId = "shir1";
     </script>
 
-    <!-- מערכת ההערות -->
+    <!-- ⭐⭐ מערכת ההערות + ווצאפ ⭐⭐ -->
     <script type="module">
         import { initNoteSystem } from "../notes.js";
+
+        // יצירת קישור ווצאפ אוטומטי
+        const waLink = document.getElementById("waLink");
+
+        // הודעה שתופיע אוטומטית בווצאפ
+        const message = encodeURIComponent("קראתי את השיר שלך ורציתי לשתף מחשבה...");
+
+        // מספר הטלפון שלך בפורמט בינלאומי
+        const phone = "972545305123";
+
+        // בניית קישור הווצאפ
+        waLink.href = `https://wa.me/${phone}?text=${message}`;
+
+        // הפעלת מערכת ההערות
         initNoteSystem();
     </script>
 
@@ -82,5 +96,6 @@
 
 </body>
 </html>
+
 
 
