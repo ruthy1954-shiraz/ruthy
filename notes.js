@@ -26,7 +26,7 @@ const db = getFirestore(app);
 
 
 // ----------------------------------------------------
-// 2. שמירת הערה — עכשיו לפי songId
+// 2. שמירת הערה — לפי songId
 // ----------------------------------------------------
 async function saveNote() {
   const name = document.getElementById("userName").value;
@@ -37,7 +37,7 @@ async function saveNote() {
     return;
   }
 
-  await addDoc(collection(db, "notes/" + songId), {
+  await addDoc(collection(db, "notes_" + songId), {
     name: name,
     note: note,
     timestamp: new Date()
@@ -52,7 +52,7 @@ async function saveNote() {
 // 3. טעינת הערות — לפי songId
 // ----------------------------------------------------
 async function loadNotes() {
-  const querySnapshot = await getDocs(collection(db, "notes/" + songId));
+  const querySnapshot = await getDocs(collection(db, "notes_" + songId));
   let html = "";
 
   querySnapshot.forEach((docItem) => {
@@ -76,7 +76,7 @@ async function loadNotes() {
 async function deleteNote(id) {
   if (!confirm("למחוק את ההערה?")) return;
 
-  await deleteDoc(doc(db, "notes/" + songId, id));
+  await deleteDoc(doc(db, "notes_" + songId, id));
   loadNotes();
 }
 
