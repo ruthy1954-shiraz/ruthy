@@ -1,9 +1,15 @@
-// notes.js — מערכת הערות בענן Firestore
+// notes.js — מערכת הערות בענן Firestore (Firebase 10)
 
 // חיבור ל-Firebase
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc } 
-    from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { 
+    getFirestore, 
+    collection, 
+    addDoc, 
+    getDocs, 
+    deleteDoc, 
+    doc 
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 // הגדרות הפרויקט שלך
 const firebaseConfig = {
@@ -26,9 +32,6 @@ export function initNoteSystem() {
     const userNoteInput = document.getElementById("userNote");
     const saveBtn = document.getElementById("saveBtn");
     const notesContainer = document.getElementById("notes");
-    const waLink = document.getElementById("waLink");
-
-    const songTitle = document.querySelector(".song-title").innerText;
 
     // טעינת הערות מהענן
     loadNotes();
@@ -69,7 +72,6 @@ export function initNoteSystem() {
         userNoteInput.value = "";
 
         loadNotes();
-        updateWhatsAppLink();
     });
 
     // הצגת הערה אחת
@@ -98,26 +100,8 @@ export function initNoteSystem() {
             loadNotes();
         });
     }
-
-    // וואטסאפ
-    function updateWhatsAppLink() {
-        const name = userNameInput.value.trim();
-        const note = userNoteInput.value.trim();
-
-        const message =
-            "שם הכותב: " + name + "\n" +
-            "שיר: " + songTitle + "\n" +
-            "הערה: " + note;
-
-        waLink.href =
-            "https://wa.me/972545305123?text=" + encodeURIComponent(message);
-    }
-
-    userNameInput.addEventListener("input", updateWhatsAppLink);
-    userNoteInput.addEventListener("input", updateWhatsAppLink);
-
-    updateWhatsAppLink();
 }
+
 
 
 
