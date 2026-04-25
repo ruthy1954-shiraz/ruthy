@@ -1,4 +1,25 @@
-// מערכת ההערות לכל השירים
+// notes.js — מערכת הערות בענן Firestore
+
+// חיבור ל-Firebase
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc } 
+    from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+// הגדרות הפרויקט שלך
+const firebaseConfig = {
+    apiKey: "AIzaSyD8q-8yJY0qQ0xk1y2v5w2u3u4u5u6u7u8",
+    authDomain: "ruthy-notes.firebaseapp.com",
+    projectId: "ruthy-notes",
+    storageBucket: "ruthy-notes.appspot.com",
+    messagingSenderId: "123456789000",
+    appId: "1:123456789000:web:abcdef123456"
+};
+
+// הפעלה
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// מערכת ההערות
 export function initNoteSystem() {
 
     const userNameInput = document.getElementById("userName");
@@ -7,15 +28,27 @@ export function initNoteSystem() {
     const notesContainer = document.getElementById("notes");
     const waLink = document.getElementById("waLink");
 
-    // לוקחים את שם השיר מהעמוד
     const songTitle = document.querySelector(".song-title").innerText;
 
-    // טוענים הערות קיימות
-    const savedNotes = JSON.parse(localStorage.getItem(songId)) || [];
-    renderNotes();
+    // טעינת הערות מהענן
+    loadNotes();
 
-    // שמירת הערה
-    saveBtn.addEventListener("click", () => {
+    async function loadNotes() {
+        notesContainer.innerHTML = "טוען הערות...";
+
+        const notesRef = collection(db, "notes_" + songId);
+        const snapshot = await getDocs(notesRef);
+
+        notesContainer.innerHTML = "";
+
+        snapshot.forEach(docItem => {
+            const data = docItem.data();
+            renderNote(docItem.id, data.name, data.note);
+        });
+    }
+
+    // שמירת הערה בענן
+    saveBtn.addEventListener("click", async () => {
         const name = userNameInput.value.trim();
         const note = userNoteInput.value.trim();
 
@@ -24,19 +57,49 @@ export function initNoteSystem() {
             return;
         }
 
-        const newNote = { name, note };
-        savedNotes.push(newNote);
+        const notesRef = collection(db, "notes_" + songId);
 
-        localStorage.setItem(songId, JSON.stringify(savedNotes));
+        await addDoc(notesRef, {
+            name,
+            note,
+            timestamp: Date.now()
+        });
 
         userNameInput.value = "";
         userNoteInput.value = "";
 
-        renderNotes();
+        loadNotes();
         updateWhatsAppLink();
     });
 
-    // יצירת קישור וואטסאפ
+    // הצגת הערה אחת
+    function renderNote(id, name, note) {
+        const div = document.createElement("div");
+        div.classList.add("note-item");
+
+        div.innerHTML = `
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+                <div>
+                    <strong>${name}:</strong><br>
+                    ${note}
+                </div>
+
+                <button class="delete-btn" data-id="${id}">
+                    ✖
+                </button>
+            </div>
+            <hr>
+        `;
+
+        notesContainer.appendChild(div);
+
+        div.querySelector(".delete-btn").addEventListener("click", async () => {
+            await deleteDoc(doc(db, "notes_" + songId, id));
+            loadNotes();
+        });
+    }
+
+    // וואטסאפ
     function updateWhatsAppLink() {
         const name = userNameInput.value.trim();
         const note = userNoteInput.value.trim();
@@ -50,49 +113,12 @@ export function initNoteSystem() {
             "https://wa.me/972545305123?text=" + encodeURIComponent(message);
     }
 
-    // הצגת הערות
-    function renderNotes() {
-        notesContainer.innerHTML = "";
-
-        savedNotes.forEach((item, index) => {
-            const div = document.createElement("div");
-            div.classList.add("note-item");
-
-            div.innerHTML = `
-                <div style="display:flex; justify-content:space-between; align-items:center;">
-                    <div>
-                        <strong>${item.name}:</strong><br>
-                        ${item.note}
-                    </div>
-
-                    <button class="delete-btn" data-index="${index}">
-                        ✖
-                    </button>
-                </div>
-                <hr>
-            `;
-
-            notesContainer.appendChild(div);
-        });
-
-        // כפתורי מחיקה
-        const deleteButtons = document.querySelectorAll(".delete-btn");
-        deleteButtons.forEach(btn => {
-            btn.addEventListener("click", () => {
-                const index = btn.getAttribute("data-index");
-                savedNotes.splice(index, 1);
-                localStorage.setItem(songId, JSON.stringify(savedNotes));
-                renderNotes();
-            });
-        });
-    }
-
-    // עדכון קישור וואטסאפ בזמן כתיבה
     userNameInput.addEventListener("input", updateWhatsAppLink);
     userNoteInput.addEventListener("input", updateWhatsAppLink);
 
     updateWhatsAppLink();
 }
+
 
 
 
