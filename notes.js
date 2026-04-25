@@ -1,107 +1,66 @@
-// notes.js — מערכת הערות בענן Firestore (Firebase 10)
+// notes.js — מערכת הערות מלאה
 
-// חיבור ל-Firebase
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { 
-    getFirestore, 
-    collection, 
-    addDoc, 
-    getDocs, 
-    deleteDoc, 
-    doc 
-} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getFirestore, collection, addDoc, getDocs, query, orderBy } 
+from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-// הגדרות הפרויקט שלך
+// הגדרות Firebase שלך
 const firebaseConfig = {
-    apiKey: "AIzaSyD8q-8yJY0qQ0xk1y2v5w2u3u4u5u6u7u8",
-    authDomain: "ruthy-notes.firebaseapp.com",
+    apiKey: "YOUR_KEY",
+    authDomain: "YOUR_DOMAIN",
     projectId: "ruthy-notes",
     storageBucket: "ruthy-notes.appspot.com",
-    messagingSenderId: "123456789000",
-    appId: "1:123456789000:web:abcdef123456"
+    messagingSenderId: "YOUR_ID",
+    appId: "YOUR_APP_ID"
 };
 
-// הפעלה
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// מערכת ההערות
-export function initNoteSystem() {
-
-    const userNameInput = document.getElementById("userName");
-    const userNoteInput = document.getElementById("userNote");
-    const saveBtn = document.getElementById("saveBtn");
-    const notesContainer = document.getElementById("notes");
-
-    // טעינת הערות מהענן
-    loadNotes();
-
-    async function loadNotes() {
-        notesContainer.innerHTML = "טוען הערות...";
-
-        const notesRef = collection(db, "notes_" + songId);
-        const snapshot = await getDocs(notesRef);
-
-        notesContainer.innerHTML = "";
-
-        snapshot.forEach(docItem => {
-            const data = docItem.data();
-            renderNote(docItem.id, data.name, data.note);
-        });
-    }
-
-    // שמירת הערה בענן
-    saveBtn.addEventListener("click", async () => {
-        const name = userNameInput.value.trim();
-        const note = userNoteInput.value.trim();
-
-        if (!name || !note) {
-            alert("נא למלא שם והערה");
-            return;
-        }
-
-        const notesRef = collection(db, "notes_" + songId);
-
-        await addDoc(notesRef, {
-            name,
-            note,
+// שמירת הערה לענן
+export async function saveNoteToFirestore(name, song, note, songId) {
+    try {
+        await addDoc(collection(db, "notes_" + songId), {
+            name: name,
+            song: song,
+            note: note,
             timestamp: Date.now()
         });
-
-        userNameInput.value = "";
-        userNoteInput.value = "";
-
-        loadNotes();
-    });
-
-    // הצגת הערה אחת
-    function renderNote(id, name, note) {
-        const div = document.createElement("div");
-        div.classList.add("note-item");
-
-        div.innerHTML = `
-            <div style="display:flex; justify-content:space-between; align-items:center;">
-                <div>
-                    <strong>${name}:</strong><br>
-                    ${note}
-                </div>
-
-                <button class="delete-btn" data-id="${id}">
-                    ✖
-                </button>
-            </div>
-            <hr>
-        `;
-
-        notesContainer.appendChild(div);
-
-        div.querySelector(".delete-btn").addEventListener("click", async () => {
-            await deleteDoc(doc(db, "notes_" + songId, id));
-            loadNotes();
-        });
+        alert("ההערה נשמרה בהצלחה!");
+    } catch (error) {
+        console.error("Error adding document: ", error);
+        alert("אירעה שגיאה בשמירת ההערה");
     }
 }
 
+// טעינת הערות מהענן
+export async function initNoteSystem() {
+    const notesDiv = document.getElementById("notes");
+
+    const q = query(
+        collection(db, "notes_" + songId),
+        orderBy("timestamp", "desc")
+    );
+
+    const querySnapshot = await getDocs(q);
+
+    notesDiv.innerHTML = "";
+
+    querySnapshot.forEach((doc) => {
+        const data = doc.data();
+
+        const date = new Date(data.timestamp).toLocaleDateString("he-IL");
+
+        notesDiv.innerHTML += `
+            <p>
+                <strong>${data.name}</strong> (${date})<br>
+                <em>${data.song}</em><br>
+                ${data.note}
+            </p>
+            <hr>
+        `;
+    });
+}
 
 
 
