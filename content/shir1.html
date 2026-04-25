@@ -67,35 +67,33 @@
     <a href="../index.html" class="btn btn-main">עמוד ראשי</a>   
     <a href="song.html" class="btn btn-light">חזרה לשירים</a>
 
-    <!-- ⭐⭐ מזהה ייחודי לשיר ⭐⭐ -->
-    <script>
-        var songId = "shir1";
-    </script>
-
-    <!-- ⭐⭐ מערכת ההערות + ווצאפ ⭐⭐ -->
-    <script type="module">
-        import { initNoteSystem } from "../notes.js";
-
-        // יצירת קישור ווצאפ אוטומטי
-        const waLink = document.getElementById("waLink");
-
-        // הודעה שתופיע אוטומטית בווצאפ
-        const message = encodeURIComponent("קראתי את השיר שלך ורציתי לשתף מחשבה...");
-
-        // מספר הטלפון שלך בפורמט בינלאומי
-        const phone = "972545305123";
-
-        // בניית קישור הווצאפ
-        waLink.href = `https://wa.me/${phone}?text=${message}`;
-
-        // הפעלת מערכת ההערות
-        initNoteSystem();
-    </script>
-
 </div>
+
+<!-- ⭐ מזהה ייחודי לשיר ⭐ -->
+<script>
+    var songId = "shir1";
+</script>
+
+<!-- ⭐ מערכת ההערות + ווצאפ ⭐ -->
+<script type="module">
+    import { initNoteSystem } from "../notes.js";
+
+    // יצירת קישור ווצאפ
+    const waLink = document.getElementById("waLink");
+
+    const message = encodeURIComponent("קראתי את השיר שלך ורציתי לשתף מחשבה...");
+    const phone = "972545305123";
+
+    if (waLink) {
+        waLink.href = `https://wa.me/${phone}?text=${message}`;
+    }
+
+    initNoteSystem();
+</script>
 
 </body>
 </html>
+
 
 
 
