@@ -94,7 +94,8 @@
             resize: vertical;
         }
 
-        .notes-box button {
+        .notes-box button,
+        .notes-box a {
             padding: 12px 25px;
             font-size: 20px;
             background-color: #d8c3a5;
@@ -102,9 +103,13 @@
             border: none;
             border-radius: 8px;
             cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
         }
 
-        .notes-box button:hover {
+        .notes-box button:hover,
+        .notes-box a:hover {
             background-color: #c0a98b;
         }
 
@@ -149,6 +154,9 @@
 
     <h4>הערות שנשמרו:</h4>
     <div id="notes"></div>
+
+    <!-- כפתור ווצאפ -->
+    <a id="waLink" target="_blank">ווצאפ לכותבת</a>
 </div>
 
 <!-- מזהה ייחודי לדף הבית -->
@@ -156,14 +164,25 @@
     var songId = "homepage";
 </script>
 
-<!-- טעינת מערכת ההערות -->
+<!-- מערכת ההערות + ווצאפ -->
 <script type="module">
     import { initNoteSystem } from "./notes.js";
+
+    // יצירת קישור ווצאפ אוטומטי
+    const waLink = document.getElementById("waLink");
+
+    const message = encodeURIComponent("קראתי את האתר שלך ורציתי לשתף מחשבה...");
+    const phone = "972545305123";  // ← מספר הטלפון שלך
+
+    waLink.href = `https://wa.me/${phone}?text=${message}`;
+
+    // הפעלת מערכת ההערות
     initNoteSystem();
 </script>
 
 </body>
 </html>
+
 
 
 
