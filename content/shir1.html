@@ -58,18 +58,21 @@
         <!-- הערה -->
         <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
 
-        <div class="btn-row">
-            <a id="waLink" class="btn btn-main" target="_blank">ווצאפ לכותבת</a>
-            <button class="btn btn-light" id="saveBtn">שמירת הערה</button>
+        <!-- קישורים במקום כפתורים -->
+        <div class="footer-nav" style="margin-top:15px;">
+            <a id="waLink">ווצאפ לכותבת</a> |
+            <a id="saveLink">שמירת הערה</a>
         </div>
 
         <h4>הערות קוראים שנשמרו:</h4>
         <div id="notes"></div>
     </div>
 
-    <!-- כפתורי ניווט -->
-    <a href="../index.html" class="btn btn-main">עמוד ראשי</a>
-    <a href="song.html" class="btn btn-light">חזרה לשירים</a>
+    <!-- ניווט עדין -->
+    <div class="footer-nav">
+        <a href="../index.html">עמוד ראשי</a> |
+        <a href="song.html">חזרה לשירים</a>
+    </div>
 
 </div>
 
@@ -83,7 +86,7 @@
     import { initNoteSystem, saveNoteToFirestore } from "../notes.js";
 
     const waLink = document.getElementById("waLink");
-    const saveBtn = document.getElementById("saveBtn");
+    const saveLink = document.getElementById("saveLink");
 
     const phone = "972545305123";
 
@@ -99,11 +102,11 @@
             `הערה: ${note}`;
 
         const encoded = encodeURIComponent(message);
-        waLink.href = `https://wa.me/${phone}?text=${encoded}`;
+        window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
     });
 
     // שמירת הערה בענן
-    saveBtn.addEventListener("click", function() {
+    saveLink.addEventListener("click", function() {
         const name = document.getElementById("userName").value.trim();
         const song = document.getElementById("userSong").value.trim();
         const note = document.getElementById("userNote").value.trim();
@@ -116,6 +119,7 @@
 
 </body>
 </html>
+
 
 
 
