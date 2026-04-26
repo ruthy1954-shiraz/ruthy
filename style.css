@@ -82,34 +82,43 @@ html, body {
     height: 110px;
 }
 
-/* כפתורים חדשים — כולם אחידים */
+/* כפתורים אלגנטיים חדשים */
 .nice-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 150px;      /* רוחב אחיד */
-    height: 48px;      /* גובה אחיד */
+    width: 160px;
+    height: 50px;
     padding: 0;
-    font-size: 17px;
+    font-size: 18px;
     font-weight: 600;
-    border-radius: 10px;
+    border-radius: 12px;
     text-decoration: none;
     cursor: pointer;
     box-sizing: border-box;
     text-align: center;
     border: none;
+    transition: 0.25s ease;
 }
 
-/* צבעים */
-.nice-main { /* ווצאפ + עמוד ראשי */
+/* צבעים אלגנטיים */
+.nice-main {
     background: #8b5e3c;
     color: white;
 }
 
-.nice-light { /* שמירת הערה + חזרה לשירים */
+.nice-main:hover {
+    background: #7a5234;
+}
+
+.nice-light {
     background: #e8e2d9;
     color: #333;
     border: 1px solid #cfc7bd;
+}
+
+.nice-light:hover {
+    background: #ded6cc;
 }
 
 /* שורת כפתורים */
@@ -117,7 +126,7 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     margin: 20px 0;
 }
 
@@ -155,6 +164,7 @@ html, body {
     width: fit-content;
     margin: 10px auto;
 }
+
 
 
 
