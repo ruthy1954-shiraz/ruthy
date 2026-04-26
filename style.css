@@ -82,10 +82,8 @@ html, body {
     height: 110px;
 }
 
-/* כפתורים — כולם כמו "שמירת הערה" */
-.btn,
-button.btn,
-a.btn {
+/* כפתורים חדשים — כולם אחידים */
+.nice-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -99,21 +97,22 @@ a.btn {
     cursor: pointer;
     box-sizing: border-box;
     text-align: center;
+    border: none;
 }
 
 /* צבעים */
-.btn-main { /* ווצאפ + עמוד ראשי */
+.nice-main { /* ווצאפ + עמוד ראשי */
     background: #8b5e3c;
     color: white;
 }
 
-.btn-light { /* שמירת הערה + חזרה לשירים */
+.nice-light { /* שמירת הערה + חזרה לשירים */
     background: #e8e2d9;
     color: #333;
     border: 1px solid #cfc7bd;
 }
 
-/* שורת כפתורים – צמודים */
+/* שורת כפתורים */
 .btn-row {
     display: flex;
     justify-content: center;
@@ -151,11 +150,12 @@ a.btn {
 }
 
 /* כפתורי ניווט */
-.wrapper a.btn {
+.wrapper a.nice-btn {
     display: block;
     width: fit-content;
     margin: 10px auto;
 }
+
 
 
 
