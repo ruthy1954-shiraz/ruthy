@@ -6,7 +6,7 @@ body {
     margin: 0;
     padding: 0;
     direction: rtl;
-    text-align: right; /* ← יישור לימין */
+    text-align: right; /* יישור לימין */
 }
 
 /* עטיפת הדף */
@@ -52,12 +52,13 @@ body {
 .notes-box {
     margin-top: 30px;
     padding: 20px;
-    background: #fff;
-    border: 1px solid #ccc;
+    background: #fff8d6; /* ← הצהוב הרך שהיה קודם */
+    border: 1px solid #e6d8a8;
     border-radius: 10px;
     text-align: right;
 }
 
+/* שדות */
 .notes-box input,
 .notes-box textarea {
     width: 100%;
