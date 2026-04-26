@@ -15,8 +15,8 @@
 
     /* תמונת פתיחה */
     .cover img {
-        width: 95%;
-        max-width: 650px;
+        width: 90%;
+        max-width: 600px;
         border-radius: 14px;
         box-shadow: 0 4px 14px rgba(0,0,0,0.25);
         margin-top: 25px;
@@ -24,13 +24,13 @@
 
     /* כותרות */
     h1 {
-        font-size: 3.6rem;
+        font-size: 3.2rem;
         margin-top: 30px;
         color: #5a4a3f;
     }
 
     h2 {
-        font-size: 2.1rem;
+        font-size: 1.9rem;
         margin-top: -8px;
         color: #7a6a5f;
         font-weight: normal;
@@ -38,26 +38,26 @@
 
     /* טקסט פתיחה */
     p {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
         margin: 30px auto;
-        width: 92%;
-        line-height: 2.1;
+        width: 90%;
+        line-height: 2;
     }
 
     /* כפתורים */
     .buttons {
-        margin-top: 45px;
+        margin-top: 40px;
     }
 
     .buttons a {
         display: inline-block;
-        margin: 12px;
-        padding: 22px 45px;
+        margin: 10px;
+        padding: 18px 35px;
         background-color: #d8c3a5;
         color: #fff;
         text-decoration: none;
         border-radius: 12px;
-        font-size: 1.6rem;
+        font-size: 1.4rem;
         transition: background-color 0.3s;
     }
 
@@ -67,12 +67,12 @@
 
     /* תיבת הערות */
     .notes-box {
-        margin-top: 55px;
-        padding: 25px;
+        margin-top: 50px;
+        padding: 20px;
         background: #fafafa;
         border: 1px solid #ccc;
         border-radius: 12px;
-        width: 92%;
+        width: 90%;
         margin-left: auto;
         margin-right: auto;
     }
@@ -80,7 +80,7 @@
     .notes-box input,
     .notes-box textarea {
         width: 100%;
-        font-size: 1.3rem;
+        font-size: 1.2rem;
         padding: 14px;
         border-radius: 8px;
         border: 1px solid #ccc;
@@ -88,13 +88,13 @@
     }
 
     .notes-box textarea {
-        height: 170px;
+        height: 160px;
         resize: vertical;
     }
 
     .notes-box a {
         padding: 14px 28px;
-        font-size: 1.4rem;
+        font-size: 1.3rem;
         background-color: #d8c3a5;
         color: white;
         border-radius: 10px;
@@ -109,18 +109,19 @@
     }
 
     #notes {
-        margin-top: 22px;
+        margin-top: 20px;
         text-align: right;
-        font-size: 1.4rem;
+        font-size: 1.3rem;
         line-height: 1.7;
     }
 
     /* התאמה לנייד */
     @media (max-width: 600px) {
-        h1 { font-size: 3rem; }
-        h2 { font-size: 1.7rem; }
-        p { font-size: 1.6rem; }
-        .buttons a { font-size: 1.4rem; padding: 18px 35px; }
+        html { font-size: 18px; }
+        h1 { font-size: 2.8rem; }
+        h2 { font-size: 1.6rem; }
+        p { font-size: 1.4rem; }
+        .buttons a { font-size: 1.2rem; padding: 15px 28px; }
     }
 </style>
 
