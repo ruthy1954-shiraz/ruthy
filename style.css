@@ -1,3 +1,102 @@
+/* עיצוב בסיסי */
+body {
+    font-family: "Assistant", sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #faf7f2;
+    color: #333;
+    direction: rtl;
+}
+
+/* עטיפה כללית */
+.wrapper {
+    width: 90%;
+    max-width: 800px;
+    margin: auto;
+    padding-bottom: 40px;
+}
+
+/* תמונת שיר */
+.song-image img {
+    width: 100%;
+    border-radius: 12px;
+    margin-top: 20px;
+}
+
+/* כותרות */
+.song-title {
+    font-size: 32px;
+    margin: 20px 0 5px;
+    text-align: center;
+}
+
+.song-author {
+    font-size: 20px;
+    margin: 0 0 20px;
+    text-align: center;
+    color: #666;
+}
+
+/* תיבת השיר */
+.song-box {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+/* תיבת הערות */
+.notes-box {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+.notes-box input,
+.notes-box textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-family: inherit;
+}
+
+.notes-box textarea {
+    height: 100px;
+}
+
+/* כפתורים */
+.btn {
+    display: inline-block;
+    padding: 10px 18px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.btn-main {
+    background: #8b5e3c;
+    color: white;
+}
+
+.btn-light {
+    background: #e8e2d9;
+    color: #333;
+}
+
+.btn-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
 /* כרטיס הערה */
 .note-card {
     background: #fff8dc;
@@ -31,7 +130,6 @@
 #notes {
     margin-top: 20px;
 }
-
 
 
 
