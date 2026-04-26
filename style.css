@@ -84,7 +84,7 @@ html, body {
     height: 110px;
 }
 
-/* כפתורים מעוצבים ואחידים */
+/* כפתורים — כולם כמו "שמירת הערה" */
 .btn,
 button.btn,
 a.btn {
@@ -94,21 +94,22 @@ a.btn {
     width: 150px;      /* רוחב אחיד */
     height: 48px;      /* גובה אחיד */
     padding: 0;
-    font-size: 17px;   /* טקסט שמתאים לגודל */
+    font-size: 17px;
     font-weight: 600;
     border-radius: 10px;
     text-decoration: none;
     cursor: pointer;
     box-sizing: border-box;
+    text-align: center;
 }
 
 /* צבעים */
-.btn-main {
+.btn-main { /* ווצאפ + עמוד ראשי */
     background: #8b5e3c;
     color: white;
 }
 
-.btn-light {
+.btn-light { /* שמירת הערה + חזרה לשירים */
     background: #e8e2d9;
     color: #333;
     border: 1px solid #cfc7bd;
@@ -119,7 +120,7 @@ a.btn {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px; /* רווח קטן בין הכפתורים */
+    gap: 10px;
     margin: 20px 0;
 }
 
