@@ -51,7 +51,7 @@ async function loadNotes(songId) {
 
         notesDiv.innerHTML += `
             <div class="note-card">
-                <div class="note-delete" onclick="deleteNote('${id}')">×</div>
+                <div class="delete-note" onclick="deleteNote('${id}')">×</div>
                 <strong>${data.name}</strong><br>
                 <small>${data.song} — ${date}</small><br><br>
                 ${data.note}
