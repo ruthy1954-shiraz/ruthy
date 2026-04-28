@@ -1,111 +1,86 @@
-/* עיצוב כללי */
-body {
-    font-family: "David", "Arial", sans-serif;
-    background-color: #fdfaf6;
-    color: #333;
-    margin: 0;
-    padding: 0;
-    direction: rtl;
-    text-align: right;
+/* תיבת ההערות הכללית */
+.home-page .notes-box {
+    margin-top: 50px;
+    padding: 25px;
+    background: #fae7dd; /* פיץ רך */
+    border: 1px solid #e3c7b8;
+    border-radius: 18px;
+    width: 92%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-/* עטיפת הדף */
-.wrapper {
-    max-width: 700px;
-    margin: auto;
-    padding: 20px;
-}
-
-/* תמונת שיר */
-.song-image img {
+/* שדות טקסט */
+.home-page .notes-box input,
+.home-page .notes-box textarea {
     width: 100%;
-    border-radius: 10px;
-    margin-bottom: 20px;
+    font-size: 2.3rem;
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid #c9a99a;
+    margin-bottom: 14px;
+    background-color: #fff7f2; /* פיץ בהיר */
 }
 
-/* כותרות */
-.song-title {
-    font-size: 2.4rem;
-    margin-bottom: 5px;
-    color: #5a4a3f;
-    text-align: center;
-}
-
-.song-author {
-    font-size: 1.4rem;
-    margin-top: 0;
-    margin-bottom: 20px;
-    color: #7a6a5f;
-    text-align: center;
-}
-
-/* טקסט השיר */
-.song-box {
-    background: #fafafa;
-    padding: 20px;
-    border-radius: 10px;
-    border: 1px solid #ddd;
-    text-align: center; /* מרכז את השיר */
-    line-height: 1.8;
-    font-size: 1.2rem;
-}
-
-/* תיבת הערות */
-.notes-box {
-    margin-top: 30px;
-    padding: 20px;
-    background: #FFE5D4; /* Pastel Peach */
-    border: 1px solid #e6c7b8;
-    border-radius: 10px;
-    text-align: right;
-}
-
-/* שדות */
-.notes-box input,
-.notes-box textarea {
-    width: 100%;
-    padding: 10px;
-    font-size: 1rem;
-    margin-bottom: 10px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-}
-
-.notes-box textarea {
-    height: 140px;
+.home-page .notes-box textarea {
+    height: 170px;
     resize: vertical;
 }
 
-/* כפתור מחיקה (X) */
-.delete-note {
-    float: left; /* מעביר את ה‑X לצד שמאל */
-    color: #b85c5c;
-    font-weight: bold;
-    cursor: pointer;
-    margin-left: 10px;
-    font-size: 1.9rem;
-}
-
-.delete-note:hover {
-    color: #8a3f3f;
-}
-
-/* קישורים */
-.footer-nav {
-    margin-top: 20px;
-    font-size: 1.1rem;
-    text-align: center;
-}
-
-.footer-nav a {
+/* כותרת: כתיבת הערות והארות */
+.home-page .notes-box h3 {
+    font-size: 3rem;
+    font-weight: 800;
     color: #5a4a3f;
-    text-decoration: underline;
+    margin-bottom: 20px;
 }
 
-.footer-nav a:hover {
-    text-decoration: underline;
+/* כותרת: הערות שנשמרו */
+.home-page .notes-box h4 {
+    font-size: 3rem;
+    font-weight: 900;
+    margin-top: 30px;
+    color: #5a4a3f;
 }
 
+/* תיבת הערות שנשמרו */
+#notes {
+    margin-top: 20px;
+    text-align: right;
+    font-size: 2rem;
+    line-height: 1.7;
+}
+
+/* תיבה של כל הערה */
+.note-item {
+    background-color: #fff7f2; /* פיץ עדין */
+    border: 1px solid #e3c7b8;
+    border-radius: 14px;
+    padding: 18px 20px;
+    margin-bottom: 18px;
+    position: relative;
+}
+
+/* כפתור מחיקה X */
+.note-delete {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #d8c3a5;
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 32px;
+    font-size: 1.6rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.note-delete:hover {
+    background-color: #c0a98b;
+}
 
 
 
