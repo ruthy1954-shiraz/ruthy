@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>משבר / רות שנן</title>
-    <link rel="stylesheet" href="../style.css">
+
+    <!-- נתיב מוחלט ל‑CSS כדי שיעבוד ב‑GitHub Pages -->
+    <link rel="stylesheet" href="/ruthy/style.css">
 </head>
 
 <body>
@@ -113,16 +115,10 @@
     <div class="notes-box">
         <h3>כתיבת הערות והארות</h3>
 
-        <!-- שם הכותב -->
         <input id="userName" placeholder="השם שלכם..." />
-
-        <!-- שם השיר -->
         <input id="userSong" placeholder="שם השיר..." value="משבר" />
-
-        <!-- הערה -->
         <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
 
-        <!-- קישורים במקום כפתורים -->
         <div class="footer-nav" style="margin-top:15px;">
             <a id="waLink">ווצאפ לכותבת</a> |
             <a id="saveLink">שמירת הערה</a>
@@ -132,7 +128,6 @@
         <div id="notes"></div>
     </div>
 
-    <!-- ניווט עדין -->
     <div class="footer-nav">
         <a href="../index.html">עמוד ראשי</a> |
         <a href="song.html">חזרה לשירים</a>
@@ -147,14 +142,15 @@
 
 <!-- מערכת ההערות + ווצאפ -->
 <script type="module">
-    import { initNoteSystem, saveNoteToFirestore } from "../notes.js";
+
+    /* טעינה נכונה של notes.js ב‑GitHub Pages */
+    import { initNoteSystem, saveNoteToFirestore } from "/ruthy/notes.js";
 
     const waLink = document.getElementById("waLink");
     const saveLink = document.getElementById("saveLink");
 
     const phone = "972545305123";
 
-    // שליחת הודעה בווצאפ
     waLink.addEventListener("click", function() {
         const name = document.getElementById("userName").value.trim();
         const song = document.getElementById("userSong").value.trim();
@@ -169,7 +165,6 @@
         window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
     });
 
-    // שמירת הערה בענן
     saveLink.addEventListener("click", function() {
         const name = document.getElementById("userName").value.trim();
         const song = document.getElementById("userSong").value.trim();
@@ -178,11 +173,14 @@
         saveNoteToFirestore(name, song, note, songId);
     });
 
-    initNoteSystem();
+    /* הפעלה נכונה */
+    initNoteSystem(songId);
+
 </script>
 
 </body>
 </html>
+
 
 
 
