@@ -53,12 +53,28 @@
 
 /* תיבה של כל הערה */
 .note-item {
-    background-color: #fff7f2; /* פיץ עדין */
+    background-color: #fff7f2;
     border: 1px solid #e3c7b8;
     border-radius: 14px;
     padding: 18px 20px;
-    margin-bottom: 18px;
+    margin-bottom: 22px;
     position: relative;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.12); /* צל עדין */
+    animation: fadeIn 0.5s ease; /* אנימציה */
+}
+
+/* אייקון ליד שם הכותבת */
+.note-item .note-icon {
+    display: inline-block;
+    background-color: #d8c3a5;
+    color: white;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 28px;
+    margin-left: 6px;
+    font-size: 1.4rem;
 }
 
 /* כפתור מחיקה X */
@@ -80,6 +96,12 @@
 
 .note-delete:hover {
     background-color: #c0a98b;
+}
+
+/* אנימציה */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 
