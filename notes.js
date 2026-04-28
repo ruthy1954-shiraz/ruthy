@@ -58,10 +58,19 @@ async function loadNotes(pageId) {
             const wrapper = document.createElement("div");
             wrapper.className = "note-item";
 
+            const date = new Date(data.timestamp).toLocaleString("he-IL");
+
             wrapper.innerHTML = `
                 <div class="note-delete" data-id="${docItem.id}">×</div>
-                <strong>${data.name}</strong> כתבה בדף <strong>${data.song}</strong>:<br>
+
+                <span class="note-icon">✎</span>
+                <strong>${data.name}</strong> כתבה בדף <strong>${data.song}</strong>:
+
+                <br><br>
                 ${data.note}
+
+                <br><br>
+                <small style="color:#7a6a5f;">נכתב ב־${date}</small>
             `;
 
             notesDiv.appendChild(wrapper);
