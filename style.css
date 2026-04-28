@@ -1,5 +1,5 @@
 /* תיבת ההערות הכללית */
-.home-page .notes-box {
+.notes-box {
     margin-top: 50px;
     padding: 25px;
     background: #fae7dd; /* פיץ רך */
@@ -11,8 +11,8 @@
 }
 
 /* שדות טקסט */
-.home-page .notes-box input,
-.home-page .notes-box textarea {
+.notes-box input,
+.notes-box textarea {
     width: 100%;
     font-size: 2.3rem;
     padding: 14px;
@@ -22,13 +22,13 @@
     background-color: #fff7f2; /* פיץ בהיר */
 }
 
-.home-page .notes-box textarea {
+.notes-box textarea {
     height: 170px;
     resize: vertical;
 }
 
 /* כותרת: כתיבת הערות והארות */
-.home-page .notes-box h3 {
+.notes-box h3 {
     font-size: 3rem;
     font-weight: 800;
     color: #5a4a3f;
@@ -36,7 +36,7 @@
 }
 
 /* כותרת: הערות שנשמרו */
-.home-page .notes-box h4 {
+.notes-box h4 {
     font-size: 3rem;
     font-weight: 900;
     margin-top: 30px;
@@ -103,7 +103,6 @@
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
 }
-
 
 
 
