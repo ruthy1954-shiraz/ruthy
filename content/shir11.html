@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>משבר / רות שנן</title>
 
-    <!-- נתיב מוחלט ל‑CSS כדי שיעבוד ב‑GitHub Pages -->
-    <link rel="stylesheet" href="/ruthy/style.css">
+    <!-- טעינת CSS עם v=2 כדי לעקוף Cache -->
+    <link rel="stylesheet" href="../style.css?v=2">
 </head>
 
 <body>
@@ -143,7 +143,6 @@
 <!-- מערכת ההערות + ווצאפ -->
 <script type="module">
 
-    /* טעינה נכונה של notes.js ב‑GitHub Pages */
     import { initNoteSystem, saveNoteToFirestore } from "/ruthy/notes.js";
 
     const waLink = document.getElementById("waLink");
@@ -173,13 +172,13 @@
         saveNoteToFirestore(name, song, note, songId);
     });
 
-    /* הפעלה נכונה */
     initNoteSystem(songId);
 
 </script>
 
 </body>
 </html>
+
 
 
 
