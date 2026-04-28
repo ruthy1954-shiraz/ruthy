@@ -30,15 +30,15 @@ export async function deleteNoteFromFirestore(id, pageId) {
     loadNotes(pageId);
 }
 
-/* הפעלה ראשונית */
-export async function initNoteSystem() {
-    loadNotes("homepage");
+/* הפעלה ראשונית — עכשיו מקבל pageId */
+export async function initNoteSystem(pageId) {
+    loadNotes(pageId);
 
     // מאזין למחיקה
     document.addEventListener("click", function(e) {
         if (e.target.classList.contains("note-delete")) {
             const id = e.target.getAttribute("data-id");
-            deleteNoteFromFirestore(id, "homepage");
+            deleteNoteFromFirestore(id, pageId);
         }
     });
 }
