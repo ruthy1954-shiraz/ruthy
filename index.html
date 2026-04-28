@@ -8,13 +8,10 @@
 
     <title>האתר של רותי</title>
 
-    <!-- חשוב: style.css נשאר רק לשירים -->
     <link rel="stylesheet" href="style.css">
 
-    <!-- עיצוב מיוחד רק לדף הפתיחה -->
     <style>
 
-        /* כל העיצוב של דף הפתיחה עטוף במחלקה home-page */
         .home-page {
             font-family: "David", "Arial", sans-serif;
             background-color: #fdfaf6;
@@ -64,7 +61,7 @@
             background-color: #d8c3a5;
             color: #fff;
             text-decoration: none;
-            border-radius: 12px;
+            border-radius: 20px;
             font-size: 2rem;
             transition: background-color 0.3s;
         }
@@ -73,12 +70,13 @@
             background-color: #c0a98b;
         }
 
+        /* תיבת ההערות */
         .home-page .notes-box {
             margin-top: 50px;
             padding: 25px;
-            background: #fafafa;
-            border: 1px solid #ccc;
-            border-radius: 12px;
+            background: #fae7dd; /* פיץ רך */
+            border: 1px solid #e3c7b8;
+            border-radius: 18px;
             width: 92%;
             margin-left: auto;
             margin-right: auto;
@@ -89,9 +87,10 @@
             width: 100%;
             font-size: 2.3rem;
             padding: 14px;
-            border-radius: 8px;
-            border: 1px solid #ccc;
+            border-radius: 12px;
+            border: 1px solid #c9a99a;
             margin-bottom: 14px;
+            background-color: #fff7f2; /* פיץ בהיר */
         }
 
         .home-page .notes-box textarea {
@@ -99,34 +98,68 @@
             resize: vertical;
         }
 
-        .home-page .notes-box a {
+        /* כפתורי ווצאפ ושמירת הערה */
+        .home-page .footer-nav a {
             padding: 14px 28px;
-            font-size: 1.4rem;
+            font-size: 2.4rem;
+            font-weight: 700;
             background-color: #d8c3a5;
             color: white;
-            border-radius: 10px;
-            cursor: pointer;
+            border-radius: 20px;
             text-decoration: none;
+            margin: 0 8px;
             display: inline-block;
-            margin-top: 12px;
         }
 
-        .home-page .notes-box a:hover {
+        .home-page .footer-nav a:hover {
             background-color: #c0a98b;
         }
 
-        .home-page #notes {
+        /* כותרת "הערות שנשמרו" */
+        .home-page .notes-box h4 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-top: 25px;
+            color: #5a4a3f;
+        }
+
+        /* תצוגת הערות */
+        #notes {
             margin-top: 20px;
             text-align: right;
             font-size: 2rem;
             line-height: 1.7;
         }
 
-        @media (max-width: 600px) {
-            .home-page h1 { font-size: 3.2rem; }
-            .home-page h2 { font-size: 1.8rem; }
-            .home-page p { font-size: 1.6rem; }
-            .home-page .buttons a { font-size: 1.3rem; padding: 18px 35px; }
+        /* תיבת הערה בודדת */
+        .note-item {
+            background-color: #fff7f2;
+            border: 1px solid #e3c7b8;
+            border-radius: 14px;
+            padding: 18px 20px;
+            margin-bottom: 18px;
+            position: relative;
+        }
+
+        /* כפתור מחיקה X */
+        .note-delete {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: #d8c3a5;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 32px;
+            font-size: 1.6rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .note-delete:hover {
+            background-color: #c0a98b;
         }
 
     </style>
@@ -163,7 +196,7 @@
         <textarea id="userNote" placeholder="כתבי כאן את מחשבותייך על האתר..."></textarea>
 
         <div class="footer-nav" style="margin-top:15px;">
-            <a id="waLink">ווצאפ לכותבת</a> |
+            <a id="waLink">ווצאפ לכותבת</a>
             <a id="saveLink">שמירת הערה</a>
         </div>
 
@@ -178,7 +211,7 @@
 </script>
 
 <script type="module">
-    import { initNoteSystem, saveNoteToFirestore } from "./notes.js";
+    import { initNoteSystem, saveNoteToFirestore, deleteNoteFromFirestore } from "./notes.js";
 
     const waLink = document.getElementById("waLink");
     const saveLink = document.getElementById("saveLink");
@@ -212,6 +245,7 @@
 
 </body>
 </html>
+
 
 
 
