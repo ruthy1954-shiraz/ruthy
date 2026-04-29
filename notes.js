@@ -1,82 +1,68 @@
-import { db } from "./firebase.js";
-import {
-    collection,
-    addDoc,
-    getDocs,
-    deleteDoc,
-    doc,
-    query,
-    orderBy
-} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+/* הגדרות Firebase שלך */
+const firebaseConfig = {
+    apiKey: "YOUR_KEY",
+    authDomain: "YOUR_DOMAIN",
+    projectId: "ruthy-notes",
+    storageBucket: "ruthy-notes.appspot.com",
+    messagingSenderId: "YOUR_ID",
+    appId: "YOUR_APP_ID"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
 /* שמירת הערה */
-export async function saveNoteToFirestore(name, song, note, pageId) {
-    if (!name || !note) return;
-
-    await addDoc(collection(db, "notes"), {
-        name,
-        song,
-        note,
-        pageId,
+export async function saveNoteToFirestore(name, song, note, songId) {
+    await addDoc(collection(db, "notes_" + songId), {
+        name: name,
+        song: song,
+        note: note,
         timestamp: Date.now()
     });
-
-    loadNotes(pageId);
-}
-
-/* מחיקת הערה */
-export async function deleteNoteFromFirestore(id, pageId) {
-    await deleteDoc(doc(db, "notes", id));
-    loadNotes(pageId);
-}
-
-/* הפעלה ראשונית — עכשיו מקבל pageId */
-export async function initNoteSystem(pageId) {
-    loadNotes(pageId);
-
-    // מאזין למחיקה
-    document.addEventListener("click", function(e) {
-        if (e.target.classList.contains("note-delete")) {
-            const id = e.target.getAttribute("data-id");
-            deleteNoteFromFirestore(id, pageId);
-        }
-    });
+    loadNotes(songId);
 }
 
 /* טעינת הערות */
-async function loadNotes(pageId) {
-    const notesDiv = document.getElementById("notes");
-    notesDiv.innerHTML = "";
+export async function initNoteSystem() {
+    loadNotes(songId);
+}
 
-    const q = query(collection(db, "notes"), orderBy("timestamp", "desc"));
+async function loadNotes(songId) {
+    const notesDiv = document.getElementById("notes");
+
+    const q = query(
+        collection(db, "notes_" + songId),
+        orderBy("timestamp", "desc")
+    );
+
     const querySnapshot = await getDocs(q);
+
+    notesDiv.innerHTML = "";
 
     querySnapshot.forEach((docItem) => {
         const data = docItem.data();
+        const id = docItem.id;
 
-        if (data.pageId === pageId) {
-            const wrapper = document.createElement("div");
-            wrapper.className = "note-item";
+        const date = new Date(data.timestamp).toLocaleDateString("he-IL");
 
-            const date = new Date(data.timestamp).toLocaleString("he-IL");
-
-            wrapper.innerHTML = `
-                <div class="note-delete" data-id="${docItem.id}">×</div>
-
-                <span class="note-icon">✎</span>
-                <strong>${data.name}</strong> כתבה בדף <strong>${data.song}</strong>:
-
-                <br><br>
+        notesDiv.innerHTML += `
+            <div class="note-card">
+                <div class="delete-note" onclick="deleteNote('${id}')">×</div>
+                <strong>${data.name}</strong><br>
+                <small>${data.song} — ${date}</small><br><br>
                 ${data.note}
-
-                <br><br>
-                <small style="color:#7a6a5f;">נכתב ב־${date}</small>
-            `;
-
-            notesDiv.appendChild(wrapper);
-        }
+            </div>
+        `;
     });
 }
 
+/* מחיקת הערה */
+window.deleteNote = async function(id) {
+    await deleteDoc(doc(db, "notes_" + songId, id));
+    loadNotes(songId);
+}
 
 
