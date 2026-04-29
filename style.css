@@ -66,7 +66,12 @@ html, body {
 .notes-box h3 {
     margin-top: 0;
     text-align: center;
+    font-size: 3rem;      /* גודל האותיות */
+    font-weight: 800;     /* עובי */
+    color: #5a4a3f;       /* צבע תואם לעיצוב */
+    margin-bottom: 20px;  /* רווח מתחת */
 }
+
 
 /* שדות טקסט */
 .notes-box input,
