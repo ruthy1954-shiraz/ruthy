@@ -1,128 +1,167 @@
-<style>
-    html { font-size: 20px; }
 
-    body {
-        font-family: "David", "Arial", sans-serif;
-        background-color: #fdfaf6;
-        color: #333;
-        text-align: center;
-        margin: 0;
-        padding: 25px;
-        direction: rtl;
-        border: 12px solid #d8c3a5;
-        box-sizing: border-box;
-    }
 
-    /* תמונת פתיחה */
-    .cover img {
-        width: 95%;
-        max-width: 650px;
-        border-radius: 14px;
-        box-shadow: 0 4px 14px rgba(0,0,0,0.25);
-        margin-top: 25px;
-    }
 
-    /* כותרות */
-    h1 {
-        font-size: 3.6rem;
-        margin-top: 30px;
-        color: #5a4a3f;
-    }
+/* מונע תזוזה ימינה ושמאלה */
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    width: 100%;
+    background: #faf7f2;
+    font-family: "Assistant", sans-serif;
+    direction: rtl;
+}
 
-    h2 {
-        font-size: 2.1rem;
-        margin-top: -8px;
-        color: #7a6a5f;
-        font-weight: normal;
-    }
+/* ממרכז את כל הדף */
+.wrapper {
+    width: 92%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding-bottom: 40px;
+    box-sizing: border-box;
+}
 
-    /* טקסט פתיחה */
-    p {
-        font-size: 1.8rem;
-        margin: 30px auto;
-        width: 92%;
-        line-height: 2.1;
-    }
+/* תמונת שיר */
+.song-image img {
+    width: 80%;
+    max-width: 480px;
+    display: block;
+    margin: 20px auto;
+    border-radius: 12px;
+}
 
-    /* כפתורים */
-    .buttons {
-        margin-top: 45px;
-    }
+/* כותרות */
+.song-title {
+    font-size: 32px;
+    text-align: center;
+    margin: 10px 0 5px;
+}
 
-    .buttons a {
-        display: inline-block;
-        margin: 12px;
-        padding: 22px 45px;
-        background-color: #d8c3a5;
-        color: #fff;
-        text-decoration: none;
-        border-radius: 12px;
-        font-size: 1.6rem;
-        transition: background-color 0.3s;
-    }
+.song-author {
+    font-size: 20px;
+    text-align: center;
+    color: #666;
+    margin-bottom: 20px;
+}
 
-    .buttons a:hover {
-        background-color: #c0a98b;
-    }
+/* תיבת השיר */
+.song-box {
+    background: #fff;
+    padding: 22px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    line-height: 1.9;
+    margin-bottom: 30px;
+    text-align: center;
+    box-sizing: border-box;
+}
 
-    /* תיבת הערות */
-    .notes-box {
-        margin-top: 55px;
-        padding: 25px;
-        background: #fafafa;
-        border: 1px solid #ccc;
-        border-radius: 12px;
-        width: 92%;
-        margin-left: auto;
-        margin-right: auto;
-    }
+/* תיבת הערות */
+.notes-box {
+    background: #ffffff;
+    padding: 22px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+    box-sizing: border-box;
+}
 
-    .notes-box input,
-    .notes-box textarea {
-        width: 100%;
-        font-size: 1.3rem;
-        padding: 14px;
-        border-radius: 8px;
-        border: 1px solid #ccc;
-        margin-bottom: 14px;
-    }
+.notes-box h3 {
+    margin-top: 0;
+    text-align: center;
+}
 
-    .notes-box textarea {
-        height: 170px;
-        resize: vertical;
-    }
+/* שדות טקסט */
+.notes-box input,
+.notes-box textarea {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 14px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 17px;
+    box-sizing: border-box;
+}
 
-    .notes-box a {
-        padding: 14px 28px;
-        font-size: 1.4rem;
-        background-color: #d8c3a5;
-        color: white;
-        border-radius: 10px;
-        cursor: pointer;
-        text-decoration: none;
-        display: inline-block;
-        margin-top: 12px;
-    }
+.notes-box textarea {
+    height: 110px;
+}
 
-    .notes-box a:hover {
-        background-color: #c0a98b;
-    }
+/* כפתורים — כולם כמו "שמירת הערה" */
+.btn,
+button.btn,
+a.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px;      /* רוחב אחיד */
+    height: 48px;      /* גובה אחיד */
+    padding: 0;
+    font-size: 17px;
+    font-weight: 600;
+    border-radius: 10px;
+    text-decoration: none;
+    cursor: pointer;
+    box-sizing: border-box;
+    text-align: center;
+}
 
-    #notes {
-        margin-top: 22px;
-        text-align: right;
-        font-size: 1.4rem;
-        line-height: 1.7;
-    }
+/* צבעים */
+.btn-main { /* ווצאפ + עמוד ראשי */
+    background: #8b5e3c;
+    color: white;
+}
 
-    /* התאמה לנייד */
-    @media (max-width: 600px) {
-        h1 { font-size: 3rem; }
-        h2 { font-size: 1.7rem; }
-        p { font-size: 1.6rem; }
-        .buttons a { font-size: 1.4rem; padding: 18px 35px; }
-    }
-</style>
+.btn-light { /* שמירת הערה + חזרה לשירים */
+    background: #e8e2d9;
+    color: #333;
+    border: 1px solid #cfc7bd;
+}
+
+/* שורת כפתורים – צמודים ויפים */
+.btn-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+/* כרטיס הערה */
+.note-card {
+    background: #fff8dc;
+    border: 1px solid #e0d7b8;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 12px;
+    position: relative;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* כפתור מחיקה */
+.note-delete {
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    background: #ffdddd;
+    border: 1px solid #ffaaaa;
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    text-align: center;
+    line-height: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #a00;
+}
+
+/* כפתורי ניווט */
+.wrapper a.btn {
+    display: block;
+    width: fit-content;
+    margin: 10px auto;
+}
+
 
 
 
