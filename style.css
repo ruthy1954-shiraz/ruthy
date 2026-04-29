@@ -1,147 +1,128 @@
-/* עיצוב בסיסי */
-body {
-    font-family: "Assistant", sans-serif;
-    margin: 0;
-    padding: 0;
-    background: #faf7f2;
-    color: #333;
-    direction: rtl;
-}
+<style>
+    html { font-size: 20px; }
 
-/* עטיפה כללית */
-.wrapper {
-    width: 90%;
-    max-width: 800px;
-    margin: auto;
-    padding-bottom: 40px;
-}
+    body {
+        font-family: "David", "Arial", sans-serif;
+        background-color: #fdfaf6;
+        color: #333;
+        text-align: center;
+        margin: 0;
+        padding: 25px;
+        direction: rtl;
+        border: 12px solid #d8c3a5;
+        box-sizing: border-box;
+    }
 
-/* תמונת שיר */
-.song-image img {
-    width: 80%;
-    max-width: 500px;
-    display: block;
-    margin: 20px auto;
-    border-radius: 12px;
-}
+    /* תמונת פתיחה */
+    .cover img {
+        width: 95%;
+        max-width: 650px;
+        border-radius: 14px;
+        box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+        margin-top: 25px;
+    }
 
-/* כותרות */
-.song-title {
-    font-size: 32px;
-    margin: 20px 0 5px;
-    text-align: center;
-}
+    /* כותרות */
+    h1 {
+        font-size: 3.6rem;
+        margin-top: 30px;
+        color: #5a4a3f;
+    }
 
-.song-author {
-    font-size: 20px;
-    margin: 0 0 20px;
-    text-align: center;
-    color: #666;
-}
+    h2 {
+        font-size: 2.1rem;
+        margin-top: -8px;
+        color: #7a6a5f;
+        font-weight: normal;
+    }
 
-/* תיבת השיר */
-.song-box {
-    background: #fff;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    line-height: 1.8;
-    margin-bottom: 30px;
-    text-align: center;
-}
+    /* טקסט פתיחה */
+    p {
+        font-size: 1.8rem;
+        margin: 30px auto;
+        width: 92%;
+        line-height: 2.1;
+    }
 
-/* תיבת הערות */
-.notes-box {
-    background: #ffffff;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    margin-bottom: 30px;
-}
+    /* כפתורים */
+    .buttons {
+        margin-top: 45px;
+    }
 
-.notes-box input,
-.notes-box textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 12px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-family: inherit;
-}
+    .buttons a {
+        display: inline-block;
+        margin: 12px;
+        padding: 22px 45px;
+        background-color: #d8c3a5;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 12px;
+        font-size: 1.6rem;
+        transition: background-color 0.3s;
+    }
 
-.notes-box textarea {
-    height: 100px;
-}
+    .buttons a:hover {
+        background-color: #c0a98b;
+    }
 
-/* כפתורים */
-.btn {
-    display: inline-block;
-    padding: 10px 18px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-size: 16px;
-    cursor: pointer;
-    text-align: center;
-}
+    /* תיבת הערות */
+    .notes-box {
+        margin-top: 55px;
+        padding: 25px;
+        background: #fafafa;
+        border: 1px solid #ccc;
+        border-radius: 12px;
+        width: 92%;
+        margin-left: auto;
+        margin-right: auto;
+    }
 
-.btn-main {
-    background: #8b5e3c;
-    color: white;
-}
+    .notes-box input,
+    .notes-box textarea {
+        width: 100%;
+        font-size: 1.3rem;
+        padding: 14px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        margin-bottom: 14px;
+    }
 
-.btn-light {
-    background: #e8e2d9;
-    color: #333;
-}
+    .notes-box textarea {
+        height: 170px;
+        resize: vertical;
+    }
 
-.btn-row {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 20px;
-}
+    .notes-box a {
+        padding: 14px 28px;
+        font-size: 1.4rem;
+        background-color: #d8c3a5;
+        color: white;
+        border-radius: 10px;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+        margin-top: 12px;
+    }
 
-/* כפתורי ניווט בתחתית */
-.wrapper a.btn {
-    display: block;
-    width: fit-content;
-    margin: 10px auto;
-}
+    .notes-box a:hover {
+        background-color: #c0a98b;
+    }
 
-/* כרטיס הערה */
-.note-card {
-    background: #fff8dc;
-    border: 1px solid #e0d7b8;
-    border-radius: 8px;
-    padding: 12px 16px;
-    margin-bottom: 12px;
-    position: relative;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    direction: rtl;
-}
+    #notes {
+        margin-top: 22px;
+        text-align: right;
+        font-size: 1.4rem;
+        line-height: 1.7;
+    }
 
-/* כפתור מחיקה קטן בצד שמאל */
-.note-delete {
-    position: absolute;
-    left: 8px;
-    top: 8px;
-    background: #ffdddd;
-    border: 1px solid #ffaaaa;
-    border-radius: 50%;
-    width: 22px;
-    height: 22px;
-    text-align: center;
-    line-height: 20px;
-    cursor: pointer;
-    font-weight: bold;
-    color: #a00;
-}
-
-/* אזור ההערות */
-#notes {
-    margin-top: 20px;
-}
-
+    /* התאמה לנייד */
+    @media (max-width: 600px) {
+        h1 { font-size: 3rem; }
+        h2 { font-size: 1.7rem; }
+        p { font-size: 1.6rem; }
+        .buttons a { font-size: 1.4rem; padding: 18px 35px; }
+    }
+</style>
 
 
 
