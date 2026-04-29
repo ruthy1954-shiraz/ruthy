@@ -1,4 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, query, orderBy } 
 from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 /* הגדרות Firebase שלך */
@@ -63,6 +64,6 @@ async function loadNotes(songId) {
 window.deleteNote = async function(id) {
     await deleteDoc(doc(db, "notes_" + songId, id));
     loadNotes(songId);
-}
+
 
 
