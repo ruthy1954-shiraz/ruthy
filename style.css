@@ -158,20 +158,23 @@ a.btn {
     width: fit-content;
     margin: 10px auto;
 /* כפתורים סגולים */
-.action-btn {
-    color: #7b2cbf;                 /* טקסט סגול */
-    border-bottom: 2px solid #7b2cbf; /* קו תחתון סגול */
-    padding-bottom: 3px;
+.btn-main,
+.btn-light {
+    color: #7b2cbf !important;               /* טקסט סגול */
+    border-bottom: 2px solid #7b2cbf !important; /* קו תחתון סגול */
+    background: transparent !important;      /* רקע שקוף */
     font-weight: bold;
-    cursor: pointer;
+    padding-bottom: 3px;
     transition: 0.2s;
 }
 
-.action-btn:hover {
+.btn-main:hover,
+.btn-light:hover {
     opacity: 0.7;
 }
 
-}
+
+
 
 
 
