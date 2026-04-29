@@ -157,7 +157,22 @@ a.btn {
     display: block;
     width: fit-content;
     margin: 10px auto;
+/* כפתורים סגולים */
+.action-btn {
+    color: #7b2cbf;                 /* טקסט סגול */
+    border-bottom: 2px solid #7b2cbf; /* קו תחתון סגול */
+    padding-bottom: 3px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
 }
+
+.action-btn:hover {
+    opacity: 0.7;
+}
+
+}
+
 
 
 
