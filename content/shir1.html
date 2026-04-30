@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>בגידה / רות שנן</title>
-  <link rel="stylesheet" href="../style.css"> 
- </head>
+    <link rel="stylesheet" href="../style.css">
+</head>
 
 <body>
 
@@ -49,16 +49,10 @@
     <div class="notes-box">
         <h3>כתיבת הערות והארות</h3>
 
-        <!-- שם הכותב -->
         <input id="userName" placeholder="השם שלכם..." />
-
-        <!-- שם השיר -->
         <input id="userSong" placeholder="שם השיר..." value="בגידה" />
-
-        <!-- הערה -->
         <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
 
-        <!-- קישורים במקום כפתורים -->
         <div class="footer-nav" style="margin-top:15px;">
             <a id="waLink">ווצאפ לכותבת</a> |
             <a id="saveLink">שמירת הערה</a>
@@ -68,7 +62,7 @@
         <div id="notes"></div>
     </div>
 
-    <!-- ניווט עדין -->
+    <!-- ניווט -->
     <div class="footer-nav">
         <a href="../index.html">עמוד ראשי</a> |
         <a href="song.html">חזרה לשירים</a>
@@ -78,13 +72,18 @@
 
 <!-- מזהה ייחודי לשיר -->
 <script>
-    var songId = "shir1";
+    var songId = "1";
 </script>
 
-<!-- מערכת ההערות + ווצאפ -->
+<!-- טעינת מערכת ההערות -->
+<script type="module" src="../notes.js"></script>
+
+<!-- הפעלת מערכת ההערות + ווצאפ -->
 <script type="module">
     import { initNoteSystem, saveNoteToFirestore } from "../notes.js";
-    initNoteSystem();
+
+    // הפעלת מערכת ההערות לשיר 1
+    initNoteSystem(songId);
 
     const waLink = document.getElementById("waLink");
     const saveLink = document.getElementById("saveLink");
@@ -114,18 +113,11 @@
 
         saveNoteToFirestore(name, song, note, songId);
     });
-
-<!-- טעינת מערכת ההערות -->
-<script type="module" src="../notes.js"></script>
-
-<!-- הפעלת מערכת ההערות לשיר 1 -->
-<script type="module">
-  import { initNoteSystem, saveNoteToFirestore } from "../notes.js";
-  initNoteSystem("1");
 </script>
 
 </body>
 </html>
+
 
 
 
