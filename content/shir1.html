@@ -115,7 +115,11 @@
         saveNoteToFirestore(name, song, note, songId);
     });
 
-    initNoteSystem();
+  <script type="module">
+  import { initNoteSystem, saveNoteToFirestore } from "../notes.js";
+  initNoteSystem("1");
+</script>
+
 </script>
 
 </body>
