@@ -49,10 +49,16 @@
     <div class="notes-box">
         <h3>כתיבת הערות והארות</h3>
 
+        <!-- שם הכותב -->
         <input id="userName" placeholder="השם שלכם..." />
+
+        <!-- שם השיר -->
         <input id="userSong" placeholder="שם השיר..." value="בגידה" />
+
+        <!-- הערה -->
         <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
 
+        <!-- קישורים במקום כפתורים -->
         <div class="footer-nav" style="margin-top:15px;">
             <a id="waLink">ווצאפ לכותבת</a> |
             <a id="saveLink">שמירת הערה</a>
@@ -62,7 +68,7 @@
         <div id="notes"></div>
     </div>
 
-    <!-- ניווט -->
+    <!-- ניווט עדין -->
     <div class="footer-nav">
         <a href="../index.html">עמוד ראשי</a> |
         <a href="song.html">חזרה לשירים</a>
@@ -75,10 +81,7 @@
     var songId = "1";
 </script>
 
-<!-- טעינת מערכת ההערות -->
-<script type="module" src="../notes.js"></script>
-
-<!-- הפעלת מערכת ההערות + ווצאפ -->
+<!-- מערכת ההערות + ווצאפ (בדיוק כמו בשיר 2, עם התאמות) -->
 <script type="module">
     import { initNoteSystem, saveNoteToFirestore } from "../notes.js";
 
@@ -117,6 +120,7 @@
 
 </body>
 </html>
+
 
 
 
