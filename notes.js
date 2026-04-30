@@ -1,6 +1,14 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, query, orderBy } 
-from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { 
+    getFirestore, 
+    collection, 
+    addDoc, 
+    getDocs, 
+    deleteDoc, 
+    doc, 
+    query, 
+    orderBy 
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 /* הגדרות Firebase שלך */
 const firebaseConfig = {
@@ -23,14 +31,16 @@ export async function saveNoteToFirestore(name, song, note, songId) {
         note: note,
         timestamp: Date.now()
     });
+
+    loadNotes(songId);
+}
+
+/* התחלת מערכת ההערות */
+export async function initNoteSystem(songId) {
     loadNotes(songId);
 }
 
 /* טעינת הערות */
-export async function initNoteSystem() {
-    loadNotes(songId);
-}
-
 async function loadNotes(songId) {
     const notesDiv = document.getElementById("notes");
 
@@ -50,8 +60,8 @@ async function loadNotes(songId) {
         const date = new Date(data.timestamp).toLocaleDateString("he-IL");
 
         notesDiv.innerHTML += `
-            <div class="note-card">
-                <div class="note-delete" onclick="deleteNote('${id}')">×</div>
+            <div class="note-item">
+                <div class="note-delete" onclick="deleteNote('${id}', '${songId}')">×</div>
                 <strong>${data.name}</strong><br>
                 <small>${data.song} — ${date}</small><br><br>
                 ${data.note}
@@ -61,7 +71,7 @@ async function loadNotes(songId) {
 }
 
 /* מחיקת הערה */
-window.deleteNote = async function(id) {
+window.deleteNote = async function(id, songId) {
     await deleteDoc(doc(db, "notes_" + songId, id));
     loadNotes(songId);
 }
