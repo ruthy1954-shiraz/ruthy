@@ -115,11 +115,13 @@
         saveNoteToFirestore(name, song, note, songId);
     });
 
-  <script type="module">
+<!-- טעינת מערכת ההערות -->
+<script type="module" src="../notes.js"></script>
+
+<!-- הפעלת מערכת ההערות לשיר 1 -->
+<script type="module">
   import { initNoteSystem, saveNoteToFirestore } from "../notes.js";
   initNoteSystem("1");
-</script>
-
 </script>
 
 </body>
