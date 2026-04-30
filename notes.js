@@ -12,12 +12,12 @@ import {
 
 /* הגדרות Firebase שלך */
 const firebaseConfig = {
-    apiKey: "YOUR_KEY",
-    authDomain: "YOUR_DOMAIN",
+    apiKey: "API_KEY_כאן",
+    authDomain: "AUTH_DOMAIN_כאן",
     projectId: "ruthy-notes",
     storageBucket: "ruthy-notes.appspot.com",
-    messagingSenderId: "YOUR_ID",
-    appId: "YOUR_APP_ID"
+    messagingSenderId: "MESSAGING_ID_כאן",
+    appId: "APP_ID_כאן"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -27,7 +27,7 @@ const db = getFirestore(app);
 export async function saveNoteToFirestore(name, song, note, songId) {
     await addDoc(collection(db, "notes_" + songId), {
         name: name,
-        song: song,
+        title: song,   // ← שינוי חשוב: שדה title במקום song
         note: note,
         timestamp: Date.now()
     });
@@ -63,7 +63,7 @@ async function loadNotes(songId) {
             <div class="note-item">
                 <div class="note-delete" onclick="deleteNote('${id}', '${songId}')">×</div>
                 <strong>${data.name}</strong><br>
-                <small>${data.song} — ${date}</small><br><br>
+                <small>${data.title} — ${date}</small><br><br>
                 ${data.note}
             </div>
         `;
@@ -75,6 +75,7 @@ window.deleteNote = async function(id, songId) {
     await deleteDoc(doc(db, "notes_" + songId, id));
     loadNotes(songId);
 }
+
 
 
 
