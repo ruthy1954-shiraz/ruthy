@@ -41,16 +41,10 @@
     <div class="notes-box">
         <h3>כתיבת הערות והארות</h3>
 
-        <!-- שם הכותב -->
         <input id="userName" placeholder="השם שלכם..." />
-
-        <!-- שם השיר / הדף -->
         <input id="userSong" placeholder="שם הדף..." value="על הספר – לגעת" />
-
-        <!-- הערה -->
         <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על הספר..."></textarea>
 
-        <!-- קישורים במקום כפתורים -->
         <div class="footer-nav" style="margin-top:15px;">
             <a id="waLink">ווצאפ לכותבת</a> |
             <a id="saveLink">שמירת הערה</a>
@@ -60,51 +54,12 @@
         <div id="notes"></div>
     </div>
 
-    <!-- ניווט עדין -->
     <div class="footer-nav">
         <a href="../index.html">עמוד ראשי</a> |
         <a href="song.html">חזרה לשירים</a>
     </div>
 
 </div>
-
-<!-- מזהה ייחודי לדף -->
-<script>
-    var songId = "about";
-</script>
-
-<!-- מערכת ההערות + ווצאפ -->
-<script type="module">
-    import { initNoteSystem, saveNoteToFirestore } from "../notes.js";
-
-    const waLink = document.getElementById("waLink");
-    const saveLink = document.getElementById("saveLink");
-
-    const phone = "972545305123";
-
-    // שליחת הודעה בווצאפ
-    waLink.addEventListener("click", function() {
-        const name = document.getElementById("userName").value.trim();
-        const song = document.getElementById("userSong").value.trim();
-        const note = document.getElementById("userNote").value.trim();
-
-        const message =
-            `שם הכותב: ${name}\n` +
-            `שם הדף: ${song}\n` +
-            `הערה: ${note}`;
-
-        const encoded = encodeURIComponent(message);
-        window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
-    });
-
-    // שמירת הערה בענן
-    saveLink.addEventListener("click", function() {
-        const name = document.getElementById("userName").value.trim();
-        const song = document.getElementById("userSong").value.trim();
-        const note = document.getElementById("userNote").value.trim();
-
-        saveNoteToFirestore(name, song, note, songId);
-    });
 
 <!-- מזהה ייחודי לדף -->
 <script>
@@ -147,9 +102,9 @@
     });
 </script>
 
-
 </body>
 </html>
+
 
 
 
