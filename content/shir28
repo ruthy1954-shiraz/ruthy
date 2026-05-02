@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>שקט קטן / רות שנן</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <!-- תמונת השיר -->
+    <div class="song-image">
+        <img src="images/shir28.jpeg" alt="ציור לשיר שקט קטן">
+    </div>
+
+    <!-- כותרות -->
+    <h1 class="song-title">שקט קטן</h1>
+    <h2 class="song-author">רות שנן</h2>
+
+    <!-- טקסט השיר -->
+    <div class="song-box">
+        <p>בימים של אי־ודאות,<br>
+        מחפשת שקט קטן.<br>
+        לא גדול, לא מושלם,<br>
+        כזה שאפשר לשים עליו את הראש.</p>
+
+        <p>שקט של כוס תה,<br>
+        שקט של יד שמונחת על כתף,<br>
+        שקט של “יהיה טוב!”<br>
+        שלא מבטיח כלום,<br>
+        אבל מחזיק אותי לרגע.</p>
+
+        <p>ואולי זה כל מה שצריך עכשיו,<br>
+        לא תשובות,<br>
+        לא ודאות,<br>
+        רק שקט קטן,<br>
+        המלמד את הלב להמשיך,<br>
+        ולריאות לנשום.</p>
+    </div>
+
+    <!-- תיבת הערות -->
+    <div class="notes-box">
+        <h3>כתיבת הערות והארות</h3>
+
+        <input id="userName" placeholder="השם שלכם..." />
+        <input id="userSong" placeholder="שם השיר..." value="שקט קטן" />
+        <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
+
+        <div class="footer-nav" style="margin-top:15px;">
+            <a id="waLink">ווצאפ לכותבת</a> |
+            <a id="saveLink">שמירת הערה</a>
+        </div>
+
+        <h4>הערות קוראים שנשמרו:</h4>
+        <div id="notes"></div>
+    </div>
+
+    <!-- ניווט -->
+    <div class="footer-nav">
+        <a href="../index.html">עמוד ראשי</a> |
+        <a href="song.html">חזרה לשירים</a>
+    </div>
+
+</div>
+
+<!-- מזהה ייחודי לשיר -->
+<script>
+    var songId = "28";
+</script>
+
+<script type="module">
+    import { initNoteSystem, saveNoteToFirestore } from "../notes.js";
+
+    // הפעלת מערכת ההערות לשיר 28
+    initNoteSystem(songId);
+
+    const waLink = document.getElementById("waLink");
+    const saveLink = document.getElementById("saveLink");
+
+    const phone = "972545305123";
+
+    // שליחת הודעה בווצאפ
+    waLink.addEventListener("click", function() {
+        const name = document.getElementById("userName").value.trim();
+        const song = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
+
+        const message =
+            `שם הכותב: ${name}\n` +
+            `שם השיר: ${song}\n` +
+            `הערה: ${note}`;
+
+        const encoded = encodeURIComponent(message);
+        window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
+    });
+
+    // שמירת הערה בענן
+    saveLink.addEventListener("click", function() {
+        const name = document.getElementById("userName").value.trim();
+        const song = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
+
+        saveNoteToFirestore(name, song, note, songId);
+    });
+</script>
+
+</body>
+</html>
