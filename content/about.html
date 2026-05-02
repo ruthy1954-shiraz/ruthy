@@ -106,8 +106,51 @@
         saveNoteToFirestore(name, song, note, songId);
     });
 
-    initNoteSystem();
+<!-- מזהה ייחודי לשיר -->
+<script>
+    var songId = "1";
 </script>
+
+<!-- טעינת מערכת ההערות -->
+<script type="module" src="../notes.js"></script>
+
+<!-- הפעלת מערכת ההערות + ווצאפ -->
+<script type="module">
+    import { initNoteSystem, saveNoteToFirestore } from "../notes.js";
+
+    // הפעלת מערכת ההערות לשיר 1
+    initNoteSystem(songId);
+
+    const waLink = document.getElementById("waLink");
+    const saveLink = document.getElementById("saveLink");
+
+    const phone = "972545305123";
+
+    // שליחת הודעה בווצאפ
+    waLink.addEventListener("click", function() {
+        const name = document.getElementById("userName").value.trim();
+        const song = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
+
+        const message =
+            `שם הכותב: ${name}\n` +
+            `שם השיר: ${song}\n` +
+            `הערה: ${note}`;
+
+        const encoded = encodeURIComponent(message);
+        window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
+    });
+
+    // שמירת הערה בענן
+    saveLink.addEventListener("click", function() {
+        const name = document.getElementById("userName").value.trim();
+        const song = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
+
+        saveNoteToFirestore(name, song, note, songId);
+    });
+</script>
+
 
 </body>
 </html>
