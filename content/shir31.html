@@ -13,8 +13,7 @@
 
     <!-- תמונת השיר -->
     <div class="song-image">
-    <img src="images/shir31.jpeg" alt="ציור לשיר הבית שלי">
-
+        <img src="images/shir31.jpeg" alt="ציור לשיר הבית שלי">
     </div>
 
     <!-- כותרות -->
@@ -64,16 +63,10 @@
     <div class="notes-box">
         <h3>כתיבת הערות והארות</h3>
 
-        <!-- שם הכותב -->
         <input id="userName" placeholder="השם שלכם..." />
-
-        <!-- שם השיר -->
         <input id="userSong" placeholder="שם השיר..." value="הבית שלי" />
-
-        <!-- הערה -->
         <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
 
-        <!-- קישורים -->
         <div class="footer-nav" style="margin-top:15px;">
             <a id="waLink">ווצאפ לכותבת</a> |
             <a id="saveLink">שמירת הערה</a>
@@ -89,7 +82,10 @@
         <a href="song.html">חזרה לשירים</a>
     </div>
 
-</div>
+    <!-- כפתור שיתוף (בתוך ה-wrapper!) -->
+    <button class="share-btn" onclick="shareSong()">שתפו את השיר</button>
+
+</div> <!-- סוף wrapper -->
 
 <!-- מזהה ייחודי לשיר -->
 <script>
@@ -107,7 +103,6 @@
 
     const phone = "972545305123";
 
-    // שליחת הודעה בווצאפ
     waLink.addEventListener("click", function() {
         const name = document.getElementById("userName").value.trim();
         const song = document.getElementById("userSong").value.trim();
@@ -122,7 +117,6 @@
         window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
     });
 
-    // שמירת הערה בענן
     saveLink.addEventListener("click", function() {
         const name = document.getElementById("userName").value.trim();
         const song = document.getElementById("userSong").value.trim();
@@ -132,10 +126,7 @@
     });
 </script>
 
-<!-- כאן נגמר תוכן השיר -->
-
-<button class="share-btn" onclick="shareSong()">שתפו את השיר</button>
-
+<!-- פונקציית שיתוף -->
 <script>
 function shareSong() {
     if (navigator.share) {
@@ -150,8 +141,8 @@ function shareSong() {
 }
 </script>
 
+<!-- עיצוב כפתור השיתוף -->
 <style>
-/* העיצוב של כפתור השיתוף */
 .share-btn {
     margin: 25px auto;
     padding: 12px 20px;
@@ -172,6 +163,7 @@ function shareSong() {
 
 </body>
 </html>
+
 
 
 
