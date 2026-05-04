@@ -124,5 +124,47 @@
     });
 </script>
 
+...
+<!-- כאן נגמר תוכן השיר -->
+
+<button class="share-btn" onclick="shareSong()">שתפו את השיר</button>
+
+<script>
+function shareSong() {
+    if (navigator.share) {
+        navigator.share({
+            title: document.title,
+            text: "רציתי לשתף את השיר הזה:",
+            url: window.location.href
+        });
+    } else {
+        alert("הדפדפן לא תומך בשיתוף אוטומטי");
+    }
+}
+</script>
+
+<style>
+/* העיצוב של כפתור השיתוף */
+.share-btn {
+    margin: 25px auto;
+    padding: 12px 20px;
+    background-color: #f2e6ff;
+    border: 1px solid #d3b8ff;
+    border-radius: 8px;
+    font-size: 18px;
+    color: #4a2c6b;
+    cursor: pointer;
+    display: block;
+    width: 200px;
+    transition: 0.2s;
+}
+.share-btn:hover {
+    background-color: #e8d6ff;
+}
+</style>
+
+</body>
+</html>
+
 </body>
 </html>
