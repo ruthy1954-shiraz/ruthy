@@ -57,16 +57,10 @@
     <div class="notes-box">
         <h3>כתיבת הערות והארות</h3>
 
-        <!-- שם הכותב -->
         <input id="userName" placeholder="השם שלכם..." />
-
-        <!-- שם השיר -->
         <input id="userSong" placeholder="שם השיר..." value="מחפשת שלווה" />
-
-        <!-- הערה -->
         <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
 
-        <!-- קישורים במקום כפתורים -->
         <div class="footer-nav" style="margin-top:15px;">
             <a id="waLink">ווצאפ לכותבת</a> |
             <a id="saveLink">שמירת הערה</a>
@@ -76,61 +70,26 @@
         <div id="notes"></div>
     </div>
 
-    <!-- ניווט עדין -->
+    <!-- ניווט -->
     <div class="footer-nav">
         <a href="../index.html">עמוד ראשי</a> |
         <a href="song.html">חזרה לשירים</a>
     </div>
 
-</div>
+    <!-- כפתור שיתוף -->
+    <button class="share-btn" onclick="shareSong()">שתפו את השיר</button>
+
+</div> <!-- סוף wrapper -->
 
 <!-- מזהה ייחודי לשיר -->
 <script>
-    var songId = "shir24";
+    var songId = "24";
 </script>
 
 <!-- מערכת ההערות + ווצאפ -->
 <script type="module">
     import { initNoteSystem, saveNoteToFirestore } from "../notes.js";
 
-    const waLink = document.getElementById("waLink");
-    const saveLink = document.getElementById("saveLink");
-
-    const phone = "972545305123";
-
-    // שליחת הודעה בווצאפ
-    waLink.addEventListener("click", function() {
-        const name = document.getElementById("userName").value.trim();
-        const song = document.getElementById("userSong").value.trim();
-        const note = document.getElementById("userNote").value.trim();
-
-        const message =
-            `שם הכותב: ${name}\n` +
-            `שם השיר: ${song}\n` +
-            `הערה: ${note}`;
-
-        const encoded = encodeURIComponent(message);
-        window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
-    });
-
-    // שמירת הערה בענן
-    saveLink.addEventListener("click", function() {
-        const name = document.getElementById("userName").value.trim();
-        const song = document.getElementById("userSong").value.trim();
-        const note = document.getElementById("userNote").value.trim();
-
-        saveNoteToFirestore(name, song, note, songId);
-    });
-
-<!-- מזהה ייחודי לשיר -->
-<script>
-    var songId = "2";
-</script>
-
-<script type="module">
-    import { initNoteSystem, saveNoteToFirestore } from "../notes.js";
-
-    // הפעלת מערכת ההערות לשיר 2
     initNoteSystem(songId);
 
     const waLink = document.getElementById("waLink");
@@ -138,7 +97,6 @@
 
     const phone = "972545305123";
 
-    // שליחת הודעה בווצאפ
     waLink.addEventListener("click", function() {
         const name = document.getElementById("userName").value.trim();
         const song = document.getElementById("userSong").value.trim();
@@ -153,7 +111,6 @@
         window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
     });
 
-    // שמירת הערה בענן
     saveLink.addEventListener("click", function() {
         const name = document.getElementById("userName").value.trim();
         const song = document.getElementById("userSong").value.trim();
@@ -163,10 +120,7 @@
     });
 </script>
 
-<!-- כאן נגמר תוכן השיר -->
-
-<button class="share-btn" onclick="shareSong()">שתפו את השיר</button>
-
+<!-- פונקציית שיתוף -->
 <script>
 function shareSong() {
     if (navigator.share) {
@@ -181,8 +135,8 @@ function shareSong() {
 }
 </script>
 
+<!-- עיצוב כפתור השיתוף -->
 <style>
-/* העיצוב של כפתור השיתוף */
 .share-btn {
     margin: 25px auto;
     padding: 12px 20px;
@@ -203,6 +157,7 @@ function shareSong() {
 
 </body>
 </html>
+
 
 
 
