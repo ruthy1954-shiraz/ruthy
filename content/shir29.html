@@ -91,17 +91,20 @@
         <a href="song.html">חזרה לשירים</a>
     </div>
 
-</div>
+    <!-- כפתור שיתוף (מופיע פעם אחת בלבד) -->
+    <button class="share-btn" onclick="shareSong()">שתפו את השיר</button>
+
+</div> <!-- סוף wrapper -->
 
 <!-- מזהה ייחודי לשיר -->
 <script>
     var songId = "29";
 </script>
 
+<!-- מערכת ההערות + ווצאפ -->
 <script type="module">
     import { initNoteSystem, saveNoteToFirestore } from "../notes.js";
 
-    // הפעלת מערכת ההערות לשיר 29
     initNoteSystem(songId);
 
     const waLink = document.getElementById("waLink");
@@ -109,7 +112,6 @@
 
     const phone = "972545305123";
 
-    // שליחת הודעה בווצאפ
     waLink.addEventListener("click", function() {
         const name = document.getElementById("userName").value.trim();
         const song = document.getElementById("userSong").value.trim();
@@ -124,7 +126,6 @@
         window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
     });
 
-    // שמירת הערה בענן
     saveLink.addEventListener("click", function() {
         const name = document.getElementById("userName").value.trim();
         const song = document.getElementById("userSong").value.trim();
@@ -134,10 +135,7 @@
     });
 </script>
 
-<!-- כאן נגמר תוכן השיר -->
-
-<button class="share-btn" onclick="shareSong()">שתפו את השיר</button>
-
+<!-- פונקציית שיתוף -->
 <script>
 function shareSong() {
     if (navigator.share) {
@@ -152,8 +150,8 @@ function shareSong() {
 }
 </script>
 
+<!-- עיצוב כפתור השיתוף -->
 <style>
-/* העיצוב של כפתור השיתוף */
 .share-btn {
     margin: 25px auto;
     padding: 12px 20px;
@@ -174,6 +172,7 @@ function shareSong() {
 
 </body>
 </html>
+
     
 
    
