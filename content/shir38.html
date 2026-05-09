@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>שקיעה של יום / רות שנן</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <!-- תמונת השיר -->
+    <div class="song-image">
+        <img src="images/shir38.jpeg" alt="ציור לשיר שקיעה של יום">
+    </div>
+
+    <!-- כותרות -->
+    <h1 class="song-title">שקיעה של יום</h1>
+    <h2 class="song-author">רות שנן</h2>
+
+    <!-- טקסט השיר -->
+    <div class="song-box">
+        <p>שקיעה נמסה על המים,<br>
+        כמו וידוי אחרון של יום שלא ידע מנוחה.<br>
+        הכתום שוטף את השמיים,<br>
+        מספר מה שלא העזנו לומר בקול.</p>
+
+        <p>היום הזה נשען על כתפו של עולם.<br>
+        כבד מרגעים של חיזיון מכביד.<br>
+        מחדשות מעיקות.<br>
+        ממחשבות שחיפשו מקום לנוח.</p>
+
+        <p>עוד יום שוקע אל עצמו.<br>
+        האור מתרכך,<br>
+        הצללים מתארכים,<br>
+        והלב מפעים פעימה,<br>
+        אל מול היופי הזה!</p>
+
+        <p>בקו האופק,<br>
+        נדלקת נקודה קטנה,<br>
+        אולי סירה, אולי תקווה.<br>
+        אור המחזיק רגע,<br>
+        לפני שהוא נעלם.</p>
+    </div>
+
+    <!-- תיבת הערות -->
+    <div class="notes-box">
+        <h3>כתיבת הערות והארות</h3>
+
+        <input id="userName" placeholder="השם שלכם..." />
+        <input id="userSong" placeholder="שם השיר..." value="שקיעה של יום" />
+        <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
+
+        <div class="footer-nav" style="margin-top:15px;">
+            <a id="waLink">ווצאפ לכותבת</a> |
+            <a id="saveLink">שמירת הערה</a>
+        </div>
+
+        <h4>הערות קוראים שנשמרו:</h4>
+        <div id="notes"></div>
+    </div>
+
+    <!-- ניווט -->
+    <div class="footer-nav">
+        <a href="../index.html">עמוד ראשי</a> |
+        <a href="song.html">חזרה לשירים</a>
+    </div>
+
+</div>
+
+<!-- מזהה ייחודי לשיר -->
+<script>
+    var songId = "38";
+</script>
+
+<!-- מערכת ההערות + ווצאפ -->
+<script type="module">
+    import { initNoteSystem, saveNoteToFirestore } from "../notes.js";
+
+    initNoteSystem(songId);
+
+    const waLink = document.getElementById("waLink");
+    const saveLink = document.getElementById("saveLink");
+
+    const phone = "972545305123";
+
+    waLink.addEventListener("click", function() {
+        const name = document.getElementById("userName").value.trim();
+        const song = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
+
+        const message =
+            `שם הכותב: ${name}\n` +
+            `שם השיר: ${song}\n` +
+            `הערה: ${note}`;
+
+        const encoded = encodeURIComponent(message);
+        window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
+    });
+
+    saveLink.addEventListener("click", function() {
+        const name = document.getElementById("userName").value.trim();
+        const song = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
+
+        saveNoteToFirestore(name, song, note, songId);
+    });
+</script>
+
+<!-- כפתור שיתוף -->
+<button class="share-btn" onclick="shareSong()">שתפו את השיר</button>
+
+<script>
+function shareSong() {
+    if (navigator.share) {
+        navigator.share({
+            title: document.title,
+            text: "רציתי לשתף את השיר הזה:",
+            url: window.location.href
+        });
+    } else {
+        alert("הדפדפן לא תומך בשיתוף אוטומטי");
+    }
+}
+</script>
+
+<style>
+.share-btn {
+    margin: 25px auto;
+    padding: 12px 20px;
+    background-color: #f2e6ff;
+    border: 1px solid #d3b8ff;
+    border-radius: 8px;
+    font-size: 18px;
+    color: #4a2c6b;
+    cursor: pointer;
+    display: block;
+    width: 200px;
+    transition: 0.2s;
+}
+.share-btn:hover {
+    background-color: #e8d6ff;
+}
+</style>
+
+</body>
+</html>
