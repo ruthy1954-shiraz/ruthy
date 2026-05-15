@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title }}</title>
+
+  {% include header.html %}
+  <link rel="stylesheet" href="/ruthy/style.css">
+</head>
+
+<body>
+  <header>
+    <h1>שירים של רותי</h1>
+    <nav>
+      <a href="/ruthy/index.html">דף הבית</a>
+      <a href="/ruthy/content/shir43.html">שירים</a>
+    </nav>
+  </header>
+
+  <main>
+    {{ content }}
+  </main>
+
+  <footer>
+    <p>© רותי שנן</p>
+  </footer>
+</body>
+</html>
