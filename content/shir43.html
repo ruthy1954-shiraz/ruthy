@@ -7,22 +7,11 @@ og_image: "https://ruthy1954-shiraz.github.io/ruthy/images/shir43.jpeg"
 og_url: "https://ruthy1954-shiraz.github.io/ruthy/content/shir43.html"
 ---
 
-<!DOCTYPE html>
-<html lang="he" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>זיכרונות ילדות / רות שנן</title>
-    <link rel="stylesheet" href="../style.css">
-</head>
-
-<body>
-
 <div class="wrapper">
 
     <!-- תמונת השיר -->
     <div class="song-image">
-        <img src="images/shir43.jpeg" alt="ציור לשיר זיכרונות ילדות">
+        <img src="../images/shir43.jpeg" alt="ציור לשיר זיכרונות ילדות">
     </div>
 
     <!-- כותרות -->
@@ -83,6 +72,9 @@ og_url: "https://ruthy1954-shiraz.github.io/ruthy/content/shir43.html"
         <a href="song.html">חזרה לשירים</a>
     </div>
 
+    <!-- כפתור שיתוף -->
+    <button class="share-btn" onclick="shareSong()">שתפו את השיר</button>
+
 </div>
 
 <!-- מזהה ייחודי לשיר -->
@@ -124,9 +116,6 @@ og_url: "https://ruthy1954-shiraz.github.io/ruthy/content/shir43.html"
     });
 </script>
 
-<!-- כפתור שיתוף -->
-<button class="share-btn" onclick="shareSong()">שתפו את השיר</button>
-
 <script>
 function shareSong() {
     if (navigator.share) {
@@ -160,5 +149,3 @@ function shareSong() {
 }
 </style>
 
-</body>
-</html>
