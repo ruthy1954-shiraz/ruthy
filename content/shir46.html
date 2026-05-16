@@ -1,0 +1,150 @@
+---
+layout: default
+title: "זיכרונות ילדות / רות שנן"
+og_title: "זיכרונות ילדות / רות שנן"
+og_description: "שיר עדין על ריחות, אור וגעגוע ילדות"
+og_image: "https://ruthy1954-shiraz.github.io/ruthy/images/shir43.jpeg"
+og_url: "https://ruthy1954-shiraz.github.io/ruthy/content/shir43.html"
+---
+
+<div class="wrapper">
+
+    <!-- תמונת השיר -->
+    <div class="song-image">
+       <img src="../images/shir43.jpeg" alt="ציור לשיר זיכרונות ילדות">
+    </div>
+
+    <!-- כותרות -->
+    <h1 class="song-title">זיכרונות ילדות</h1>
+    <h2 class="song-author">רות שנן</h2>
+
+    <!-- טקסט השיר -->
+    <div class="song-box">
+
+        <p>ישנו ריח אחד אשר תמיד חוזר אלי.<br>
+        כמו צעד רך מאחוריי,<br>
+        ריח שמזכיר לי ריחות של בית,<br>
+        בו העולם היה קטן,<br>
+        מובן מוכר.</p>
+
+        <p>מראות נמוגו עם השנים<br>
+        כמו קו האור על החלון<br>
+        נוגע בי בלי לגעת.<br>
+        מאיר סימן שלא נשמר<br>
+        בלתי נשכח.</p>
+
+        <p>ישנו שיר אחד,<br>
+        לא מפסיק להתנגן<br>
+        גם כשהרדיו כבוי.<br>
+        קיים בין הלב לגרון,<br>
+        מבקש שאקשיב לו שוב ושוב,<br>
+        זוכר את קסם הרגע.</p>
+
+        <p>בעולמי,<br>
+        הגעגוע יושב על מדרגה גבוהה,<br>
+        מביט בי בעיניים זורחות.<br>
+        עם השנים, משנה צורה,<br>
+        ממשיך ללכת איתי,<br>
+        להתקיים בעולמי.</p>
+
+    </div>
+
+    <!-- תיבת הערות -->
+    <div class="notes-box">
+        <h3>כתיבת הערות והארות</h3>
+
+        <input id="userName" placeholder="השם שלכם..." />
+        <input id="userSong" placeholder="שם השיר..." value="זיכרונות ילדות" />
+        <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
+
+        <div class="footer-nav" style="margin-top:15px;">
+            <a id="waLink">ווצאפ לכותבת</a> |
+            <a id="saveLink">שמירת הערה</a>
+        </div>
+
+        <h4>הערות קוראים שנשמרו:</h4>
+        <div id="notes"></div>
+    </div>
+
+    <!-- ניווט -->
+    <div class="footer-nav">
+        <a href="../index.html">עמוד ראשי</a> |
+        <a href="song.html">חזרה לשירים</a>
+    </div>
+
+    <!-- כפתור שיתוף -->
+    <button class="share-btn" onclick="shareSong()">שתפו את השיר</button>
+
+</div>
+
+<!-- מזהה ייחודי לשיר -->
+<script>
+    var songId = "43";
+</script>
+
+<!-- מערכת ההערות + ווצאפ -->
+<script type="module">
+    import { initNoteSystem, saveNoteToFirestore } from "../notes.js";
+
+    initNoteSystem(songId);
+
+    const waLink = document.getElementById("waLink");
+    const saveLink = document.getElementById("saveLink");
+
+    const phone = "972545305123";
+
+    waLink.addEventListener("click", function() {
+        const name = document.getElementById("userName").value.trim();
+        const song = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
+
+        const message =
+            `שם הכותב: ${name}\n` +
+            `שם השיר: ${song}\n` +
+            `הערה: ${note}`;
+
+        const encoded = encodeURIComponent(message);
+        window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
+    });
+
+    saveLink.addEventListener("click", function() {
+        const name = document.getElementById("userName").value.trim();
+        const song = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
+
+        saveNoteToFirestore(name, song, note, songId);
+    });
+</script>
+
+<script>
+function shareSong() {
+    if (navigator.share) {
+        navigator.share({
+            title: document.title,
+            text: "רציתי לשתף את השיר הזה:",
+            url: window.location.href
+        });
+    } else {
+        alert("הדפדפן לא תומך בשיתוף אוטומטי");
+    }
+}
+</script>
+
+<style>
+.share-btn {
+    margin: 25px auto;
+    padding: 12px 20px;
+    background-color: #f2e6ff;
+    border: 1px solid #d3b8ff;
+    border-radius: 8px;
+    font-size: 18px;
+    color: #4a2c6b;
+    cursor: pointer;
+    display: block;
+    width: 200px;
+    transition: 0.2s;
+}
+.share-btn:hover {
+    background-color: #e8d6ff;
+}
+</style>
