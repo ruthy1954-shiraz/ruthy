@@ -1,7 +1,0 @@
-title: "שירים של רותי"
-description: "אוסף שירים מאת רות שנן"
-theme: minima
-plugins:
-  - jekyll-feed
-  - jekyll-seo-tag
-markdown: kramdown
