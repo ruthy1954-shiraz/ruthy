@@ -95,6 +95,11 @@
         <a href="song.html">חזרה לשירים</a>
     </div>
 
+    <!-- כפתור שיתוף למדיות -->
+    <div class="media-share">
+        <button onclick="shareToMedia()">שיתוף למדיות</button>
+    </div>
+
 </div>
 
 <!-- מזהה ייחודי לשיר -->
@@ -113,13 +118,30 @@
 
     const phone = "972545305123";
 
-    waLink.addEventListener("click",
+    waLink.addEventListener("click", function() {
+        const name = document.getElementById("userName").value.trim();
+        const song = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
 
-                            <!-- כפתור שיתוף למדיות -->
-<div class="media-share">
-    <button onclick="shareToMedia()">שיתוף למדיות</button>
-</div>
+        const message =
+            `שם הכותב: ${name}\n` +
+            `שם השיר: ${song}\n` +
+            `הערה: ${note}`;
 
+        const encoded = encodeURIComponent(message);
+        window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
+    });
+
+    saveLink.addEventListener("click", function() {
+        const name = document.getElementById("userName").value.trim();
+        const song = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
+
+        saveNoteToFirestore(name, song, note, songId);
+    });
+</script>
+
+<!-- פונקציית שיתוף למדיות -->
 <script>
 function shareToMedia() {
     const url = window.location.href;
@@ -132,15 +154,14 @@ function shareToMedia() {
     const telegram = `https://t.me/share/url?url=${encodedUrl}&text=${encodedText}`;
     const twitter = `https://twitter.com/intent/tweet?text=${encodedText}&url=${encodedUrl}`;
 
-    const message = `
+    const choice = prompt(`
 בחרו את המדיה לשיתוף:
 1️⃣ וואטסאפ
 2️⃣ פייסבוק
 3️⃣ טלגרם
 4️⃣ טוויטר
-    `;
+    `);
 
-    const choice = prompt(message);
     if (choice === "1") window.open(whatsapp, "_blank");
     else if (choice === "2") window.open(facebook, "_blank");
     else if (choice === "3") window.open(telegram, "_blank");
@@ -148,8 +169,11 @@ function shareToMedia() {
 }
 </script>
 
+<!-- כפתור שיתוף רגיל -->
+<button class="share-btn" onclick="shareSong()">שתפו את השיר</button>
+
 <style>
-.media-share button {
+.share-btn, .media-share button {
     margin: 25px auto;
     padding: 12px 20px;
     background-color: #f2e6ff;
@@ -162,8 +186,42 @@ function shareToMedia() {
     width: 220px;
     transition: 0.2s;
 }
-.media-share button:hover {
+.share-btn:hover, .media-share button:hover {
     background-color: #e8d6ff;
 }
+
+/* פתיח מעוצב */
+.song-intro {
+    background: #f8f2ff;
+    border-right: 4px solid #d3b8ff;
+    padding: 18px 22px;
+    margin: 20px 0 25px 0;
+    border-radius: 8px;
+    font-size: 20px;
+    line-height: 1.8;
+    color: #4a2c6b;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+.song-intro p {
+    margin: 0;
+    white-space: pre-line;
+}
 </style>
+
+<script>
+function shareSong() {
+    if (navigator.share) {
+        navigator.share({
+            title: document.title,
+            text: "רציתי לשתף את השיר הזה:",
+            url: window.location.href
+        });
+    } else {
+        alert("הדפדפן לא תומך בשיתוף אוטומטי");
+    }
+}
+</script>
+
+</body>
+</html>
 
