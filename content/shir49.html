@@ -114,3 +114,56 @@
     const phone = "972545305123";
 
     waLink.addEventListener("click",
+
+                            <!-- כפתור שיתוף למדיות -->
+<div class="media-share">
+    <button onclick="shareToMedia()">שיתוף למדיות</button>
+</div>
+
+<script>
+function shareToMedia() {
+    const url = window.location.href;
+    const text = "שיר מקסים מאת רות שנן:";
+    const encodedUrl = encodeURIComponent(url);
+    const encodedText = encodeURIComponent(text);
+
+    const whatsapp = `https://wa.me/?text=${encodedText}%20${encodedUrl}`;
+    const facebook = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`;
+    const telegram = `https://t.me/share/url?url=${encodedUrl}&text=${encodedText}`;
+    const twitter = `https://twitter.com/intent/tweet?text=${encodedText}&url=${encodedUrl}`;
+
+    const message = `
+בחרו את המדיה לשיתוף:
+1️⃣ וואטסאפ
+2️⃣ פייסבוק
+3️⃣ טלגרם
+4️⃣ טוויטר
+    `;
+
+    const choice = prompt(message);
+    if (choice === "1") window.open(whatsapp, "_blank");
+    else if (choice === "2") window.open(facebook, "_blank");
+    else if (choice === "3") window.open(telegram, "_blank");
+    else if (choice === "4") window.open(twitter, "_blank");
+}
+</script>
+
+<style>
+.media-share button {
+    margin: 25px auto;
+    padding: 12px 20px;
+    background-color: #f2e6ff;
+    border: 1px solid #d3b8ff;
+    border-radius: 8px;
+    font-size: 18px;
+    color: #4a2c6b;
+    cursor: pointer;
+    display: block;
+    width: 220px;
+    transition: 0.2s;
+}
+.media-share button:hover {
+    background-color: #e8d6ff;
+}
+</style>
+
