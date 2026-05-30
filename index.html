@@ -206,7 +206,7 @@
 <script type="module" src="content/notes.js"></script>
 
 <script type="module">
- 
+    const waLink = document.getElementById("waLink");
     const phone = "972545305123";
 
     waLink.addEventListener("click", function() {
@@ -223,16 +223,9 @@
         window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
     });
 
-    saveLink.addEventListener("click", function() {
-        const name = document.getElementById("userName").value.trim();
-        const song = document.getElementById("userSong").value.trim();
-        const note = document.getElementById("userNote").value.trim();
-
-        saveNoteToFirestore(name, song, note, songId);
-    });
-
     initNoteSystem(songId);
 </script>
+
 <script>
 function shareSong() {
     if (navigator.share) {
