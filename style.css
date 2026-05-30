@@ -122,7 +122,7 @@ a.btn {
     cursor: pointer;
     box-sizing: border-box;
     text-align: center;
-    background: transparent/* ⭐ כפתור שיתוף הספר — חדש ⭐ */
+/* ⭐ כפתור שיתוף הספר — חדש ⭐ */
 .share-btn {
     display: inline-flex;
     align-items: center;
@@ -142,6 +142,12 @@ a.btn {
     border: 1px solid #cfc7bd; /* מסגרת עדינה */
     transition: 0.2s;
 }
+
+.share-btn:hover {
+    background-color: #c0a98b; /* שינוי צבע במעבר עכבר */
+    opacity: 0.9;
+}
+
 
 .share-btn:hover {
     background-color: #c0a98b; /* שינוי צבע במעבר עכבר */
