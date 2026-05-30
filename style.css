@@ -123,8 +123,11 @@ a.btn {
     box-sizing: border-box;
     text-align: center;
     background: transparent;
+    .share-btn {
+    background-color: #e8e2d9;
     color: #7b2cbf;
-    border-bottom: 2px solid #7b2cbf;
+}
+
     padding-bottom: 3px;
     transition: 0.2s;
 }
