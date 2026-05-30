@@ -6,15 +6,14 @@
     <link rel="icon" href="icon.png" type="image/png">
     <link rel="apple-touch-icon" href="icon.png">
 
-  <meta property="og:title" content="ספר השירים לגעת / רות שנן">
-  <meta property="og:description" content="ספר השירים לגעת — הזמנה לגעת, להרגיש, להקשיב.">
-  <meta name="description" content="ספר השירים לגעת — הזמנה לגעת, להרגיש, להקשיב.">
-  <meta property="og:image" content="https://ruthy1954-shiraz.github.io/content/images/shir.jpeg">
+    <meta property="og:title" content="ספר השירים לגעת / רות שנן">
+    <meta property="og:description" content="ספר השירים לגעת — הזמנה לגעת, להרגיש, להקשיב.">
+    <meta name="description" content="ספר השירים לגעת — הזמנה לגעת, להרגיש, להקשיב.">
+    <meta property="og:image" content="https://ruthy1954-shiraz.github.io/content/images/shir.jpeg">
 
     <link rel="stylesheet" href="style.css">
 
     <style>
-
         .home-page {
             font-family: "David", "Arial", sans-serif;
             background-color: #fdfaf6;
@@ -73,6 +72,64 @@
             background-color: #c0a98b;
         }
 
+        /* ⭐ כפתור שיתוף — מעודכן ⭐ */
+        .share-btn {
+            display: inline-block;
+            padding: 16px 32px;
+            background-color: #e8e2d9;
+            color: #5a4a3f !important;
+            border: 1px solid #cfc7bd;
+            border-radius: 20px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .share-btn:hover {
+            background-color: #d8c3a5;
+        }
+
+        /* ⭐ שורת כפתורים חדשה ⭐ */
+        .home-buttons-row {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .whatsapp-btn,
+        .note-btn {
+            padding: 14px 28px;
+            border-radius: 20px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .whatsapp-btn {
+            background-color: #25D366;
+            color: white;
+        }
+
+        .whatsapp-btn:hover {
+            background-color: #1da851;
+        }
+
+        .note-btn {
+            background-color: #e8e2d9;
+            color: #5a4a3f;
+            border: 1px solid #cfc7bd;
+        }
+
+        .note-btn:hover {
+            background-color: #d8c3a5;
+        }
+
+        /* תיבת הערות */
         .home-page .notes-box {
             margin-top: 50px;
             padding: 25px;
@@ -99,66 +156,6 @@
             height: 170px;
             resize: vertical;
         }
-
-        .home-page .footer-nav a {
-            padding: 14px 28px;
-            font-size: 2.4rem;
-            font-weight: 700;
-            background-color: #d8c3a5;
-            color: white;
-            border-radius: 20px;
-            text-decoration: none;
-            margin: 0 8px;
-            display: inline-block;
-        }
-
-        .home-page .footer-nav a:hover {
-            background-color: #c0a98b;
-        }
-
-        .home-page .notes-box h4 {
-            font-size: 2.8rem;
-            font-weight: 800;
-            margin-top: 25px;
-            color: #5a4a3f;
-        }
-
-        #notes {
-            margin-top: 20px;
-            text-align: right;
-            font-size: 2rem;
-            line-height: 1.7;
-        }
-
-        .note-item {
-            background-color: #fff7f2;
-            border: 1px solid #e3c7b8;
-            border-radius: 14px;
-            padding: 18px 20px;
-            margin-bottom: 18px;
-            position: relative;
-        }
-
-        .note-delete {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background-color: #d8c3a5;
-            color: white;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            text-align: center;
-            line-height: 32px;
-            font-size: 1.6rem;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .note-delete:hover {
-            background-color: #c0a98b;
-        }
-
     </style>
 </head>
 
@@ -184,7 +181,12 @@
         <a href="content/song.html">שירים</a>
         <a href="content/about.html">על הספר</a>
         <a class="share-btn" onclick="shareSong()">📤 שתפו את הספר</a>
+    </div>
 
+    <!-- ⭐ כפתורי ווצאפ + הערה ⭐ -->
+    <div class="home-buttons-row">
+        <a id="waHome" class="whatsapp-btn">ווצאפ לכותבת</a>
+        <a id="noteHome" class="note-btn">השאירו הערה על הספר</a>
     </div>
 
     <div class="notes-box">
@@ -194,10 +196,7 @@
         <input id="userSong" placeholder="שם הדף..." value="דף הבית" />
         <textarea id="userNote" placeholder="כתבי כאן את מחשבותייך על האתר..."></textarea>
 
-        <div class="footer-nav" style="margin-top:15px;">
-            <a id="waLink">ווצאפ לכותבת</a>
-        </div>
-
+        <div id="notes"></div>
     </div>
 
 </div>
@@ -206,25 +205,34 @@
     var songId = "homepage";
 </script>
 
-<!-- ⭐⭐ השורה החשובה שנוספה ⭐⭐ -->
 <script type="module" src="content/notes.js"></script>
 
 <script type="module">
-    const waLink = document.getElementById("waLink");
+    import { saveNoteToFirestore } from "./content/notes.js";
+
     const phone = "972545305123";
 
-    waLink.addEventListener("click", function() {
+    const waHome = document.getElementById("waHome");
+    const noteHome = document.getElementById("noteHome");
+
+    waHome.addEventListener("click", function() {
         const name = document.getElementById("userName").value.trim();
-        const song = document.getElementById("userSong").value.trim();
         const note = document.getElementById("userNote").value.trim();
 
         const message =
             `שם הכותב: ${name}\n` +
-            `שם הדף: ${song}\n` +
+            `דף: דף הבית\n` +
             `הערה: ${note}`;
 
         const encoded = encodeURIComponent(message);
         window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
+    });
+
+    noteHome.addEventListener("click", function() {
+        const name = document.getElementById("userName").value.trim();
+        const note = document.getElementById("userNote").value.trim();
+
+        saveNoteToFirestore(name, "דף הבית", note, "homepage");
     });
 
     initNoteSystem(songId);
@@ -246,6 +254,7 @@ function shareSong() {
 
 </body>
 </html>
+
 
 
 
