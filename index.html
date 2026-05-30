@@ -233,6 +233,19 @@
 
     initNoteSystem(songId);
 </script>
+<script>
+function shareSong() {
+    if (navigator.share) {
+        navigator.share({
+            title: "לגעת — ספר השירה של רות שנן",
+            text: "רציתי לשתף את הספר היפה הזה:",
+            url: window.location.href
+        });
+    } else {
+        alert("הדפדפן שלך לא תומך בשיתוף אוטומטי");
+    }
+}
+</script>
 
 </body>
 </html>
