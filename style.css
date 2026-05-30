@@ -93,7 +93,7 @@ html, body {
 .btn,
 button.btn,
 a.btn {
-    /* כפתור שיתוף הספר */
+/* כפתור שיתוף הספר */
 .share-btn {
     display: inline-flex;
     align-items: center;
@@ -108,14 +108,16 @@ a.btn {
     cursor: pointer;
     box-sizing: border-box;
     text-align: center;
-    background: #e8e2d9;
-    color: #333;
-    border: 1px solid #cfc7bd;
-    transition: background-color 0.3s;
+    background: transparent;
+    color: #7b2cbf;
+    border-bottom: 2px solid #7b2cbf;
+    font-weight: bold;
+    padding-bottom: 3px;
+    transition: 0.2s;
 }
 
 .share-btn:hover {
-    background-color: #c0a98b;
+    opacity: 0.7;
 }
 
     display: inline-flex;
