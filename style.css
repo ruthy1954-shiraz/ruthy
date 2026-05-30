@@ -66,12 +66,11 @@ html, body {
 .notes-box h3 {
     margin-top: 0;
     text-align: center;
-    font-size: 2.2rem;      /* גודל האותיות */
-    font-weight: 800;     /* עובי */
-    color: #5a4a3f;       /* צבע תואם לעיצוב */
-    margin-bottom: 20px;  /* רווח מתחת */
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #5a4a3f;
+    margin-bottom: 20px;
 }
-
 
 /* שדות טקסט */
 .notes-box input,
@@ -89,11 +88,26 @@ html, body {
     height: 110px;
 }
 
-/* כפתורים — כולם כמו "שמירת הערה" */
+/* כפתורים — בסיס */
 .btn,
 button.btn,
 a.btn {
-/* כפתור שיתוף הספר */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 48px;
+    padding: 0;
+    font-size: 17px;
+    font-weight: 600;
+    border-radius: 10px;
+    text-decoration: none;
+    cursor: pointer;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+/* ⭐ כפתור שיתוף הספר — חדש ⭐ */
 .share-btn {
     display: inline-flex;
     align-items: center;
@@ -111,7 +125,6 @@ a.btn {
     background: transparent;
     color: #7b2cbf;
     border-bottom: 2px solid #7b2cbf;
-    font-weight: bold;
     padding-bottom: 3px;
     transition: 0.2s;
 }
@@ -120,34 +133,19 @@ a.btn {
     opacity: 0.7;
 }
 
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 150px;      /* רוחב אחיד */
-    height: 48px;      /* גובה אחיד */
-    padding: 0;
-    font-size: 17px;
-    font-weight: 600;
-    border-radius: 10px;
-    text-decoration: none;
-    cursor: pointer;
-    box-sizing: border-box;
-    text-align: center;
-}
-
 /* צבעים */
-.btn-main { /* ווצאפ + עמוד ראשי */
+.btn-main {
     background: #8b5e3c;
     color: white;
 }
 
-.btn-light { /* שמירת הערה + חזרה לשירים */
+.btn-light {
     background: #e8e2d9;
     color: #333;
     border: 1px solid #cfc7bd;
 }
 
-/* שורת כפתורים – צמודים ויפים */
+/* שורת כפתורים */
 .btn-row {
     display: flex;
     justify-content: center;
@@ -194,9 +192,9 @@ a.btn {
 /* כפתורים סגולים */
 .btn-main,
 .btn-light {
-    color: #7b2cbf !important;               /* טקסט סגול */
-    border-bottom: 2px solid #7b2cbf !important; /* קו תחתון סגול */
-    background: transparent !important;      /* רקע שקוף */
+    color: #7b2cbf !important;
+    border-bottom: 2px solid #7b2cbf !important;
+    background: transparent !important;
     font-weight: bold;
     padding-bottom: 3px;
     transition: 0.2s;
@@ -207,9 +205,9 @@ a.btn {
     opacity: 0.7;
 }
 
-/* כל הלינקים בתחתית — קו תחתון כמו עמוד ראשי */
+/* לינקים בתחתית */
 .footer-nav a {
-    color: #7b2cbf;          /* סגול */
+    color: #7b2cbf;
     text-decoration: underline;
     font-weight: bold;
     cursor: pointer;
@@ -219,8 +217,7 @@ a.btn {
     opacity: 0.7;
 }
 
-/* --- עיצוב הערות המקורי --- */
-
+/* עיצוב הערות */
 .note-item {
     background-color: #fff7f2 !important;
     border: 1px solid #e3c7b8 !important;
