@@ -72,7 +72,7 @@
             background-color: #c0a98b;
         }
 
-        /* ⭐ כפתור שיתוף ⭐ */
+        /* כפתור שיתוף */
         .share-btn {
             display: inline-block;
             padding: 16px 32px;
@@ -91,7 +91,7 @@
             background-color: #d8c3a5;
         }
 
-        /* ⭐ כפתורי ווצאפ + הערה ⭐ */
+        /* כפתורי ווצאפ + הערה */
         .home-buttons-row {
             display: flex;
             justify-content: center;
@@ -129,8 +129,8 @@
             background-color: #d8c3a5;
         }
 
-        /* ⭐ תיבת הערות ⭐ */
-        .home-page .notes-box {
+        /* תיבת הערות */
+        .notes-box {
             margin-top: 50px;
             padding: 25px;
             background: #fae7dd;
@@ -141,8 +141,8 @@
             margin-right: auto;
         }
 
-        .home-page .notes-box input,
-        .home-page .notes-box textarea {
+        .notes-box input,
+        .notes-box textarea {
             width: 100%;
             font-size: 2.3rem;
             padding: 14px;
@@ -152,7 +152,7 @@
             background-color: #fff7f2;
         }
 
-        .home-page .notes-box textarea {
+        .notes-box textarea {
             height: 170px;
             resize: vertical;
         }
@@ -183,7 +183,7 @@
         <a class="share-btn" onclick="shareSong()">📤 שתפו את הספר</a>
     </div>
 
-    <!-- ⭐ כפתורי ווצאפ + הערה ⭐ -->
+    <!-- כפתורי ווצאפ + שמירת הערה -->
     <div class="home-buttons-row">
         <a id="waHome" class="whatsapp-btn">ווצאפ לכותבת</a>
         <a id="saveHome" class="note-btn">שמירת הערה</a>
@@ -205,8 +205,10 @@
     var songId = "homepage";
 </script>
 
+<!-- מערכת ההערות -->
 <script type="module" src="content/notes.js"></script>
 
+<!-- סקריפט נקי — ללא כפילויות -->
 <script type="module">
     import { saveNoteToFirestore } from "./content/notes.js";
 
@@ -214,7 +216,7 @@
     const waHome = document.getElementById("waHome");
     const saveHome = document.getElementById("saveHome");
 
-    /* ⭐ ווצאפ לכותבת ⭐ */
+    /* ווצאפ */
     waHome.addEventListener("click", () => {
         const name = document.getElementById("userName").value.trim();
         const note = document.getElementById("userNote").value.trim();
@@ -223,7 +225,7 @@
         window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
     });
 
-    /* ⭐ שמירת הערה ⭐ */
+    /* שמירת הערה */
     saveHome.addEventListener("click", () => {
         const name = document.getElementById("userName").value.trim();
         const note = document.getElementById("userNote").value.trim();
@@ -236,7 +238,7 @@
         saveNoteToFirestore(name, "דף הבית", note, "homepage");
     });
 
-    /* ⭐ טעינת הערות + מחיקה ⭐ */
+    /* טעינת הערות + מחיקה */
     initNoteSystem("homepage");
 </script>
 
