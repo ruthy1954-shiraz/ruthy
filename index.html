@@ -2,167 +2,18 @@
 <html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="icon" href="icon.png" type="image/png">
-    <link rel="apple-touch-icon" href="icon.png">
-
-    <meta property="og:title" content="ספר השירים לגעת / רות שנן">
-    <meta property="og:description" content="ספר השירים לגעת — הזמנה לגעת, להרגיש, להקשיב.">
-    <meta name="description" content="ספר השירים לגעת — הזמנה לגעת, להרגיש, להקשיב.">
-    <meta property="og:image" content="https://ruthy1954-shiraz.github.io/content/images/shir.jpeg">
+    <title>לגעת / רות שנן</title>
 
     <link rel="stylesheet" href="style.css">
-
-    <style>
-        .home-page {
-            font-family: "David", "Arial", sans-serif;
-            background-color: #fdfaf6;
-            color: #333;
-            text-align: center;
-            padding: 30px;
-            border: 12px solid #d8c3a5;
-            box-sizing: border-box;
-        }
-
-        .home-page .cover img {
-            width: 95%;
-            max-width: 650px;
-            border-radius: 14px;
-            box-shadow: 0 4px 14px rgba(0,0,0,0.25);
-            margin-top: 25px;
-        }
-
-        .home-page h1 {
-            font-size: 3.6rem;
-            margin-top: 30px;
-            color: #5a4a3f;
-        }
-
-        .home-page h2 {
-            font-size: 2rem;
-            margin-top: -8px;
-            color: #7a6a5f;
-            font-weight: normal;
-        }
-
-        .home-page p {
-            font-size: 2.4rem;
-            margin: 30px auto;
-            width: 92%;
-            line-height: 2.1;
-        }
-
-        .home-page .buttons {
-            margin-top: 45px;
-        }
-
-        .home-page .buttons a {
-            display: inline-block;
-            margin: 12px;
-            padding: 20px 40px;
-            background-color: #d8c3a5;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 20px;
-            font-size: 2rem;
-            transition: background-color 0.3s;
-        }
-
-        .home-page .buttons a:hover {
-            background-color: #c0a98b;
-        }
-
-        /* כפתור שיתוף */
-        .share-btn {
-            display: inline-block;
-            padding: 16px 32px;
-            background-color: #e8e2d9;
-            color: #5a4a3f !important;
-            border: 1px solid #cfc7bd;
-            border-radius: 20px;
-            font-size: 1.8rem;
-            font-weight: 700;
-            text-decoration: none;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-
-        .share-btn:hover {
-            background-color: #d8c3a5;
-        }
-
-        /* כפתורי ווצאפ + הערה */
-        .home-buttons-row {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin-top: 20px;
-        }
-
-        .whatsapp-btn,
-        .note-btn {
-            padding: 14px 28px;
-            border-radius: 20px;
-            font-size: 1.8rem;
-            font-weight: 700;
-            text-decoration: none;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-
-        .whatsapp-btn {
-            background-color: #25D366;
-            color: white;
-        }
-
-        .whatsapp-btn:hover {
-            background-color: #1da851;
-        }
-
-        .note-btn {
-            background-color: #e8e2d9;
-            color: #5a4a3f;
-            border: 1px solid #cfc7bd;
-        }
-
-        .note-btn:hover {
-            background-color: #d8c3a5;
-        }
-
-        /* תיבת הערות */
-        .notes-box {
-            margin-top: 50px;
-            padding: 25px;
-            background: #fae7dd;
-            border: 1px solid #e3c7b8;
-            border-radius: 18px;
-            width: 92%;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .notes-box input,
-        .notes-box textarea {
-            width: 100%;
-            font-size: 2.3rem;
-            padding: 14px;
-            border-radius: 12px;
-            border: 1px solid #c9a99a;
-            margin-bottom: 14px;
-            background-color: #fff7f2;
-        }
-
-        .notes-box textarea {
-            height: 170px;
-            resize: vertical;
-        }
-    </style>
 </head>
 
 <body class="home-page">
 
 <div class="wrapper">
 
+    <!-- עטיפה -->
     <div class="cover">
         <img src="content/images/shir.jpeg" alt="עטיפת הספר לגעת">
     </div>
@@ -177,6 +28,7 @@
         הזמנה לגעת, להרגיש, להקשיב.
     </p>
 
+    <!-- כפתורים ראשיים -->
     <div class="buttons">
         <a href="content/song.html">שירים</a>
         <a href="content/about.html">על הספר</a>
@@ -185,63 +37,66 @@
 
     <!-- כפתורי ווצאפ + שמירת הערה -->
     <div class="home-buttons-row">
-        <a id="waHome" class="whatsapp-btn">ווצאפ לכותבת</a>
-        <a id="saveHome" class="note-btn">שמירת הערה</a>
+        <a id="waLink" class="whatsapp-btn">ווצאפ לכותבת</a>
+        <a id="saveLink" class="note-btn">שמירת הערה</a>
     </div>
 
+    <!-- תיבת הערות -->
     <div class="notes-box">
         <h3>כתיבת הערות והארות</h3>
-        
+
         <input id="userName" placeholder="השם שלך..." />
         <input id="userSong" placeholder="שם הדף..." value="דף הבית" />
         <textarea id="userNote" placeholder="כתבי כאן את מחשבותייך על האתר..."></textarea>
 
+        <h4>הערות קוראים שנשמרו:</h4>
         <div id="notes"></div>
     </div>
 
 </div>
 
+<!-- מזהה ייחודי לדף -->
 <script>
     var songId = "homepage";
 </script>
 
-<!-- מערכת ההערות -->
-<script type="module" src="content/notes.js"></script>
-
-<!-- סקריפט נקי — ללא כפילויות -->
+<!-- מערכת הערות (כמו בשיר 1) -->
 <script type="module">
-    import { saveNoteToFirestore } from "./content/notes.js";
+    import { initNoteSystem, saveNoteToFirestore } from "./content/notes.js";
+
+    initNoteSystem(songId);
+
+    const waLink = document.getElementById("waLink");
+    const saveLink = document.getElementById("saveLink");
 
     const phone = "972545305123";
-    const waHome = document.getElementById("waHome");
-    const saveHome = document.getElementById("saveHome");
 
     /* ווצאפ */
-    waHome.addEventListener("click", () => {
+    waLink.addEventListener("click", function() {
         const name = document.getElementById("userName").value.trim();
+        const song = document.getElementById("userSong").value.trim();
         const note = document.getElementById("userNote").value.trim();
-        const message = `שם הכותב: ${name}\nדף: דף הבית\nהערה: ${note}`;
+
+        const message =
+            `שם הכותב: ${name}\n` +
+            `דף: ${song}\n` +
+            `הערה: ${note}`;
+
         const encoded = encodeURIComponent(message);
         window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
     });
 
     /* שמירת הערה */
-    saveHome.addEventListener("click", () => {
+    saveLink.addEventListener("click", function() {
         const name = document.getElementById("userName").value.trim();
+        const song = document.getElementById("userSong").value.trim();
         const note = document.getElementById("userNote").value.trim();
 
-        if (!name || !note) {
-            alert("נא למלא שם והערה");
-            return;
-        }
-
-        saveNoteToFirestore(name, "דף הבית", note, "homepage");
+        saveNoteToFirestore(name, song, note, songId);
     });
-
-    /* טעינת הערות + מחיקה */
-    initNoteSystem("homepage");
 </script>
 
+<!-- שיתוף -->
 <script>
 function shareSong() {
     if (navigator.share) {
@@ -251,13 +106,14 @@ function shareSong() {
             url: window.location.href
         });
     } else {
-        alert("הדפדפן שלך לא תומך בשיתוף אוטומטי");
+        alert("הדפדפן לא תומך בשיתוף אוטומטי");
     }
 }
 </script>
 
 </body>
 </html>
+
 
 
 
