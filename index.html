@@ -3,9 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>לגעת / רות שנן</title>
-
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -13,7 +11,6 @@
 
 <div class="wrapper">
 
-    <!-- עטיפה -->
     <div class="cover">
         <img src="content/images/shir.jpeg" alt="עטיפת הספר לגעת">
     </div>
@@ -28,23 +25,19 @@
         הזמנה לגעת, להרגיש, להקשיב.
     </p>
 
-    <!-- כפתורים ראשיים -->
     <div class="buttons">
         <a href="content/song.html">שירים</a>
         <a href="content/about.html">על הספר</a>
         <a class="share-btn" onclick="shareSong()">📤 שתפו את הספר</a>
     </div>
 
-    <!-- כפתורי ווצאפ + שמירת הערה -->
     <div class="home-buttons-row">
         <a id="waLink" class="whatsapp-btn">ווצאפ לכותבת</a>
         <a id="saveLink" class="note-btn">שמירת הערה</a>
     </div>
 
-    <!-- תיבת הערות -->
     <div class="notes-box">
         <h3>כתיבת הערות והארות</h3>
-
         <input id="userName" placeholder="השם שלך..." />
         <input id="userSong" placeholder="שם הדף..." value="דף הבית" />
         <textarea id="userNote" placeholder="כתבי כאן את מחשבותייך על האתר..."></textarea>
@@ -55,23 +48,20 @@
 
 </div>
 
-<!-- מזהה ייחודי לדף -->
 <script>
     var songId = "homepage";
 </script>
 
-<!-- מערכת הערות (כמו בשיר 1) -->
+<!-- ⭐ מערכת ההערות + ווצאפ ⭐ -->
 <script type="module">
-    import { initNoteSystem, saveNoteToFirestore } from "./content/notes.js";
+    import { initNoteSystem, saveNoteToFirestore } from "./notes.js";
 
     initNoteSystem(songId);
 
     const waLink = document.getElementById("waLink");
     const saveLink = document.getElementById("saveLink");
-
     const phone = "972545305123";
 
-    /* ווצאפ */
     waLink.addEventListener("click", function() {
         const name = document.getElementById("userName").value.trim();
         const song = document.getElementById("userSong").value.trim();
@@ -86,7 +76,6 @@
         window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
     });
 
-    /* שמירת הערה */
     saveLink.addEventListener("click", function() {
         const name = document.getElementById("userName").value.trim();
         const song = document.getElementById("userSong").value.trim();
@@ -96,7 +85,6 @@
     });
 </script>
 
-<!-- שיתוף -->
 <script>
 function shareSong() {
     if (navigator.share) {
@@ -106,13 +94,14 @@ function shareSong() {
             url: window.location.href
         });
     } else {
-        alert("הדפדפן לא תומך בשיתוף אוטומטי");
+        alert("הדפדפן שלך לא תומך בשיתוף אוטומטי");
     }
 }
 </script>
 
 </body>
 </html>
+
 
 
 
