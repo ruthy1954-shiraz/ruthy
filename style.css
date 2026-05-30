@@ -95,71 +95,34 @@ a.btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 150px;
-    height: 48px;
-    padding: 0;
-    font-size: 17px;
+    padding: 20px 40px;
+    font-size: 2rem;
     font-weight: 600;
-    border-radius: 10px;
+    border-radius: 20px;
     text-decoration: none;
     cursor: pointer;
     box-sizing: border-box;
     text-align: center;
 }
 
-/* ⭐ כפתור שיתוף הספר — חדש ⭐ */
+/* ⭐ כפתור שיתוף הספר — בגודל של שאר הכפתורים ⭐ */
 .share-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 150px;
-    height: 48px;
-    padding: 0;
-    font-size: 17px;
-    font-weight: 600;
-    border-radius: 10px;
-    text-decoration: none;
-    cursor: pointer;
-    box-sizing: border-box;
-    text-align: center;
-/* ⭐ כפתור שיתוף הספר — חדש ⭐ */
-.share-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 150px;
-    height: 48px;
-    padding: 0;
-    font-size: 17px;
-    font-weight: 600;
-    border-radius: 10px;
-    text-decoration: none;
-    cursor: pointer;
-    box-sizing: border-box;
-    text-align: center;
-    background-color: #e8e2d9; /* רקע בהיר כמו שאר הכפתורים */
-    color: #7b2cbf !important; /* צבע טקסט סגול */
+    display: inline-block;
+    padding: 20px 40px;        /* כמו שאר הכפתורים */
+    background-color: #e8e2d9; /* רקע תואם */
+    color: #7b2cbf !important; /* טקסט סגול */
     border: 1px solid #cfc7bd; /* מסגרת עדינה */
+    border-radius: 20px;       /* כמו הכפתורים האחרים */
+    font-size: 2rem;           /* גודל טקסט זהה */
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
     transition: 0.2s;
 }
 
 .share-btn:hover {
-    background-color: #c0a98b; /* שינוי צבע במעבר עכבר */
+    background-color: #c0a98b;
     opacity: 0.9;
-}
-
-
-.share-btn:hover {
-    background-color: #c0a98b; /* שינוי צבע במעבר עכבר */
-    opacity: 0.9;
-}
-    
-    padding-bottom: 3px;
-    transition: 0.2s;
-}
-
-.share-btn:hover {
-    opacity: 0.7;
 }
 
 /* צבעים */
