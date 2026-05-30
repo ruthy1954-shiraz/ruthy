@@ -122,11 +122,32 @@ a.btn {
     cursor: pointer;
     box-sizing: border-box;
     text-align: center;
-    background: transparent;
-    .share-btn {
-    background-color: #e8e2d9;
-    color: #7b2cbf;
+    background: transparent/* ⭐ כפתור שיתוף הספר — חדש ⭐ */
+.share-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 48px;
+    padding: 0;
+    font-size: 17px;
+    font-weight: 600;
+    border-radius: 10px;
+    text-decoration: none;
+    cursor: pointer;
+    box-sizing: border-box;
+    text-align: center;
+    background-color: #e8e2d9; /* רקע בהיר כמו שאר הכפתורים */
+    color: #7b2cbf !important; /* צבע טקסט סגול */
+    border: 1px solid #cfc7bd; /* מסגרת עדינה */
+    transition: 0.2s;
 }
+
+.share-btn:hover {
+    background-color: #c0a98b; /* שינוי צבע במעבר עכבר */
+    opacity: 0.9;
+}
+    
     padding-bottom: 3px;
     transition: 0.2s;
 }
