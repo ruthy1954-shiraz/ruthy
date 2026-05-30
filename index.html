@@ -72,7 +72,7 @@
             background-color: #c0a98b;
         }
 
-        /* ⭐ כפתור שיתוף — מעודכן ⭐ */
+        /* ⭐ כפתור שיתוף ⭐ */
         .share-btn {
             display: inline-block;
             padding: 16px 32px;
@@ -91,7 +91,7 @@
             background-color: #d8c3a5;
         }
 
-        /* ⭐ שורת כפתורים חדשה ⭐ */
+        /* ⭐ כפתורי ווצאפ + הערה ⭐ */
         .home-buttons-row {
             display: flex;
             justify-content: center;
@@ -129,7 +129,7 @@
             background-color: #d8c3a5;
         }
 
-        /* תיבת הערות */
+        /* ⭐ תיבת הערות ⭐ */
         .home-page .notes-box {
             margin-top: 50px;
             padding: 25px;
@@ -190,9 +190,10 @@
     </div>
 
     <div class="notes-box">
+
         <div class="footer-nav" style="margin-top:15px;">
-        <a id="waLink">ווצאפ לכותבת</a> |
-        <a id="saveHome">שמירת הערה</a>
+            <a id="waLink">ווצאפ לכותבת</a> |
+            <a id="saveHome">שמירת הערה</a>
         </div>
 
         <h3>כתיבת הערות והארות</h3>
@@ -220,6 +221,8 @@
     const waHome = document.getElementById("waHome");
     const noteHome = document.getElementById("noteHome");
     const saveHome = document.getElementById("saveHome");
+
+    /* ⭐ ווצאפ מהכפתור העליון ⭐ */
     waHome.addEventListener("click", function() {
         const name = document.getElementById("userName").value.trim();
         const note = document.getElementById("userNote").value.trim();
@@ -233,6 +236,7 @@
         window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
     });
 
+    /* ⭐ שמירת הערה מהכפתור העליון ⭐ */
     noteHome.addEventListener("click", function() {
         const name = document.getElementById("userName").value.trim();
         const note = document.getElementById("userNote").value.trim();
@@ -240,6 +244,20 @@
         saveNoteToFirestore(name, "דף הבית", note, "homepage");
     });
 
+    /* ⭐ שמירת הערה מהכפתור שבתוך תיבת ההערות ⭐ */
+    saveHome.addEventListener("click", function() {
+        const name = document.getElementById("userName").value.trim();
+        const note = document.getElementById("userNote").value.trim();
+
+        if (!name || !note) {
+            alert("נא למלא שם והערה");
+            return;
+        }
+
+        saveNoteToFirestore(name, "דף הבית", note, "homepage");
+    });
+
+    /* ⭐ טעינת הערות + מחיקה ⭐ */
     initNoteSystem(songId);
 </script>
 
@@ -259,6 +277,7 @@ function shareSong() {
 
 </body>
 </html>
+
 
 
 
