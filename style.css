@@ -261,6 +261,11 @@ a.btn {
 .join-btn:hover {
     opacity: 0.7;
 }
+.join-btn {
+    display: block;
+    text-align: center;
+    margin: 20px auto;
+}
 
 
 
