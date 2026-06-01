@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>כתיבת שיר חדש – בימת המשוררים</title>
+    <title>בימת המשוררים</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
 </head>
 
 <body>
@@ -13,67 +13,20 @@
 <div class="wrapper">
 
     <h1 class="song-title">בימת המשוררים</h1>
-    <h2 class="song-author">כתיבת שיר חדש</h2>
+    <h2 class="song-author">מקום לשירים חדשים</h2>
 
-    <div class="notes-box">
-        <h3>כתיבת שיר חדש</h3>
+    <!-- שורה עם קו תחתון -->
+    <div class="poet-upload">
+        <p>כאן אפשר לצרף את השיר שלך</p>
+    </div>
 
-        <input id="poetName" placeholder="שם הכותב..." />
-        <input id="poemTitle" placeholder="שם השיר..." />
-
-        <textarea id="poemText" class="auto-expand" placeholder="כתבי כאן את השיר שלך..."></textarea>
-
-        <div class="footer-nav" style="margin-top:15px;">
-            <a id="sendPoem">שליחת השיר לכותבת</a> |
-            <a id="savePoem">שמירת השיר</a> |
-            <a href="poets.html" class="join-btn">בימת המשוררים</a>
-        </div>
-
-        <h4>שירים שנשמרו:</h4>
-        <div id="poems"></div>
+    <!-- כפתור מעבר לדף כתיבת שיר -->
+    <div class="footer-nav" style="margin-top:25px;">
+        <a href="poet-submit.html" class="join-btn">צרפו את השיר שלכם</a>
     </div>
 
 </div>
 
-<script type="module">
-    import { saveNoteToFirestore } from "./notes.js";
-
-    // שמירת שיר
-    document.getElementById("savePoem").addEventListener("click", function() {
-        const name = document.getElementById("poetName").value.trim();
-        const title = document.getElementById("poemTitle").value.trim();
-        const poem = document.getElementById("poemText").value.trim();
-
-        saveNoteToFirestore(name, title, poem, "poet-submissions");
-    });
-
-    // שליחת שיר בווצאפ
-    document.getElementById("sendPoem").addEventListener("click", function() {
-        const name = document.getElementById("poetName").value.trim();
-        const title = document.getElementById("poemTitle").value.trim();
-        const poem = document.getElementById("poemText").value.trim();
-
-        const phone = "972545305123";
-
-        const message =
-            `שם הכותב: ${name}\n` +
-            `שם השיר: ${title}\n\n` +
-            `השיר:\n${poem}`;
-
-        const encoded = encodeURIComponent(message);
-        window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
-    });
-</script>
-
-<!-- תיבה מתרחבת אוטומטית -->
-<script>
-document.addEventListener("input", function(e) {
-    if (e.target.classList.contains("auto-expand")) {
-        e.target.style.height = "auto";
-        e.target.style.height = (e.target.scrollHeight) + "px";
-    }
-});
-</script>
-
 </body>
 </html>
+
