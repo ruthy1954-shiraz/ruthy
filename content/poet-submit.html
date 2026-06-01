@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>בימת המשוררים</title>
-
+    <title>צרפו את השיר שלכם</title>
     <link rel="stylesheet" href="../style.css">
 </head>
 
@@ -12,18 +11,28 @@
 
 <div class="wrapper">
 
-    <h1 class="song-title">בימת המשוררים</h1>
-    <h2 class="song-author">מקום לשירים חדשים</h2>
+    <h1 class="song-title">צרפו את השיר שלכם</h1>
+    <h2 class="song-author">מקום לכתיבת שיר חדש</h2>
 
-    <!-- שורה עם קו תחתון -->
-    <div class="poet-upload">
-        <p>כאן אפשר לצרף את השיר שלך</p>
-    </div>
+    <!-- שדות מילוי -->
+    <h3>שם השיר</h3>
+    <input id="poemTitle" placeholder="שם השיר..." style="width:100%; text-align:center; font-size:1.4rem; border:none; border-bottom:1px solid #ccc; margin-bottom:15px;">
 
-    <!-- כפתור מעבר לדף כתיבת שיר -->
+    <h3>שם המשורר</h3>
+    <input id="poetName" placeholder="שם המשורר..." style="width:100%; text-align:center; font-size:1.2rem; border:none; border-bottom:1px solid #ccc; margin-bottom:15px;">
+
+    <h3>כתבו כאן את השיר שלכם</h3>
+    <textarea id="poemText" class="auto-expand" placeholder="כתבו כאן את השיר שלכם..." style="width:100%; border:none; resize:none; line-height:2; font-size:1.1rem; color:#5a4a3f; background:transparent; padding:10px;"></textarea>
+
+    <!-- כפתורים -->
     <div class="footer-nav" style="margin-top:25px;">
-        <a href="poet-submit.html" class="join-btn">צרפו את השיר שלכם</a>
+        <a id="savePoem" class="join-btn">שמירת השיר</a>
+        <a id="sendPoem" class="join-btn">שליחת השיר</a>
     </div>
+
+</div>
+
+<!-- JavaScript לתיבה מתרחבת -->
 <script>
 document.addEventListener("input", function(e) {
     if (e.target.classList.contains("auto-expand")) {
@@ -32,8 +41,6 @@ document.addEventListener("input", function(e) {
     }
 });
 </script>
-
-</div>
 
 </body>
 </html>
