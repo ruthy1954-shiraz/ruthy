@@ -314,6 +314,29 @@ a.btn {
     max-width: 600px;
 }
 
+.song-input {
+    width: 100%;
+    text-align: center;
+    font-size: 1.8rem;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    background: transparent;
+    color: #5a4a3f;
+    margin-bottom: 10px;
+}
+
+.song-textarea {
+    width: 100%;
+    min-height: 250px;
+    border: none;
+    resize: none;
+    overflow: hidden;
+    font-size: 1.2rem;
+    line-height: 2;
+    color: #5a4a3f;
+    background: transparent;
+    padding: 10px;
+}
 
 
 
