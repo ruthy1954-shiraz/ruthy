@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>צרפו את השיר שלכם</title>
-    <link rel="stylesheet" href="../style.css">
+
+    <!-- טעינת העיצוב המקורי של דפי השירים -->
+    <link rel="stylesheet" href="/ruthy/style.css?v=30">
 </head>
 
 <body>
@@ -13,7 +15,7 @@
 
     <!-- תמונת ברירת מחדל -->
     <div class="song-image">
-        <img src="images/default-poem.jpg" alt="תמונה לשיר">
+        <img src="../images/default-poem.jpg" alt="תמונה לשיר">
     </div>
 
     <!-- שם השיר -->
@@ -30,6 +32,9 @@
     <div class="song-box">
         <textarea id="poemText" class="song-textarea auto-expand" placeholder="כתבו כאן את השיר שלכם..."></textarea>
     </div>
+
+    <!-- שורה סגולה: שמירת השיר נחוץ -->
+    <p class="required-line">שמירת השיר נחוץ!</p>
 
     <!-- תיבת הערות -->
     <div class="notes-box">
@@ -68,6 +73,7 @@ document.addEventListener("input", function(e) {
 
 </body>
 </html>
+
 
 
 
