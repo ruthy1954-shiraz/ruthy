@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>שיר</title>
+    <link rel="stylesheet" href="/ruthy/style.css?v=30">
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <div class="song-image">
+        <img src="../images/default-poem.jpg">
+    </div>
+
+    <h1 class="song-title" id="title"></h1>
+    <h2 class="song-author" id="author"></h2>
+
+    <div class="song-box">
+        <p id="text"></p>
+    </div>
+
+</div>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getFirestore, doc, getDoc }
+        from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDMepXTjui58oUJOaVQgmXo8L0IjT1pPxQ",
+      authDomain: "ruthy-notes.firebaseapp.com",
+      projectId: "ruthy-notes",
+      storageBucket: "ruthy-notes.firebasestorage.app",
+      messagingSenderId: "276333962292",
+      appId: "1:276333962292:web:298a0e8db8b5f77c359661",
+      measurementId: "G-6MDZNCXET4"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+
+    async function loadPoem() {
+        const ref = doc(db, "poems", id);
+        const snap = await getDoc(ref);
+
+        if (!snap.exists()) {
+            document.body.innerHTML = "<h2>השיר לא נמצא</h2>";
+            return;
+        }
+
+        const poem = snap.data();
+
+        document.getElementById("title").textContent = poem.title;
+        document.getElementById("author").textContent = poem.author;
+        document.getElementById("text").innerHTML = poem.text.replace(/\n/g, "<br>");
+    }
+
+    loadPoem();
+</script>
+
+</body>
+</html>
