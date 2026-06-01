@@ -1,21 +1,55 @@
-<<div class="song-image">
-    <img src="../images/default-poem.jpg" alt="תמונה לשיר">
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>צרפו את השיר שלכם</title>
+    <link rel="stylesheet" href="/ruthy/style.css?v=30">
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <!-- תמונת ברירת מחדל -->
+    <div class="song-image">
+        <img src="../images/default-poem.jpg" alt="תמונה לשיר">
+    </div>
+
+    <!-- שם השיר -->
+    <h1 class="song-title">
+        <input id="poemTitle" class="song-input" placeholder="שם השיר...">
+    </h1>
+
+    <!-- שם המשורר -->
+    <h2 class="song-author">
+        <input id="poetName" class="song-input" placeholder="שם המשורר...">
+    </h2>
+
+    <!-- גוף השיר -->
+    <div class="song-box">
+        <textarea id="poemText" class="song-textarea auto-expand" placeholder="כתבו כאן את השיר שלכם..."></textarea>
+    </div>
+
+    <!-- כפתורים -->
+    <div class="footer-nav">
+        <a id="savePoem">שמירת השיר</a> |
+        <a id="sendPoem">שליחת השיר</a>
+    </div>
+
 </div>
 
-<h1 class="song-title">
-    <input id="poemTitle" placeholder="שם השיר..." style="width:100%; text-align:center; font-size:2rem; border:none; border-bottom:1px solid #ccc;">
-</h1>
+<!-- תיבה מתרחבת -->
+<script>
+document.addEventListener("input", function(e) {
+    if (e.target.classList.contains("auto-expand")) {
+        e.target.style.height = "auto";
+        e.target.style.height = (e.target.scrollHeight) + "px";
+    }
+});
+</script>
 
-<h2 class="song-author">
-    <input id="poetName" placeholder="שם המשורר..." style="width:100%; text-align:center; font-size:1.4rem; border:none; border-bottom:1px solid #ccc;">
-</h2>
+</body>
+</html>
 
-<div class="song-box">
-    <textarea id="poemText" class="auto-expand" placeholder="כתבו כאן את השיר שלכם..." style="width:100%; border:none; resize:none; line-height:2;"></textarea>
-</div>
-
-<div class="footer-nav">
-    <a id="savePoem">שמירת השיר</a>
-    <a id="sendPoem">שליחת השיר</a>
-</div>>
 
