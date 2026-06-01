@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>צרפו את השיר שלכם</title>
-
-    <!-- טעינת העיצוב המקורי של דפי השירים -->
     <link rel="stylesheet" href="/ruthy/style.css?v=30">
 </head>
 
@@ -13,66 +11,73 @@
 
 <div class="wrapper">
 
-    <!-- תמונת ברירת מחדל -->
     <div class="song-image">
         <img src="../images/default-poem.jpg" alt="תמונה לשיר">
     </div>
 
-    <!-- שם השיר -->
     <h1 class="song-title">
         <input id="poemTitle" class="song-input" placeholder="שם השיר...">
     </h1>
 
-    <!-- שם המשורר -->
     <h2 class="song-author">
         <input id="poetName" class="song-input" placeholder="שם המשורר...">
     </h2>
 
-    <!-- גוף השיר -->
     <div class="song-box">
         <textarea id="poemText" class="song-textarea auto-expand" placeholder="כתבו כאן את השיר שלכם..."></textarea>
     </div>
 
-    <!-- שורה סגולה: שמירת השיר נחוץ -->
     <p class="required-line">שמירת השיר נחוץ!</p>
 
-    <!-- תיבת הערות -->
-    <div class="notes-box">
-        <h3>כתיבת הערות והארות</h3>
-
-        <input id="userName" placeholder="השם שלכם...">
-        <input id="userSong" placeholder="שם השיר...">
-        <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
-
-        <div class="footer-nav" style="margin-top:15px;">
-            <a id="waLink">ווצאפ לכותבת</a> |
-            <a id="saveLink">שמירת הערה</a>
-        </div>
-
-        <h4>הערות קוראים שנשמרו:</h4>
-        <div id="notes"></div>
-    </div>
-
-    <!-- ניווט -->
     <div class="footer-nav">
-        <a href="../index.html">עמוד ראשי</a> |
-        <a href="poets.html">חזרה לבימת המשוררים</a>
+        <a id="savePoem">שמירת השיר</a>
     </div>
 
 </div>
 
-<!-- תיבה מתרחבת -->
-<script>
-document.addEventListener("input", function(e) {
-    if (e.target.classList.contains("auto-expand")) {
-        e.target.style.height = "auto";
-        e.target.style.height = (e.target.scrollHeight) + "px";
-    }
-});
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getFirestore, collection, addDoc, serverTimestamp }
+        from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDMepXTjui58oUJOaVQgmXo8L0IjT1pPxQ",
+      authDomain: "ruthy-notes.firebaseapp.com",
+      projectId: "ruthy-notes",
+      storageBucket: "ruthy-notes.firebasestorage.app",
+      messagingSenderId: "276333962292",
+      appId: "1:276333962292:web:298a0e8db8b5f77c359661",
+      measurementId: "G-6MDZNCXET4"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    document.getElementById("savePoem").addEventListener("click", async () => {
+        const title = document.getElementById("poemTitle").value.trim();
+        const author = document.getElementById("poetName").value.trim();
+        const text = document.getElementById("poemText").value.trim();
+
+        if (!title || !author || !text) {
+            alert("יש למלא את כל השדות");
+            return;
+        }
+
+        await addDoc(collection(db, "poems"), {
+            title,
+            author,
+            text,
+            createdAt: serverTimestamp()
+        });
+
+        alert("השיר נשמר בהצלחה!");
+        window.location.href = "poets.html";
+    });
 </script>
 
 </body>
 </html>
+
 
 
 
