@@ -24,6 +24,14 @@
     <div class="footer-nav" style="margin-top:25px;">
         <a href="poet-submit.html" class="join-btn">צרפו את השיר שלכם</a>
     </div>
+<script>
+document.addEventListener("input", function(e) {
+    if (e.target.classList.contains("auto-expand")) {
+        e.target.style.height = "auto";
+        e.target.style.height = (e.target.scrollHeight) + "px";
+    }
+});
+</script>
 
 </div>
 
