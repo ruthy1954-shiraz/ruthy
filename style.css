@@ -224,6 +224,17 @@ html, body {
     line-height: 1.3 !important;
 }
 
+.required-line {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #7b2cbf;
+    font-weight: bold;
+    border-bottom: 1px solid #7b2cbf;
+    display: inline-block;
+    padding-bottom: 4px;
+    margin: 20px auto;
+}
+
 
 
 
