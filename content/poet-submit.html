@@ -11,21 +11,22 @@
 
 <div class="wrapper">
 
-    <!-- תמונת השיר -->
+    <!-- תמונת ברירת מחדל -->
     <div class="song-image">
         <img src="images/default-poem.jpg" alt="תמונה לשיר">
     </div>
 
-    <!-- כותרות -->
+    <!-- שם השיר -->
     <h1 class="song-title">
         <input id="poemTitle" class="song-input" placeholder="שם השיר...">
     </h1>
 
+    <!-- שם המשורר -->
     <h2 class="song-author">
         <input id="poetName" class="song-input" placeholder="שם המשורר...">
     </h2>
 
-    <!-- טקסט השיר -->
+    <!-- גוף השיר -->
     <div class="song-box">
         <textarea id="poemText" class="song-textarea auto-expand" placeholder="כתבו כאן את השיר שלכם..."></textarea>
     </div>
@@ -47,7 +48,7 @@
         <div id="notes"></div>
     </div>
 
-    <!-- ניווט עדין -->
+    <!-- ניווט -->
     <div class="footer-nav">
         <a href="../index.html">עמוד ראשי</a> |
         <a href="poets.html">חזרה לבימת המשוררים</a>
@@ -55,7 +56,7 @@
 
 </div>
 
-<!-- JavaScript לתיבה מתרחבת -->
+<!-- תיבה מתרחבת -->
 <script>
 document.addEventListener("input", function(e) {
     if (e.target.classList.contains("auto-expand")) {
@@ -67,5 +68,6 @@ document.addEventListener("input", function(e) {
 
 </body>
 </html>
+
 
 
