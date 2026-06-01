@@ -1,32 +1,21 @@
-<!DOCTYPE html>
-<html lang="he" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>בימת המשוררים</title>
-
-    <link rel="stylesheet" href="../style.css">
-</head>
-
-<body>
-
-<div class="wrapper">
-
-    <h1 class="song-title">בימת המשוררים</h1>
-    <h2 class="song-author">מקום לשירים חדשים</h2>
-
-    <!-- שורה עם קו תחתון -->
-    <div class="poet-upload">
-        <p>כאן אפשר לצרף את השיר שלך</p>
-    </div>
-
-    <!-- כפתור מעבר לדף כתיבת שיר -->
-    <div class="footer-nav" style="margin-top:25px;">
-        <a href="poet-submit.html" class="join-btn">צרפו את השיר שלכם</a>
-    </div>
-
+<<div class="song-image">
+    <img src="../images/default-poem.jpg" alt="תמונה לשיר">
 </div>
 
-</body>
-</html>
+<h1 class="song-title">
+    <input id="poemTitle" placeholder="שם השיר..." style="width:100%; text-align:center; font-size:2rem; border:none; border-bottom:1px solid #ccc;">
+</h1>
+
+<h2 class="song-author">
+    <input id="poetName" placeholder="שם המשורר..." style="width:100%; text-align:center; font-size:1.4rem; border:none; border-bottom:1px solid #ccc;">
+</h2>
+
+<div class="song-box">
+    <textarea id="poemText" class="auto-expand" placeholder="כתבו כאן את השיר שלכם..." style="width:100%; border:none; resize:none; line-height:2;"></textarea>
+</div>
+
+<div class="footer-nav">
+    <a id="savePoem">שמירת השיר</a>
+    <a id="sendPoem">שליחת השיר</a>
+</div>>
 
