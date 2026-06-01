@@ -266,6 +266,27 @@ a.btn {
     opacity: 0.7;
 }
 
+/* === עיצוב נוסף לשורת הקישורים === */
+.footer-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+}
+
+.footer-nav a {
+    color: #7b2cbf;
+    text-decoration: underline;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.footer-nav a:hover {
+    opacity: 0.7;
+}
 
 
 
