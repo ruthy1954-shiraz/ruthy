@@ -303,7 +303,16 @@ a.btn {
     box-sizing: border-box;
 }
 
-
+.poet-upload {
+    text-align: center;
+    font-size: 1.6rem;
+    color: #5a4a3f;
+    margin: 40px auto;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #d8c3a5;
+    width: 80%;
+    max-width: 600px;
+}
 
 
 
