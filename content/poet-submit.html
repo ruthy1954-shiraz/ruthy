@@ -18,24 +18,24 @@
 
     <!-- כותרות -->
     <h1 class="song-title">
-        <input id="poemTitle" placeholder="שם השיר..." style="width:100%; text-align:center; font-size:2rem; border:none; border-bottom:1px solid #ccc;">
+        <input id="poemTitle" class="song-input" placeholder="שם השיר...">
     </h1>
 
     <h2 class="song-author">
-        <input id="poetName" placeholder="שם המשורר..." style="width:100%; text-align:center; font-size:1.4rem; border:none; border-bottom:1px solid #ccc;">
+        <input id="poetName" class="song-input" placeholder="שם המשורר...">
     </h2>
 
     <!-- טקסט השיר -->
     <div class="song-box">
-        <textarea id="poemText" class="auto-expand" placeholder="כתבו כאן את השיר שלכם..." style="width:100%; border:none; resize:none; line-height:2; font-size:1.2rem; color:#5a4a3f; background:transparent; padding:10px;"></textarea>
+        <textarea id="poemText" class="song-textarea auto-expand" placeholder="כתבו כאן את השיר שלכם..."></textarea>
     </div>
 
     <!-- תיבת הערות -->
     <div class="notes-box">
         <h3>כתיבת הערות והארות</h3>
 
-        <input id="userName" placeholder="השם שלכם..." />
-        <input id="userSong" placeholder="שם השיר..." />
+        <input id="userName" placeholder="השם שלכם...">
+        <input id="userSong" placeholder="שם השיר...">
         <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
 
         <div class="footer-nav" style="margin-top:15px;">
@@ -67,4 +67,5 @@ document.addEventListener("input", function(e) {
 
 </body>
 </html>
+
 
