@@ -3,53 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>צרפו את השיר שלכם</title>
+    <title>בימת המשוררים</title>
     <link rel="stylesheet" href="/ruthy/style.css?v=30">
 </head>
 
 <body>
 
 <div class="wrapper">
-
-    <!-- תמונת ברירת מחדל -->
-    <div class="song-image">
-        <img src="../images/default-poem.jpg" alt="תמונה לשיר">
-    </div>
-
-    <!-- שם השיר -->
-    <h1 class="song-title">
-        <input id="poemTitle" class="song-input" placeholder="שם השיר...">
-    </h1>
-
-    <!-- שם המשורר -->
-    <h2 class="song-author">
-        <input id="poetName" class="song-input" placeholder="שם המשורר...">
-    </h2>
-
-    <!-- גוף השיר -->
-    <div class="song-box">
-        <textarea id="poemText" class="song-textarea auto-expand" placeholder="כתבו כאן את השיר שלכם..."></textarea>
-    </div>
-
-    <!-- כפתורים -->
-    <div class="footer-nav">
-        <a id="savePoem">שמירת השיר</a> |
-        <a id="sendPoem">שליחת השיר</a>
-    </div>
-
+    <h1 class="song-title">בימת המשוררים</h1>
+    <div id="poemsList"></div>
 </div>
 
-<!-- תיבה מתרחבת -->
-<script>
-document.addEventListener("input", function(e) {
-    if (e.target.classList.contains("auto-expand")) {
-        e.target.style.height = "auto";
-        e.target.style.height = (e.target.scrollHeight) + "px";
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getFirestore, collection, getDocs, orderBy, query }
+        from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDMepXTjui58oUJOaVQgmXo8L0IjT1pPxQ",
+      authDomain: "ruthy-notes.firebaseapp.com",
+      projectId: "ruthy-notes",
+      storageBucket: "ruthy-notes.firebasestorage.app",
+      messagingSenderId: "276333962292",
+      appId: "1:276333962292:web:298a0e8db8b5f77c359661",
+      measurementId: "G-6MDZNCXET4"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    async function loadPoems() {
+        const q = query(collection(db, "poems"), orderBy("createdAt", "desc"));
+        const snapshot = await getDocs(q);
+
+        const container = document.getElementById("poemsList");
+        container.innerHTML = "";
+
+        snapshot.forEach(doc => {
+            const poem = doc.data();
+            const id = doc.id;
+
+            container.innerHTML += `
+                <div class="song-box">
+                    <h2>${poem.title}</h2>
+                    <h3>${poem.author}</h3>
+                    <a href="poem.html?id=${id}">לקריאת השיר</a>
+                </div>
+            `;
+        });
     }
-});
+
+    loadPoems();
 </script>
 
 </body>
 </html>
+
 
 
