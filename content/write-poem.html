@@ -25,7 +25,8 @@
         <form id="poemForm">
             <input id="title" placeholder="כותרת השיר" required>
             <input id="author" placeholder="שם המשורר" required>
-            <textarea id="text" placeholder="כתבי כאן את השיר..." required></textarea>
+            <textarea id="text" placeholder="כתבו כאן את השיר..." required
+            oninput="this.style.height = ''; this.style.height = this.scrollHeight + 'px';"></textarea>
             <button type="submit">שמרי שיר</button>
         </form>
     </div>
