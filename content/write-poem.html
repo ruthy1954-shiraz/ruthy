@@ -11,27 +11,27 @@
 
 <div class="wrapper">
 
-    <!-- תמונת רקע עדינה -->
+    <!-- תמונה אוטומטית לפי אווירת השיר -->
     <div class="song-image">
-        <img src="images/shir.jpeg" alt="רקע לשיר חדש">
+        <img id="autoImage" src="images/default.jpeg" alt="תמונה לשיר">
     </div>
 
-    <!-- כותרות -->
     <h1 class="song-title">כתיבת שיר חדש</h1>
     <h2 class="song-author">רות שנן</h2>
 
-    <!-- טופס כתיבת השיר -->
     <div class="song-box">
         <form id="poemForm">
             <input id="title" placeholder="כותרת השיר" required>
             <input id="author" placeholder="שם המשורר" required>
-            <textarea id="text" placeholder="כתבו כאן את השיר..." required
-            oninput="this.style.height = ''; this.style.height = this.scrollHeight + 'px';"></textarea>
+
+            <!-- תיבת כתיבה אלסטית -->
+            <textarea id="text" placeholder="כתבי כאן את השיר..." 
+                      oninput="autoGrow(this); detectMood();" required></textarea>
+
             <button type="submit">שמרי שיר</button>
         </form>
     </div>
 
-    <!-- ניווט עדין -->
     <div class="footer-nav" style="margin-top:20px;">
         <a href="poets.html" class="join-btn">חזרה לבימת המשוררים</a> |
         <a href="../index.html">עמוד ראשי</a>
@@ -39,7 +39,7 @@
 
 </div>
 
-<!-- חיבור ל-Firestore -->
+<!-- Firestore -->
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
     import { getFirestore, collection, addDoc, serverTimestamp }
@@ -77,20 +77,35 @@
     });
 </script>
 
-<!-- כפתור שיתוף -->
-<button class="share-btn" onclick="shareSong()">שתפו את הדף</button>
-
+<!-- פונקציות עיצוב ואווירה -->
 <script>
-function shareSong() {
-    if (navigator.share) {
-        navigator.share({
-            title: "כתיבת שיר חדש / רות שנן",
-            text: "הצטרפו לבימת המשוררים וכתבו שיר חדש:",
-            url: window.location.href
-        });
-    } else {
-        alert("הדפדפן לא תומך בשיתוף אוטומטי");
+// תיבת כתיבה אלסטית
+function autoGrow(el) {
+    el.style.height = "auto";
+    el.style.height = el.scrollHeight + "px";
+}
+
+// בחירת תמונה לפי אווירה
+function detectMood() {
+    const text = document.getElementById("text").value;
+    const img = document.getElementById("autoImage");
+
+    const moods = [
+        { words: ["ים", "גל", "מים"], img: "images/sea.jpeg" },
+        { words: ["לילה", "חושך", "ירח"], img: "images/night.jpeg" },
+        { words: ["אהבה", "לב", "נשיקה"], img: "images/love.jpeg" },
+        { words: ["כאב", "דמעה", "שבר"], img: "images/sad.jpeg" },
+        { words: ["אור", "שמש", "תקווה"], img: "images/light.jpeg" }
+    ];
+
+    for (let mood of moods) {
+        if (mood.words.some(w => text.includes(w))) {
+            img.src = mood.img;
+            return;
+        }
     }
+
+    img.src = "images/default.jpeg";
 }
 </script>
 
@@ -117,6 +132,11 @@ function shareSong() {
     background-color: #fffafc;
 }
 
+.song-box textarea {
+    min-height: 120px;
+    overflow: hidden;
+}
+
 .song-box button {
     background-color: #f2e6ff;
     border: 1px solid #d3b8ff;
@@ -128,23 +148,6 @@ function shareSong() {
     transition: 0.2s;
 }
 .song-box button:hover {
-    background-color: #e8d6ff;
-}
-
-.share-btn {
-    margin: 25px auto;
-    padding: 12px 20px;
-    background-color: #f2e6ff;
-    border: 1px solid #d3b8ff;
-    border-radius: 8px;
-    font-size: 18px;
-    color: #4a2c6b;
-    cursor: pointer;
-    display: block;
-    width: 200px;
-    transition: 0.2s;
-}
-.share-btn:hover {
     background-color: #e8d6ff;
 }
 </style>
