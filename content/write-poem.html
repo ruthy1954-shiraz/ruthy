@@ -3,29 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>כתיבת שיר חדש</title>
-    <link rel="stylesheet" href="/ruthy/style.css?v=30">
+    <title>כתיבת שיר חדש / רות שנן</title>
+    <link rel="stylesheet" href="../style.css">
 </head>
 
 <body>
 
 <div class="wrapper">
 
+    <!-- תמונת רקע עדינה -->
+    <div class="song-image">
+        <img src="images/shir.jpeg" alt="רקע לשיר חדש">
+    </div>
+
+    <!-- כותרות -->
     <h1 class="song-title">כתיבת שיר חדש</h1>
+    <h2 class="song-author">רות שנן</h2>
 
-    <form id="poemForm">
-        <input id="title" placeholder="כותרת השיר" required>
-        <input id="author" placeholder="שם המשורר" required>
-        <textarea id="text" placeholder="כתבי כאן את השיר..." required></textarea>
-        <button type="submit">שמרי שיר</button>
-    </form>
+    <!-- טופס כתיבת השיר -->
+    <div class="song-box">
+        <form id="poemForm">
+            <input id="title" placeholder="כותרת השיר" required>
+            <input id="author" placeholder="שם המשורר" required>
+            <textarea id="text" placeholder="כתבי כאן את השיר..." required></textarea>
+            <button type="submit">שמרי שיר</button>
+        </form>
+    </div>
 
+    <!-- ניווט עדין -->
     <div class="footer-nav" style="margin-top:20px;">
-        <a href="poets.html" class="join-btn">חזרה לבימת המשוררים</a>
+        <a href="poets.html" class="join-btn">חזרה לבימת המשוררים</a> |
+        <a href="../index.html">עמוד ראשי</a>
     </div>
 
 </div>
 
+<!-- חיבור ל-Firestore -->
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
     import { getFirestore, collection, addDoc, serverTimestamp }
@@ -62,6 +75,78 @@
         window.location.href = "poets.html";
     });
 </script>
+
+<!-- כפתור שיתוף -->
+<button class="share-btn" onclick="shareSong()">שתפו את הדף</button>
+
+<script>
+function shareSong() {
+    if (navigator.share) {
+        navigator.share({
+            title: "כתיבת שיר חדש / רות שנן",
+            text: "הצטרפו לבימת המשוררים וכתבו שיר חדש:",
+            url: window.location.href
+        });
+    } else {
+        alert("הדפדפן לא תומך בשיתוף אוטומטי");
+    }
+}
+</script>
+
+<style>
+/* עיצוב רך בסגנון הספר */
+.song-box {
+    background-color: #faf6f0;
+    border: 1px solid #e0d6c8;
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0 0 10px rgba(180, 160, 140, 0.2);
+}
+
+.song-box input,
+.song-box textarea {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    font-family: 'David', serif;
+    font-size: 18px;
+    border: 1px solid #d3b8ff;
+    border-radius: 8px;
+    background-color: #fffafc;
+}
+
+.song-box button {
+    background-color: #f2e6ff;
+    border: 1px solid #d3b8ff;
+    border-radius: 8px;
+    font-size: 18px;
+    color: #4a2c6b;
+    cursor: pointer;
+    padding: 10px 20px;
+    transition: 0.2s;
+}
+.song-box button:hover {
+    background-color: #e8d6ff;
+}
+
+.share-btn {
+    margin: 25px auto;
+    padding: 12px 20px;
+    background-color: #f2e6ff;
+    border: 1px solid #d3b8ff;
+    border-radius: 8px;
+    font-size: 18px;
+    color: #4a2c6b;
+    cursor: pointer;
+    display: block;
+    width: 200px;
+    transition: 0.2s;
+}
+.share-btn:hover {
+    background-color: #e8d6ff;
+}
+</style>
 
 </body>
 </html>
