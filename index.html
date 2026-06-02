@@ -40,11 +40,12 @@
         <input id="userSong" placeholder="שם הדף..." value="דף הבית" />
         <textarea id="userNote" placeholder="כתבי כאן את מחשבותייך על האתר..."></textarea>
 
-     <div class="footer-nav" style="margin-top:15px;">
-    <a id="waLink">ווצאפ לכותבת</a> |
-    <a id="saveLink">שמירת הערה</a> |
-    <a href="content/poets.html" class="join-btn">בימת המשוררים</a>
-</div>
+        <div class="footer-nav" style="margin-top:15px;">
+            <a id="waLink">ווצאפ לכותבת</a> |
+            <a id="saveLink">שמירת הערה</a> |
+            <a href="content/poets.html" class="join-btn">בימת המשוררים</a> |
+            <a href="content/write-poem.html" class="join-btn">כתיבת שיר חדש</a>
+        </div>
 
         <h4>הערות קוראים שנשמרו:</h4>
         <div id="notes"></div>
@@ -53,8 +54,10 @@
     <!-- ניווט -->
     <div class="footer-nav">
         <a href="content/song.html">שירים</a> |
-        <a href="content/about.html">על הספר</a>
-        <a href="content/about-author.html">אודות המחברת</a>
+        <a href="content/about.html">על הספר</a> |
+        <a href="content/about-author.html">אודות המחברת</a> |
+        <a href="content/poets.html" class="join-btn">בימת המשוררים</a> |
+        <a href="content/write-poem.html" class="join-btn">כתיבת שיר חדש</a>
     </div>
 
 </div>
@@ -105,7 +108,7 @@ function shareSong() {
     if (navigator.share) {
         navigator.share({
             title: "לגעת — ספר השירה של רות שנן",
-            text: "רציתי לשתף את הספר השירה הזה:",
+            text: "רציתי לשתף את הספר היפה הזה:",
             url: window.location.href
         });
     } else {
@@ -135,6 +138,7 @@ function shareSong() {
 
 </body>
 </html>
+
 
 
 
