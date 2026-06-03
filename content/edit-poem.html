@@ -113,22 +113,31 @@
 
     loadPoem();
 
-    // פתיחת Copilot עם שם ותוכן השיר
-    document.getElementById("openCopilotBtn").addEventListener("click", () => {
+    // פתיחת Copilot עם העתקה אוטומטית ללוח
+    document.getElementById("openCopilotBtn").addEventListener("click", async () => {
         const title = titleInput.value.trim();
-        const text = textInput.value.trim();
         const author = authorInput.value.trim();
+        const text = textInput.value.trim();
 
         if (!text) {
             alert("כתבו קודם את השיר, ואז נוכל ליצור לו תמונה.");
             return;
         }
 
-        const prompt = encodeURIComponent(
-            `ציירו תמונה שמתאימה לשיר "${title}" מאת ${author}:\n\n${text}`
-        );
+        const fullPrompt =
+`ציירו תמונה שמתאימה לשיר "${title}" מאת ${author}:
 
-        window.open("https://copilot.microsoft.com/?q=" + prompt, "_blank");
+${text}
+
+אנא צרו תמונה שמבטאת את האווירה, הרגש והדימויים המרכזיים.`;
+
+        // העתקה אוטומטית ללוח
+        await navigator.clipboard.writeText(fullPrompt);
+
+        alert("הטקסט הועתק. הדביקו אותו ב‑Copilot.");
+
+        // פתיחת Copilot
+        window.open("https://copilot.microsoft.com", "_blank");
     });
 
     // שמירת שינויים
