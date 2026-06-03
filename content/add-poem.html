@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>צרפו את השיר שלכם</title>
+    <title>הוספת שיר חדש</title>
     <link rel="stylesheet" href="/ruthy/style.css?v=30">
 
     <style>
@@ -39,7 +39,7 @@
 
 <div class="wrapper">
 
-    <h1>צרפו את השיר שלכם</h1>
+    <h1>הוספת שיר חדש</h1>
 
     <div class="poet-image-box">
         <img id="poetImagePreview" src="../images/default-poem.jpg" alt="תמונת המשורר" style="width:150px; border-radius:10px;">
@@ -49,7 +49,7 @@
     <input id="poetImage" class="song-input" placeholder="images/poets/poet.jpg">
 
     <button id="openCopilotBtn" type="button">
-        צייר לי תמונה ב‑Copilot
+        ציירו לנו תמונה ב‑Copilot
     </button>
 
     <br><br>
@@ -61,7 +61,7 @@
     <input id="poetName" class="song-input" placeholder="שם המשורר...">
 
     <label>תוכן השיר:</label>
-    <textarea id="poemText" class="song-textarea auto-expand" placeholder="כתבו כאן את השיר שלכם..."></textarea>
+    <textarea id="poemText" class="song-textarea auto-expand" placeholder="כתבו כאן את השיר..."></textarea>
 
     <div id="savePoem">שמירת השיר</div>
 
@@ -91,23 +91,37 @@
     const imageInput = document.getElementById("poetImage");
     const imagePreview = document.getElementById("poetImagePreview");
 
-    // פתיחת Copilot עם טקסט השיר
-    document.getElementById("openCopilotBtn").addEventListener("click", () => {
+    // תצוגה אוטומטית של תמונה
+    imageInput.addEventListener("input", () => {
+        imagePreview.src = imageInput.value;
+    });
+
+    // פתיחת Copilot עם העתקה אוטומטית ללוח
+    document.getElementById("openCopilotBtn").addEventListener("click", async () => {
+        const title = titleInput.value.trim();
+        const author = authorInput.value.trim();
         const text = textInput.value.trim();
 
         if (!text) {
-            alert("כתבי קודם את השיר, ואז נוכל ליצור תמונה.");
+            alert("כתבו קודם את השיר, ואז נוכל ליצור לו תמונה.");
             return;
         }
 
-        const prompt = encodeURIComponent(
-            "צייר לי תמונה שמתאימה לשיר הבא:\n\n" + text
-        );
+        const fullPrompt =
+`ציירו תמונה שמתאימה לשיר "${title}" מאת ${author}:
 
-        window.open("https://copilot.microsoft.com/?q=" + prompt, "_blank");
+${text}
+
+אנא צרו תמונה שמבטאת את האווירה, הרגש והדימויים המרכזיים.`;
+
+        await navigator.clipboard.writeText(fullPrompt);
+
+        alert("הטקסט הועתק. הדביקו אותו ב‑Copilot.");
+
+        window.open("https://copilot.microsoft.com", "_blank");
     });
 
-    // שמירת שיר
+    // שמירת שיר חדש
     document.getElementById("savePoem").addEventListener("click", async () => {
         const title = titleInput.value.trim();
         const author = authorInput.value.trim();
@@ -134,3 +148,4 @@
 
 </body>
 </html>
+
