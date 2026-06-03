@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>עריכת שיר</title>
+    <link rel="stylesheet" href="/ruthy/style.css?v=30">
+
+    <style>
+        .wrapper {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .save-btn {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: inline-block;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <h1>עריכת שיר</h1>
+
+    <label>שם השיר:</label>
+    <input id="poemTitle" class="song-input" placeholder="שם השיר...">
+
+    <label>שם המשורר:</label>
+    <input id="poetName" class="song-input" placeholder="שם המשורר...">
+
+    <label>תוכן השיר:</label>
+    <textarea id="poemText" class="song-textarea auto-expand" placeholder="כתבו כאן את השיר..."></textarea>
+
+    <div class="save-btn" id="saveChanges">שמירת שינויים</div>
+
+</div>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getFirestore, doc, getDoc, updateDoc }
+        from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDMepXTjui58oUJOaVQgmXo8L0IjT1pPxQ",
+      authDomain: "ruthy-notes.firebaseapp.com",
+      projectId: "ruthy-notes",
+      storageBucket: "ruthy-notes.firebasestorage.app",
+      messagingSenderId: "276333962292",
+      appId: "1:276333962292:web:298a0e8db8b5f77c359661",
+      measurementId: "G-6MDZNCXET4"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // קבלת ה-ID מהכתובת
+    const urlParams = new URLSearchParams(window.location.search);
+    const poemId = urlParams.get("id");
+
+    const titleInput = document.getElementById("poemTitle");
+    const authorInput = document.getElementById("poetName");
+    const textInput = document.getElementById("poemText");
+
+    // טעינת השיר
+    async function loadPoem() {
+        const docRef = doc(db, "poems", poemId);
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+            const poem = docSnap.data();
+            titleInput.value = poem.title;
+            authorInput.value = poem.author;
+            textInput.value = poem.text;
+        } else {
+            alert("השיר לא נמצא");
+            window.location.href = "poets.html";
+        }
+    }
+
+    loadPoem();
+
+    // שמירת שינויים
+    document.getElementById("saveChanges").addEventListener("click", async () => {
+        const newTitle = titleInput.value.trim();
+        const newAuthor = authorInput.value.trim();
+        const newText = textInput.value.trim();
+
+        if (!newTitle || !newAuthor || !newText) {
+            alert("יש למלא את כל השדות");
+            return;
+        }
+
+        await updateDoc(doc(db, "poems", poemId), {
+            title: newTitle,
+            author: newAuthor,
+            text: newText
+        });
+
+        alert("השיר עודכן בהצלחה!");
+        window.location.href = "poets.html";
+    });
+</script>
+
+</body>
+</html>
