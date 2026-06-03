@@ -3,53 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>שירי המשוררים</title>
+    <title>בימת המשוררים</title>
     <link rel="stylesheet" href="/ruthy/style.css?v=30">
 
     <style>
-        .poem-box {
-            background: #ffffff;
+        body {
+            background: #fafafa;
+        }
+
+        .wrapper {
+            max-width: 900px;
+            margin: auto;
             padding: 20px;
-            margin: 20px 0;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
 
-        .poem-actions {
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .poem-card {
             display: flex;
-            gap: 10px;
-            margin-top: 15px;
+            align-items: center;
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            transition: 0.2s;
         }
 
-        .edit-btn {
-            background-color: #4caf50;
-            color: white;
-            border: none;
-            padding: 6px 12px;
-            border-radius: 6px;
-            cursor: pointer;
+        .poem-card:hover {
+            transform: scale(1.02);
         }
 
-        .delete-btn {
-            background-color: #e53935;
+        .poet-img {
+            width: 90px;
+            height: 90px;
+            border-radius: 10px;
+            object-fit: cover;
+            margin-left: 15px;
+            background: #eee;
+        }
+
+        .poem-info {
+            flex-grow: 1;
+        }
+
+        .poem-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .poem-author {
+            font-size: 16px;
+            color: #666;
+            margin: 5px 0 10px 0;
+        }
+
+        .btn-edit {
+            background: #2196f3;
             color: white;
-            border: none;
             padding: 6px 12px;
             border-radius: 6px;
-            cursor: pointer;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .btn-view {
+            background: #4caf50;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 14px;
+            margin-right: 8px;
         }
     </style>
 </head>
 
 <body>
 
-<h1>שירי המשוררים</h1>
+<div class="wrapper">
 
-<div id="poemsContainer"></div>
+    <h1>בימת המשוררים</h1>
+
+    <div id="poemsList"></div>
+
+</div>
 
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-    import { getFirestore, collection, getDocs, deleteDoc, doc }
+    import { getFirestore, collection, getDocs, orderBy, query }
         from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
     const firebaseConfig = {
@@ -65,59 +111,46 @@
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
-    const poemsContainer = document.getElementById("poemsContainer");
+    const poemsList = document.getElementById("poemsList");
 
     async function loadPoems() {
-        const querySnapshot = await getDocs(collection(db, "poems"));
+        const q = query(collection(db, "poems"), orderBy("createdAt", "desc"));
+        const querySnapshot = await getDocs(q);
 
-        querySnapshot.forEach((docItem) => {
-            const poem = docItem.data();
-            const id = docItem.id;
+        poemsList.innerHTML = "";
 
-            const div = document.createElement("div");
-            div.classList.add("poem-box");
+        querySnapshot.forEach((doc) => {
+            const poem = doc.data();
+            const id = doc.id;
 
-            div.innerHTML = `
-                <h2>${poem.title}</h2>
-                <h3>${poem.author}</h3>
-                <p>${poem.text.replace(/\n/g, "<br>")}</p>
+            const image = poem.image && poem.image.trim() !== ""
+                ? poem.image
+                : "../images/default-poem.jpg";
 
-                <div class="poem-actions">
-                    <button class="edit-btn" data-id="${id}">עריכה</button>
-                    <button class="delete-btn" data-id="${id}">X</button>
+            const card = `
+                <div class="poem-card">
+                    <img class="poet-img" src="${image}" alt="תמונת משורר">
+
+                    <div class="poem-info">
+                        <p class="poem-title">${poem.title}</p>
+                        <p class="poem-author">${poem.author}</p>
+
+                        <a class="btn-view" href="poem.html?id=${id}">לצפייה</a>
+                        <a class="btn-edit" href="edit-poem.html?id=${id}">עריכה</a>
+                    </div>
                 </div>
             `;
 
-            poemsContainer.appendChild(div);
+            poemsList.innerHTML += card;
         });
     }
 
     loadPoems();
-
-    // מחיקה
-    document.addEventListener("click", async (e) => {
-        if (e.target.classList.contains("delete-btn")) {
-            const id = e.target.dataset.id;
-
-            if (confirm("למחוק את השיר?")) {
-                await deleteDoc(doc(db, "poems", id));
-                alert("השיר נמחק");
-                location.reload();
-            }
-        }
-    });
-
-    // עריכה
-    document.addEventListener("click", (e) => {
-        if (e.target.classList.contains("edit-btn")) {
-            const id = e.target.dataset.id;
-            window.location.href = `edit-poem.html?id=${id}`;
-        }
-    });
 </script>
 
 </body>
 </html>
+
 
 
 
