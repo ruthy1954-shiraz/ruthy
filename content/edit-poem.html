@@ -13,6 +13,16 @@
             padding: 20px;
         }
 
+        #openCopilotBtn {
+            background-color: #2196f3;
+            color: white;
+            padding: 8px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 10px;
+            border: none;
+        }
+
         .save-btn {
             background-color: #4caf50;
             color: white;
@@ -21,16 +31,6 @@
             cursor: pointer;
             display: inline-block;
             margin-top: 20px;
-        }
-
-        #generateImageBtn {
-            background-color: #2196f3;
-            color: white;
-            padding: 8px 14px;
-            border-radius: 6px;
-            cursor: pointer;
-            margin-top: 10px;
-            border: none;
         }
     </style>
 </head>
@@ -41,7 +41,6 @@
 
     <h1>עריכת שיר</h1>
 
-    <!-- תצוגת תמונת המשורר -->
     <div class="poet-image-box">
         <img id="poetImagePreview" src="" alt="תמונת המשורר" style="width:150px; border-radius:10px;">
     </div>
@@ -49,9 +48,8 @@
     <label>תמונת המשורר:</label>
     <input id="poetImage" class="song-input" placeholder="images/poets/poet.jpg">
 
-    <!-- כפתור יצירת תמונה -->
-    <button id="generateImageBtn" type="button">
-        צייר לי תמונה לשיר
+    <button id="openCopilotBtn" type="button">
+        צייר לי תמונה ב‑Copilot
     </button>
 
     <br><br>
@@ -87,7 +85,6 @@
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
-    // קבלת ה-ID מהכתובת
     const urlParams = new URLSearchParams(window.location.search);
     const poemId = urlParams.get("id");
 
@@ -97,7 +94,6 @@
     const imageInput = document.getElementById("poetImage");
     const imagePreview = document.getElementById("poetImagePreview");
 
-    // טעינת השיר
     async function loadPoem() {
         const docRef = doc(db, "poems", poemId);
         const docSnap = await getDoc(docRef);
@@ -116,6 +112,22 @@
     }
 
     loadPoem();
+
+    // פתיחת Copilot עם טקסט השיר
+    document.getElementById("openCopilotBtn").addEventListener("click", () => {
+        const text = textInput.value.trim();
+
+        if (!text) {
+            alert("כתבי קודם את השיר, ואז נוכל ליצור תמונה.");
+            return;
+        }
+
+        const prompt = encodeURIComponent(
+            "צייר לי תמונה שמתאימה לשיר הבא:\n\n" + text
+        );
+
+        window.open("https://copilot.microsoft.com/?q=" + prompt, "_blank");
+    });
 
     // שמירת שינויים
     document.getElementById("saveChanges").addEventListener("click", async () => {
@@ -138,39 +150,6 @@
 
         alert("השיר עודכן בהצלחה!");
         window.location.href = "poets.html";
-    });
-
-    // יצירת תמונה לשיר
-    document.getElementById("generateImageBtn").addEventListener("click", async () => {
-        const text = textInput.value.trim();
-        if (!text) {
-            alert("כתבי קודם את השיר, ואז ניצור לו תמונה.");
-            return;
-        }
-
-        const btn = document.getElementById("generateImageBtn");
-        btn.disabled = true;
-        btn.textContent = "יוצרת תמונה...";
-
-        try {
-            const res = await fetch("/api/generate-image", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ text })
-            });
-
-            const data = await res.json();
-
-            imageInput.value = data.imageUrl;
-            imagePreview.src = data.imageUrl;
-
-        } catch (e) {
-            alert("לא הצלחתי ליצור תמונה כרגע.");
-            console.error(e);
-        } finally {
-            btn.disabled = false;
-            btn.textContent = "צייר לי תמונה לשיר";
-        }
     });
 </script>
 
