@@ -7,30 +7,14 @@
     <link rel="stylesheet" href="/ruthy/style.css?v=30">
 
     <style>
-        .wrapper {
-            max-width: 600px;
-            margin: auto;
-            padding: 20px;
-        }
-
+        .wrapper { max-width: 600px; margin: auto; padding: 20px; }
         #openCopilotBtn {
-            background-color: #2196f3;
-            color: white;
-            padding: 8px 14px;
-            border-radius: 6px;
-            cursor: pointer;
-            margin-top: 10px;
-            border: none;
+            background-color: #2196f3; color: white; padding: 8px 14px;
+            border-radius: 6px; cursor: pointer; margin-top: 10px; border: none;
         }
-
         #savePoem {
-            background-color: #4caf50;
-            color: white;
-            padding: 10px 18px;
-            border-radius: 8px;
-            cursor: pointer;
-            display: inline-block;
-            margin-top: 20px;
+            background-color: #4caf50; color: white; padding: 10px 18px;
+            border-radius: 8px; cursor: pointer; display: inline-block; margin-top: 20px;
         }
     </style>
 </head>
@@ -42,26 +26,24 @@
     <h1>הוספת שיר חדש</h1>
 
     <div class="poet-image-box">
-        <img id="poetImagePreview" src="../images/default-poem.jpg" alt="תמונת המשורר" style="width:150px; border-radius:10px;">
+        <img id="poetImagePreview" src="../images/default-poem.jpg" style="width:150px; border-radius:10px;">
     </div>
 
     <label>תמונת המשורר:</label>
     <input id="poetImage" class="song-input" placeholder="images/poets/poet.jpg">
 
-    <button id="openCopilotBtn" type="button">
-        ציירו לנו תמונה ב‑Copilot
-    </button>
+    <button id="openCopilotBtn">ציירו לנו תמונה ב‑Copilot</button>
 
     <br><br>
 
     <label>שם השיר:</label>
-    <input id="poemTitle" class="song-input" placeholder="שם השיר...">
+    <input id="poemTitle" class="song-input">
 
     <label>שם המשורר:</label>
-    <input id="poetName" class="song-input" placeholder="שם המשורר...">
+    <input id="poetName" class="song-input">
 
     <label>תוכן השיר:</label>
-    <textarea id="poemText" class="song-textarea auto-expand" placeholder="כתבו כאן את השיר..."></textarea>
+    <textarea id="poemText" class="song-textarea auto-expand"></textarea>
 
     <div id="savePoem">שמירת השיר</div>
 
@@ -91,37 +73,43 @@
     const imageInput = document.getElementById("poetImage");
     const imagePreview = document.getElementById("poetImagePreview");
 
-    // תצוגה אוטומטית של תמונה
     imageInput.addEventListener("input", () => {
         imagePreview.src = imageInput.value;
     });
 
-    // פתיחת Copilot עם העתקה אוטומטית ללוח
+    // כפתור Copilot משודרג
     document.getElementById("openCopilotBtn").addEventListener("click", async () => {
         const title = titleInput.value.trim();
         const author = authorInput.value.trim();
         const text = textInput.value.trim();
 
+        const poemUrl = "https://yourwebsite.com/poem.html?preview=new";
+
         if (!text) {
-            alert("כתבו קודם את השיר, ואז נוכל ליצור לו תמונה.");
+            alert("כתבו קודם את השיר.");
             return;
         }
 
         const fullPrompt =
-`ציירו תמונה שמתאימה לשיר "${title}" מאת ${author}:
+`ציירו תמונה שמתאימה לשיר "${title}" מאת ${author}.
 
+הנה השיר:
 ${text}
 
-אנא צרו תמונה שמבטאת את האווירה, הרגש והדימויים המרכזיים.`;
+קישור לשיר באתר:
+${poemUrl}
+
+אנא צרו תמונה שמבטאת את האווירה, הרגש והדימויים המרכזיים.
+
+לאחר יצירת התמונה, אנא ספקו קישור חזרה לאתר:
+${poemUrl}
+`;
 
         await navigator.clipboard.writeText(fullPrompt);
-
         alert("הטקסט הועתק. הדביקו אותו ב‑Copilot.");
-
         window.open("https://copilot.microsoft.com", "_blank");
     });
 
-    // שמירת שיר חדש
     document.getElementById("savePoem").addEventListener("click", async () => {
         const title = titleInput.value.trim();
         const author = authorInput.value.trim();
@@ -134,11 +122,7 @@ ${text}
         }
 
         await addDoc(collection(db, "poems"), {
-            title,
-            author,
-            text,
-            image,
-            createdAt: serverTimestamp()
+            title, author, text, image, createdAt: serverTimestamp()
         });
 
         alert("השיר נשמר בהצלחה!");
