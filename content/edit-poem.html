@@ -22,6 +22,16 @@
             display: inline-block;
             margin-top: 20px;
         }
+
+        #generateImageBtn {
+            background-color: #2196f3;
+            color: white;
+            padding: 8px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 10px;
+            border: none;
+        }
     </style>
 </head>
 
@@ -30,6 +40,21 @@
 <div class="wrapper">
 
     <h1>עריכת שיר</h1>
+
+    <!-- תצוגת תמונת המשורר -->
+    <div class="poet-image-box">
+        <img id="poetImagePreview" src="" alt="תמונת המשורר" style="width:150px; border-radius:10px;">
+    </div>
+
+    <label>תמונת המשורר:</label>
+    <input id="poetImage" class="song-input" placeholder="images/poets/poet.jpg">
+
+    <!-- כפתור יצירת תמונה -->
+    <button id="generateImageBtn" type="button">
+        צייר לי תמונה לשיר
+    </button>
+
+    <br><br>
 
     <label>שם השיר:</label>
     <input id="poemTitle" class="song-input" placeholder="שם השיר...">
@@ -69,6 +94,8 @@
     const titleInput = document.getElementById("poemTitle");
     const authorInput = document.getElementById("poetName");
     const textInput = document.getElementById("poemText");
+    const imageInput = document.getElementById("poetImage");
+    const imagePreview = document.getElementById("poetImagePreview");
 
     // טעינת השיר
     async function loadPoem() {
@@ -80,6 +107,8 @@
             titleInput.value = poem.title;
             authorInput.value = poem.author;
             textInput.value = poem.text;
+            imageInput.value = poem.image || "";
+            imagePreview.src = poem.image || "";
         } else {
             alert("השיר לא נמצא");
             window.location.href = "poets.html";
@@ -93,6 +122,7 @@
         const newTitle = titleInput.value.trim();
         const newAuthor = authorInput.value.trim();
         const newText = textInput.value.trim();
+        const newImage = imageInput.value.trim();
 
         if (!newTitle || !newAuthor || !newText) {
             alert("יש למלא את כל השדות");
@@ -102,13 +132,48 @@
         await updateDoc(doc(db, "poems", poemId), {
             title: newTitle,
             author: newAuthor,
-            text: newText
+            text: newText,
+            image: newImage
         });
 
         alert("השיר עודכן בהצלחה!");
         window.location.href = "poets.html";
     });
+
+    // יצירת תמונה לשיר
+    document.getElementById("generateImageBtn").addEventListener("click", async () => {
+        const text = textInput.value.trim();
+        if (!text) {
+            alert("כתבי קודם את השיר, ואז ניצור לו תמונה.");
+            return;
+        }
+
+        const btn = document.getElementById("generateImageBtn");
+        btn.disabled = true;
+        btn.textContent = "יוצרת תמונה...";
+
+        try {
+            const res = await fetch("/api/generate-image", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ text })
+            });
+
+            const data = await res.json();
+
+            imageInput.value = data.imageUrl;
+            imagePreview.src = data.imageUrl;
+
+        } catch (e) {
+            alert("לא הצלחתי ליצור תמונה כרגע.");
+            console.error(e);
+        } finally {
+            btn.disabled = false;
+            btn.textContent = "צייר לי תמונה לשיר";
+        }
+    });
 </script>
 
 </body>
 </html>
+
