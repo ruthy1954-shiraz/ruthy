@@ -3,29 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>בימת המשוררים</title>
+    <title>שירי המשוררים</title>
     <link rel="stylesheet" href="/ruthy/style.css?v=30">
+
+    <style>
+        .poem-box {
+            background: #ffffff;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .poem-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .edit-btn {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .delete-btn {
+            background-color: #e53935;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body>
 
-<div class="wrapper">
+<h1>שירי המשוררים</h1>
 
-    <h1 class="song-title">בימת המשוררים</h1>
-
-    <!-- כפתור כתיבת שיר חדש -->
-    <div class="footer-nav" style="margin-bottom:20px;">
-        <a href="write-poem.html" class="join-btn">כתיבת שיר חדש</a>
-    </div>
-
-    <!-- כאן תופיע רשימת השירים -->
-    <div id="poemsList"></div>
-
-</div>
+<div id="poemsContainer"></div>
 
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-    import { getFirestore, collection, getDocs, orderBy, query }
+    import { getFirestore, collection, getDocs, deleteDoc, doc }
         from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
     const firebaseConfig = {
@@ -41,28 +65,55 @@
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
+    const poemsContainer = document.getElementById("poemsContainer");
+
     async function loadPoems() {
-        const q = query(collection(db, "poems"), orderBy("createdAt", "desc"));
-        const snapshot = await getDocs(q);
+        const querySnapshot = await getDocs(collection(db, "poems"));
 
-        const container = document.getElementById("poemsList");
-        container.innerHTML = "";
+        querySnapshot.forEach((docItem) => {
+            const poem = docItem.data();
+            const id = docItem.id;
 
-        snapshot.forEach(doc => {
-            const poem = doc.data();
-            const id = doc.id;
+            const div = document.createElement("div");
+            div.classList.add("poem-box");
 
-            container.innerHTML += `
-                <div class="song-box">
-                    <h2>${poem.title}</h2>
-                    <h3>${poem.author}</h3>
-                    <a href="poem.html?id=${id}">לקריאת השיר</a>
+            div.innerHTML = `
+                <h2>${poem.title}</h2>
+                <h3>${poem.author}</h3>
+                <p>${poem.text.replace(/\n/g, "<br>")}</p>
+
+                <div class="poem-actions">
+                    <button class="edit-btn" data-id="${id}">עריכה</button>
+                    <button class="delete-btn" data-id="${id}">X</button>
                 </div>
             `;
+
+            poemsContainer.appendChild(div);
         });
     }
 
     loadPoems();
+
+    // מחיקה
+    document.addEventListener("click", async (e) => {
+        if (e.target.classList.contains("delete-btn")) {
+            const id = e.target.dataset.id;
+
+            if (confirm("למחוק את השיר?")) {
+                await deleteDoc(doc(db, "poems", id));
+                alert("השיר נמחק");
+                location.reload();
+            }
+        }
+    });
+
+    // עריכה
+    document.addEventListener("click", (e) => {
+        if (e.target.classList.contains("edit-btn")) {
+            const id = e.target.dataset.id;
+            window.location.href = `edit-poem.html?id=${id}`;
+        }
+    });
 </script>
 
 </body>
