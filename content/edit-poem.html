@@ -49,7 +49,7 @@
     <input id="poetImage" class="song-input" placeholder="images/poets/poet.jpg">
 
     <button id="openCopilotBtn" type="button">
-        צייר לי תמונה ב‑Copilot
+        ציירו לנו תמונה ב‑Copilot
     </button>
 
     <br><br>
@@ -113,17 +113,19 @@
 
     loadPoem();
 
-    // פתיחת Copilot עם טקסט השיר
+    // פתיחת Copilot עם שם ותוכן השיר
     document.getElementById("openCopilotBtn").addEventListener("click", () => {
+        const title = titleInput.value.trim();
         const text = textInput.value.trim();
+        const author = authorInput.value.trim();
 
         if (!text) {
-            alert("כתבי קודם את השיר, ואז נוכל ליצור תמונה.");
+            alert("כתבו קודם את השיר, ואז נוכל ליצור לו תמונה.");
             return;
         }
 
         const prompt = encodeURIComponent(
-            "צייר לי תמונה שמתאימה לשיר הבא:\n\n" + text
+            `ציירו תמונה שמתאימה לשיר "${title}" מאת ${author}:\n\n${text}`
         );
 
         window.open("https://copilot.microsoft.com/?q=" + prompt, "_blank");
@@ -155,4 +157,5 @@
 
 </body>
 </html>
+
 
