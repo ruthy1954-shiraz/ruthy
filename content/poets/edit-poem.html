@@ -26,7 +26,7 @@
     <h1>עריכת שיר</h1>
 
     <div class="poet-image-box">
-        <img id="poetImagePreview" src="" style="width:150px; border-radius:10px;">
+        <img id="poetImagePreview" src="default-poem.jpg" style="width:150px; border-radius:10px;">
     </div>
 
     <label>תמונת המשורר:</label>
@@ -86,7 +86,7 @@
             authorInput.value = poem.author;
             textInput.value = poem.text;
             imageInput.value = poem.image || "";
-            imagePreview.src = poem.image || "";
+            imagePreview.src = poem.image || "default-poem.jpg";
         } else {
             alert("השיר לא נמצא");
             window.location.href = "poets.html";
@@ -95,7 +95,6 @@
 
     loadPoem();
 
-    // כפתור Copilot משודרג
     document.getElementById("openCopilotBtn").addEventListener("click", async () => {
         const title = titleInput.value.trim();
         const author = authorInput.value.trim();
@@ -132,7 +131,7 @@ ${poemUrl}
         const newTitle = titleInput.value.trim();
         const newAuthor = authorInput.value.trim();
         const newText = textInput.value.trim();
-        const newImage = imageInput.value.trim();
+        const newImage = imageInput.value.trim() || "default-poem.jpg";
 
         if (!newTitle || !newAuthor || !newText) {
             alert("יש למלא את כל השדות");
@@ -153,6 +152,7 @@ ${poemUrl}
 
 </body>
 </html>
+
 
 
 
