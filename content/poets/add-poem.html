@@ -26,11 +26,11 @@
     <h1>הוספת שיר חדש</h1>
 
     <div class="poet-image-box">
-        <img id="poetImagePreview" src="../images/default-poem.jpg" style="width:150px; border-radius:10px;">
+        <img id="poetImagePreview" src="default-poem.jpg" style="width:150px; border-radius:10px;">
     </div>
 
     <label>תמונת המשורר:</label>
-    <input id="poetImage" class="song-input" placeholder="images/poets/poet.jpg">
+    <input id="poetImage" class="song-input" placeholder="default-poem.jpg">
 
     <button id="openCopilotBtn">ציירו לנו תמונה ב‑Copilot</button>
 
@@ -74,10 +74,9 @@
     const imagePreview = document.getElementById("poetImagePreview");
 
     imageInput.addEventListener("input", () => {
-        imagePreview.src = imageInput.value;
+        imagePreview.src = imageInput.value || "default-poem.jpg";
     });
 
-    // כפתור Copilot משודרג
     document.getElementById("openCopilotBtn").addEventListener("click", async () => {
         const title = titleInput.value.trim();
         const author = authorInput.value.trim();
@@ -114,7 +113,7 @@ ${poemUrl}
         const title = titleInput.value.trim();
         const author = authorInput.value.trim();
         const text = textInput.value.trim();
-        const image = imageInput.value.trim();
+        const image = imageInput.value.trim() || "default-poem.jpg";
 
         if (!title || !author || !text) {
             alert("יש למלא את כל השדות");
@@ -132,4 +131,5 @@ ${poemUrl}
 
 </body>
 </html>
+
 
