@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>יש לך לתת / רות שנן</title>
+    <title>תזכורת להיום / רות שנן</title>
 
     <!-- META לשיתוף -->
-    <meta property="og:title" content="יש לך לתת / רות שנן">
-    <meta property="og:description" content="שיר עדין על ערך, אמת פנימית, ואור שלא תלוי באיש.">
+    <meta property="og:title" content="תזכורת להיום / רות שנן">
+    <meta property="og:description" content="שיר על נשימה, תנועה, שחרור ופגישה מחודשת עם האמת הפנימית.">
     <meta property="og:image" content="https://ruthy1954-shiraz.github.io/ruthy/content/images/shir57.jpeg">
     <meta property="og:type" content="article">
 
@@ -20,40 +20,56 @@
 
     <!-- תמונת השיר -->
     <div class="song-image">
-        <img src="images/shir57.jpeg" alt="ציור לשיר יש לך לתת">
+        <img src="images/shir57.jpeg" alt="ציור לשיר תזכורת להיום">
     </div>
 
     <!-- פתיח מסקרן -->
     <div class="song-intro">
         <p>
-            שיר על ערך שאינו נמדד בכמות,
-            על לב שמאיר גם כשהעולם שוכח,
-            ועל אמת פנימית שאינה תלויה באיש —
-            רק בך.
+            שיר שהוא נשימה עמוקה,  
+            תזכורת עדינה לשחרר את העבר,  
+            להקשיב לרוח,  
+            ולבחור את הרגע הזה —  
+            צלול, פתוח, אפשרי.
         </p>
     </div>
 
     <!-- כותרות -->
-    <h1 class="song-title">יש לך לתת</h1>
+    <h1 class="song-title">תזכורת להיום</h1>
     <h2 class="song-author">רות שנן</h2>
 
     <!-- טקסט השיר -->
     <div class="song-box">
 
-        <p>רגע היית עולם מלא,<br>
-        רגע אחר, כבר לא רואים.<br>
-        כמו צלחת שהתרוקנה,<br>
-        שכחו כמה היה טעים.</p>
+        <p>אפסיק לרצות,<br>
+        אקשיב לקול הפנימי<br>
+        העולה מתוכי כמו מעיין<br>
+        שאינו מבקש רשות לזרום.</p>
 
-        <p>אך ערך לא נשטף במים,<br>
-        ולב לא נמדד בכמות.<br>
-        מי שאהב רק את התועלת,<br>
-        לא ראה אותך באמת.</p>
+        <p>ארים ראשי בכל מצב,<br>
+        אזכור שאני אור<br>
+        היודע את הדרך<br>
+        גם כשעננים מכסים את השמיים.</p>
 
-        <p>אז שמרי על מי שאת,<br>
-        על חום, על לב, על האור.<br>
-        ומי שנשאר, נשאר בגללך,<br>
-        לא בגלל מה שיש לך לתת.</p>
+        <p>שורשים נועדו לצמיחה,<br>
+        גם שורשיי,<br>
+        הם עמוקים, עתיקים,<br>
+        המבקשים מרחב.</p>
+
+        <p>חשיבת יתר מכבידה,<br>
+        מורידה את הכנפיים,<br>
+        היום אנשום אמת,<br>
+        אפתח חלון קטן לרווחה.</p>
+
+        <p>אפסיק לפחד משינוי,<br>
+        אקשיב לרוח,<br>
+        היא לוחשת לי תנועה,<br>
+        מלמדת אותי לעוף מחדש.</p>
+
+        <p>אתרחק מהעבר,<br>
+        אחלץ את ליבי מן הצללים,<br>
+        ואבחר לחיות את עכשיו,<br>
+        צלול, פתוח, אפשרי.</p>
 
     </div>
 
@@ -62,7 +78,7 @@
         <h3>כתיבת הערות והארות</h3>
 
         <input id="userName" placeholder="השם שלכם..." />
-        <input id="userSong" placeholder="שם השיר..." value="יש לך לתת" />
+        <input id="userSong" placeholder="שם השיר..." value="תזכורת להיום" />
         <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
 
         <div class="footer-nav" style="margin-top:15px;">
@@ -87,7 +103,7 @@
 
 <!-- מזהה ייחודי לשיר -->
 <script>
-    var songId = "57";
+    var songId = "58";
 </script>
 
 <!-- מערכת ההערות + ווצאפ -->
@@ -166,3 +182,15 @@
 function shareSong() {
     if (navigator.share) {
         navigator.share({
+            title: document.title,
+            text: "רציתי לשתף את השיר הזה:",
+            url: window.location.href
+        });
+    } else {
+        alert("הדפדפן לא תומך בשיתוף אוטומטי");
+    }
+}
+</script>
+
+</body>
+</html>
