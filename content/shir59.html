@@ -26,9 +26,9 @@
     <!-- פתיח מסקרן -->
     <div class="song-intro">
         <p>
-            שיר על שקט שמבקש מקום,  
+            שיר על שקט שמבקש מרחב,  
             על נשימה שמרפה,  
-            על הוויה פשוטה שאינה דורשת דבר  
+            על הוויה פשוטה שאינה דורשת דבר —  
             רק להיות.
         </p>
     </div>
@@ -44,7 +44,7 @@
         בו העולם נרפה,<br>
         מאפשר להניח את ה"צריך"<br>
         כמו אבן כבדה<br>
-        שסוף‑סוף חדלה להעיק.</p>
+        שסוף סוף חדלה להעיק.</p>
 
         <p>כשאני מצליחה לעצור,<br>
         לנשום עמוק<br>
@@ -68,7 +68,7 @@
         <p>לא עשיתי דבר,<br>
         לא תיקנתי,<br>
         רק הייתי.<br>
-        הוויתי.</p>
+        הווייתי.</p>
 
         <p>ובתוך ההוויה<br>
         גיליתי,<br>
@@ -151,4 +151,51 @@
     display: block;
     margin: 30px auto;
     padding: 10px 18px;
-    background-color
+    background-color: #f2e6ff;
+    border: 1px solid #d3b8ff;
+    border-radius: 8px;
+    font-size: 17px;
+    color: #4a2c6b;
+    cursor: pointer;
+    width: 180px;
+    text-align: center;
+    transition: 0.2s;
+}
+.share-btn:hover {
+    background-color: #e8d6ff;
+}
+
+/* פתיח מעוצב */
+.song-intro {
+    background: #f8f2ff;
+    border-right: 4px solid #d3b8ff;
+    padding: 18px 22px;
+    margin: 20px 0 25px 0;
+    border-radius: 8px;
+    font-size: 20px;
+    line-height: 1.8;
+    color: #4a2c6b;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+.song-intro p {
+    margin: 0;
+    white-space: pre-line;
+}
+</style>
+
+<script>
+function shareSong() {
+    if (navigator.share) {
+        navigator.share({
+            title: document.title,
+            text: "רציתי לשתף את השיר הזה:",
+            url: window.location.href
+        });
+    } else {
+        alert("הדפדפן לא תומך בשיתוף אוטומטי");
+    }
+}
+</script>
+
+</body>
+</html>
