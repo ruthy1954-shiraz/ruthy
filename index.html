@@ -67,8 +67,10 @@
 </script>
 
 <!-- מערכת ההערות + ווצאפ -->
-<script type="module">
+<script type="module" defer>
     import { initNoteSystem, saveNoteToFirestore } from "./notes.js";
+    ...
+</script>
 
     initNoteSystem(songId);
 
