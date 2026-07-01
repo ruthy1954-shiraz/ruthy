@@ -280,6 +280,58 @@ html, body {
     color: #7a5ca3;
 }
 
+/* ===== התאמת דפי תקשור לסגנון השירים ===== */
+
+.tikshur-frame {
+    background: #ffffff;
+    padding: 28px;
+    border-radius: 14px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    margin: 30px auto;
+    max-width: 800px;
+    line-height: 1.9;
+    box-sizing: border-box;
+}
+
+.tikshur-title {
+    font-size: 32px;
+    text-align: center;
+    margin: 10px 0 5px;
+    color: #5a4a3f;
+    font-weight: 800;
+}
+
+.tikshur-date {
+    font-size: 20px;
+    text-align: center;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.tikshur-text {
+    font-size: 1.25rem;
+    color: #5a4a3f;
+    line-height: 2;
+    white-space: pre-line;
+    text-align: justify;
+    padding: 10px;
+}
+
+.back-link {
+    display: block;
+    text-align: center;
+    margin-top: 30px;
+    color: #7b2cbf;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-decoration: underline;
+    border-bottom: 1px solid #7b2cbf;
+    padding-bottom: 4px;
+}
+
+.back-link:hover {
+    opacity: 0.7;
+}
 
 
 
