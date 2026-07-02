@@ -1,291 +1,100 @@
+/* --- בסיס כללי לאתר --- */
 
-/* ===== בסיס הדף ===== */
-html, body {
+body {
+    font-family: "Assistant", sans-serif;
+    background-color: #faf9f6;
+    color: #222;
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
-    width: 100%;
-    background: #faf7f2;
-    font-family: "Assistant", sans-serif;
-    direction: rtl;
-}
-
-/* ===== מרכז הדף ===== */
-.wrapper {
-    width: 92%;
-    max-width: 800px;
-    margin: 0 auto;
-    padding-bottom: 40px;
-    box-sizing: border-box;
-}
-
-/* ===== תמונת שיר ===== */
-.song-image img {
-    width: 80%;
-    max-width: 480px;
-    display: block;
-    margin: 20px auto;
-    border-radius: 12px;
-}
-
-/* ===== כותרות ===== */
-.song-title {
-    font-size: 32px;
-    text-align: center;
-    margin: 10px 0 5px;
-}
-
-.song-author {
-    font-size: 20px;
-    text-align: center;
-    color: #666;
-    margin-bottom: 20px;
-}
-
-/* ===== תיבת שיר ===== */
-.song-box {
-    background: #fff;
-    padding: 22px;
-    border-radius: 12px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    line-height: 1.9;
-    margin-bottom: 30px;
-    text-align: center;
-    box-sizing: border-box;
-}
-
-/* ===== תיבת הערות ===== */
-.notes-box {
-    background: #ffffff;
-    padding: 22px;
-    border-radius: 12px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    margin-bottom: 30px;
-    box-sizing: border-box;
-}
-
-.notes-box h3 {
-    margin-top: 0;
-    text-align: center;
-    font-size: 2.2rem;
-    font-weight: 800;
-    color: #5a4a3f;
-    margin-bottom: 20px;
-}
-
-/* ===== שדות טקסט ===== */
-.notes-box input,
-.notes-box textarea {
-    width: 100%;
-    padding: 14px;
-    margin-bottom: 14px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 17px;
-    box-sizing: border-box;
-}
-
-.notes-box textarea {
-    height: 110px;
-}
-
-/* ===== שדות כתיבת שיר ===== */
-.song-input {
-    width: 100%;
-    text-align: center;
-    font-size: 1.8rem;
-    border: none;
-    border-bottom: 1px solid #ccc;
-    background: transparent;
-    color: #5a4a3f;
-    margin-bottom: 10px;
-}
-
-.song-textarea {
-    width: 100%;
-    min-height: 250px;
-    border: none;
-    resize: none;
-    overflow: hidden;
-    font-size: 1.2rem;
-    line-height: 2;
-    color: #5a4a3f;
-    background: transparent;
-    padding: 10px;
-}
-
-/* ===== תיבה מתרחבת ===== */
-.auto-expand {
-    width: 100%;
-    min-height: 140px;
-    resize: none;
-    overflow: hidden;
-    padding: 14px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 17px;
     line-height: 1.8;
-    box-sizing: border-box;
 }
 
-/* ===== כפתורים ===== */
-.join-btn {
-    display: block;
+.wrapper {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+/* --- כותרות כלליות --- */
+
+h1, h2, h3 {
     text-align: center;
-    margin: 20px auto;
-    background: none;
-    border: none;
-    color: #7b2cbf;
-    font-size: 1.2rem;
-    text-decoration: underline;
-    border-bottom: 1px solid #7b2cbf;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+h1.song-title {
+    font-size: 2.2em;
+    margin-top: 20px;
+}
+
+h2.song-author {
+    font-size: 1.3em;
+    color: #666;
+}
+
+/* --- תיבות טקסט כלליות --- */
+
+.song-box, .notes-box {
+    background: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 0 12px rgba(0,0,0,0.08);
+    margin-bottom: 30px;
+}
+
+/* --- רשימת תקשורים --- */
+
+.song-list {
+    list-style: none;
     padding: 0;
-    cursor: pointer;
+    margin: 0;
 }
 
-.join-btn:hover {
-    opacity: 0.7;
+.song-list li {
+    margin-bottom: 15px;
 }
 
-/* ===== כפתור שיתוף ===== */
-.share-btn {
-    display: inline-block;
-    padding: 16px 32px;
-    background-color: #e8e2d9;
-    color: #5a4a3f !important;
-    border: 1px solid #cfc7bd;
-    border-radius: 20px;
-    font-size: 1.8rem;
-    font-weight: 700;
+.song-list a {
+    display: block;
+    padding: 12px 15px;
+    background: #f7f5ff;
+    border-radius: 10px;
     text-decoration: none;
-    cursor: pointer;
+    color: #333;
+    font-size: 1.1em;
     transition: 0.2s;
+    border: 1px solid #e5e1ff;
 }
 
-.share-btn:hover {
-    background-color: #c0a98b;
-    opacity: 0.9;
+.song-list a:hover {
+    background: #ece8ff;
+    transform: translateY(-2px);
 }
 
-/* ===== כפתורי ניווט ===== */
-.footer-nav {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
-    flex-wrap: wrap;
-    margin-top: 15px;
-}
+/* --- מסגרת לדפי תקשור --- */
 
-.footer-nav a {
-    color: #7b2cbf;
-    text-decoration: none;
-    font-weight: bold;
-    border-bottom: 1px solid #7b2cbf;
-    padding-bottom: 2px;
-    transition: 0.2s;
-}
-
-.footer-nav a:hover {
-    opacity: 0.7;
-    border-bottom-color: #a06cd5;
-}
-
-/* ===== כרטיסי הערות ===== */
-.note-item {
-    background-color: #fff7f2 !important;
-    border: 1px solid #e3c7b8 !important;
-    border-radius: 14px !important;
-    padding: 18px 20px !important;
-    margin-bottom: 18px !important;
-    position: relative !important;
-    box-shadow: none !important;
-}
-
-.note-delete {
-    position: absolute !important;
-    top: 10px !important;
-    left: 10px !important;
-    background-color: #d8c3a5 !important;
-    color: white !important;
-    width: 32px !important;
-    height: 32px !important;
-    border-radius: 50% !important;
-    text-align: center !important;
-    line-height: 32px !important;
-    font-size: 1.6rem !important;
-    cursor: pointer !important;
-    border: none !important;
-}
-
-#notes {
-    margin-top: 20px !important;
-    text-align: right !important;
-    font-size: 1.2rem !important;
-    line-height: 1.3 !important;
-}
-
-.required-line {
-    text-align: center;
-    font-size: 1.2rem;
-    color: #7b2cbf;
-    font-weight: bold;
-    border-bottom: 1px solid #7b2cbf;
-    display: inline-block;
-    padding-bottom: 4px;
-    margin: 20px auto;
-}
-
-/* ===== התאמת דפי תקשור לסגנון השירים ===== */
 .tikshur-frame {
-    background: #ffffff;
-    padding: 28px;
-    border-radius: 14px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    margin: 30px auto;
-    max-width: 800px;
-    line-height: 1.9;
-    box-sizing: border-box;
+    max-width: 900px;
+    margin: 60px auto;
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
 }
 
 .tikshur-title {
-    font-size: 32px;
+    font-size: 2em;
     text-align: center;
-    margin: 10px 0 5px;
-    color: #5a4a3f;
-    font-weight: 800;
+    color: #333;
+    margin-bottom: 10px;
 }
 
 .tikshur-date {
-    font-size: 20px;
     text-align: center;
+    font-size: 1.1em;
     color: #666;
-    margin-bottom: 20px;
-}
-
-.tikshur-text {
-    font-size: 1.25rem;
-    color: #5a4a3f;
-    line-height: 2;
-    white-space: pre-line;
-    text-align: justify;
-    padding: 10px;
-}
-
-.back-link {
-    display: block;
-    text-align: center;
-    margin-top: 30px;
-    color: #7b2cbf;
-    font-size: 1.2rem;
-    font-weight: bold;
-    text-decoration: underline;
-    border-bottom: 1px solid #7b2cbf;
-    padding-bottom: 4px;
-}
-
-.back-link:hover {
-    opacity: 0.7;
+    margin-bottom: 30px;
 }
 
 /* --- עיצוב פסקאות לתקשורים --- */
@@ -307,15 +116,39 @@ html, body {
     color: #444;
 }
 
-.tikshur-frame {
-    max-width: 900px;
-    margin: 60px auto;
-    background-color: #fff;
-    padding: 40px;
-    border-radius: 12px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+/* --- קישור חזרה --- */
+
+.back-link {
+    display: block;
+    text-align: center;
+    margin-top: 40px;
+    color: #007acc;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1em;
 }
 
+.back-link:hover {
+    text-decoration: underline;
+}
+
+/* --- תפריט תחתון --- */
+
+.footer-nav {
+    text-align: center;
+    margin: 40px 0;
+    font-size: 1.1em;
+}
+
+.footer-nav a {
+    color: #444;
+    text-decoration: none;
+    margin: 0 8px;
+}
+
+.footer-nav a:hover {
+    text-decoration: underline;
+}
 
 
 
