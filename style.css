@@ -288,7 +288,33 @@ html, body {
     opacity: 0.7;
 }
 
+/* --- עיצוב פסקאות לתקשורים --- */
 
+.tikshur-text p {
+    margin-bottom: 22px;
+    font-size: 1.15em;
+    line-height: 1.9;
+    text-align: justify;
+}
+
+.tikshur-text p:first-child {
+    margin-top: 10px;
+}
+
+.tikshur-text p:last-child {
+    margin-bottom: 40px;
+    font-weight: 600;
+    color: #444;
+}
+
+.tikshur-frame {
+    max-width: 900px;
+    margin: 60px auto;
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
 
 
 
