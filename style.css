@@ -150,6 +150,59 @@ h2.song-author {
     text-decoration: underline;
 }
 
+/* --- מסגרת לדפי תקשור --- */
+.tikshur-frame {
+    max-width: 900px;
+    margin: 60px auto;
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+/* --- כותרת ותאריך --- */
+.tikshur-title {
+    font-size: 2em;
+    text-align: center;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.tikshur-date {
+    text-align: center;
+    font-size: 1.1em;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+/* --- פסקאות --- */
+.tikshur-text p {
+    margin-bottom: 22px;
+    font-size: 1.15em;
+    line-height: 1.9;
+    text-align: justify;
+}
+
+.tikshur-text p:last-child {
+    margin-bottom: 40px;
+    font-weight: 600;
+    color: #444;
+}
+
+/* --- קישור חזרה --- */
+.back-link {
+    display: block;
+    text-align: center;
+    margin-top: 40px;
+    color: #007acc;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
 
 
 
