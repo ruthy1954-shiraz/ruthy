@@ -1,22 +1,35 @@
-/* --- בסיס כללי לאתר --- */
-
-body {
-    font-family: "Assistant", sans-serif;
-    background-color: #faf9f6;
-    color: #222;
+/* ===== בסיס הדף ===== */
+html, body {
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
+    width: 100%;
+    background: #faf9f6;
+    font-family: "Assistant", sans-serif;
+    direction: rtl;
+    color: #222;
     line-height: 1.8;
 }
 
+/* ===== מרכז הדף ===== */
 .wrapper {
+    width: 92%;
     max-width: 900px;
     margin: 40px auto;
-    padding: 20px;
+    padding-bottom: 40px;
+    box-sizing: border-box;
 }
 
-/* --- כותרות כלליות --- */
+/* ===== תמונת שיר ===== */
+.song-image img {
+    width: 80%;
+    max-width: 480px;
+    display: block;
+    margin: 20px auto;
+    border-radius: 12px;
+}
 
+/* ===== כותרות ===== */
 h1, h2, h3 {
     text-align: center;
     margin-bottom: 20px;
@@ -33,18 +46,131 @@ h2.song-author {
     color: #666;
 }
 
-/* --- תיבות טקסט כלליות --- */
-
-.song-box, .notes-box {
+/* ===== תיבת שיר ===== */
+.song-box {
     background: #fff;
     padding: 25px;
     border-radius: 12px;
     box-shadow: 0 0 12px rgba(0,0,0,0.08);
     margin-bottom: 30px;
+    text-align: center;
+    line-height: 1.9;
 }
 
-/* --- רשימת תקשורים --- */
+/* ===== תיבת הערות ===== */
+.notes-box {
+    background: #ffffff;
+    padding: 22px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+    box-sizing: border-box;
+}
 
+.notes-box h3 {
+    margin-top: 0;
+    text-align: center;
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #5a4a3f;
+    margin-bottom: 20px;
+}
+
+/* ===== שדות טקסט ===== */
+.notes-box input,
+.notes-box textarea {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 14px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 17px;
+    box-sizing: border-box;
+}
+
+.notes-box textarea {
+    height: 110px;
+}
+
+/* ===== שדות כתיבת שיר ===== */
+.song-input {
+    width: 100%;
+    text-align: center;
+    font-size: 1.8rem;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    background: transparent;
+    color: #5a4a3f;
+    margin-bottom: 10px;
+}
+
+.song-textarea {
+    width: 100%;
+    min-height: 250px;
+    border: none;
+    resize: none;
+    overflow: hidden;
+    font-size: 1.2rem;
+    line-height: 2;
+    color: #5a4a3f;
+    background: transparent;
+    padding: 10px;
+}
+
+/* ===== תיבה מתרחבת ===== */
+.auto-expand {
+    width: 100%;
+    min-height: 140px;
+    resize: none;
+    overflow: hidden;
+    padding: 14px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 17px;
+    line-height: 1.8;
+    box-sizing: border-box;
+}
+
+/* ===== כפתורים ===== */
+.join-btn {
+    display: block;
+    text-align: center;
+    margin: 20px auto;
+    background: none;
+    border: none;
+    color: #7b2cbf;
+    font-size: 1.2rem;
+    text-decoration: underline;
+    border-bottom: 1px solid #7b2cbf;
+    padding: 0;
+    cursor: pointer;
+}
+
+.join-btn:hover {
+    opacity: 0.7;
+}
+
+/* ===== כפתור שיתוף ===== */
+.share-btn {
+    display: inline-block;
+    padding: 16px 32px;
+    background-color: #e8e2d9;
+    color: #5a4a3f !important;
+    border: 1px solid #cfc7bd;
+    border-radius: 20px;
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.share-btn:hover {
+    background-color: #c0a98b;
+    opacity: 0.9;
+}
+
+/* ===== רשימת שירים / תקשורים ===== */
 .song-list {
     list-style: none;
     padding: 0;
@@ -72,8 +198,7 @@ h2.song-author {
     transform: translateY(-2px);
 }
 
-/* --- מסגרת לדפי תקשור --- */
-
+/* ===== מסגרת לדפי תקשור ===== */
 .tikshur-frame {
     max-width: 900px;
     margin: 60px auto;
@@ -83,8 +208,7 @@ h2.song-author {
     box-shadow: 0 0 15px rgba(0,0,0,0.1);
 }
 
-/* --- כותרת ותאריך --- */
-
+/* ===== כותרת ותאריך ===== */
 .tikshur-title {
     font-size: 2em;
     text-align: center;
@@ -99,8 +223,7 @@ h2.song-author {
     margin-bottom: 30px;
 }
 
-/* --- פסקאות לתקשורים --- */
-
+/* ===== פסקאות לתקשורים ===== */
 .tikshur-text p {
     margin-bottom: 22px;
     font-size: 1.15em;
@@ -118,8 +241,7 @@ h2.song-author {
     color: #444;
 }
 
-/* --- קישור חזרה --- */
-
+/* ===== קישור חזרה ===== */
 .back-link {
     display: block;
     text-align: center;
@@ -134,23 +256,75 @@ h2.song-author {
     text-decoration: underline;
 }
 
-/* --- תפריט תחתון --- */
-
+/* ===== תפריט תחתון ===== */
 .footer-nav {
-    text-align: center;
-    margin: 40px 0;
-    font-size: 1.1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 15px;
 }
 
 .footer-nav a {
-    color: #444;
+    color: #7b2cbf;
     text-decoration: none;
-    margin: 0 8px;
+    font-weight: bold;
+    border-bottom: 1px solid #7b2cbf;
+    padding-bottom: 2px;
+    transition: 0.2s;
 }
 
 .footer-nav a:hover {
-    text-decoration: underline;
+    opacity: 0.7;
+    border-bottom-color: #a06cd5;
 }
+
+/* ===== כרטיסי הערות ===== */
+.note-item {
+    background-color: #fff7f2 !important;
+    border: 1px solid #e3c7b8 !important;
+    border-radius: 14px !important;
+    padding: 18px 20px !important;
+    margin-bottom: 18px !important;
+    position: relative !important;
+    box-shadow: none !important;
+}
+
+.note-delete {
+    position: absolute !important;
+    top: 10px !important;
+    left: 10px !important;
+    background-color: #d8c3a5 !important;
+    color: white !important;
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 50% !important;
+    text-align: center !important;
+    line-height: 32px !important;
+    font-size: 1.6rem !important;
+    cursor: pointer !important;
+    border: none !important;
+}
+
+#notes {
+    margin-top: 20px !important;
+    text-align: right !important;
+    font-size: 1.2rem !important;
+    line-height: 1.3 !important;
+}
+
+.required-line {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #7b2cbf;
+    font-weight: bold;
+    border-bottom: 1px solid #7b2cbf;
+    display: inline-block;
+    padding-bottom: 4px;
+    margin: 20px auto;
+}
+
 
 
 
