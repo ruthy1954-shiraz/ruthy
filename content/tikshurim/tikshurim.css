@@ -48,3 +48,26 @@ body {
     text-shadow: 0 0 6px #fff6d9;
 }
 
+/* אנימציית הילה עדינה */
+@keyframes softGlow {
+    0% {
+        box-shadow: 0 0 20px rgba(255, 240, 200, 0.6);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(255, 240, 200, 0.9);
+        transform: scale(1.03);
+    }
+    100% {
+        box-shadow: 0 0 20px rgba(255, 240, 200, 0.6);
+        transform: scale(1);
+    }
+}
+
+/* תמונת האלה במרכז */
+.haela-img {
+    width: 300px;
+    border-radius: 20px;
+    animation: softGlow 6s ease-in-out infinite;
+    transition: 0.3s;
+}
