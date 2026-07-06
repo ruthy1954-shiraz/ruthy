@@ -1,6 +1,5 @@
 body {
     background: linear-gradient(to bottom, #fffaf3, #fef9e7);
-    background-image: url("images/or_haela.jpeg"), url("https://www.transparenttextures.com/patterns/clouds.png");
     background-size: cover, auto;
     background-attachment: fixed;
     background-position: center;
