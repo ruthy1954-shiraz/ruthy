@@ -173,3 +173,31 @@ body {
     border-color: #cbb3ef;
     transform: translateY(-3px);
 }
+.tik-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 1000px;
+    margin: 40px auto;
+}
+
+.btn {
+    background-color: #f0e4ff;
+    border: 1.5px solid #d8c9f0;
+    border-radius: 12px;
+    text-align: center;
+    padding: 15px;
+    min-height: 50px; /* גובה למלבן ריק */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.08);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #e6d8ff;
+    border-color: #cbb3ef;
+    transform: translateY(-3px);
+}
