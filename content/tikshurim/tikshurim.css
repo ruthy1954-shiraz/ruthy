@@ -102,4 +102,9 @@ body {
     transform: translateY(-3px);
 }
 
+@media (max-width: 600px) {
+    .tik-grid {
+        grid-template-columns: 1fr;
+    }
+}
 
