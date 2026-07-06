@@ -1,69 +1,5 @@
 body {
     background: linear-gradient(to bottom, #fffaf3, #fef9e7);
-    font-family: "Alef", sans-serif;
-    color: #4a3b2a;
-    text-align: center;
-}
-
-.haela-center {
-    margin: 30px auto;
-}
-
-.haela-img {
-    width: 300px;
-    border-radius: 20px;
-    box-shadow: 0 0 40px rgba(255, 240, 200, 0.8);
-}
-
-.tik-title {
-    font-size: 2.5em;
-    color: #b48a3c;
-    text-shadow: 0 0 10px #fff6d9;
-}
-
-.tik-subtitle {
-    font-size: 1.4em;
-    color: #a67c52;
-    margin-bottom: 20px;
-}
-
-.tik-box {
-    background-color: rgba(255, 255, 255, 0.7);
-    border: 1px solid #f1e2c6;
-    border-radius: 12px;
-    padding: 20px;
-    margin: 20px auto;
-    max-width: 700px;
-    box-shadow: 0 0 15px rgba(255, 240, 200, 0.5);
-}
-
-.tik-list a {
-    color: #a67c52;
-    text-decoration: none;
-    font-weight: 500;
-}
-
-.tik-list a:hover {
-    color: #d4a94e;
-    text-shadow: 0 0 6px #fff6d9;
-}
-
-/* אנימציית הילה עדינה */
-@keyframes softGlow {
-    0% {
-        box-shadow: 0 0 20px rgba(255, 240, 200, 0.6);
-        transform: scale(1);
-    }
-    50% {
-        box-shadow: 0 0 40px rgba(255, 240, 200, 0.9);
-        transform: scale(1.03);
-    }
-    100% {
-        box-shadow: 0 0 20px rgba(255, 240, 200, 0.6);
-        transform: scale(1);
-    }
-body {
-    background: linear-gradient(to bottom, #fffaf3, #fef9e7);
     background-image: url("images/or_haela.jpeg"), url("https://www.transparenttextures.com/patterns/clouds.png");
     background-size: cover, auto;
     background-attachment: fixed;
@@ -135,44 +71,7 @@ body {
     color: #a67c52;
 }
 
-/* תמונת האלה במרכז */
-.haela-img {
-    width: 300px;
-    border-radius: 20px;
-    animation: softGlow 6s ease-in-out infinite;
-    transition: 0.3s;
-}
-.tik-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    max-width: 1000px;
-    margin: 40px auto;
-}
-
-.tik-item {
-    background-color: #fdfaff;
-    border: 1.5px solid #d8c9f0; /* מסגרת עדינה */
-    border-radius: 12px;
-    text-align: center;
-    padding: 15px;
-    font-size: 1.2em;
-    font-weight: bold;
-    color: #4b2e83;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.08); /* צל רך */
-    transition: all 0.3s ease;
-}
-
-.tik-item a {
-    text-decoration: none;
-    color: inherit;
-}
-
-.tik-item:hover {
-    background-color: #f4ecff;
-    border-color: #cbb3ef;
-    transform: translateY(-3px);
-}
+/* גריד של מלבנים */
 .tik-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -181,6 +80,7 @@ body {
     margin: 40px auto;
 }
 
+/* עיצוב המלבנים */
 .btn {
     background-color: #f0e4ff;
     border: 1.5px solid #d8c9f0;
@@ -201,4 +101,5 @@ body {
     border-color: #cbb3ef;
     transform: translateY(-3px);
 }
+
 
