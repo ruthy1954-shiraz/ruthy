@@ -107,5 +107,65 @@
     gap: 12px;
 }
 
+/* עיצוב כללי לדף */
+.tik-page {
+    background-color: #faf6ff;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    max-width: 800px;
+    margin: 40px auto;
+    font-family: "Assistant", sans-serif;
+}
+
+/* תמונת האלה */
+.haela-img {
+    display: block;
+    margin: 0 auto 20px auto;
+    width: 250px;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+/* כותרת התקשור */
+.tik-title {
+    text-align: center;
+    font-size: 28px;
+    color: #6a3fa0;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+/* תאריך התקשור */
+.tik-subtitle {
+    text-align: center;
+    font-size: 20px;
+    color: #9a6fd0;
+    margin-bottom: 25px;
+}
+
+/* תיבת התקשור עצמה */
+.tik-box {
+    background-color: #fff9f6;
+    border: 1px solid #e0c9b6;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 700px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.08);
+    color: #4a2c6b;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+/* שלוש נקודות */
+.more-link {
+    display: block;
+    text-align: center;
+    font-size: 24px;
+    color: #b48cff;
+    cursor: pointer;
+    margin-top: 10px;
+}
 
 
