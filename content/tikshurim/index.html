@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>תקשורים</title>
 
-    <!-- קישור לקובץ העיצוב -->
     <link rel="stylesheet" href="tikshurim.css">
 </head>
 
@@ -32,20 +31,17 @@
         <input type="text" id="userSong" placeholder="שם התקשור">
         <textarea id="userNote" placeholder="הערה..."></textarea>
 
-        <!-- כפתורי ווצאפ ושמירה -->
         <div class="footer-nav tik-footer" style="margin-top:15px;">
             <a id="waLink">ווצאפ לכותבת</a>
             <a id="saveLink">שמירת הערה</a>
         </div>
 
-        <!-- הערות שנשמרו -->
         <h3 style="margin-top:30px;">הערות קוראים שנשמרו</h3>
         <div id="notes"></div>
 
     </div>
 </div>
 
-<!-- פתיחת שלוש נקודות -->
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     const btn = document.getElementById("moreBtn");
@@ -58,7 +54,6 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 
-<!-- ווצאפ -->
 <script>
 const waLink = document.getElementById("waLink");
 const phone = "972545305123";
@@ -78,11 +73,10 @@ waLink.addEventListener("click", function() {
 });
 </script>
 
-<!-- שמירת הערות + תאריך ושעה -->
 <script type="module">
 import { initNoteSystem, saveNoteToFirestore } from "./notes.js";
 
-const songId = "tikshurim";  // חובה להגדיר מזהה לדף
+const songId = "tikshurim";
 
 initNoteSystem(songId);
 
@@ -120,6 +114,7 @@ saveLink.addEventListener("click", async function() {
 
 </body>
 </html>
+
 
 
 
