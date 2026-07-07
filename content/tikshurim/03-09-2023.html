@@ -127,6 +127,19 @@
     var songId = "tik_03_09_2026";
 </script>
 
+<!-- פתיחת ההמשך -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const btn = document.getElementById("moreBtn");
+    const more = document.getElementById("moreText");
+
+    btn.addEventListener("click", function() {
+        more.style.display = "block";
+        btn.style.display = "none";
+    });
+});
+</script>
+
 <!-- מערכת ההערות + וואטסאפ -->
 <script type="module">
     import { initNoteSystem, saveNoteToFirestore } from "../notes.js";
@@ -178,7 +191,7 @@ function shareTikshur() {
 }
 </script>
 
-<!-- עיצוב של שלוש נקודות -->
+<!-- עיצוב -->
 <style>
 .more-link {
     cursor: pointer;
@@ -212,4 +225,5 @@ function shareTikshur() {
 
 </body>
 </html>
+
 
