@@ -13,23 +13,6 @@
 
 <div class="wrapper tik-page">
 
-    <!-- תמונת האלה -->
-    <div class="or_haela-center">
-   <img src="images/or_haela.jpeg" alt="האלה" class="haela-img">
-    </div>
-
-    <!-- כותרת התקשור -->
-    <h1 class="tik-title">אזהרת מלחמה</h1>
-    <h2 class="tik-subtitle">03-09-2026</h2>
-
-    <!-- תיבת התקשור -->
-    <div class="tik-box">
-        <p>
-            <!-- כאן תוכן התקשור שלך -->
-            זהו תקשור חשוב המגיע מתוך אנרגיה של אור ואזהרה...
-        </p>
-    </div>
-
     <!-- שלוש נקודות -->
     <a id="moreBtn" class="more-link">...</a>
 
@@ -99,7 +82,9 @@ waLink.addEventListener("click", function() {
 <script type="module">
 import { initNoteSystem, saveNoteToFirestore } from "./notes.js";
 
-initNoteSystem("tikshurim");
+const songId = "tikshurim";  // חובה להגדיר מזהה לדף
+
+initNoteSystem(songId);
 
 const saveLink = document.getElementById("saveLink");
 
@@ -108,7 +93,7 @@ saveLink.addEventListener("click", async function() {
     const song = document.getElementById("userSong").value.trim();
     const note = document.getElementById("userNote").value.trim();
 
-    await saveNoteToFirestore(name, song, note, "tikshurim");
+    await saveNoteToFirestore(name, song, note, songId);
 
     const now = new Date();
     const dateString = now.toLocaleString("he-IL", {
@@ -135,6 +120,7 @@ saveLink.addEventListener("click", async function() {
 
 </body>
 </html>
+
 
 
 
