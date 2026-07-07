@@ -1,6 +1,12 @@
-/* עיצוב כללי לשדות */
-.notes-box input,
-.notes-box textarea {
+/* עטיפה כללית לדפי תקשור */
+.tik-page {
+    max-width: 900px;
+    margin: auto;
+}
+
+/* עיצוב כללי לשדות בתוך תיבת ההערות */
+.tik-notes input,
+.tik-notes textarea {
     width: 100%;
     max-width: 600px;
     padding: 14px 18px;
@@ -16,8 +22,8 @@
 }
 
 /* אפקט ריחוף */
-.notes-box input:focus,
-.notes-box textarea:focus {
+.tik-notes input:focus,
+.tik-notes textarea:focus {
     background-color: #f2e6ff;
     border-color: #b48cff;
     outline: none;
@@ -25,21 +31,21 @@
 }
 
 /* תיבת הערה גדולה */
-.notes-box textarea {
+.tik-notes textarea {
     min-height: 140px;
     resize: vertical;
 }
 
 /* כותרת ההערות */
-.notes-box h3 {
+.tik-notes h3 {
     text-align: center;
     font-size: 22px;
     color: #7a4ba0;
     margin-bottom: 20px;
 }
 
-/* כפתורי ווצאפ ושמירה */
-.footer-nav a {
+/* כפתורי ווצאפ ושמירה — רק בדפי תקשור */
+.tik-footer a {
     font-size: 18px;
     padding: 10px 16px;
     background-color: #f2e6ff;
@@ -52,7 +58,7 @@
     transition: 0.3s;
 }
 
-.footer-nav a:hover {
+.tik-footer a:hover {
     background-color: #e8d6ff;
     transform: scale(1.05);
 }
