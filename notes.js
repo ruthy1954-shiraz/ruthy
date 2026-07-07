@@ -75,6 +75,24 @@ window.deleteNote = async function(id, songId) {
     await deleteDoc(doc(db, "notes_" + songId, id));
     loadNotes(songId);
 }
+<script>
+const waLink = document.getElementById("waLink");
+const phone = "972545305123";
+
+waLink.addEventListener("click", function() {
+    const name = document.getElementById("userName").value.trim();
+    const song = document.getElementById("userSong").value.trim();
+    const note = document.getElementById("userNote").value.trim();
+
+    const message =
+        `שם הכותב: ${name}\n` +
+        `תקשור: ${song}\n` +
+        `הערה: ${note}`;
+
+    const encoded = encodeURIComponent(message);
+    window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
+});
+</script>
 
 
 
