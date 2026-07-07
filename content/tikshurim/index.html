@@ -1,49 +1,108 @@
-<!DOCTYPE html>
-<html lang="he" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>תקשורים</title>
-    <link rel="stylesheet" href="tikshurim.css">
-</head>
+<div class="wrapper tik-page">
 
-<body>
+    <!-- שלוש נקודות -->
+    <a id="moreBtn" class="more-link">...</a>
 
-<div class="wrapper">
-
-    <h1 class="tik-title">תקשורים</h1>
-  
-    <!-- האלה במרכז -->
-    <div class="haela-center">
-        <img src="images/or_haela.jpeg" alt="אור האלה" class="haela-img">
-    </div>
-
-    <div class="tik-box">
+    <!-- המשך התקשור -->
+    <div id="moreText" style="display:none; margin-top:15px;">
         <p>
-            בדף זה נאספים התקשורים כפי שנכתבו לאורך הדרך.<br>
-            כל תקשור כולל תאריך ותקציר קצר של המסר שהתקבל.
+            <!-- כאן ההמשך המלא של התקשור -->
         </p>
     </div>
 
-    <div class="tik-list-box">
-        <h3>רשימת תקשורים</h3>
-        <p>
-            לצפייה ברשימת התקשורים המלאה —
-            <a href="tikshurim-list.html">לחצי כאן</a>
-        </p>
+    <!-- תיבת ההערות -->
+    <div class="notes-box tik-notes">
+
+        <h3>השאירו הערה לתקשור</h3>
+
+        <input type="text" id="userName" placeholder="שם הכותב">
+        <input type="text" id="userSong" placeholder="שם התקשור">
+        <textarea id="userNote" placeholder="הערה..."></textarea>
+
+        <!-- כפתורי ווצאפ ושמירה -->
+        <div class="footer-nav tik-footer" style="margin-top:15px;">
+            <a id="waLink">ווצאפ לכותבת</a>
+            <a id="saveLink">שמירת הערה</a>
+        </div>
+
+        <!-- הערות שנשמרו -->
+        <h3 style="margin-top:30px;">הערות קוראים שנשמרו</h3>
+        <div id="notes"></div>
+
     </div>
-
 </div>
 
-<div class="footer-nav">
-    <a href="../../index.html">דף ראשי</a> |
-    <a href="../song.html">שירים</a> |
-    <a href="../about.html">על הספר</a> |
-    <a href="../about-author.html">אודות המחברת</a>
-</div>
+<!-- פתיחת שלוש נקודות -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const btn = document.getElementById("moreBtn");
+    const more = document.getElementById("moreText");
 
-</body>
-</html>
+    btn.addEventListener("click", function() {
+        more.style.display = "block";
+        btn.style.display = "none";
+    });
+});
+</script>
+
+<!-- ווצאפ -->
+<script>
+const waLink = document.getElementById("waLink");
+const phone = "972545305123";
+
+waLink.addEventListener("click", function() {
+    const name = document.getElementById("userName").value.trim();
+    const song = document.getElementById("userSong").value.trim();
+    const note = document.getElementById("userNote").value.trim();
+
+    const message =
+        `שם הכותב: ${name}\n` +
+        `תקשור: ${song}\n` +
+        `הערה: ${note}`;
+
+    const encoded = encodeURIComponent(message);
+    window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
+});
+</script>
+
+<!-- שמירת הערות + תאריך ושעה -->
+<script type="module">
+import { initNoteSystem, saveNoteToFirestore } from "../../notes.js";
+
+initNoteSystem(songId);
+
+const saveLink = document.getElementById("saveLink");
+
+saveLink.addEventListener("click", async function() {
+    const name = document.getElementById("userName").value.trim();
+    const song = document.getElementById("userSong").value.trim();
+    const note = document.getElementById("userNote").value.trim();
+
+    await saveNoteToFirestore(name, song, note, songId);
+
+    const now = new Date();
+    const dateString = now.toLocaleString("he-IL", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit"
+    });
+
+    const notesDiv = document.getElementById("notes");
+    const newNote = document.createElement("div");
+    newNote.className = "note-card";
+    newNote.innerHTML = `
+        <strong>${name}</strong><br>
+        ${note}<br>
+        <span class="note-date">${dateString}</span>
+    `;
+    notesDiv.prepend(newNote);
+
+    document.getElementById("userNote").value = "";
+});
+</script>
+
 
 
 
