@@ -1,117 +1,63 @@
-body {
-    background: linear-gradient(to bottom, #fffaf3, #fef9e7);
-    background-size: cover, auto;
-    background-attachment: fixed;
-    background-position: center;
-    font-family: "Alef", sans-serif;
-    color: #4a3b2a;
-    text-align: center;
-}
-
-/* אנימציית הילה עדינה */
-@keyframes softGlow {
-    0% { box-shadow: 0 0 20px rgba(255, 240, 200, 0.6); transform: scale(1); }
-    50% { box-shadow: 0 0 40px rgba(255, 240, 200, 0.9); transform: scale(1.03); }
-    100% { box-shadow: 0 0 20px rgba(255, 240, 200, 0.6); transform: scale(1); }
-}
-
-/* תמונת האלה במרכז */
-.haela-center {
-    margin: 30px auto;
-}
-
-.haela-img {
-    width: 300px;
-    border-radius: 20px;
-    animation: softGlow 6s ease-in-out infinite;
+/* עיצוב כללי לשדות */
+.notes-box input,
+.notes-box textarea {
+    width: 100%;
+    max-width: 600px;
+    padding: 14px 18px;
+    margin: 10px auto;
+    display: block;
+    font-size: 18px;
+    border: 1px solid #d3b8ff;
+    border-radius: 12px;
+    background-color: #faf6ff;
+    color: #4a2c6b;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.08);
     transition: 0.3s;
 }
 
-/* כותרות */
-.tik-title {
-    font-size: 2.5em;
-    color: #b48a3c;
-    text-shadow: 0 0 10px #fff6d9;
+/* אפקט ריחוף */
+.notes-box input:focus,
+.notes-box textarea:focus {
+    background-color: #f2e6ff;
+    border-color: #b48cff;
+    outline: none;
+    transform: scale(1.01);
 }
 
-.tik-subtitle {
-    font-size: 1.4em;
-    color: #a67c52;
+/* תיבת הערה גדולה */
+.notes-box textarea {
+    min-height: 140px;
+    resize: vertical;
+}
+
+/* כותרת ההערות */
+.notes-box h3 {
+    text-align: center;
+    font-size: 22px;
+    color: #7a4ba0;
     margin-bottom: 20px;
 }
 
-/* תיבות טקסט */
-.tik-box {
-    background-color: rgba(255, 255, 255, 0.7);
-    border: 1px solid #f1e2c6;
-    border-radius: 12px;
-    padding: 20px;
-    margin: 20px auto;
-    max-width: 700px;
-    box-shadow: 0 0 15px rgba(255, 240, 200, 0.5);
-}
-
-/* רשימת תקשורים */
-.tik-list a {
-    color: #a67c52;
+/* כפתורי ווצאפ ושמירה */
+.footer-nav a {
+    font-size: 18px;
+    padding: 10px 16px;
+    background-color: #f2e6ff;
+    border: 1px solid #d3b8ff;
+    border-radius: 10px;
+    color: #4a2c6b;
     text-decoration: none;
-    font-weight: 500;
+    margin: 5px;
+    display: inline-block;
+    transition: 0.3s;
 }
 
-.tik-list a:hover {
-    color: #d4a94e;
-    text-shadow: 0 0 6px #fff6d9;
+.footer-nav a:hover {
+    background-color: #e8d6ff;
+    transform: scale(1.05);
 }
 
-/* ניווט תחתון */
-.footer-nav {
-    margin-top: 40px;
-    font-size: 1em;
-    color: #a67c52;
-}
-
-/* גריד של מלבנים */
-.tik-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    max-width: 800px;
-    margin: 40px auto;
-}
-
-/* עיצוב המלבנים */
-.btn {
-    background-color: #f0e4ff;
-    border: 1.5px solid #d8c9f0;
-    border-radius: 12px;
-    text-align: center;
-    padding: 15px;
-    min-height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.08);
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-.btn:hover {
-    background-color: #e6d8ff;
-    border-color: #cbb3ef;
-    transform: translateY(-3px);
-}
-
-/* תיקון קריטי — סגירת ה־@media */
-@media (max-width: 600px) {
-    .tik-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* ----------------------------- */
-/* עיצוב ההערות — תקין ומלא     */
-/* ----------------------------- */
-
+/* ריבועי ההערות */
 .note-card {
     background-color: #fff9f6;
     border: 1px solid #e0c9b6;
@@ -135,6 +81,7 @@ body {
     color: #7a4ba0;
 }
 
+/* תאריך ושעה */
 .note-date {
     font-size: 14px;
     color: #8b7b9b;
@@ -143,12 +90,7 @@ body {
     text-align: left;
 }
 
-#notes {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 12px;
-}
-
+/* אייקון תגובה */
 .note-card::before {
     content: "💬";
     position: absolute;
@@ -158,53 +100,12 @@ body {
     color: #d3b8ff;
 }
 
-/* שדות שם / תקשור / הערה */
-.notes-box input,
-.notes-box textarea {
-    width: 100%;
-    max-width: 600px;
-    padding: 14px 18px;
-    margin: 10px auto;
-    display: block;
-    font-size: 18px;
-    border: 1px solid #d3b8ff;
-    border-radius: 12px;
-    background-color: #faf6ff;
-    color: #4a2c6b;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.08);
-    transition: 0.3s;
+/* סידור הערות ברשת */
+#notes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 12px;
 }
 
-.notes-box input:focus,
-.notes-box textarea:focus {
-    background-color: #f2e6ff;
-    border-color: #b48cff;
-    outline: none;
-    transform: scale(1.01);
-}
-
-.notes-box textarea {
-    min-height: 140px;
-    resize: vertical;
-}
-
-/* כפתורי ווצאפ ושמירה */
-.footer-nav a {
-    font-size: 18px;
-    padding: 10px 16px;
-    background-color: #f2e6ff;
-    border: 1px solid #d3b8ff;
-    border-radius: 10px;
-    color: #4a2c6b;
-    text-decoration: none;
-    margin: 5px;
-    display: inline-block;
-    transition: 0.3s;
-}
-
-.footer-nav a:hover {
-    background-color: #e8d6ff;
-    transform: scale(1.05);
-}
 
 
