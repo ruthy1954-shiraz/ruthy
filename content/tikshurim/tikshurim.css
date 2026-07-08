@@ -121,4 +121,26 @@ body {
     gap: 12px;
 }
 
+/* מייצב את הדף במרכז */
+.wrapper {
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* מייצב את תמונת האלה */
+.haela-center {
+    text-align: center;
+}
+
+.haela-img {
+    display: block;
+    margin: 0 auto;
+}
+
+/* מייצב את תיבת התקשור */
+.tik-box {
+    text-align: right;
+    margin: 0 auto;
+}
 
