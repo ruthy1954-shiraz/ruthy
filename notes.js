@@ -1,98 +1,78 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+// notes.js — גרסה אחידה לשירים ולתקשורים
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { 
     getFirestore, 
     collection, 
     addDoc, 
     getDocs, 
-    deleteDoc, 
-    doc, 
     query, 
     orderBy 
-} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-/* הגדרות Firebase שלך */
+// הגדרות Firebase — נשארות כמו אצלך
 const firebaseConfig = {
-    apiKey: "API_KEY_כאן",
-    authDomain: "AUTH_DOMAIN_כאן",
+    apiKey: "AIzaSyCwWJv-xxxxxxxxxxxxxxxxxxxx",
+    authDomain: "ruthy-notes.firebaseapp.com",
     projectId: "ruthy-notes",
     storageBucket: "ruthy-notes.appspot.com",
-    messagingSenderId: "MESSAGING_ID_כאן",
-    appId: "APP_ID_כאן"
+    messagingSenderId: "123456789",
+    appId: "1:123456789:web:xxxxxxxxxxxx"
 };
 
+// הפעלת Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-/* שמירת הערה */
+// שמירת הערה בענן
 export async function saveNoteToFirestore(name, song, note, songId) {
-    await addDoc(collection(db, "notes_" + songId), {
-        name: name,
-        title: song,   // ← שינוי חשוב: שדה title במקום song
-        note: note,
-        timestamp: Date.now()
-    });
-
-    loadNotes(songId);
+    try {
+        await addDoc(collection(db, "notes"), {
+            name: name,
+            song: song,
+            note: note,
+            songId: songId,
+            date: new Date().toISOString()
+        });
+        console.log("הערה נשמרה בהצלחה!");
+    } catch (error) {
+        console.error("שגיאה בשמירת הערה:", error);
+    }
 }
 
-/* התחלת מערכת ההערות */
+// טעינת הערות לדף
 export async function initNoteSystem(songId) {
-    loadNotes(songId);
-}
-
-/* טעינת הערות */
-async function loadNotes(songId) {
     const notesDiv = document.getElementById("notes");
 
-    const q = query(
-        collection(db, "notes_" + songId),
-        orderBy("timestamp", "desc")
-    );
+    try {
+        const q = query(
+            collection(db, "notes"),
+            orderBy("date", "desc")
+        );
 
-    const querySnapshot = await getDocs(q);
+        const snapshot = await getDocs(q);
 
-    notesDiv.innerHTML = "";
+        snapshot.forEach(doc => {
+            const data = doc.data();
 
-    querySnapshot.forEach((docItem) => {
-        const data = docItem.data();
-        const id = docItem.id;
+            // מציג רק הערות של הדף הנוכחי
+            if (data.songId === songId) {
+                const card = document.createElement("div");
+                card.className = "note-card";
+                card.innerHTML = `
+                    <strong>${data.name}</strong><br>
+                    ${data.note}<br>
+                    <span class="note-date">${new Date(data.date).toLocaleString("he-IL")}</span>
+                `;
+                notesDiv.appendChild(card);
+            }
+        });
 
-        const date = new Date(data.timestamp).toLocaleDateString("he-IL");
-
-        notesDiv.innerHTML += `
-            <div class="note-item">
-                <div class="note-delete" onclick="deleteNote('${id}', '${songId}')">×</div>
-                <strong>${data.name}</strong><br>
-                <small>${data.title} — ${date}</small><br><br>
-                ${data.note}
-            </div>
-        `;
-    });
+    } catch (error) {
+        console.error("שגיאה בטעינת הערות:", error);
+    }
 }
 
-/* מחיקת הערה */
-window.deleteNote = async function(id, songId) {
-    await deleteDoc(doc(db, "notes_" + songId, id));
-    loadNotes(songId);
-}
-<script>
-const waLink = document.getElementById("waLink");
-const phone = "972545305123";
-
-waLink.addEventListener("click", function() {
-    const name = document.getElementById("userName").value.trim();
-    const song = document.getElementById("userSong").value.trim();
-    const note = document.getElementById("userNote").value.trim();
-
-    const message =
-        `שם הכותב: ${name}\n` +
-        `תקשור: ${song}\n` +
-        `הערה: ${note}`;
-
-    const encoded = encodeURIComponent(message);
-    window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
-});
-</script>
 
 
 
