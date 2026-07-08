@@ -90,10 +90,13 @@ waLink.addEventListener("click", function() {
     window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
 });
 </script>
+    <h3 style="margin-top:30px;">הערות קוראים שנשמרו</h3>
+    <div id="notes"></div>
 
-<!-- שמירת הערות -->
-<script type="module">
-import { initNoteSystem, saveNoteToFirestore } from "./notes.js";
+    <!-- כפתור חזרה לדף הראשי -->
+    <a href="../../index.html" class="back">חזרה לדף הראשי</a>
+
+</div> <!-- סוף wrapper -->
 
 const songId = "tikshurim";
 
