@@ -67,14 +67,14 @@
     const songId = "homepage";
 </script>
 
-<!-- טעינת מערכת Firebase והערות -->
+<!-- טעינת מערכת Firebase -->
 <script type="module" src="content/firebase.js"></script>
 
-<!-- הפעלת מערכת ההערות + ווצאפ -->
+<!-- הפעלת מערכת ההערות + ווצאפ לדף הבית -->
 <script type="module">
     import { initNoteSystem, saveNoteToFirestore } from "./content/notes.js";
 
-    // טעינת הערות
+    // טעינת הערות לדף הבית
     initNoteSystem(songId);
 
     // ווצאפ
@@ -138,12 +138,11 @@ function shareSong() {
 }
 </style>
 
-</body>
-</html>
-
+<!-- טעינת מערכת הערות אוטומטית לכל הדפים -->
 <script type="module" src="content/notes-autoload.js"></script>
 
-{
+</body>
+</html>
 
 
 
