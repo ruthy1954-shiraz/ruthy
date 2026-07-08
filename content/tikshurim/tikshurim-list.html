@@ -3,46 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>רשימת תקשורים / רות שנן</title>
-    <link rel="stylesheet" href="tikshurim.css">
+    <title>רשימת התקשורים / רות שנן</title>
+
+    <style>
+        body {
+            font-family: "David", "Arial", sans-serif;
+            background-color: #fdfaf6;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+
+            /* תמונת רקע עדינה */
+            background-image: url("images/or_haela.jpeg");
+            background-size: 260px;
+            background-repeat: no-repeat;
+            background-position: top center;
+            opacity: 0.97;
+        }
+
+        h1 {
+            font-size: 2.6em;
+            color: #5a4a3f;
+            margin-top: 180px; /* מרווח כדי שהתמונה לא תכסה את הכותרת */
+            margin-bottom: 30px;
+            text-shadow: 0 0 8px #fff;
+        }
+
+        .tik-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: block;
+            background-color: rgba(242, 230, 255, 0.9);
+            padding: 14px;
+            text-align: center;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #4a2c6b;
+            font-size: 18px;
+            font-weight: bold;
+            border: 1px solid #d3b8ff;
+            transition: 0.2s;
+        }
+
+        .btn:hover {
+            background-color: #e8d6ff;
+        }
+
+        .back {
+            display: block;
+            margin: 40px auto;
+            width: 220px;
+            text-align: center;
+            padding: 14px;
+            background-color: #ddd;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #333;
+            font-size: 18px;
+        }
+    </style>
 </head>
 
 <body>
 
-<div class="wrapper">
+<h1>רשימת התקשורים</h1>
 
-    <h1 class="tik-title">רשימת התקשורים</h1>
-
- <div class="tik-grid">
+<div class="tik-grid">
 
     <a href="03-09-2023.html" class="btn">03-09-2023 אזהרת מלחמה</a>
-    <a href="#" class="btn"></a>
-    <a href="#" class="btn"></a>
-
-    <a href="#" class="btn"></a>
-    <a href="#" class="btn"></a>
-    <a href="#" class="btn"></a>
-
-    <a href="#" class="btn"></a>
-    <a href="#" class="btn"></a>
-    <a href="#" class="btn"></a>
-
-    <a href="#" class="btn"></a>
-    <a href="#" class="btn"></a>
-    <a href="#" class="btn"></a>
-
+    <a href="#" class="btn">תקשור נוסף</a>
+    <a href="#" class="btn">תקשור נוסף</a>
+    <a href="#" class="btn">תקשור נוסף</a>
 
 </div>
 
-
-<div class="footer-nav">
-    <a href="../../index.html">דף ראשי</a> |
-    <a href="../song.html">שירים</a> |
-    <a href="../about.html">על הספר</a> |
-    <a href="../about-author.html">אודות המחברת</a>
-</div>
+<a href="../index.html" class="back">חזרה לדף הראשי</a>
 
 </body>
 </html>
+
 
 
