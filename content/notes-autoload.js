@@ -2,22 +2,43 @@
 
 import { initNoteSystem, saveNoteToFirestore } from "./notes.js";
 
+// הזרקת תיבת הערות אוטומטית אם לא קיימת
+function injectNotesBox() {
+    if (!document.querySelector(".notes-box")) {
+        const box = document.createElement("div");
+        box.className = "notes-box";
+        box.innerHTML = `
+            <h3>כתיבת הערות והארות</h3>
+
+            <input id="userName" placeholder="השם שלך..." />
+            <input id="userSong" placeholder="שם הדף..." />
+            <textarea id="userNote" placeholder="כתבי כאן את מחשבותייך..."></textarea>
+
+            <div class="footer-nav" style="margin-top:15px;">
+                <a id="waLink">ווצאפ לכותבת</a> |
+                <a id="saveLink">שמירת הערה</a>
+            </div>
+
+            <h4>הערות קוראים שנשמרו:</h4>
+            <div id="notes"></div>
+        `;
+        document.body.appendChild(box);
+    }
+}
+
 // זיהוי הדף לפי הכתובת
 function detectSongId() {
     const path = window.location.pathname;
 
-    // דף הבית
     if (path.endsWith("index.html") || path === "/") {
         return "homepage";
     }
 
-    // שירים — כל דף שיר נמצא בתיקייה /content/songs/
     if (path.includes("/content/songs/")) {
         const file = path.split("/").pop().replace(".html", "");
-        return "song-" + file;   // לדוגמה: song-12
+        return "song-" + file;
     }
 
-    // תקשורים — כל דף תקשור נמצא בתיקייה /content/tikshurim/
     if (path.includes("/content/tikshurim/")) {
         const file = path.split("/").pop().replace(".html", "");
         return "tikshur-" + file;
@@ -26,9 +47,11 @@ function detectSongId() {
     return null;
 }
 
+// הפעלה אוטומטית
+injectNotesBox();
+
 const songId = detectSongId();
 
-// אם זוהה דף — מפעילים את מערכת ההערות
 if (songId) {
     initNoteSystem(songId);
 
@@ -36,7 +59,6 @@ if (songId) {
     const saveLink = document.getElementById("saveLink");
     const phone = "972545305123";
 
-    // ווצאפ
     if (waLink) {
         waLink.addEventListener("click", () => {
             const name = document.getElementById("userName").value.trim();
@@ -49,7 +71,6 @@ if (songId) {
         });
     }
 
-    // שמירת הערה
     if (saveLink) {
         saveLink.addEventListener("click", () => {
             const name = document.getElementById("userName").value.trim();
@@ -60,3 +81,4 @@ if (songId) {
         });
     }
 }
+
