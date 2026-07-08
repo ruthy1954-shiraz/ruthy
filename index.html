@@ -69,10 +69,21 @@
 
 <!-- מערכת ההערות + ווצאפ -->
 <script type="module" defer>
-    import { initNoteSystem, saveNoteToFirestore } from "./notes.js";
+    
+<!-- מזהה ייחודי לדף -->
+<script>
+    var songId = "homepage";
+</script>
 
+<!-- טעינת מערכת Firebase והערות -->
+<script type="module" src="content/firebase.js"></script>
+<script type="module" src="content/notes.js"></script>
+
+<script>
+    // הפעלת מערכת ההערות
     initNoteSystem(songId);
-
+</script>
+    
     const waLink = document.getElementById("waLink");
     const saveLink = document.getElementById("saveLink");
     const phone = "972545305123";
