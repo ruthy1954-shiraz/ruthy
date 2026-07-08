@@ -1,28 +1,14 @@
-// notes.js — גרסה אחידה לשירים ולתקשורים
+// notes.js — גרסה מתוקנת לשירים ולתקשורים
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+// ייבוא החיבור הקיים ל-Firebase
+import { db } from "./firebase.js";
 import { 
-    getFirestore, 
     collection, 
     addDoc, 
     getDocs, 
     query, 
     orderBy 
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-
-// הגדרות Firebase — נשארות כמו אצלך
-const firebaseConfig = {
-    apiKey: "AIzaSyCwWJv-xxxxxxxxxxxxxxxxxxxx",
-    authDomain: "ruthy-notes.firebaseapp.com",
-    projectId: "ruthy-notes",
-    storageBucket: "ruthy-notes.appspot.com",
-    messagingSenderId: "123456789",
-    appId: "1:123456789:web:xxxxxxxxxxxx"
-};
-
-// הפעלת Firebase
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
 
 // שמירת הערה בענן
 export async function saveNoteToFirestore(name, song, note, songId) {
@@ -72,7 +58,6 @@ export async function initNoteSystem(songId) {
         console.error("שגיאה בטעינת הערות:", error);
     }
 }
-
 
 
 
