@@ -64,15 +64,16 @@
 
 <!-- מזהה ייחודי לדף -->
 <script>
-    var songId = "homepage";
+    const songId = "homepage";
 </script>
 
 <!-- טעינת מערכת Firebase והערות -->
 <script type="module" src="content/firebase.js"></script>
-<script type="module" src="content/notes.js"></script>
 
 <!-- הפעלת מערכת ההערות + ווצאפ -->
-<script>
+<script type="module">
+    import { initNoteSystem, saveNoteToFirestore } from "./content/notes.js";
+
     // טעינת הערות
     initNoteSystem(songId);
 
@@ -81,22 +82,18 @@
     const saveLink = document.getElementById("saveLink");
     const phone = "972545305123";
 
-    waLink.addEventListener("click", function() {
+    waLink.addEventListener("click", () => {
         const name = document.getElementById("userName").value.trim();
         const song = document.getElementById("userSong").value.trim();
         const note = document.getElementById("userNote").value.trim();
 
-        const message =
-            `שם הכותב: ${name}\n` +
-            `דף: ${song}\n` +
-            `הערה: ${note}`;
-
+        const message = `שם הכותב: ${name}\nדף: ${song}\nהערה: ${note}`;
         const encoded = encodeURIComponent(message);
         window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
     });
 
     // שמירת הערה
-    saveLink.addEventListener("click", function() {
+    saveLink.addEventListener("click", () => {
         const name = document.getElementById("userName").value.trim();
         const song = document.getElementById("userSong").value.trim();
         const note = document.getElementById("userNote").value.trim();
@@ -143,7 +140,6 @@ function shareSong() {
 
 </body>
 </html>
-
 
 
 
