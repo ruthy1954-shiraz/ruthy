@@ -1,142 +1,94 @@
 <!DOCTYPE html>
-<html lang="he">
+<html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>תקשור</title>
+    <title>רשימת התקשורים</title>
 
-    <link rel="stylesheet" href="tikshurim.css">
+    <style>
+        body {
+            font-family: "David", "Arial", sans-serif;
+            background-color: #fdfaf6;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+
+            /* תמונת רקע עדינה */
+            background-image: url("images/or_haela.jpeg");
+            background-size: 260px;
+            background-repeat: no-repeat;
+            background-position: top center;
+        }
+
+        h1 {
+            font-size: 2.6em;
+            color: #5a4a3f;
+            margin-top: 180px;
+            margin-bottom: 30px;
+            text-shadow: 0 0 8px #fff;
+        }
+
+        .tik-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: block;
+            background-color: rgba(242, 230, 255, 0.9);
+            padding: 14px;
+            text-align: center;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #4a2c6b;
+            font-size: 18px;
+            font-weight: bold;
+            border: 1px solid #d3b8ff;
+            transition: 0.2s;
+        }
+
+        .btn:hover {
+            background-color: #e8d6ff;
+        }
+
+        .back {
+            display: block;
+            margin: 40px auto;
+            width: 220px;
+            text-align: center;
+            padding: 14px;
+            background-color: #ddd;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #333;
+            font-size: 18px;
+        }
+    </style>
 </head>
 
 <body>
 
-<div class="wrapper tik-page">
+<h1>רשימת התקשורים</h1>
 
-    <!-- תמונת האלה -->
-    <div class="haela-center">
-        <img src="images/or_haela.jpeg" alt="אור האלה" class="haela-img">
-    </div>
+<div class="tik-grid">
 
-    <!-- כותרת התקשור -->
-    <h1 class="tik-title">אזהרת מלחמה</h1>
-    <h2 class="tik-subtitle">03-09-2026</h2>
+    <a href="03-09-2023.html" class="btn">03-09-2023 אזהרת מלחמה</a>
+    <a href="#" class="btn">תקשור נוסף</a>
+    <a href="#" class="btn">תקשור נוסף</a>
+    <a href="#" class="btn">תקשור נוסף</a>
 
-    <!-- תיבת התקשור -->
-    <div class="tik-box">
-        <p>
-            זהו תקשור ראשון בסדרה של תקשורים שיבוא בהמשך...
-        </p>
-    </div>
+</div>
 
-    <!-- שלוש נקודות -->
-    <a id="moreBtn" class="more-link">...</a>
-
-    <!-- המשך התקשור -->
-    <div id="moreText" style="display:none; margin-top:15px;">
-        <p>
-            כאן ההמשך המלא של התקשור...
-        </p>
-    </div>
-
-    <!-- תיבת ההערות -->
-    <div class="notes-box tik-notes">
-
-        <h3>השאירו הערה לתקשור</h3>
-
-        <input type="text" id="userName" placeholder="שם הכותב">
-        <input type="text" id="userSong" placeholder="שם התקשור">
-        <textarea id="userNote" placeholder="הערה..."></textarea>
-
-        <div class="footer-nav tik-footer" style="margin-top:15px;">
-            <a id="waLink">ווצאפ לכותבת</a>
-            <a id="saveLink">שמירת הערה</a>
-        </div>
-
-        <h3 style="margin-top:30px;">הערות קוראים שנשמרו</h3>
-        <div id="notes"></div>
-
-    </div>
-
-    <!-- ⭐ כפתור חזרה לדף הראשי — במקום הנכון -->
-    <a href="../../index.html" class="back">חזרה לדף הראשי</a>
-
-</div> <!-- סוף wrapper -->
-
-<!-- פתיחת שלוש נקודות -->
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    const btn = document.getElementById("moreBtn");
-    const more = document.getElementById("moreText");
-
-    btn.addEventListener("click", function() {
-        more.style.display = "block";
-        btn.style.display = "none";
-    });
-});
-</script>
-
-<!-- ווצאפ -->
-<script>
-const waLink = document.getElementById("waLink");
-const phone = "972545305123";
-
-waLink.addEventListener("click", function() {
-    const name = document.getElementById("userName").value.trim();
-    const song = document.getElementById("userSong").value.trim();
-    const note = document.getElementById("userNote").value.trim();
-
-    const message =
-        `שם הכותב: ${name}\n` +
-        `תקשור: ${song}\n` +
-        `הערה: ${note}`;
-
-    const encoded = encodeURIComponent(message);
-    window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
-});
-</script>
-
-<!-- שמירת הערות -->
-<script type="module">
-import { initNoteSystem, saveNoteToFirestore } from "./notes.js";
-
-const songId = "tikshurim";
-
-initNoteSystem(songId);
-
-const saveLink = document.getElementById("saveLink");
-
-saveLink.addEventListener("click", async function() {
-    const name = document.getElementById("userName").value.trim();
-    const song = document.getElementById("userSong").value.trim();
-    const note = document.getElementById("userNote").value.trim();
-
-    await saveNoteToFirestore(name, song, note, songId);
-
-    const now = new Date();
-    const dateString = now.toLocaleString("he-IL", {
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit",
-        hour: "2-digit",
-        minute: "2-digit"
-    });
-
-    const notesDiv = document.getElementById("notes");
-    const newNote = document.createElement("div");
-    newNote.className = "note-card";
-    newNote.innerHTML = `
-        <strong>${name}</strong><br>
-        ${note}<br>
-        <span class="note-date">${dateString}</span>
-    `;
-    notesDiv.prepend(newNote);
-
-    document.getElementById("userNote").value = "";
-});
-</script>
+<!-- ⭐ כפתור חזרה לדף הראשי של ספר השירים -->
+<a href="../../index.html" class="back">חזרה לדף הראשי</a>
 
 </body>
 </html>
+
 
 
 
