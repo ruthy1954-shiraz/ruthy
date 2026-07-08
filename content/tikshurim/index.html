@@ -14,8 +14,8 @@
 
     <!-- תמונת האלה -->
     <div class="haela-center">
-    <img src="images/or_haela.jpeg" alt="אור האלה" class="haela-img">
-</div>
+        <img src="images/or_haela.jpeg" alt="אור האלה" class="haela-img">
+    </div>
 
     <!-- כותרת התקשור -->
     <h1 class="tik-title">אזהרת מלחמה</h1>
@@ -56,7 +56,11 @@
         <div id="notes"></div>
 
     </div>
-</div>
+
+    <!-- כפתור חזרה לדף הראשי -->
+    <a href="../../index.html" class="back">חזרה לדף הראשי</a>
+
+</div> <!-- סוף wrapper -->
 
 <!-- פתיחת שלוש נקודות -->
 <script>
@@ -90,13 +94,10 @@ waLink.addEventListener("click", function() {
     window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
 });
 </script>
-    <h3 style="margin-top:30px;">הערות קוראים שנשמרו</h3>
-    <div id="notes"></div>
 
-    <!-- כפתור חזרה לדף הראשי -->
-    <a href="../../index.html" class="back">חזרה לדף הראשי</a>
-
-</div> <!-- סוף wrapper -->
+<!-- שמירת הערות -->
+<script type="module">
+import { initNoteSystem, saveNoteToFirestore } from "./notes.js";
 
 const songId = "tikshurim";
 
@@ -136,6 +137,7 @@ saveLink.addEventListener("click", async function() {
 
 </body>
 </html>
+
 
 
 
