@@ -67,23 +67,16 @@
     var songId = "homepage";
 </script>
 
-<!-- מערכת ההערות + ווצאפ -->
-<script type="module" defer>
-    
-<!-- מזהה ייחודי לדף -->
-<script>
-    var songId = "homepage";
-</script>
-
 <!-- טעינת מערכת Firebase והערות -->
 <script type="module" src="content/firebase.js"></script>
 <script type="module" src="content/notes.js"></script>
 
+<!-- הפעלת מערכת ההערות + ווצאפ -->
 <script>
-    // הפעלת מערכת ההערות
+    // טעינת הערות
     initNoteSystem(songId);
-</script>
-    
+
+    // ווצאפ
     const waLink = document.getElementById("waLink");
     const saveLink = document.getElementById("saveLink");
     const phone = "972545305123";
@@ -102,6 +95,7 @@
         window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
     });
 
+    // שמירת הערה
     saveLink.addEventListener("click", function() {
         const name = document.getElementById("userName").value.trim();
         const song = document.getElementById("userSong").value.trim();
@@ -149,6 +143,7 @@ function shareSong() {
 
 </body>
 </html>
+
 
 
 
