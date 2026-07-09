@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>קרן שמש / רות שנן</title>
+
+    <!-- META לשיתוף -->
+    <meta property="og:title" content="קרן שמש / רות שנן">
+    <meta property="og:description" content="שיר על בוקר, אור, הקשבה לטבע ושמחה פשוטה.">
+    <meta property="og:image" content="https://ruthy1954-shiraz.github.io/ruthy/content/images/shir66.jpeg">
+    <meta property="og:type" content="article">
+
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <!-- תמונת השיר -->
+    <div class="song-image">
+        <img src="images/shir66.jpeg" alt="ציור לשיר קרן שמש">
+    </div>
+
+    <!-- פתיח מסקרן -->
+    <div class="song-intro">
+        <p>
+            שיר על בוקר שמחייך,  
+            על קרן שמש שמובילה לטיול קטן,  
+            על הקשבה לטבע  
+            ועל שמחה שמופיעה ברגע הפשוט.
+        </p>
+    </div>
+
+    <!-- כותרות -->
+    <h1 class="song-title">קרן שמש</h1>
+    <h2 class="song-author">רות שנן</h2>
+
+    <!-- טקסט השיר -->
+    <div class="song-box">
+
+        <p>הבוקר השמים הסתכלו אלי<br>
+        וחייכו בשובבות:<br>
+        כמה טוב שקמת!<br>
+        קרצה אלי קרן שמש שובבה.</p>
+
+        <p>לקחה אותי לטיול<br>
+        אל האדמה הטובה,<br>
+        אל הצמחים.<br>
+        ליטפה את הנבטים<br>
+        שזה עתה הוציאו עלים ירקרקים.<br>
+        התמזגה עם הטל שעל עלה ירוק,<br>
+        ושלחה אלי אלף ניצוצות של אור.</p>
+
+        <p>יחד הקשבנו לרוח מן הים,<br>
+        ללחישות בין עלי העץ הזקן,<br>
+        לפעימות לבו וחוכמתו,<br>
+        המזכירות שהכול עוד חי ונושם.</p>
+
+        <p>המחשבות שטו,<br>
+        כמו עננים המחליפים צורה,<br>
+        מביאות איתן שמחה והודיה.<br>
+        מולידות תקווה חדשה.</p>
+
+        <p>קרן השמש שלחה מבטה<br>
+        אל ציפור קטנה מצייצת,<br>
+        ביקשה מהלב להיפתח עוד קצת<br>
+        לקסם של הרגע הפשוט הזה,<br>
+        המבקש ממני רק להיות.</p>
+
+        <p>וכך אני הולכת בעולם,<br>
+        עם צעד רך ונשימה טובה,<br>
+        ומגלה בכל יום מחדש<br>
+        שהשמחה בלב,<br>
+        היא מתנה יקרה,<br>
+        שכל יום מביא.</p>
+
+    </div>
+
+    <!-- תיבת הערות -->
+    <div class="notes-box">
+        <h3>כתיבת הערות והארות</h3>
+
+        <input id="userName" placeholder="השם שלכם..." />
+        <input id="userSong" placeholder="שם השיר..." value="קרן שמש" />
+        <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
+
+        <div class="footer-nav" style="margin-top:15px;">
+            <a id="waLink">ווצאפ לכותבת</a> |
+            <a id="saveLink">שמירת הערה</a>
+        </div>
+
+        <h4>הערות קוראים שנשמרו:</h4>
+        <div id="notes"></div>
+    </div>
+
+    <!-- ניווט -->
+    <div class="footer-nav">
+        <a href="../index.html">עמוד ראשי</a> |
+        <a href="song.html">חזרה לשירים</a>
+    </div>
+
+    <!-- כפתור שיתוף -->
+    <button class="share-btn" onclick="shareSong()">שתפו את השיר</button>
+
+</div>
+
+<!-- מזהה ייחודי לשיר -->
+<script>
+    var songId = "66";
+</script>
+
+<!-- מערכת ההערות + ווצאפ -->
+<script type="module">
+    import { initNoteSystem, saveNoteToFirestore } from "../notes.js";
+
+    initNoteSystem(songId);
+
+    const waLink = document.getElementById("waLink");
+    const saveLink = document.getElementById("saveLink");
+
+    const phone = "972545305123";
+
+    waLink.addEventListener("click", function() {
+        const name = document.getElementById("userName").value.trim();
+        const song = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
+
+        const message =
+            `שם הכותב: ${name}\n` +
+            `שם השיר: ${song}\n` +
+            `הערה: ${note}`;
+
+        const encoded = encodeURIComponent(message);
+        window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
+    });
+
+    saveLink.addEventListener("click", function() {
+        const name = document.getElementById("userName").value.trim();
+        const song = document.getElementById("userSong").value.trim();
