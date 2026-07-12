@@ -1,13 +1,15 @@
-// notes.js — גרסה מתוקנת לשירים ולתקשורים
+// notes.js — גרסה מתוקנת עם כפתור מחיקה
 
 // ייבוא החיבור הקיים ל-Firebase
 import { db } from "./firebase.js";
-import { 
-    collection, 
-    addDoc, 
-    getDocs, 
-    query, 
-    orderBy 
+import {
+    collection,
+    addDoc,
+    getDocs,
+    query,
+    orderBy,
+    doc,
+    deleteDoc
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 // שמירת הערה בענן
@@ -23,6 +25,17 @@ export async function saveNoteToFirestore(name, song, note, songId) {
         console.log("הערה נשמרה בהצלחה!");
     } catch (error) {
         console.error("שגיאה בשמירת הערה:", error);
+    }
+}
+
+// מחיקת הערה מהענן
+export async function deleteNoteFromFirestore(noteId) {
+    try {
+        const noteRef = doc(db, "notes", noteId);
+        await deleteDoc(noteRef);
+        console.log("הערה נמחקה בהצלחה!");
+    } catch (error) {
+        console.error("שגיאה במחיקת הערה:", error);
     }
 }
 
@@ -50,6 +63,24 @@ export async function initNoteSystem(songId) {
                     ${data.note}<br>
                     <span class="note-date">${new Date(data.date).toLocaleString("he-IL")}</span>
                 `;
+
+                // יצירת כפתור מחיקה
+                const deleteBtn = document.createElement("span");
+                deleteBtn.textContent = "✖";
+                deleteBtn.className = "delete-note";
+                deleteBtn.style.cursor = "pointer";
+                deleteBtn.style.float = "left";
+                deleteBtn.style.marginLeft = "5px";
+
+                // פעולה למחיקה
+                deleteBtn.addEventListener("click", async () => {
+                    await deleteNoteFromFirestore(doc.id);
+                    card.remove();
+                });
+
+                // הוספת הכפתור לכרטיס
+                card.prepend(deleteBtn);
+
                 notesDiv.appendChild(card);
             }
         });
