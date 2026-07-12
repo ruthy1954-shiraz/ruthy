@@ -1,4 +1,4 @@
-// notes.js — גרסה מתוקנת עם כפתור מחיקה
+// notes.js — גרסה מתוקנת עם כפתור מחיקה + הודעה עדינה + רענון מיידי
 
 // ייבוא החיבור הקיים ל-Firebase
 import { db } from "./firebase.js";
@@ -12,6 +12,8 @@ import {
     deleteDoc
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
+
+// שמירת הערה בענן
 export async function saveNoteToFirestore(name, song, note, songId) {
     try {
         await addDoc(collection(db, "notes"), {
@@ -35,12 +37,14 @@ export async function saveNoteToFirestore(name, song, note, songId) {
         setTimeout(() => msg.remove(), 2000);
 
         // רענון מיידי של ההערות
+        document.getElementById("notes").innerHTML = "";
         initNoteSystem(songId);
 
     } catch (error) {
         console.error("שגיאה בשמירת הערה:", error);
     }
 }
+
 
 // מחיקת הערה מהענן
 export async function deleteNoteFromFirestore(noteId) {
@@ -53,10 +57,8 @@ export async function deleteNoteFromFirestore(noteId) {
     }
 }
 
+
 // טעינת הערות לדף
-// רענון מיידי של ההערות
-document.getElementById("notes").innerHTML = "";
-initNoteSystem(songId);
 export async function initNoteSystem(songId) {
     const notesDiv = document.getElementById("notes");
 
@@ -106,7 +108,6 @@ export async function initNoteSystem(songId) {
         console.error("שגיאה בטעינת הערות:", error);
     }
 }
-
 
 
 
