@@ -30,15 +30,18 @@ function injectNotesBox() {
 function detectSongId() {
     const path = window.location.pathname;
 
+    // דף הבית
     if (path.endsWith("index.html") || path === "/") {
         return "homepage";
     }
 
-    if (path.includes("/content/song/")) {
+    // זיהוי שירים: shir1.html, shir10.html וכו'
+    if (path.includes("/content/") && path.includes("shir")) {
         const file = path.split("/").pop().replace(".html", "");
         return "song-" + file;
     }
 
+    // זיהוי תקשורים
     if (path.includes("/content/tikshurim/")) {
         const file = path.split("/").pop().replace(".html", "");
         return "tikshur-" + file;
@@ -81,4 +84,5 @@ if (songId) {
         });
     }
 }
+
 
