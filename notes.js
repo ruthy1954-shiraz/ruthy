@@ -12,7 +12,6 @@ import {
     deleteDoc
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-// שמירת הערה בענן
 export async function saveNoteToFirestore(name, song, note, songId) {
     try {
         await addDoc(collection(db, "notes"), {
@@ -22,9 +21,16 @@ export async function saveNoteToFirestore(name, song, note, songId) {
             songId: songId,
             date: new Date().toISOString()
         });
-        console.log("הערה נשמרה בהצלחה!");
+
+        // הודעה מיידית
+        alert("הערה נשמרה!");
+
+        // רענון מיידי של ההערות
+        initNoteSystem(songId);
+
     } catch (error) {
         console.error("שגיאה בשמירת הערה:", error);
+        alert("שגיאה בשמירת הערה");
     }
 }
 
