@@ -49,16 +49,10 @@
     <div class="notes-box">
         <h3>כתיבת הערות והארות</h3>
 
-        <!-- שם הכותב -->
         <input id="userName" placeholder="השם שלכם..." />
-
-        <!-- שם השיר -->
         <input id="userSong" placeholder="שם השיר..." value="בגידה" />
-
-        <!-- הערה -->
         <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
 
-        <!-- קישורים במקום כפתורים -->
         <div class="footer-nav" style="margin-top:15px;">
             <a id="waLink">ווצאפ לכותבת</a> |
             <a id="saveLink">שמירת הערה</a>
@@ -68,7 +62,7 @@
         <div id="notes"></div>
     </div>
 
-    <!-- ניווט עדין -->
+    <!-- ניווט -->
     <div class="footer-nav">
         <a href="../index.html">עמוד ראשי</a> |
         <a href="song.html">חזרה לשירים</a>
@@ -78,19 +72,17 @@
 
 <!-- מזהה ייחודי לשיר -->
 <script>
-    var songId = "1";
+    var songId = "shir1";
 </script>
 
-<!-- מערכת ההערות + ווצאפ (בדיוק כמו בשיר 2, עם התאמות) -->
+<!-- מערכת ההערות + ווצאפ -->
 <script type="module">
-    import { initNoteSystem, saveNoteToFirestore } from "./notes.js";
+    import { initNoteSystem, saveNoteToFirestore } from "../notes.js";
 
-    // הפעלת מערכת ההערות לשיר 1
     initNoteSystem(songId);
 
     const waLink = document.getElementById("waLink");
     const saveLink = document.getElementById("saveLink");
-
     const phone = "972545305123";
 
     // שליחת הודעה בווצאפ
@@ -117,8 +109,8 @@
         saveNoteToFirestore(name, song, note, songId);
     });
 </script>
-   
-<!-- כאן נגמר תוכן השיר -->
+
+<!-- כפתור שיתוף -->
 <button class="share-btn" onclick="shareSong()">שתפו את השיר</button>
 
 <script>
@@ -127,38 +119,7 @@ function shareSong() {
         navigator.share({
             title: document.title,
             text: "רציתי לשתף את השיר הזה:",
-            url: window.location.href
-        });
-    } else {
-        alert("הדפדפן לא תומך בשיתוף אוטומטי");
-    }
-}
-</script>
-
-<style>
-/* העיצוב של כפתור השיתוף */
-.share-btn {
-    margin: 25px auto;
-    padding: 12px 20px;
-    background-color: #f2e6ff;
-    border: 1px solid #d3b8ff;
-    border-radius: 8px;
-    font-size: 18px;
-    color: #4a2c6b;
-    cursor: pointer;
-    display: block;
-    width: 200px;
-    transition: 0.2s;
-}
-.share-btn:hover {
-    background-color: #e8d6ff;
-}
-</style>
-
-
-</body>
-</html>
-
+            url:
 
 
 
