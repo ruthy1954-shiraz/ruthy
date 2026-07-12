@@ -54,6 +54,9 @@ export async function deleteNoteFromFirestore(noteId) {
 }
 
 // טעינת הערות לדף
+// רענון מיידי של ההערות
+document.getElementById("notes").innerHTML = "";
+initNoteSystem(songId);
 export async function initNoteSystem(songId) {
     const notesDiv = document.getElementById("notes");
 
