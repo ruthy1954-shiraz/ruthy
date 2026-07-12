@@ -22,15 +22,23 @@ export async function saveNoteToFirestore(name, song, note, songId) {
             date: new Date().toISOString()
         });
 
-        // הודעה מיידית
-        alert("הערה נשמרה!");
+        // הודעה עדינה בתוך הדף
+        const msg = document.createElement("div");
+        msg.textContent = "הערה נשמרה!";
+        msg.style.color = "#4a2c6b";
+        msg.style.marginTop = "10px";
+        msg.style.fontWeight = "bold";
+
+        document.querySelector(".notes-box").appendChild(msg);
+
+        // ההודעה תיעלם אחרי 2 שניות
+        setTimeout(() => msg.remove(), 2000);
 
         // רענון מיידי של ההערות
         initNoteSystem(songId);
 
     } catch (error) {
         console.error("שגיאה בשמירת הערה:", error);
-        alert("שגיאה בשמירת הערה");
     }
 }
 
