@@ -12,13 +12,16 @@
 
 <div class="wrapper">
 
+    <!-- תמונת הדף -->
     <div class="song-image">
         <img src="content/images/shir.jpeg" alt="עטיפת הספר לגעת">
     </div>
 
+    <!-- כותרות -->
     <h1 class="song-title">לגעת</h1>
     <h2 class="song-author">ספר השירה של רות שנן</h2>
 
+    <!-- טקסט הדף -->
     <div class="song-box">
         <p>
             רגע לפני שהמילים נולדות,<br>
@@ -28,12 +31,13 @@
         </p>
     </div>
 
+    <!-- תיבת הערות -->
     <div class="notes-box">
         <h3>כתיבת הערות והארות</h3>
 
-        <input id="userName" placeholder="השם שלך..." />
+        <input id="userName" placeholder="השם שלכם..." />
         <input id="userSong" placeholder="שם הדף..." value="דף הבית" />
-        <textarea id="userNote" placeholder="כתבי כאן את מחשבותייך על האתר..."></textarea>
+        <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על האתר..."></textarea>
 
         <div class="footer-nav" style="margin-top:15px;">
             <a id="waLink">ווצאפ לכותבת</a> |
@@ -46,23 +50,24 @@
 
 </div>
 
+<!-- ניווט -->
 <div class="footer-nav">
     <a href="content/poets/write-poem.html" class="join-btn">כתיבת שיר חדש</a> |
     <a href="content/poets/poets.html" class="join-btn">בימת המשוררים</a> |
     <a href="content/song.html">שירים</a> |
-    <a href="content/tikshurim/tikshurim-list.html" class="btn">תקשורים</a> |
+    <a href="content/tikshurim/tikshurim-list.html">תקשורים</a> |
     <a href="content/about.html">על הספר</a> |
     <a href="content/about-author.html">אודות המחברת</a>
 </div>
 
+<!-- מזהה ייחודי לדף -->
 <script>
-    const songId = "homepage";
+    var songId = "homepage";
 </script>
 
-<script type="module" src="content/firebase.js"></script>
-
+<!-- מערכת ההערות + ווצאפ -->
 <script type="module">
-    import { initNoteSystem, saveNoteToFirestore } from "./content/notes.js";
+    import { initNoteSystem, saveNoteToFirestore } from "./notes.js";
 
     initNoteSystem(songId);
 
@@ -70,6 +75,7 @@
     const saveLink = document.getElementById("saveLink");
     const phone = "972545305123";
 
+    // שליחת הודעה בווצאפ
     waLink.addEventListener("click", () => {
         const name = document.getElementById("userName").value.trim();
         const song = document.getElementById("userSong").value.trim();
@@ -80,6 +86,7 @@
         window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
     });
 
+    // שמירת הערה בענן
     saveLink.addEventListener("click", () => {
         const name = document.getElementById("userName").value.trim();
         const song = document.getElementById("userSong").value.trim();
@@ -89,6 +96,7 @@
     });
 </script>
 
+<!-- כפתור שיתוף -->
 <button class="share-btn" onclick="shareSong()">שתפו את הספר</button>
 
 <script>
@@ -124,11 +132,9 @@ function shareSong() {
 }
 </style>
 
-<!-- ⭐ טעינת מערכת הערות אוטומטית לכל הדפים ⭐ -->
-<script type="module" src="content/notes-autoload.js"></script>
-
 </body>
 </html>
+
 
 
 
