@@ -34,7 +34,7 @@ function detectSongId() {
         return "homepage";
     }
 
-    if (path.includes("/content/songs/")) {
+    if (path.includes("/content/song/")) {
         const file = path.split("/").pop().replace(".html", "");
         return "song-" + file;
     }
