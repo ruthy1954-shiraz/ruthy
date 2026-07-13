@@ -31,6 +31,9 @@
         </p>
     </div>
 
+    <!-- ⭐ כפתור הערות -->
+    <button class="toggle-notes">הערות והארות</button>
+
     <!-- ⭐ תיבת הערות מוסתרת -->
     <div class="notes-box hidden">
         <h3>כתיבת הערות והארות</h3>
@@ -94,6 +97,24 @@
     });
 </script>
 
+<!-- ⭐ פתיחה/סגירה של תיבת הערות -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const toggleBtn = document.querySelector(".toggle-notes");
+    const notesBox = document.querySelector(".notes-box");
+
+    if (!toggleBtn || !notesBox) return;
+
+    toggleBtn.addEventListener("click", () => {
+        notesBox.classList.toggle("hidden");
+
+        toggleBtn.textContent = notesBox.classList.contains("hidden")
+            ? "הערות והארות"
+            : "הסתרת הערות";
+    });
+});
+</script>
+
 <!-- כפתור שיתוף -->
 <button class="share-btn" onclick="shareSong()">שתפו את הספר</button>
 
@@ -128,10 +149,35 @@ function shareSong() {
 .share-btn:hover {
     background-color: #e8d6ff;
 }
+
+/* מוסתר */
+.hidden {
+    display: none !important;
+}
+
+/* כפתור הערות */
+.toggle-notes {
+    display: block;
+    margin: 20px auto;
+    background-color: #f2e6ff;
+    border: 1px solid #d3b8ff;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    color: #4a2c6b;
+    width: 200px;
+    text-align: center;
+    transition: 0.2s;
+}
+.toggle-notes:hover {
+    background-color: #e8d6ff;
+}
 </style>
 
 </body>
 </html>
+
 
 
 
