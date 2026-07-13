@@ -65,10 +65,10 @@
         ובכל זאת נשאר.</p>
     </div>
 
-    <!-- ⭐ כפתור הערות -->
+    <!-- כפתור הערות -->
     <button class="toggle-notes">הערות והארות</button>
 
-    <!-- ⭐ תיבת הערות מוסתרת -->
+    <!-- תיבת הערות מוסתרת -->
     <div class="notes-box hidden">
         <h3>כתיבת הערות והארות</h3>
 
@@ -133,7 +133,7 @@
     });
 </script>
 
-<!-- ⭐ כפתור שיתוף -->
+<!-- כפתור שיתוף -->
 <button class="share-btn" onclick="shareSong()">שתפו את השיר</button>
 
 <script>
@@ -150,7 +150,7 @@ function shareSong() {
 }
 </script>
 
-<!-- ⭐ קוד פתיחה/סגירה -->
+<!-- קוד פתיחה/סגירה -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
     const toggleBtn = document.querySelector(".toggle-notes");
@@ -166,8 +166,64 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
+<style>
+/* עיצוב כפתור השיתוף */
+.share-btn {
+    display: block;
+    margin: 25px auto;
+    padding: 12px 20px;
+    background-color: #f2e6ff;
+    border: 1px solid #d3b8ff;
+    border-radius: 8px;
+    font-size: 18px;
+    color: #4a2c6b;
+    cursor: pointer;
+    width: 200px;
+    text-align: center;
+    transition: 0.2s;
+}
+.share-btn:hover {
+    background-color: #e8d6ff;
+}
+
+/* תיבת הערות */
+.notes-box {
+    border: 2px solid #d3b8ff;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #faf6ff;
+    margin-top: 20px;
+    transition: 0.3s ease;
+}
+
+/* מוסתר בהתחלה */
+.hidden {
+    display: none !important;
+}
+
+/* כפתור הערות */
+.toggle-notes {
+    display: block;
+    margin: 20px auto;
+    background-color: #f2e6ff;
+    border: 1px solid #d3b8ff;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    color: #4a2c6b;
+    width: 200px;
+    text-align: center;
+    transition: 0.2s;
+}
+.toggle-notes:hover {
+    background-color: #e8d6ff;
+}
+</style>
+
 </body>
 </html>
+
 
 
 
