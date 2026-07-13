@@ -11,6 +11,15 @@
 
 <div class="wrapper">
 
+    <!-- ⭐ פתיח מעוצב כמו בשיר 68 -->
+    <div class="song-intro">
+        <p>
+            יש רגעים שבהם האור לא מגיע מבחוץ —  
+            הוא נולד מבפנים, בשקט, מתוך הסכמה עדינה להרגיש.  
+            השיר הזה נכתב מתוך רגע כזה.
+        </p>
+    </div>
+
     <!-- תמונת השיר -->
     <div class="song-image">
         <img src="images/shir3.jpeg" alt="ציור לשיר אושר">
@@ -46,20 +55,17 @@
         ולו רק לרגע.</p>
     </div>
 
-    <!-- תיבת הערות -->
-    <div class="notes-box">
+    <!-- כפתור הערות -->
+    <button class="toggle-notes">הערות והארות</button>
+
+    <!-- תיבת הערות מוסתרת -->
+    <div class="notes-box hidden">
         <h3>כתיבת הערות והארות</h3>
 
-        <!-- שם הכותב -->
         <input id="userName" placeholder="השם שלכם..." />
-
-        <!-- שם השיר -->
         <input id="userSong" placeholder="שם השיר..." value="אושר" />
-
-        <!-- הערה -->
         <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
 
-        <!-- קישורים במקום כפתורים -->
         <div class="footer-nav" style="margin-top:15px;">
             <a id="waLink">ווצאפ לכותבת</a> |
             <a id="saveLink">שמירת הערה</a>
@@ -69,11 +75,14 @@
         <div id="notes"></div>
     </div>
 
-    <!-- ניווט עדין -->
+    <!-- ניווט -->
     <div class="footer-nav">
         <a href="../index.html">עמוד ראשי</a> |
         <a href="song.html">חזרה לשירים</a>
     </div>
+
+    <!-- כפתור שיתוף -->
+    <button class="share-btn" onclick="shareSong()">שתפו את השיר</button>
 
 </div>
 
@@ -85,54 +94,13 @@
 <!-- מערכת ההערות + ווצאפ -->
 <script type="module">
     import { initNoteSystem, saveNoteToFirestore } from "../notes.js";
-    initNoteSystem();
-    
-    const waLink = document.getElementById("waLink");
-    const saveLink = document.getElementById("saveLink");
 
-    const phone = "972545305123";
-
-    // שליחת הודעה בווצאפ
-    waLink.addEventListener("click", function() {
-        const name = document.getElementById("userName").value.trim();
-        const song = document.getElementById("userSong").value.trim();
-        const note = document.getElementById("userNote").value.trim();
-
-        const message =
-            `שם הכותב: ${name}\n` +
-            `שם השיר: ${song}\n` +
-            `הערה: ${note}`;
-
-        const encoded = encodeURIComponent(message);
-        window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
-    });
-
-    // שמירת הערה בענן
-    saveLink.addEventListener("click", function() {
-        const name = document.getElementById("userName").value.trim();
-        const song = document.getElementById("userSong").value.trim();
-        const note = document.getElementById("userNote").value.trim();
-
-        saveNoteToFirestore(name, song, note, songId);
-    });
-
- <!-- מזהה ייחודי לשיר -->
-<script>
-    var songId = "2";
-</script>
-
-<script type="module">
-    import { initNoteSystem, saveNoteToFirestore } from "../notes.js";
-
-    // הפעלת מערכת ההערות לשיר 2
     initNoteSystem(songId);
 
     const waLink = document.getElementById("waLink");
     const saveLink = document.getElementById("saveLink");
-
     const phone = "972545305123";
 
-    // שליחת הודעה בווצאפ
     waLink.addEventListener("click", function() {
         const name = document.getElementById("userName").value.trim();
         const song = document.getElementById("userSong").value.trim();
@@ -147,7 +115,6 @@
         window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
     });
 
-    // שמירת הערה בענן
     saveLink.addEventListener("click", function() {
         const name = document.getElementById("userName").value.trim();
         const song = document.getElementById("userSong").value.trim();
@@ -156,10 +123,6 @@
         saveNoteToFirestore(name, song, note, songId);
     });
 </script>
-
-<!-- כאן נגמר תוכן השיר -->
-
-<button class="share-btn" onclick="shareSong()">שתפו את השיר</button>
 
 <script>
 function shareSong() {
@@ -175,9 +138,43 @@ function shareSong() {
 }
 </script>
 
+<!-- פתיחה/סגירה של תיבת הערות -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const toggleBtn = document.querySelector(".toggle-notes");
+    const notesBox = document.querySelector(".notes-box");
+
+    toggleBtn.addEventListener("click", () => {
+        notesBox.classList.toggle("hidden");
+
+        toggleBtn.textContent = notesBox.classList.contains("hidden")
+            ? "הערות והארות"
+            : "הסתרת הערות";
+    });
+});
+</script>
+
+<!-- עיצוב פתיח -->
 <style>
-/* העיצוב של כפתור השיתוף */
+.song-intro {
+    background: #f8f2ff;
+    border-right: 4px solid #d3b8ff;
+    padding: 18px 22px;
+    margin: 20px 0 25px 0;
+    border-radius: 8px;
+    font-size: 20px;
+    line-height: 1.8;
+    color: #4a2c6b;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+.song-intro p {
+    margin: 0;
+    white-space: pre-line;
+}
+
+/* כפתור שיתוף */
 .share-btn {
+    display: block;
     margin: 25px auto;
     padding: 12px 20px;
     background-color: #f2e6ff;
@@ -186,17 +183,51 @@ function shareSong() {
     font-size: 18px;
     color: #4a2c6b;
     cursor: pointer;
-    display: block;
     width: 200px;
+    text-align: center;
     transition: 0.2s;
 }
 .share-btn:hover {
+    background-color: #e8d6ff;
+}
+
+/* תיבת הערות */
+.notes-box {
+    border: 2px solid #d3b8ff;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #faf6ff;
+    margin-top: 20px;
+}
+
+/* מוסתר */
+.hidden {
+    display: none !important;
+}
+
+/* כפתור הערות */
+.toggle-notes {
+    display: block;
+    margin: 20px auto;
+    background-color: #f2e6ff;
+    border: 1px solid #d3b8ff;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    color: #4a2c6b;
+    width: 200px;
+    text-align: center;
+    transition: 0.2s;
+}
+.toggle-notes:hover {
     background-color: #e8d6ff;
 }
 </style>
 
 </body>
 </html>
+
    
 
 
