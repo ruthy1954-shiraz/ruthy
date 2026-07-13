@@ -45,11 +45,11 @@
         עד שהוא נרגע.</p>
     </div>
 
-    <!-- ⭐ כפתור פתיחה/סגירה של הערות -->
+    <!-- ⭐ כפתור פתיחה/סגירה -->
     <button class="toggle-notes">הערות והארות</button>
 
-    <!-- ⭐ תיבת הערות מוסתרת בהתחלה -->
-    <div class="notes-box hidden">
+    <!-- ⭐ תיבת הערות מוסתרת + מוכנה לאנימציה -->
+    <div class="notes-box">
         <h3>כתיבת הערות והארות</h3>
 
         <input id="userName" placeholder="השם שלכם..." />
@@ -130,7 +130,7 @@ function shareSong() {
 }
 </script>
 
-<!-- ⭐ קוד פתיחה/סגירה של תיבת ההערות -->
+<!-- ⭐ קוד פתיחה/סגירה עם אנימציה -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
     const toggleBtn = document.querySelector(".toggle-notes");
@@ -138,18 +138,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!toggleBtn || !notesBox) return;
 
-    toggleBtn.addEventListener("click", () => {
-        notesBox.classList.toggle("hidden");
+    // מתחילים כשהתיבה סגורה
+    notesBox.classList.remove("open");
 
-        toggleBtn.textContent = notesBox.classList.contains("hidden")
-            ? "הערות והארות"
-            : "הסתרת הערות";
+    toggleBtn.addEventListener("click", () => {
+
+        notesBox.classList.toggle("open");
+
+        toggleBtn.textContent = notesBox.classList.contains("open")
+            ? "הסתרת הערות"
+            : "הערות והארות";
     });
 });
 </script>
 
 <style>
-/* העיצוב של כפתור השיתוף */
+/* כפתור שיתוף */
 .share-btn {
     margin: 25px auto;
     padding: 12px 20px;
@@ -167,22 +171,27 @@ document.addEventListener("DOMContentLoaded", () => {
     background-color: #e8d6ff;
 }
 
-/* ⭐ עיצוב תיבת הערות */
+/* ⭐ אנימציה חלקה לתיבת הערות */
 .notes-box {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.6s ease, opacity 0.6s ease;
     border: 2px solid #d3b8ff;
-    padding: 15px;
+    padding: 0 15px; /* ייפתח בהדרגה */
     border-radius: 10px;
     background-color: #faf6ff;
     margin-top: 20px;
-    transition: 0.3s ease;
 }
 
-/* ⭐ מוסתר בהתחלה */
-.hidden {
-    display: none;
+/* כשהתיבה פתוחה */
+.notes-box.open {
+    max-height: 800px;
+    opacity: 1;
+    padding: 15px;
 }
 
-/* ⭐ כפתור הערות */
+/* כפתור הערות */
 .toggle-notes {
     background-color: #f2e6ff;
     border: 1px solid #d3b8ff;
@@ -201,6 +210,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
+
 
 
 
