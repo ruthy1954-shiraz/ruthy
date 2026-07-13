@@ -354,19 +354,8 @@ h2.song-author {
     background-color: #e8d6ff;
 }
 
-/* אנימציה חלקה לפתיחה וסגירה */
-.notes-box {
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    transition: max-height 0.6s ease, opacity 0.6s ease;
-}
 
-/* כשהתיבה פתוחה */
-.notes-box.open {
-    max-height: 800px; /* מספיק לכל התוכן */
-    opacity: 1;
-}
+
 
 
 
