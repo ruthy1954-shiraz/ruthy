@@ -59,21 +59,34 @@ h2.song-author {
 
 /* ===== תיבת הערות ===== */
 .notes-box {
-    background: #ffffff;
-    padding: 22px;
-    border-radius: 12px;
+    border: 2px solid #d3b8ff;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #faf6ff;
+    margin-top: 20px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    margin-bottom: 30px;
-    box-sizing: border-box;
 }
 
-.notes-box h3 {
-    margin-top: 0;
-    text-align: center;
-    font-size: 2.2rem;
-    font-weight: 800;
-    color: #5a4a3f;
-    margin-bottom: 20px;
+/* מוסתר בהתחלה */
+.hidden {
+    display: none;
+}
+
+/* ===== כפתור הערות ===== */
+.toggle-notes {
+    background-color: #f2e6ff;
+    border: 1px solid #d3b8ff;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    color: #4a2c6b;
+    margin-top: 20px;
+    transition: 0.2s;
+}
+
+.toggle-notes:hover {
+    background-color: #e8d6ff;
 }
 
 /* ===== שדות טקסט ===== */
@@ -92,64 +105,6 @@ h2.song-author {
     height: 110px;
 }
 
-/* ===== שדות כתיבת שיר ===== */
-.song-input {
-    width: 100%;
-    text-align: center;
-    font-size: 1.8rem;
-    border: none;
-    border-bottom: 1px solid #ccc;
-    background: transparent;
-    color: #5a4a3f;
-    margin-bottom: 10px;
-}
-
-.song-textarea {
-    width: 100%;
-    min-height: 250px;
-    border: none;
-    resize: none;
-    overflow: hidden;
-    font-size: 1.2rem;
-    line-height: 2;
-    color: #5a4a3f;
-    background: transparent;
-    padding: 10px;
-}
-
-/* ===== תיבה מתרחבת ===== */
-.auto-expand {
-    width: 100%;
-    min-height: 140px;
-    resize: none;
-    overflow: hidden;
-    padding: 14px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 17px;
-    line-height: 1.8;
-    box-sizing: border-box;
-}
-
-/* ===== כפתורים ===== */
-.join-btn {
-    display: block;
-    text-align: center;
-    margin: 20px auto;
-    background: none;
-    border: none;
-    color: #7b2cbf;
-    font-size: 1.2rem;
-    text-decoration: underline;
-    border-bottom: 1px solid #7b2cbf;
-    padding: 0;
-    cursor: pointer;
-}
-
-.join-btn:hover {
-    opacity: 0.7;
-}
-
 /* ===== כפתור שיתוף ===== */
 .share-btn {
     display: inline-block;
@@ -163,6 +118,7 @@ h2.song-author {
     text-decoration: none;
     cursor: pointer;
     transition: 0.2s;
+    margin: 25px auto;
 }
 
 .share-btn:hover {
@@ -170,7 +126,7 @@ h2.song-author {
     opacity: 0.9;
 }
 
-/* ===== רשימת שירים / תקשורים ===== */
+/* ===== רשימת שירים ===== */
 .song-list {
     list-style: none;
     padding: 0;
@@ -196,64 +152,6 @@ h2.song-author {
 .song-list a:hover {
     background: #ece8ff;
     transform: translateY(-2px);
-}
-
-/* ===== מסגרת לדפי תקשור ===== */
-.tikshur-frame {
-    max-width: 900px;
-    margin: 60px auto;
-    background-color: #fff;
-    padding: 40px;
-    border-radius: 12px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.1);
-}
-
-/* ===== כותרת ותאריך ===== */
-.tikshur-title {
-    font-size: 2em;
-    text-align: center;
-    color: #333;
-    margin-bottom: 10px;
-}
-
-.tikshur-date {
-    text-align: center;
-    font-size: 1.1em;
-    color: #666;
-    margin-bottom: 30px;
-}
-
-/* ===== פסקאות לתקשורים ===== */
-.tikshur-text p {
-    margin-bottom: 22px;
-    font-size: 1.15em;
-    line-height: 1.9;
-    text-align: justify;
-}
-
-.tikshur-text p:first-child {
-    margin-top: 10px;
-}
-
-.tikshur-text p:last-child {
-    margin-bottom: 40px;
-    font-weight: 600;
-    color: #444;
-}
-
-/* ===== קישור חזרה ===== */
-.back-link {
-    display: block;
-    text-align: center;
-    margin-top: 40px;
-    color: #007acc;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 1.1em;
-}
-
-.back-link:hover {
-    text-decoration: underline;
 }
 
 /* ===== תפריט תחתון ===== */
@@ -288,7 +186,6 @@ h2.song-author {
     padding: 18px 20px !important;
     margin-bottom: 18px !important;
     position: relative !important;
-    box-shadow: none !important;
 }
 
 .note-delete {
@@ -313,47 +210,6 @@ h2.song-author {
     font-size: 1.2rem !important;
     line-height: 1.3 !important;
 }
-
-.required-line {
-    text-align: center;
-    font-size: 1.2rem;
-    color: #7b2cbf;
-    font-weight: bold;
-    border-bottom: 1px solid #7b2cbf;
-    display: inline-block;
-    padding-bottom: 4px;
-    margin: 20px auto;
-}
-
-.notes-box {
-    border: 2px solid #d3b8ff;
-    padding: 15px;
-    border-radius: 10px;
-    background-color: #faf6ff;
-    margin-top: 20px;
-    transition: 0.3s ease;
-}
-
-.hidden {
-    display: none;
-}
-
-.toggle-notes {
-    background-color: #f2e6ff;
-    border: 1px solid #d3b8ff;
-    padding: 10px 15px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 18px;
-    color: #4a2c6b;
-    margin-top: 20px;
-    transition: 0.2s;
-}
-
-.toggle-notes:hover {
-    background-color: #e8d6ff;
-}
-
 
 
 
