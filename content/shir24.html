@@ -16,6 +16,16 @@
         <img src="images/shir24.jpeg" alt="ציור לשיר מחפשת שלווה">
     </div>
 
+    <!-- ⭐ קציר השיר -->
+    <div class="song-intro">
+        <p>
+            שיר על רגעים קטנים של נשימה בין רעשים,  
+            על יצירה שמביאה אור,  
+            ועל שלווה שמתגנבת פנימה  
+            לאט־לאט, בין פעימה לפעימה.
+        </p>
+    </div>
+
     <!-- כותרות -->
     <h1 class="song-title">מחפשת שלווה</h1>
     <h2 class="song-author">רות שנן</h2>
@@ -53,8 +63,11 @@
         בו הלב יכול לנוח.</p>
     </div>
 
-    <!-- תיבת הערות -->
-    <div class="notes-box">
+    <!-- ⭐ כפתור הערות -->
+    <button class="toggle-notes">הערות והארות</button>
+
+    <!-- ⭐ תיבת הערות מוסתרת -->
+    <div class="notes-box hidden">
         <h3>כתיבת הערות והארות</h3>
 
         <input id="userName" placeholder="השם שלכם..." />
@@ -83,7 +96,7 @@
 
 <!-- מזהה ייחודי לשיר -->
 <script>
-    var songId = "24";
+    var songId = "shir24";
 </script>
 
 <!-- מערכת ההערות + ווצאפ -->
@@ -94,10 +107,9 @@
 
     const waLink = document.getElementById("waLink");
     const saveLink = document.getElementById("saveLink");
-
     const phone = "972545305123";
 
-    waLink.addEventListener("click", function() {
+    waLink.addEventListener("click", () => {
         const name = document.getElementById("userName").value.trim();
         const song = document.getElementById("userSong").value.trim();
         const note = document.getElementById("userNote").value.trim();
@@ -111,13 +123,29 @@
         window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
     });
 
-    saveLink.addEventListener("click", function() {
+    saveLink.addEventListener("click", () => {
         const name = document.getElementById("userName").value.trim();
         const song = document.getElementById("userSong").value.trim();
         const note = document.getElementById("userNote").value.trim();
 
         saveNoteToFirestore(name, song, note, songId);
     });
+</script>
+
+<!-- פתיחה/סגירה של תיבת הערות -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const toggleBtn = document.querySelector(".toggle-notes");
+    const notesBox = document.querySelector(".notes-box");
+
+    toggleBtn.addEventListener("click", () => {
+        notesBox.classList.toggle("hidden");
+
+        toggleBtn.textContent = notesBox.classList.contains("hidden")
+            ? "הערות והארות"
+            : "הסתרת הערות";
+    });
+});
 </script>
 
 <!-- פונקציית שיתוף -->
@@ -135,9 +163,27 @@ function shareSong() {
 }
 </script>
 
-<!-- עיצוב כפתור השיתוף -->
+<!-- עיצוב פתיח -->
 <style>
+.song-intro {
+    background: #f8f2ff;
+    border-right: 4px solid #d3b8ff;
+    padding: 18px 22px;
+    margin: 20px 0 25px 0;
+    border-radius: 8px;
+    font-size: 20px;
+    line-height: 1.8;
+    color: #4a2c6b;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+.song-intro p {
+    margin: 0;
+    white-space: pre-line;
+}
+
+/* כפתור שיתוף */
 .share-btn {
+    display: block;
     margin: 25px auto;
     padding: 12px 20px;
     background-color: #f2e6ff;
@@ -146,17 +192,51 @@ function shareSong() {
     font-size: 18px;
     color: #4a2c6b;
     cursor: pointer;
-    display: block;
     width: 200px;
+    text-align: center;
     transition: 0.2s;
 }
 .share-btn:hover {
+    background-color: #e8d6ff;
+}
+
+/* תיבת הערות */
+.notes-box {
+    border: 2px solid #d3b8ff;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #faf6ff;
+    margin-top: 20px;
+}
+
+/* מוסתר */
+.hidden {
+    display: none !important;
+}
+
+/* כפתור הערות */
+.toggle-notes {
+    display: block;
+    margin: 20px auto;
+    background-color: #f2e6ff;
+    border: 1px solid #d3b8ff;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    color: #4a2c6b;
+    width: 200px;
+    text-align: center;
+    transition: 0.2s;
+}
+.toggle-notes:hover {
     background-color: #e8d6ff;
 }
 </style>
 
 </body>
 </html>
+
 
 
 
