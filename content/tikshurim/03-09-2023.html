@@ -179,10 +179,10 @@ saveLink.addEventListener("click", async function() {
     const tik = document.getElementById("userSong").value.trim();
     const note = document.getElementById("userNote").value.trim();
 
-    await saveTikshurimNote(name, tik, note, songId);
-
     const now = new Date();
     const dateString = now.toLocaleString("he-IL");
+
+    const docRef = await saveTikshurimNote(name, tik, note, songId);
 
     const notesDiv = document.getElementById("notes");
     const newNote = document.createElement("div");
@@ -191,6 +191,7 @@ saveLink.addEventListener("click", async function() {
         <strong>${name}</strong><br>
         ${note}<br>
         <span class="note-date">${dateString}</span>
+        <button class="delete-btn" data-id="${docRef.id}">✖</button>
     `;
     notesDiv.prepend(newNote);
 
@@ -291,6 +292,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
+
 
 
 
