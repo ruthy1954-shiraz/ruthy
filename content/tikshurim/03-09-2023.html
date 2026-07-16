@@ -145,7 +145,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 <!-- מערכת ההערות + וואטסאפ -->
 <script type="module">
-import { initTikshurimNotes, saveTikshurimNote } from "./notes-tikshurim.js";
+import { initTikshurimNotes, saveTikshurimNote } from "./notes-tikshurim.js?v=5";
 
 initTikshurimNotes(songId);
 
@@ -179,21 +179,19 @@ saveLink.addEventListener("click", async function() {
     const tik = document.getElementById("userSong").value.trim();
     const note = document.getElementById("userNote").value.trim();
 
-    const now = new Date();
-    const dateString = now.toLocaleString("he-IL");
+    const saved = await saveTikshurimNote(name, tik, note, songId);
 
-    const docRef = await saveTikshurimNote(name, tik, note, songId);
-
-    const notesDiv = document.getElementById("notes");
-    const newNote = document.createElement("div");
-    newNote.className = "note-card";
-    newNote.innerHTML = `
-        <strong>${name}</strong><br>
-        ${note}<br>
-        <span class="note-date">${dateString}</span>
-        <button class="delete-btn" data-id="${docRef.id}">✖</button>
-    `;
-    notesDiv.prepend(newNote);
+    if (saved) {
+        const card = document.createElement("div");
+        card.className = "note-card";
+        card.innerHTML = `
+            <strong>${saved.name}</strong><br>
+            ${saved.note}<br>
+            <span class="note-date">${saved.date}</span>
+            <button class="delete-btn" data-id="${saved.id}">✖</button>
+        `;
+        document.getElementById("notes").prepend(card);
+    }
 
     document.getElementById("userNote").value = "";
 });
@@ -284,13 +282,13 @@ document.addEventListener("DOMContentLoaded", () => {
     transition: 0.2s;
 }
 .toggle-notes:hover {
- background-color: #e8d6ff;   
+    background-color: #e8d6ff;
 }
 </style>
-    
-<script type="module" src="./notes-tikshurim.js?v=4"></script>    
+
 </body>
 </html>
+
 
 
 
