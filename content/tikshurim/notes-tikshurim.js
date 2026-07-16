@@ -11,9 +11,9 @@ import {
     doc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-// ⚠️ חשוב: הגדרות Firebase חייבות להיות זהות ל-notes.js של השירים!
+// ⚠️ חשוב: חייב להיות זהה ל-notes.js של השירים!
 const firebaseConfig = {
-    apiKey: "AIzaSyC-7mYVgYc8YVYVYVYVYVYVYVYVYVY", 
+    apiKey: "AIzaSyC-7mYVgYc8YVYVYVYVYVYVYVYVYVY",
     authDomain: "ruthy1954-shiraz.firebaseapp.com",
     projectId: "ruthy1954-shiraz",
     storageBucket: "ruthy1954-shiraz.appspot.com",
@@ -39,7 +39,7 @@ export async function initTikshurimNotes(tikId) {
             <strong>${data.name}</strong><br>
             ${data.note}<br>
             <span class="note-date">${data.date}</span>
-            <button class="delete-btn" data-id="${docSnap.id}">🗑️</button>
+            <button class="delete-btn" data-id="${docSnap.id}">✖</button>
         `;
         notesDiv.prepend(noteCard);
     });
@@ -78,9 +78,10 @@ export async function saveTikshurimNote(name, tik, note, tikId) {
         <strong>${name}</strong><br>
         ${note}<br>
         <span class="note-date">${dateString}</span>
-        <button class="delete-btn" data-id="${docRef.id}">🗑️</button>
+        <button class="delete-btn" data-id="${docRef.id}">✖</button>
     `;
     notesDiv.prepend(newNote);
 
     document.getElementById("userNote").value = "";
 }
+
