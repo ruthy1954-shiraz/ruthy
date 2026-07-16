@@ -11,7 +11,7 @@ import {
     doc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-// ⚠️ חשוב: חייב להיות זהה ל-notes.js של השירים!
+// ⚠️ חייב להיות זהה ל-notes.js של השירים!
 const firebaseConfig = {
     apiKey: "AIzaSyC-7mYVgYc8YVYVYVYVYVYVYVYVYVY",
     authDomain: "ruthy1954-shiraz.firebaseapp.com",
@@ -71,17 +71,6 @@ export async function saveTikshurimNote(name, tik, note, tikId) {
         date: dateString
     });
 
-    const notesDiv = document.getElementById("notes");
-    const newNote = document.createElement("div");
-    newNote.className = "note-card";
-    newNote.innerHTML = `
-        <strong>${name}</strong><br>
-        ${note}<br>
-        <span class="note-date">${dateString}</span>
-        <button class="delete-btn" data-id="${docRef.id}">✖</button>
-    `;
-    notesDiv.prepend(newNote);
-
-    document.getElementById("userNote").value = "";
+    return docRef;
 }
 
