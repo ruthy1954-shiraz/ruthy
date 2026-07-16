@@ -1,5 +1,5 @@
 // notes-tikshurim.js
-// מערכת הערות והארות לתקשורים — נפרדת מהשירים
+// מערכת הערות לתקשורים — גרסה חדשה, יציבה ומהירה
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import {
@@ -11,7 +11,7 @@ import {
     doc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-// ⚠️ חייב להיות זהה ל-notes.js של השירים!
+// הגדרות Firebase (זהות לשירים)
 const firebaseConfig = {
     apiKey: "AIzaSyC-7mYVgYc8YVYVYVYVYVYVYVYVYVY",
     authDomain: "ruthy1954-shiraz.firebaseapp.com",
@@ -25,40 +25,50 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// טעינת הערות קיימות
+// ⭐ יצירת כרטיס הערה
+function createNoteCard(id, name, note, date) {
+    const div = document.createElement("div");
+    div.className = "note-card";
+
+    div.innerHTML = `
+        <strong>${name}</strong><br>
+        ${note}<br>
+        <span class="note-date">${date}</span>
+        <button class="delete-btn" data-id="${id}">✖</button>
+    `;
+
+    return div;
+}
+
+// ⭐ טעינת הערות קיימות
 export async function initTikshurimNotes(tikId) {
     const notesDiv = document.getElementById("notes");
     notesDiv.innerHTML = "";
 
-    const querySnapshot = await getDocs(collection(db, "tikshurim", tikId, "notes"));
-    querySnapshot.forEach((docSnap) => {
+    const snap = await getDocs(collection(db, "tikshurim", tikId, "notes"));
+
+    snap.forEach((docSnap) => {
         const data = docSnap.data();
-        const noteCard = document.createElement("div");
-        noteCard.className = "note-card";
-        noteCard.innerHTML = `
-            <strong>${data.name}</strong><br>
-            ${data.note}<br>
-            <span class="note-date">${data.date}</span>
-            <button class="delete-btn" data-id="${docSnap.id}">✖</button>
-        `;
-        notesDiv.prepend(noteCard);
+        const card = createNoteCard(docSnap.id, data.name, data.note, data.date);
+        notesDiv.prepend(card);
     });
 
-    // מחיקה
+    // ⭐ מחיקה
     notesDiv.addEventListener("click", async (e) => {
-        if (e.target.classList.contains("delete-btn")) {
-            const id = e.target.getAttribute("data-id");
-            await deleteDoc(doc(db, "tikshurim", tikId, "notes", id));
-            e.target.parentElement.remove();
-        }
+        if (!e.target.classList.contains("delete-btn")) return;
+
+        const id = e.target.getAttribute("data-id");
+        await deleteDoc(doc(db, "tikshurim", tikId, "notes", id));
+
+        e.target.parentElement.remove();
     });
 }
 
-// שמירת הערה חדשה
+// ⭐ שמירת הערה חדשה
 export async function saveTikshurimNote(name, tik, note, tikId) {
     if (!name || !note) {
-        alert("נא למלא שם והערה לפני השמירה.");
-        return;
+        alert("נא למלא שם והערה.");
+        return null;
     }
 
     const now = new Date();
@@ -71,6 +81,12 @@ export async function saveTikshurimNote(name, tik, note, tikId) {
         date: dateString
     });
 
-    return docRef;
+    return {
+        id: docRef.id,
+        name,
+        note,
+        date: dateString
+    };
 }
+
 
