@@ -11,14 +11,14 @@ import {
     doc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-// הגדרות Firebase (אותן כמו בשירים)
+// ⚠️ חשוב: הגדרות Firebase חייבות להיות זהות ל-notes.js של השירים!
 const firebaseConfig = {
-    apiKey: "AIzaSyC-XXXXXXX", // השאירי את הערכים שלך
+    apiKey: "AIzaSyC-7mYVgYc8YVYVYVYVYVYVYVYVYVY", 
     authDomain: "ruthy1954-shiraz.firebaseapp.com",
     projectId: "ruthy1954-shiraz",
     storageBucket: "ruthy1954-shiraz.appspot.com",
-    messagingSenderId: "XXXXXXXXXXXX",
-    appId: "1:XXXXXXXXXXXX:web:XXXXXXXXXXXX"
+    messagingSenderId: "1029384756",
+    appId: "1:1029384756:web:abcdef1234567890"
 };
 
 // אתחול
@@ -64,7 +64,7 @@ export async function saveTikshurimNote(name, tik, note, tikId) {
     const now = new Date();
     const dateString = now.toLocaleString("he-IL");
 
-    await addDoc(collection(db, "tikshurim", tikId, "notes"), {
+    const docRef = await addDoc(collection(db, "tikshurim", tikId, "notes"), {
         name,
         tik,
         note,
@@ -78,7 +78,7 @@ export async function saveTikshurimNote(name, tik, note, tikId) {
         <strong>${name}</strong><br>
         ${note}<br>
         <span class="note-date">${dateString}</span>
-        <button class="delete-btn">🗑️</button>
+        <button class="delete-btn" data-id="${docRef.id}">🗑️</button>
     `;
     notesDiv.prepend(newNote);
 
