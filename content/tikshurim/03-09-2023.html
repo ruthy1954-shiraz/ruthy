@@ -97,8 +97,11 @@
         </div>
     </div>
 
+    <!-- כפתור פתיחה/סגירה -->
+    <button class="toggle-notes">הערות והארות</button>
+
     <!-- תיבת הערות -->
-    <div class="notes-box">
+    <div class="notes-box hidden">
         <h3>כתיבת הערות והארות</h3>
 
         <input id="userName" placeholder="השם שלכם..." />
@@ -143,55 +146,72 @@ document.addEventListener("DOMContentLoaded", function() {
 <!-- מערכת ההערות + וואטסאפ -->
 <script type="module">
 import { initTikshurimNotes, saveTikshurimNote } from "./notes-tikshurim.js";
-    initTikshurimNotes(songId);
 
-    const waLink = document.getElementById("waLink");
-    const saveLink = document.getElementById("saveLink");
+initTikshurimNotes(songId);
 
-    const phone = "972545305123";
+const waLink = document.getElementById("waLink");
+const saveLink = document.getElementById("saveLink");
 
-    /* שליחת הערה בווצאפ */
-    waLink.addEventListener("click", function() {
-        const name = document.getElementById("userName").value.trim();
-        const song = document.getElementById("userSong").value.trim();
-        const note = document.getElementById("userNote").value.trim();
+const phone = "972545305123";
 
-        const now = new Date();
-        const dateString = now.toLocaleString("he-IL");
+/* שליחת הערה בווצאפ */
+waLink.addEventListener("click", function() {
+    const name = document.getElementById("userName").value.trim();
+    const tik = document.getElementById("userSong").value.trim();
+    const note = document.getElementById("userNote").value.trim();
 
-        const message =
-            `שם הכותב: ${name}\n` +
-            `תקשור: ${song}\n` +
-            `הערה: ${note}\n` +
-            `תאריך: ${dateString}`;
+    const now = new Date();
+    const dateString = now.toLocaleString("he-IL");
 
-        const encoded = encodeURIComponent(message);
-        window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
+    const message =
+        `שם הכותב: ${name}\n` +
+        `תקשור: ${tik}\n` +
+        `הערה: ${note}\n` +
+        `תאריך: ${dateString}`;
+
+    const encoded = encodeURIComponent(message);
+    window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
+});
+
+/* שמירת הערה בענן */
+saveLink.addEventListener("click", async function() {
+    const name = document.getElementById("userName").value.trim();
+    const tik = document.getElementById("userSong").value.trim();
+    const note = document.getElementById("userNote").value.trim();
+
+    await saveTikshurimNote(name, tik, note, songId);
+
+    const now = new Date();
+    const dateString = now.toLocaleString("he-IL");
+
+    const notesDiv = document.getElementById("notes");
+    const newNote = document.createElement("div");
+    newNote.className = "note-card";
+    newNote.innerHTML = `
+        <strong>${name}</strong><br>
+        ${note}<br>
+        <span class="note-date">${dateString}</span>
+    `;
+    notesDiv.prepend(newNote);
+
+    document.getElementById("userNote").value = "";
+});
+</script>
+
+<!-- פתיחה/סגירה של תיבת הערות -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const toggleBtn = document.querySelector(".toggle-notes");
+    const notesBox = document.querySelector(".notes-box");
+
+    toggleBtn.addEventListener("click", () => {
+        notesBox.classList.toggle("hidden");
+
+        toggleBtn.textContent = notesBox.classList.contains("hidden")
+            ? "הערות והארות"
+            : "הסתרת הערות";
     });
-
-    /* שמירת הערה בענן */
-    saveLink.addEventListener("click", async function() {
-        const name = document.getElementById("userName").value.trim();
-        const song = document.getElementById("userSong").value.trim();
-        const note = document.getElementById("userNote").value.trim();
-
-        await saveNoteToFirestore(name, song, note, songId);
-
-        const now = new Date();
-        const dateString = now.toLocaleString("he-IL");
-
-        const notesDiv = document.getElementById("notes");
-        const newNote = document.createElement("div");
-        newNote.className = "note-card";
-        newNote.innerHTML = `
-            <strong>${name}</strong><br>
-            ${note}<br>
-            <span class="note-date">${dateString}</span>
-        `;
-        notesDiv.prepend(newNote);
-
-        document.getElementById("userNote").value = "";
-    });
+});
 </script>
 
 <!-- עיצוב -->
@@ -227,9 +247,50 @@ import { initTikshurimNotes, saveTikshurimNote } from "./notes-tikshurim.js";
 .more-link:hover {
     color: #a86cd1;
 }
+
+/* כרטיסי הערות */
+.note-card {
+    background: #f8f2ff;
+    border-right: 4px solid #d3b8ff;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.note-date {
+    font-size: 13px;
+    color: #6a4a8a;
+}
+
+/* פתיחה/סגירה */
+.hidden {
+    display: none !important;
+}
+
+.toggle-notes {
+    display: block;
+    margin: 20px auto;
+    background-color: #f2e6ff;
+    border: 1px solid #d3b8ff;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    color: #4a2c6b;
+    width: 200px;
+    text-align: center;
+    transition: 0.2s;
+}
+.toggle-notes:hover {
+    background-color: #e8d6ff;
+}
 </style>
 
 </body>
 </html>
+
 
 
