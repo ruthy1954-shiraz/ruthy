@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>תקשור 03-09-2023</title>
+    <link rel="stylesheet" href="tikshurim.css">
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <h1 class="tik-title">אזהרת מלחמה</h1>
+    <h3 class="tik-subtitle">03-09-2023</h3>
+
+    <!-- תמונת האלה -->
+    <div class="haela-center">
+        <img src="images/or_haela.jpeg" alt="אור האלה" class="haela-img">
+    </div>
+
+    <!-- תקשור קצר -->
+    <div class="tik-box">
+        <p>
+            כאן אור האלה ממלכת האור האלוהי, לשאלתך האם תפרוץ מלחמה עם חיזבלה וחמס?
+            ובכלל כיצד אנחנו רואים את עתידה ומעמדה של מדינת ישראל?
+            <br><br>
+            ממשלת נתניהו תעשה הכול כדי להבעיר אש...
+        </p>
+
+        <!-- שלוש נקודות -->
+        <a id="moreBtn" class="more-link">...</a>
+
+        <!-- המשך התקשור -->
+        <div id="moreText" style="display:none; margin-top:15px;">
+            <p>
+                <!-- כאן מדביקים את כל הטקסט הארוך שלך בדיוק כפי שהוא -->
+            </p>
+        </div>
+    </div>
+
+    <!-- ⭐ מערכת הערות נטענת מקובץ בסיס -->
+    <div id="notes-placeholder"></div>
+
+    <!-- ניווט -->
+    <div class="footer-nav">
+        <a href="../../index.html">דף ראשי</a> |
+        <a href="tikshurim-list.html">חזרה לרשימת התקשורים</a>
+    </div>
+
+</div>
+
+<!-- מזהה ייחודי לתקשור -->
+<script>
+    window.songId = "tik_03_09_2023";
+</script>
+
+<!-- פתיחת ההמשך -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const btn = document.getElementById("moreBtn");
+    const more = document.getElementById("moreText");
+
+    btn.addEventListener("click", function() {
+        more.style.display = "block";
+        btn.style.display = "none";
+    });
+});
+</script>
+
+<!-- טעינת מערכת ההערות החדשה -->
+<script>
+fetch("../components/notesBase.html")
+    .then(res => res.text())
+    .then(html => {
+        document.getElementById("notes-placeholder").innerHTML = html;
+
+        // הכנסת שם התקשור אוטומטית
+        document.getElementById("userSong").value =
+            document.querySelector(".tik-title").textContent.trim();
+    });
+</script>
+
+</body>
+</html>
