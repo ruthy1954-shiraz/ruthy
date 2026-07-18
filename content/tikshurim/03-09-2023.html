@@ -190,6 +190,15 @@ saveLink.addEventListener("click", async function() {
             <span class="note-date">${saved.date}</span>
             <button class="delete-btn" data-id="${saved.id}">✖</button>
         `;
+        document.getElementById("notes").addEventListener("click", async (e) => {
+    if (e.target.classList.contains("delete-btn")) {
+        const id = e.target.getAttribute("data-id");
+        const deleted = await deleteTikshurimNote(id, songId);
+        if (deleted) {
+            e.target.closest(".note-card").remove();
+        }
+    }
+});
         document.getElementById("notes").prepend(card);
     }
 
