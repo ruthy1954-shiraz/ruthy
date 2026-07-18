@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>תקשור 03-09-2023</title>
+    <title>תקשור 03-09-2026</title>
     <link rel="stylesheet" href="tikshurim.css">
 </head>
 
@@ -12,12 +12,14 @@
 <div class="wrapper">
 
     <h1 class="tik-title">אזהרת מלחמה</h1>
-    <h3 class="tik-subtitle">03-09-2023</h3>
+    <h3 class="tik-subtitle">03-09-2026</h3>
 
+    <!-- תמונת האלה -->
     <div class="haela-center">
         <img src="images/or_haela.jpeg" alt="אור האלה" class="haela-img">
     </div>
 
+    <!-- תקשור קצר -->
     <div class="tik-box">
         <p>
             כאן אור האלה ממלכת האור האלוהי, לשאלתך האם תפרוץ מלחמה עם חיזבלה וחמס?
@@ -26,8 +28,10 @@
             ממשלת נתניהו תעשה הכול כדי להבעיר אש...
         </p>
 
+        <!-- שלוש נקודות -->
         <a id="moreBtn" class="more-link">...</a>
 
+        <!-- המשך התקשור -->
         <div id="moreText" style="display:none; margin-top:15px;">
             <p>
                 הוא מאמין בחסות האש הוא ימלט מאחריות וממשפטו. בנימין נתניהו יודע שזה יהיה הרגע שכל הכוחות העם יתאחדו והפגנות יפסקו.
@@ -113,6 +117,7 @@
         <div id="notes"></div>
     </div>
 
+    <!-- ניווט -->
     <div class="footer-nav">
         <a href="../../index.html">דף ראשי</a> |
         <a href="tikshurim-list.html">חזרה לרשימת התקשורים</a>
@@ -120,20 +125,61 @@
 
 </div>
 
-<!-- ⭐ מערכת הערות Firebase -->
+<!-- מזהה ייחודי לתקשור -->
+<script>
+    var songId = "tik_03_09_2026";
+</script>
+
+<!-- פתיחת ההמשך -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const btn = document.getElementById("moreBtn");
+    const more = document.getElementById("moreText");
+
+    btn.addEventListener("click", function() {
+        more.style.display = "block";
+        btn.style.display = "none";
+    });
+});
+</script>
+
+<!-- מערכת ההערות + וואטסאפ -->
 <script type="module">
-import { initTikshurimNotes, saveTikshurimNote } from "./notes-tikshurim.js?v=1";
+import { initTikshurimNotes, saveTikshurimNote } from "./notes-tikshurim.js?v=5";
 
-const tikId = "03-09-2023.html"; // מזהה התקשור ב-Firestore
+initTikshurimNotes(songId);
 
-initTikshurimNotes(tikId);
+const waLink = document.getElementById("waLink");
+const saveLink = document.getElementById("saveLink");
 
-document.getElementById("saveLink").addEventListener("click", async () => {
+const phone = "972545305123";
+
+/* שליחת הערה בווצאפ */
+waLink.addEventListener("click", function() {
     const name = document.getElementById("userName").value.trim();
     const tik = document.getElementById("userSong").value.trim();
     const note = document.getElementById("userNote").value.trim();
 
-    const saved = await saveTikshurimNote(name, tik, note, tikId);
+    const now = new Date();
+    const dateString = now.toLocaleString("he-IL");
+
+    const message =
+        `שם הכותב: ${name}\n` +
+        `תקשור: ${tik}\n` +
+        `הערה: ${note}\n` +
+        `תאריך: ${dateString}`;
+
+    const encoded = encodeURIComponent(message);
+    window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
+});
+
+/* שמירת הערה בענן */
+saveLink.addEventListener("click", async function() {
+    const name = document.getElementById("userName").value.trim();
+    const tik = document.getElementById("userSong").value.trim();
+    const note = document.getElementById("userNote").value.trim();
+
+    const saved = await saveTikshurimNote(name, tik, note, songId);
 
     if (saved) {
         const card = document.createElement("div");
@@ -151,7 +197,7 @@ document.getElementById("saveLink").addEventListener("click", async () => {
 });
 </script>
 
-<!-- ⭐ פתיחה/סגירה של תיבת הערות -->
+<!-- פתיחה/סגירה של תיבת הערות -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
     const toggleBtn = document.querySelector(".toggle-notes");
@@ -159,6 +205,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     toggleBtn.addEventListener("click", () => {
         notesBox.classList.toggle("hidden");
+
         toggleBtn.textContent = notesBox.classList.contains("hidden")
             ? "הערות והארות"
             : "הסתרת הערות";
@@ -166,8 +213,93 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
+<!-- עיצוב -->
+<style>
+.wrapper {
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.haela-center {
+    text-align: center;
+}
+
+.haela-img {
+    display: block;
+    margin: 0 auto;
+}
+
+.tik-box {
+    text-align: right;
+    margin: 0 auto;
+}
+
+.more-link {
+    cursor: pointer;
+    font-size: 28px;
+    color: #7a4ba0;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 10px;
+}
+.more-link:hover {
+    color: #a86cd1;
+}
+
+.note-card {
+    background: #f8f2ff;
+    border-right: 4px solid #d3b8ff;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.note-date {
+    font-size: 13px;
+    color: #6a4a8a;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.toggle-notes {
+    display: block;
+    margin: 20px auto;
+    background-color: #f2e6ff;
+    border: 1px solid #d3b8ff;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    color: #4a2c6b;
+    width: 200px;
+    text-align: center;
+    transition: 0.2s;
+}
+.toggle-notes:hover {
+    background-color: #e8d6ff;
+}
+</style>
+...
+</style>
+
+<script type="module" src="./notes-tikshurim.js?v=6"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
 
 
 
