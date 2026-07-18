@@ -68,9 +68,9 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 
-<!-- ⭐ טעינת notesBase.html מתוך תיקיית tikshurim -->
+<!-- ⭐ טעינת notesBase.html מתוך תיקיית content -->
 <script>
-fetch("notesBase.html")
+fetch("/ruthy/content/notesBase.html")
     .then(res => res.text())
     .then(html => {
         document.getElementById("notes-placeholder").innerHTML = html;
@@ -83,13 +83,3 @@ fetch("notesBase.html")
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
