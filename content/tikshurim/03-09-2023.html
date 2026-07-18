@@ -14,12 +14,10 @@
     <h1 class="tik-title">אזהרת מלחמה</h1>
     <h3 class="tik-subtitle">03-09-2026</h3>
 
-    <!-- תמונת האלה -->
     <div class="haela-center">
         <img src="images/or_haela.jpeg" alt="אור האלה" class="haela-img">
     </div>
 
-    <!-- תקשור קצר -->
     <div class="tik-box">
         <p>
             כאן אור האלה ממלכת האור האלוהי, לשאלתך האם תפרוץ מלחמה עם חיזבלה וחמס?
@@ -28,10 +26,8 @@
             ממשלת נתניהו תעשה הכול כדי להבעיר אש...
         </p>
 
-        <!-- שלוש נקודות -->
         <a id="moreBtn" class="more-link">...</a>
 
-        <!-- המשך התקשור -->
         <div id="moreText" style="display:none; margin-top:15px;">
             <p>
                 הוא מאמין בחסות האש הוא ימלט מאחריות וממשפטו. בנימין נתניהו יודע שזה יהיה הרגע שכל הכוחות העם יתאחדו והפגנות יפסקו.
@@ -117,7 +113,6 @@
         <div id="notes"></div>
     </div>
 
-    <!-- ניווט -->
     <div class="footer-nav">
         <a href="../../index.html">דף ראשי</a> |
         <a href="tikshurim-list.html">חזרה לרשימת התקשורים</a>
@@ -125,12 +120,10 @@
 
 </div>
 
-<!-- מזהה ייחודי לתקשור -->
 <script>
     var songId = "tik_03_09_2026";
 </script>
 
-<!-- פתיחת ההמשך -->
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     const btn = document.getElementById("moreBtn");
@@ -143,19 +136,12 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 
-<!-- מערכת ההערות + וואטסאפ -->
-<script type="module">
-import { initTikshurimNotes, saveTikshurimNote } from "./notes-tikshurim.js?v=5";
-
-initTikshurimNotes(songId);
-
-const waLink = document.getElementById("waLink");
-const saveLink = document.getElementById("saveLink");
-
+<!-- ⭐ מערכת הערות — הפורמט הישן -->
+<script>
 const phone = "972545305123";
 
 /* שליחת הערה בווצאפ */
-waLink.addEventListener("click", function() {
+document.getElementById("waLink").addEventListener("click", function() {
     const name = document.getElementById("userName").value.trim();
     const tik = document.getElementById("userSong").value.trim();
     const note = document.getElementById("userNote").value.trim();
@@ -173,32 +159,63 @@ waLink.addEventListener("click", function() {
     window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
 });
 
-/* שמירת הערה בענן */
-saveLink.addEventListener("click", async function() {
+/* שמירת הערה בלוקאל סטורג' */
+document.getElementById("saveLink").addEventListener("click", function() {
     const name = document.getElementById("userName").value.trim();
     const tik = document.getElementById("userSong").value.trim();
     const note = document.getElementById("userNote").value.trim();
 
-    const saved = await saveTikshurimNote(name, tik, note, songId);
+    if (!note) return;
 
-    if (saved) {
-        const card = document.createElement("div");
-        card.className = "note-card";
-        card.innerHTML = `
-            <strong>${saved.name}</strong><br>
-            ${saved.note}<br>
-            <span class="note-date">${saved.date}</span>
-            <button class="delete-btn" data-id="${saved.id}">✖</button>
-        `;
-        document.getElementById("notes").prepend(card);
-    }
+    const now = new Date();
+    const savedNote = {
+        id: Date.now(),
+        name,
+        tik,
+        note,
+        date: now.toLocaleString("he-IL")
+    };
 
+    let notes = JSON.parse(localStorage.getItem(songId) || "[]");
+    notes.unshift(savedNote);
+    localStorage.setItem(songId, JSON.stringify(notes));
+
+    addNoteToPage(savedNote);
     document.getElementById("userNote").value = "";
 });
-</script>
 
-<!-- פתיחה/סגירה של תיבת הערות -->
-<script>
+/* הצגת הערות קיימות */
+document.addEventListener("DOMContentLoaded", function() {
+    let notes = JSON.parse(localStorage.getItem(songId) || "[]");
+    notes.forEach(addNoteToPage);
+});
+
+/* פונקציה להוספת הערה לדף */
+function addNoteToPage(saved) {
+    const card = document.createElement("div");
+    card.className = "note-card";
+    card.innerHTML = `
+        <strong>${saved.name}</strong><br>
+        ${saved.note}<br>
+        <span class="note-date">${saved.date}</span>
+        <button class="delete-btn" data-id="${saved.id}">✖</button>
+    `;
+    document.getElementById("notes").prepend(card);
+
+    card.querySelector(".delete-btn").addEventListener("click", function() {
+        deleteNote(saved.id);
+        card.remove();
+    });
+}
+
+/* מחיקת הערה */
+function deleteNote(id) {
+    let notes = JSON.parse(localStorage.getItem(songId) || "[]");
+    notes = notes.filter(n => n.id !== id);
+    localStorage.setItem(songId, JSON.stringify(notes));
+}
+
+/* פתיחה/סגירה של תיבת הערות */
 document.addEventListener("DOMContentLoaded", () => {
     const toggleBtn = document.querySelector(".toggle-notes");
     const notesBox = document.querySelector(".notes-box");
@@ -213,84 +230,9 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
-<!-- עיצוב -->
-<style>
-.wrapper {
-    max-width: 650px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-.haela-center {
-    text-align: center;
-}
-
-.haela-img {
-    display: block;
-    margin: 0 auto;
-}
-
-.tik-box {
-    text-align: right;
-    margin: 0 auto;
-}
-
-.more-link {
-    cursor: pointer;
-    font-size: 28px;
-    color: #7a4ba0;
-    font-weight: bold;
-    display: inline-block;
-    margin-top: 10px;
-}
-.more-link:hover {
-    color: #a86cd1;
-}
-
-.note-card {
-    background: #f8f2ff;
-    border-right: 4px solid #d3b8ff;
-    padding: 12px;
-    margin: 10px 0;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-    font-size: 16px;
-    line-height: 1.6;
-}
-
-.note-date {
-    font-size: 13px;
-    color: #6a4a8a;
-}
-
-.hidden {
-    display: none !important;
-}
-
-.toggle-notes {
-    display: block;
-    margin: 20px auto;
-    background-color: #f2e6ff;
-    border: 1px solid #d3b8ff;
-    padding: 10px 15px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 18px;
-    color: #4a2c6b;
-    width: 200px;
-    text-align: center;
-    transition: 0.2s;
-}
-.toggle-notes:hover {
-    background-color: #e8d6ff;
-}
-</style>
-...
-</style>
-
-<script type="module" src="./notes-tikshurim.js?v=6"></script>
 </body>
 </html>
+
 
 
 
