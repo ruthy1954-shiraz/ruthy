@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>תקשור 03-09-2026</title>
+    <title>תקשור 03-09-2023</title>
     <link rel="stylesheet" href="tikshurim.css">
 </head>
 
@@ -12,7 +12,7 @@
 <div class="wrapper">
 
     <h1 class="tik-title">אזהרת מלחמה</h1>
-    <h3 class="tik-subtitle">03-09-2026</h3>
+    <h3 class="tik-subtitle">03-09-2023</h3>
 
     <div class="haela-center">
         <img src="images/or_haela.jpeg" alt="אור האלה" class="haela-img">
@@ -120,109 +120,45 @@
 
 </div>
 
-<script>
-    var songId = "tik_03_09_2026";
-</script>
+<!-- ⭐ מערכת הערות Firebase -->
+<script type="module">
+import { initTikshurimNotes, saveTikshurimNote } from "./notes-tikshurim.js?v=1";
 
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    const btn = document.getElementById("moreBtn");
-    const more = document.getElementById("moreText");
+const tikId = "03-09-2023.html"; // מזהה התקשור ב-Firestore
 
-    btn.addEventListener("click", function() {
-        more.style.display = "block";
-        btn.style.display = "none";
-    });
-});
-</script>
+initTikshurimNotes(tikId);
 
-<!-- ⭐ מערכת הערות — הפורמט הישן -->
-<script>
-const phone = "972545305123";
-
-/* שליחת הערה בווצאפ */
-document.getElementById("waLink").addEventListener("click", function() {
+document.getElementById("saveLink").addEventListener("click", async () => {
     const name = document.getElementById("userName").value.trim();
     const tik = document.getElementById("userSong").value.trim();
     const note = document.getElementById("userNote").value.trim();
 
-    const now = new Date();
-    const dateString = now.toLocaleString("he-IL");
+    const saved = await saveTikshurimNote(name, tik, note, tikId);
 
-    const message =
-        `שם הכותב: ${name}\n` +
-        `תקשור: ${tik}\n` +
-        `הערה: ${note}\n` +
-        `תאריך: ${dateString}`;
+    if (saved) {
+        const card = document.createElement("div");
+        card.className = "note-card";
+        card.innerHTML = `
+            <strong>${saved.name}</strong><br>
+            ${saved.note}<br>
+            <span class="note-date">${saved.date}</span>
+            <button class="delete-btn" data-id="${saved.id}">✖</button>
+        `;
+        document.getElementById("notes").prepend(card);
+    }
 
-    const encoded = encodeURIComponent(message);
-    window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
-});
-
-/* שמירת הערה בלוקאל סטורג' */
-document.getElementById("saveLink").addEventListener("click", function() {
-    const name = document.getElementById("userName").value.trim();
-    const tik = document.getElementById("userSong").value.trim();
-    const note = document.getElementById("userNote").value.trim();
-
-    if (!note) return;
-
-    const now = new Date();
-    const savedNote = {
-        id: Date.now(),
-        name,
-        tik,
-        note,
-        date: now.toLocaleString("he-IL")
-    };
-
-    let notes = JSON.parse(localStorage.getItem(songId) || "[]");
-    notes.unshift(savedNote);
-    localStorage.setItem(songId, JSON.stringify(notes));
-
-    addNoteToPage(savedNote);
     document.getElementById("userNote").value = "";
 });
+</script>
 
-/* הצגת הערות קיימות */
-document.addEventListener("DOMContentLoaded", function() {
-    let notes = JSON.parse(localStorage.getItem(songId) || "[]");
-    notes.forEach(addNoteToPage);
-});
-
-/* פונקציה להוספת הערה לדף */
-function addNoteToPage(saved) {
-    const card = document.createElement("div");
-    card.className = "note-card";
-    card.innerHTML = `
-        <strong>${saved.name}</strong><br>
-        ${saved.note}<br>
-        <span class="note-date">${saved.date}</span>
-        <button class="delete-btn" data-id="${saved.id}">✖</button>
-    `;
-    document.getElementById("notes").prepend(card);
-
-    card.querySelector(".delete-btn").addEventListener("click", function() {
-        deleteNote(saved.id);
-        card.remove();
-    });
-}
-
-/* מחיקת הערה */
-function deleteNote(id) {
-    let notes = JSON.parse(localStorage.getItem(songId) || "[]");
-    notes = notes.filter(n => n.id !== id);
-    localStorage.setItem(songId, JSON.stringify(notes));
-}
-
-/* פתיחה/סגירה של תיבת הערות */
+<!-- ⭐ פתיחה/סגירה של תיבת הערות -->
+<script>
 document.addEventListener("DOMContentLoaded", () => {
     const toggleBtn = document.querySelector(".toggle-notes");
     const notesBox = document.querySelector(".notes-box");
 
     toggleBtn.addEventListener("click", () => {
         notesBox.classList.toggle("hidden");
-
         toggleBtn.textContent = notesBox.classList.contains("hidden")
             ? "הערות והארות"
             : "הסתרת הערות";
