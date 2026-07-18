@@ -1,0 +1,61 @@
+<div id="notes-section">
+    <h3>הערות קוראים שנשמרו:</h3>
+    <div id="notes"></div>
+
+    <button class="toggle-notes">הערות והארות</button>
+
+    <div class="notes-box hidden">
+        <h3>כתיבת הערות והארות</h3>
+
+        <input id="userName" placeholder="השם שלכם..." />
+        <input id="userSong" placeholder="שם התקשור..." />
+        <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על התקשור..."></textarea>
+
+        <div class="footer-nav" style="margin-top:15px;">
+            <a id="waLink">ווצאפ לכותבת</a> |
+            <a id="saveLink">שמירת הערה</a>
+        </div>
+    </div>
+</div>
+
+<script type="module">
+    import { initTikshurimNotes, saveTikshurimNote } from "../tikshurim/notes-tikshurim.js";
+
+    initTikshurimNotes(window.songId);
+
+    const waLink = document.getElementById("waLink");
+    const saveLink = document.getElementById("saveLink");
+    const phone = "972545305123";
+
+    waLink.addEventListener("click", () => {
+        const name = document.getElementById("userName").value.trim();
+        const song = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
+
+        const message = `שם הכותב: ${name}\nתקשור: ${song}\nהערה: ${note}`;
+        const encoded = encodeURIComponent(message);
+        window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
+    });
+
+    saveLink.addEventListener("click", async () => {
+        const name = document.getElementById("userName").value.trim();
+        const song = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
+
+        await saveTikshurimNote(name, song, note, window.songId);
+        document.getElementById("notes").innerHTML = "";
+        initTikshurimNotes(window.songId);
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const toggleBtn = document.querySelector(".toggle-notes");
+        const notesBox = document.querySelector(".notes-box");
+
+        toggleBtn.addEventListener("click", () => {
+            notesBox.classList.toggle("hidden");
+            toggleBtn.textContent = notesBox.classList.contains("hidden")
+                ? "הערות והארות"
+                : "הסתרת הערות";
+        });
+    });
+</script>
