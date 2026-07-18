@@ -1,5 +1,5 @@
 // notes-tikshurim.js
-// מערכת הערות לתקשורים — גרסה חדשה, יציבה ומהירה
+// מערכת הערות לתקשורים — גרסה מאוחדת, יציבה ומהירה
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import {
@@ -11,7 +11,7 @@ import {
     doc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-// הגדרות Firebase (זהות לשירים)
+// ⭐ הגדרות Firebase
 const firebaseConfig = {
     apiKey: "AIzaSyC-7mYVgYc8YVYVYVYVYVYVYVYVYVY",
     authDomain: "ruthy1954-shiraz.firebaseapp.com",
@@ -21,9 +21,9 @@ const firebaseConfig = {
     appId: "1:1029384756:web:abcdef1234567890"
 };
 
-// אתחול
+// ⭐ אתחול Firebase
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+export const db = getFirestore(app);
 
 // ⭐ יצירת כרטיס הערה
 function createNoteCard(id, name, note, date) {
@@ -45,22 +45,33 @@ export async function initTikshurimNotes(tikId) {
     const notesDiv = document.getElementById("notes");
     notesDiv.innerHTML = "";
 
-    const snap = await getDocs(collection(db, "tikshurim", tikId, "notes"));
+    try {
+        const snap = await getDocs(collection(db, "tikshurim", tikId, "notes"));
 
-    snap.forEach((docSnap) => {
-        const data = docSnap.data();
-        const card = createNoteCard(docSnap.id, data.name, data.note, data.date);
-        notesDiv.prepend(card);
-    });
+        snap.forEach((docSnap) => {
+            const data = docSnap.data();
+            const card = createNoteCard(docSnap.id, data.name, data.note, data.date);
+            notesDiv.prepend(card);
+        });
+
+    } catch (error) {
+        console.error("שגיאה בטעינת הערות:", error);
+        alert("לא ניתן לטעון את ההערות כרגע.");
+    }
 
     // ⭐ מחיקה
     notesDiv.addEventListener("click", async (e) => {
         if (!e.target.classList.contains("delete-btn")) return;
 
         const id = e.target.getAttribute("data-id");
-        await deleteDoc(doc(db, "tikshurim", tikId, "notes", id));
 
-        e.target.parentElement.remove();
+        try {
+            await deleteDoc(doc(db, "tikshurim", tikId, "notes", id));
+            e.target.closest(".note-card").remove();
+        } catch (error) {
+            console.error("שגיאה במחיקה:", error);
+            alert("לא ניתן למחוק את ההערה כרגע.");
+        }
     });
 }
 
@@ -74,19 +85,25 @@ export async function saveTikshurimNote(name, tik, note, tikId) {
     const now = new Date();
     const dateString = now.toLocaleString("he-IL");
 
-    const docRef = await addDoc(collection(db, "tikshurim", tikId, "notes"), {
-        name,
-        tik,
-        note,
-        date: dateString
-    });
+    try {
+        const docRef = await addDoc(collection(db, "tikshurim", tikId, "notes"), {
+            name,
+            tik,
+            note,
+            date: dateString
+        });
 
-    return {
-        id: docRef.id,
-        name,
-        note,
-        date: dateString
-    };
+        return {
+            id: docRef.id,
+            name,
+            note,
+            date: dateString
+        };
+
+    } catch (error) {
+        console.error("שגיאה בשמירה:", error);
+        alert("לא ניתן לשמור את ההערה כרגע.");
+        return null;
+    }
 }
-
 
