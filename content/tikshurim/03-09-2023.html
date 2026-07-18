@@ -34,13 +34,88 @@
         <!-- המשך התקשור -->
         <div id="moreText" style="display:none; margin-top:15px;">
             <p>
-                <!-- ⭐ כאן מדביקים את כל הטקסט הארוך שלך בדיוק כפי שהוא -->
+                הוא מאמין בחסות האש הוא ימלט מאחריות וממשפטו. בנימין נתניהו יודע שזה יהיה הרגע שכל הכוחות העם יתאחדו והפגנות יפסקו.
+                <br><br>
+                או אז הוא יהיה המנהיג שיציל את עמו.
+                <br><br>
+                הפעם עומדים מנגד מנהיגים מפוקחים בעלי ניסיון מר מהעבר שלא ישחקו לידיו.
+                <br><br>
+                בעוד כ‑60 יום יקרה מקרה שהממשלה של נתניהו לא תוכל לה והיא תתפרק באחת.
+                <br><br>
+                ישראל תלך לבחירות.
+                <br><br>
+                כל הקלפים יתהפכו, הכול יראה וידובר.
+                <br><br>
+                מדינת ישראל תעבור תקופה קשה של אי ודאות, מצב כלכלי קשה ובעיקר ועדות חקירה נוקבות וקשות.
+                <br><br>
+                בגדול חשבון נפש מעמיק וכואב.
+                <br><br>
+                אנשי המחאה ייקחו את ההגה.
+                ימים לא פשוטים מחכים לכם.
+                <br><br>
+                יהיו הפגנות של אוהדי נתניהו.
+                יהיו מעצרים ומשפטי למארגני המהפכה המשטרית.
+                <br><br>
+                בנימין נתניהו יכנס לכלא שם יקבל התקף לב קשה, יסבול וילך לעולמו.
+                <br><br>
+                בתקופה קשה זו, היהדות הדתית והחרדים יעמדו מנגד, יתפללו שהמצב יחזור לקדמותו. אך לא יעשו דבר.
+                <br><br>
+                בסוף התהליך הקשה שתעברו, היהדות תחזור למקורות התורה ללא פרשנויות של דורות.
+                <br><br>
+                שנת 2024 תהיה שנה של מהפכות גדולות בתפיסה הלאומית והעולמית.
+                יקומו התארגנויות ספונטניות של חיבורים בין קוטבי העם.
+                <br><br>
+                ההבנה תהיה ברורה — גלות או התגלות.
+                מדינת ישראל תתגלה במלוא גדולתה.
+                <br><br>
+                יהדות הגולה תתמוך במלוא היכולת הכלכלית והמורלית כדי לתמוך בחזרתה של ישראל למסלול הצמיחה.
+                <br><br>
+                העולם יקבל השראה והרבה אור מציון.
+                <br><br>
+                שנת 2025 תהיה שנה של התחלת היציאה מהמשבר העמוק שישראל נקלעה אליו.
+                <br><br>
+                לגבי אויבי ישראל — האור הגדול של ישראל יעורר את עמי האזור לחופש ולאחווה.
+                אהבה ורעות יהיו הנשק החדש של ישראל.
+                מציון תצא הבשורה.
+                <br><br>
+                "וכיתתו חרבותם לאיתם וחניתותיהם למזמרות, לא ישא גוי אל גוי חרב ולא ילמדו עוד מלחמה".
+                <br><br>
+                2026 תהיה שנה של התגלות, גאולה וצמיחה.
+                האנושות תהיה סבלנית ואוהבת לכל יצירותיו של האלוהים.
+                <br><br>
+                2027 לא יהיו עוד גידולי בקר, עופות וכל חי.
+                למדע פתרונות אנושיים אשר יזינו את האנושות.
+                <br><br>
+                זו תהיה שנה של שלווה ושלום.
+                <br><br>
+                לסיכום — העולם יצא ממשבר הרבה יותר חכם, אנושי ומבין.
+                <br><br>
+                כאן אור האלה וכל המדריכים ממלכת האור האלוהי מברכים אתכם בתקווה ואמונה!
+                יהיה טוב — כבר טוב.
+                חיו בשלום עם עצמכם, בני ביתכם, עמכם והעולם!
             </p>
         </div>
     </div>
 
-    <!-- ⭐ מערכת הערות החדשה -->
-    <div id="notes-placeholder"></div>
+    <!-- כפתור פתיחה/סגירה -->
+    <button class="toggle-notes">הערות והארות</button>
+
+    <!-- תיבת הערות -->
+    <div class="notes-box hidden">
+        <h3>כתיבת הערות והארות</h3>
+
+        <input id="userName" placeholder="השם שלכם..." />
+        <input id="userSong" placeholder="שם התקשור..." value="אזהרת מלחמה" />
+        <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על התקשור..."></textarea>
+
+        <div class="footer-nav" style="margin-top:15px;">
+            <a id="waLink">ווצאפ לכותבת</a> |
+            <a id="saveLink">שמירת הערה</a>
+        </div>
+
+        <h4>הערות קוראים שנשמרו:</h4>
+        <div id="notes"></div>
+    </div>
 
     <!-- ניווט -->
     <div class="footer-nav">
@@ -52,7 +127,7 @@
 
 <!-- מזהה ייחודי לתקשור -->
 <script>
-    window.songId = "tik_03_09_2026";
+    var songId = "tik_03_09_2026";
 </script>
 
 <!-- פתיחת ההמשך -->
@@ -68,18 +143,160 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 
-<!-- ⭐ טעינת notesBase.html מתוך תיקיית content -->
-<script>
-fetch("/ruthy/content/notesBase.html")
-    .then(res => res.text())
-    .then(html => {
-        document.getElementById("notes-placeholder").innerHTML = html;
+<!-- מערכת ההערות + וואטסאפ -->
+<script type="module">
+import { initTikshurimNotes, saveTikshurimNote } from "./notes-tikshurim.js?v=5";
 
-        // הכנסת שם התקשור אוטומטית
-        document.getElementById("userSong").value =
-            document.querySelector(".tik-title").textContent.trim();
-    });
+initTikshurimNotes(songId);
+
+const waLink = document.getElementById("waLink");
+const saveLink = document.getElementById("saveLink");
+
+const phone = "972545305123";
+
+/* שליחת הערה בווצאפ */
+waLink.addEventListener("click", function() {
+    const name = document.getElementById("userName").value.trim();
+    const tik = document.getElementById("userSong").value.trim();
+    const note = document.getElementById("userNote").value.trim();
+
+    const now = new Date();
+    const dateString = now.toLocaleString("he-IL");
+
+    const message =
+        `שם הכותב: ${name}\n` +
+        `תקשור: ${tik}\n` +
+        `הערה: ${note}\n` +
+        `תאריך: ${dateString}`;
+
+    const encoded = encodeURIComponent(message);
+    window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
+});
+
+/* שמירת הערה בענן */
+saveLink.addEventListener("click", async function() {
+    const name = document.getElementById("userName").value.trim();
+    const tik = document.getElementById("userSong").value.trim();
+    const note = document.getElementById("userNote").value.trim();
+
+    const saved = await saveTikshurimNote(name, tik, note, songId);
+
+    if (saved) {
+        const card = document.createElement("div");
+        card.className = "note-card";
+        card.innerHTML = `
+            <strong>${saved.name}</strong><br>
+            ${saved.note}<br>
+            <span class="note-date">${saved.date}</span>
+            <button class="delete-btn" data-id="${saved.id}">✖</button>
+        `;
+        document.getElementById("notes").prepend(card);
+    }
+
+    document.getElementById("userNote").value = "";
+});
 </script>
 
+<!-- פתיחה/סגירה של תיבת הערות -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const toggleBtn = document.querySelector(".toggle-notes");
+    const notesBox = document.querySelector(".notes-box");
+
+    toggleBtn.addEventListener("click", () => {
+        notesBox.classList.toggle("hidden");
+
+        toggleBtn.textContent = notesBox.classList.contains("hidden")
+            ? "הערות והארות"
+            : "הסתרת הערות";
+    });
+});
+</script>
+
+<!-- עיצוב -->
+<style>
+.wrapper {
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.haela-center {
+    text-align: center;
+}
+
+.haela-img {
+    display: block;
+    margin: 0 auto;
+}
+
+.tik-box {
+    text-align: right;
+    margin: 0 auto;
+}
+
+.more-link {
+    cursor: pointer;
+    font-size: 28px;
+    color: #7a4ba0;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 10px;
+}
+.more-link:hover {
+    color: #a86cd1;
+}
+
+.note-card {
+    background: #f8f2ff;
+    border-right: 4px solid #d3b8ff;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.note-date {
+    font-size: 13px;
+    color: #6a4a8a;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.toggle-notes {
+    display: block;
+    margin: 20px auto;
+    background-color: #f2e6ff;
+    border: 1px solid #d3b8ff;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    color: #4a2c6b;
+    width: 200px;
+    text-align: center;
+    transition: 0.2s;
+}
+.toggle-notes:hover {
+    background-color: #e8d6ff;
+}
+</style>
+...
+</style>
+
+<script type="module" src="./notes-tikshurim.js?v=6"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
