@@ -14,10 +14,12 @@
     <h1 class="tik-title">אזהרת מלחמה</h1>
     <h3 class="tik-subtitle">03-09-2026</h3>
 
+    <!-- תמונת האלה -->
     <div class="haela-center">
         <img src="images/or_haela.jpeg" alt="אור האלה" class="haela-img">
     </div>
 
+    <!-- תקשור קצר -->
     <div class="tik-box">
         <p>
             כאן אור האלה ממלכת האור האלוהי, לשאלתך האם תפרוץ מלחמה עם חיזבלה וחמס?
@@ -26,12 +28,13 @@
             ממשלת נתניהו תעשה הכול כדי להבעיר אש...
         </p>
 
+        <!-- שלוש נקודות -->
         <a id="moreBtn" class="more-link">...</a>
 
+        <!-- המשך התקשור -->
         <div id="moreText" style="display:none; margin-top:15px;">
             <p>
-                הוא מאמין בחסות האש הוא ימלט מאחריות וממשפטו...
-                <!-- כל הטקסט שלך נשאר בדיוק כפי שהוא -->
+                <!-- ⭐ כאן מדביקים את כל הטקסט הארוך שלך בדיוק כפי שהוא -->
             </p>
         </div>
     </div>
@@ -39,6 +42,7 @@
     <!-- ⭐ מערכת הערות החדשה -->
     <div id="notes-placeholder"></div>
 
+    <!-- ניווט -->
     <div class="footer-nav">
         <a href="../../index.html">דף ראשי</a> |
         <a href="tikshurim-list.html">חזרה לרשימת התקשורים</a>
@@ -46,10 +50,12 @@
 
 </div>
 
+<!-- מזהה ייחודי לתקשור -->
 <script>
     window.songId = "tik_03_09_2026";
 </script>
 
+<!-- פתיחת ההמשך -->
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     const btn = document.getElementById("moreBtn");
@@ -62,13 +68,14 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 
-<!-- ⭐ טעינת notesBase.html -->
+<!-- ⭐ טעינת notesBase.html מתוך תיקיית tikshurim -->
 <script>
-fetch("../components/notesBase.html")
+fetch("notesBase.html")
     .then(res => res.text())
     .then(html => {
         document.getElementById("notes-placeholder").innerHTML = html;
 
+        // הכנסת שם התקשור אוטומטית
         document.getElementById("userSong").value =
             document.querySelector(".tik-title").textContent.trim();
     });
