@@ -1,5 +1,5 @@
 // notes-tikshurim.js
-// מערכת הערות לתקשורים — גרסה מאוחדת, יציבה ומהירה
+// מערכת הערות לתקשורים — גרסה מאוחדת, מלאה ויציבה
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import {
@@ -59,7 +59,7 @@ export async function initTikshurimNotes(tikId) {
         alert("לא ניתן לטעון את ההערות כרגע.");
     }
 
-    // ⭐ מחיקה
+    // ⭐ מחיקה עם X
     notesDiv.addEventListener("click", async (e) => {
         if (!e.target.classList.contains("delete-btn")) return;
 
@@ -106,4 +106,3 @@ export async function saveTikshurimNote(name, tik, note, tikId) {
         return null;
     }
 }
-
