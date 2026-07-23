@@ -1,118 +1,38 @@
-// notes.js — גרסה אוטומטית לכל השירים
+<!-- מערכת ההערות + ווצאפ -->
+<script type="module">
+    import { initNoteSystem, saveNoteToFirestore } from "../notes.js";
 
-import { db } from "./firebase.js";
-import {
-    collection,
-    addDoc,
-    getDocs,
-    query,
-    orderBy,
-    doc,
-    deleteDoc
-} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+    // ⭐ טעינת הערות אוטומטית לפי שם הקובץ (shir11.html)
+    initNoteSystem();
 
+    const waLink = document.getElementById("waLink");
+    const saveLink = document.getElementById("saveLink");
+    const phone = "972545305123";
 
-// ⭐ זיהוי אוטומטי של songId לפי שם קובץ ה‑HTML
-export function detectSongId() {
-    const file = window.location.pathname.split("/").pop(); // לדוגמה: shir70.html
-    const base = file.replace(".html", "");                 // shir70
-    return base.replace("shir", "");                       // 70
-}
+    waLink.addEventListener("click", () => {
+        const name = document.getElementById("userName").value.trim();
+        const song = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
 
+        const message =
+            `שם הכותב: ${name}\n` +
+            `שם השיר: ${song}\n` +
+            `הערה: ${note}`;
 
-// ⭐ שמירת הערה בענן
-export async function saveNoteToFirestore(name, song, note) {
-    try {
-        const songId = detectSongId();
-        const collectionName = "notes_shir" + songId;
+        const encoded = encodeURIComponent(message);
+        window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
+    });
 
-        await addDoc(collection(db, collectionName), {
-            name,
-            song,
-            note,
-            songId,
-            date: new Date().toISOString()
-        });
+    // ⭐ שמירת הערה — אוטומטית לפי שם הקובץ
+    saveLink.addEventListener("click", () => {
+        const name = document.getElementById("userName").value.trim();
+        const song = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
 
-        // הודעה עדינה
-        const msg = document.createElement("div");
-        msg.textContent = "הערה נשמרה!";
-        msg.style.color = "#4a2c6b";
-        msg.style.marginTop = "10px";
-        msg.style.fontWeight = "bold";
-        document.querySelector(".notes-box").appendChild(msg);
+        saveNoteToFirestore(name, song, note);
+    });
+</script>
 
-        setTimeout(() => msg.remove(), 2000);
-
-        // רענון מיידי
-        document.getElementById("notes").innerHTML = "";
-        initNoteSystem();
-
-    } catch (error) {
-        console.error("שגיאה בשמירת הערה:", error);
-    }
-}
-
-
-// ⭐ מחיקת הערה
-export async function deleteNoteFromFirestore(noteId) {
-    try {
-        const songId = detectSongId();
-        const collectionName = "notes_shir" + songId;
-
-        await deleteDoc(doc(db, collectionName, noteId));
-        console.log("הערה נמחקה בהצלחה!");
-    } catch (error) {
-        console.error("שגיאה במחיקת הערה:", error);
-    }
-}
-
-
-// ⭐ טעינת הערות לדף
-export async function initNoteSystem() {
-    const notesDiv = document.getElementById("notes");
-    const songId = detectSongId();
-    const collectionName = "notes_shir" + songId;
-
-    try {
-        const q = query(collection(db, collectionName), orderBy("date", "desc"));
-        const snapshot = await getDocs(q);
-
-        snapshot.forEach(docSnap => {
-            const data = docSnap.data();
-
-            const card = document.createElement("div");
-            card.className = "note-card";
-
-            card.innerHTML = `
-                <strong>${data.name}</strong><br>
-                ${data.note}<br>
-                <span class="note-date">
-                    ${new Date(data.date).toLocaleString("he-IL")}
-                </span>
-            `;
-
-            // כפתור מחיקה
-            const deleteBtn = document.createElement("span");
-            deleteBtn.textContent = "✖";
-            deleteBtn.className = "delete-note";
-            deleteBtn.style.cursor = "pointer";
-            deleteBtn.style.float = "left";
-            deleteBtn.style.marginLeft = "5px";
-
-            deleteBtn.addEventListener("click", async () => {
-                await deleteNoteFromFirestore(docSnap.id);
-                card.remove();
-            });
-
-            card.prepend(deleteBtn);
-            notesDiv.appendChild(card);
-        });
-
-    } catch (error) {
-        console.error("שגיאה בטעינת הערות:", error);
-    }
-}
 
 
 
