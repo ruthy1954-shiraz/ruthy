@@ -1,4 +1,138 @@
-<!-- מערכת ההערות + ווצאפ -->
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>משבר / רות שנן</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <!-- תמונת השיר -->
+    <div class="song-image">
+        <img src="images/shir11.jpeg" alt="ציור לשיר משבר">
+    </div>
+
+    <!-- ⭐ קציר השיר -->
+    <div class="song-intro">
+        <p>
+            רגע של קריסה,  
+            רגע של אמת,  
+            רגע שבו כל מה שהוחזק שנים —  
+            סוף־סוף משתחרר.
+        </p>
+    </div>
+
+    <!-- כותרות -->
+    <h1 class="song-title">משבר</h1>
+    <h2 class="song-author">רות שנן</h2>
+
+    <!-- טקסט השיר -->
+    <div class="song-box">
+        <p>
+            איבדתי אותי<br>
+            בלי סימן<br>
+            בלי רגע מאותת<br>
+            האומר "עכשיו זה קורה!"<br>
+            פשוט נשמטתי<br>
+            החזקתי יותר מדי זמן.
+        </p>
+
+        <p>
+            הידיים התעייפו<br>
+            הלב התעייף<br>
+            אני התעייפתי<br>
+            מלשקר לעצמי שאני חזקה.<br>
+            קילפתי פחדים<br>
+            והם צרחו "לא רוצים לעזוב!"
+        </p>
+
+        <p>
+            נדבקו לי לעור<br>
+            לנשימה<br>
+            למחשבות<br>
+            "די!" אמרתי בקול רועד<br>
+            והשנים שלא דיברתי<br>
+            עלו בי בבת אחת.
+        </p>
+
+        <p>
+            המראה הסתכלה עליי<br>
+            ואני לא זיהיתי<br>
+            לא את העיניים<br>
+            לא את הכתפיים<br>
+            לא את האישה שהבטחתי להיות<br>
+            רק שבר, רק אמת, רק אני.
+        </p>
+
+        <p>
+            נפלתי פנימה<br>
+            לתוך המקומות שסגרתי<br>
+            במנעולים, בשתיקה, ב"אני בסדר!"<br>
+            שהפך עם השנים לכלוב חונק.
+        </p>
+
+        <p>
+            ובתוך החושך<br>
+            בתוך הרגע שבו אין לי שם<br>
+            אין לי צורה<br>
+            אין לי הגנה<br>
+            נכנסה הבנה קטנה, עקשנית<br>
+            כזו שלא אכפת לה שאני מפורקת.
+        </p>
+
+        <p>
+            היא לחשה:<br>
+            "לא איבדת אף אחד.<br>
+            לא חיפשת אף אחד.<br>
+            רק אותך רצית לדעת."
+        </p>
+
+        <p>
+            במקום בו נעלמתי<br>
+            מצאתי אותי<br>
+            בלי מסכות<br>
+            בלי פחד<br>
+            בלי רעש<br>
+            רק אני ואלוהים.
+        </p>
+    </div>
+
+    <!-- ⭐ כפתור הערות -->
+    <button class="toggle-notes">הערות והארות</button>
+
+    <!-- ⭐ תיבת הערות מוסתרת -->
+    <div class="notes-box hidden">
+        <h3>כתיבת הערות והארות</h3>
+
+        <input id="userName" placeholder="השם שלכם..." />
+        <input id="userSong" placeholder="שם השיר..." value="משבר" />
+        <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
+
+        <div class="footer-nav" style="margin-top:15px;">
+            <a id="waLink">ווצאפ לכותבת</a> |
+            <a id="saveLink">שמירת הערה</a>
+        </div>
+
+        <h4>הערות קוראים שנשמרו:</h4>
+        <div id="notes"></div>
+    </div>
+
+    <!-- ניווט -->
+    <div class="footer-nav">
+        <a href="../index.html">עמוד ראשי</a> |
+        <a href="song.html">חזרה לשירים</a>
+    </div>
+
+    <!-- כפתור שיתוף -->
+    <button class="share-btn" onclick="shareSong()">שתפו את השיר</button>
+
+</div>
+
+<!-- ⭐ מערכת ההערות + ווצאפ — גרסה מתוקנת -->
 <script type="module">
     import { initNoteSystem, saveNoteToFirestore } from "../notes.js";
 
@@ -32,6 +166,111 @@
         saveNoteToFirestore(name, song, note);
     });
 </script>
+
+<!-- פתיחה/סגירה של תיבת הערות -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const toggleBtn = document.querySelector(".toggle-notes");
+    const notesBox = document.querySelector(".notes-box");
+
+    toggleBtn.addEventListener("click", () => {
+        notesBox.classList.toggle("hidden");
+
+        toggleBtn.textContent = notesBox.classList.contains("hidden")
+            ? "הערות והארות"
+            : "הסתרת הערות";
+    });
+});
+</script>
+
+<!-- פונקציית שיתוף -->
+<script>
+function shareSong() {
+    if (navigator.share) {
+        navigator.share({
+            title: document.title,
+            text: "רציתי לשתף את השיר הזה:",
+            url: window.location.href
+        });
+    } else {
+        alert("הדפדפן לא תומך בשיתוף אוטומטי");
+    }
+}
+</script>
+
+<!-- עיצוב פתיח -->
+<style>
+.song-intro {
+    background: #f8f2ff;
+    border-right: 4px solid #d3b8ff;
+    padding: 18px 22px;
+    margin: 20px 0 25px 0;
+    border-radius: 8px;
+    font-size: 20px;
+    line-height: 1.8;
+    color: #4a2c6b;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+.song-intro p {
+    margin: 0;
+    white-space: pre-line;
+}
+
+/* כפתור שיתוף */
+.share-btn {
+    display: block;
+    margin: 25px auto;
+    padding: 12px 20px;
+    background-color: #f2e6ff;
+    border: 1px solid #d3b8ff;
+    border-radius: 8px;
+    font-size: 18px;
+    color: #4a2c6b;
+    cursor: pointer;
+    width: 200px;
+    text-align: center;
+    transition: 0.2s;
+}
+.share-btn:hover {
+    background-color: #e8d6ff;
+}
+
+/* תיבת הערות */
+.notes-box {
+    border: 2px solid #d3b8ff;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #faf6ff;
+    margin-top: 20px;
+}
+
+/* מוסתר */
+.hidden {
+    display: none !important;
+}
+
+/* כפתור הערות */
+.toggle-notes {
+    display: block;
+    margin: 20px auto;
+    background-color: #f2e6ff;
+    border: 1px solid #d3b8ff;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    color: #4a2c6b;
+    width: 200px;
+    text-align: center;
+    transition: 0.2s;
+}
+.toggle-notes:hover {
+    background-color: #e8d6ff;
+}
+</style>
+
+</body>
+</html>
 
 
 
