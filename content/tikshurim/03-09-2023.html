@@ -298,6 +298,21 @@ document.addEventListener("DOMContentLoaded", () => {
 </style>
 
 <script type="module" src="./notes-tikshurim.js?v=7"></script>
+<script type="module">
+    import { initTikshurimNotes, saveTikshurimNote } from "../notes-tikshurim.js";
+
+    // טעינת הערות אוטומטית לפי שם הקובץ
+    initTikshurimNotes();
+
+    document.getElementById("saveLink").addEventListener("click", () => {
+        const name = document.getElementById("userName").value.trim();
+        const tik = document.getElementById("userTik").value.trim();
+        const note = document.getElementById("userNote").value.trim();
+
+        saveTikshurimNote(name, tik, note);
+    });
+</script>
+    
 </body>
 </html>
 
