@@ -132,16 +132,12 @@
 
 </div>
 
-<!-- מזהה ייחודי לשיר -->
-<script>
-    var songId = "shir11";
-</script>
-
-<!-- מערכת ההערות + ווצאפ -->
+<!-- ⭐ מערכת ההערות + ווצאפ — גרסה מתוקנת -->
 <script type="module">
     import { initNoteSystem, saveNoteToFirestore } from "../notes.js";
 
-    initNoteSystem(songId);
+    // ⭐ טעינת הערות אוטומטית לפי שם הקובץ (shir11.html)
+    initNoteSystem();
 
     const waLink = document.getElementById("waLink");
     const saveLink = document.getElementById("saveLink");
@@ -161,12 +157,13 @@
         window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
     });
 
+    // ⭐ שמירת הערה — אוטומטית לפי שם הקובץ
     saveLink.addEventListener("click", () => {
         const name = document.getElementById("userName").value.trim();
         const song = document.getElementById("userSong").value.trim();
         const note = document.getElementById("userNote").value.trim();
 
-        saveNoteToFirestore(name, song, note, songId);
+        saveNoteToFirestore(name, song, note);
     });
 </script>
 
@@ -274,6 +271,7 @@ function shareSong() {
 
 </body>
 </html>
+
 
 
 
