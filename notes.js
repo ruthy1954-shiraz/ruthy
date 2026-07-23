@@ -1,4 +1,4 @@
-// notes.js — גרסה תואמת למבנה הקיים בענן (notes_shirX)
+// notes.js — גרסה אוטומטית לכל השירים
 
 import { db } from "./firebase.js";
 import {
@@ -12,11 +12,21 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 
+// ⭐ זיהוי אוטומטי של songId לפי שם קובץ ה‑HTML
+export function detectSongId() {
+    const file = window.location.pathname.split("/").pop(); // לדוגמה: shir70.html
+    const base = file.replace(".html", "");                 // shir70
+    return base.replace("shir", "");                       // 70
+}
+
+
 // ⭐ שמירת הערה בענן
-export async function saveNoteToFirestore(name, song, note, songId) {
+export async function saveNoteToFirestore(name, song, note) {
     try {
-        // שמירה באוסף ייחודי לכל שיר
-        await addDoc(collection(db, "notes_shir" + songId), {
+        const songId = detectSongId();
+        const collectionName = "notes_shir" + songId;
+
+        await addDoc(collection(db, collectionName), {
             name,
             song,
             note,
@@ -36,7 +46,7 @@ export async function saveNoteToFirestore(name, song, note, songId) {
 
         // רענון מיידי
         document.getElementById("notes").innerHTML = "";
-        initNoteSystem(songId);
+        initNoteSystem();
 
     } catch (error) {
         console.error("שגיאה בשמירת הערה:", error);
@@ -45,9 +55,12 @@ export async function saveNoteToFirestore(name, song, note, songId) {
 
 
 // ⭐ מחיקת הערה
-export async function deleteNoteFromFirestore(noteId, songId) {
+export async function deleteNoteFromFirestore(noteId) {
     try {
-        await deleteDoc(doc(db, "notes_shir" + songId, noteId));
+        const songId = detectSongId();
+        const collectionName = "notes_shir" + songId;
+
+        await deleteDoc(doc(db, collectionName, noteId));
         console.log("הערה נמחקה בהצלחה!");
     } catch (error) {
         console.error("שגיאה במחיקת הערה:", error);
@@ -56,15 +69,13 @@ export async function deleteNoteFromFirestore(noteId, songId) {
 
 
 // ⭐ טעינת הערות לדף
-export async function initNoteSystem(songId) {
+export async function initNoteSystem() {
     const notesDiv = document.getElementById("notes");
+    const songId = detectSongId();
+    const collectionName = "notes_shir" + songId;
 
     try {
-        const q = query(
-            collection(db, "notes_shir" + songId),
-            orderBy("date", "desc")
-        );
-
+        const q = query(collection(db, collectionName), orderBy("date", "desc"));
         const snapshot = await getDocs(q);
 
         snapshot.forEach(docSnap => {
@@ -90,7 +101,7 @@ export async function initNoteSystem(songId) {
             deleteBtn.style.marginLeft = "5px";
 
             deleteBtn.addEventListener("click", async () => {
-                await deleteNoteFromFirestore(docSnap.id, songId);
+                await deleteNoteFromFirestore(docSnap.id);
                 card.remove();
             });
 
@@ -102,7 +113,6 @@ export async function initNoteSystem(songId) {
         console.error("שגיאה בטעינת הערות:", error);
     }
 }
-
 
 
 
