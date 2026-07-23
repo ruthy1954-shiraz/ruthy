@@ -1,21 +1,31 @@
-.wrapper {
-    max-width: 650px;
-    margin: 0 auto;
-    padding: 20px;
+.hidden {
+    display: none !important;
 }
 
-.haela-center {
-    text-align: center;
+.notes-box {
+    border: 2px solid #d3b8ff;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #faf6ff;
+    margin-top: 20px;
 }
 
-.haela-img {
+.toggle-notes {
     display: block;
-    margin: 0 auto;
+    margin: 20px auto;
+    background-color: #f2e6ff;
+    border: 1px solid #d3b8ff;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    color: #4a2c6b;
+    width: 200px;
+    text-align: center;
+    transition: 0.2s;
 }
-
-.tik-box {
-    text-align: right;
-    margin: 0 auto;
+.toggle-notes:hover {
+    background-color: #e8d6ff;
 }
 
 .more-link {
@@ -46,12 +56,5 @@
     color: #6a4a8a;
 }
 
-.notes-box {
-    border: 2px solid #d3b8ff;
-    padding: 15px;
-    border-radius: 10px;
-    background-color: #faf6ff;
-    margin-top: 20px;
-}
 
 
