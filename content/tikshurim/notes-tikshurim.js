@@ -1,5 +1,4 @@
-// notes-tikshurim.js
-// מערכת הערות לתקשורים — גרסה מאוחדת, מלאה ויציבה
+// notes-tikshurim.js — גרסה מתוקנת, עקבית עם מערכת השירים
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import {
@@ -25,6 +24,12 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 
+// ⭐ זיהוי אוטומטי של תקשור לפי שם הקובץ
+export function detectTikId() {
+    const file = window.location.pathname.split("/").pop(); // לדוגמה: 03-09-2023.html
+    return file.replace(".html", ""); // מחזיר את השם בלי הסיומת
+}
+
 // ⭐ יצירת כרטיס הערה
 function createNoteCard(id, name, note, date) {
     const div = document.createElement("div");
@@ -41,12 +46,20 @@ function createNoteCard(id, name, note, date) {
 }
 
 // ⭐ טעינת הערות קיימות
-export async function initTikshurimNotes(tikId) {
+export async function initTikshurimNotes() {
     const notesDiv = document.getElementById("notes");
     notesDiv.innerHTML = "";
 
+    const tikId = detectTikId();
+    const collectionName = "notes_" + tikId;
+
     try {
-        const snap = await getDocs(collection(db, "tikshurim", tikId, "notes"));
+        const snap = await getDocs(collection(db, collectionName));
+
+        if (snap.empty) {
+            notesDiv.innerHTML = "<p>עדיין אין הערות לתקשור זה.</p>";
+            return;
+        }
 
         snap.forEach((docSnap) => {
             const data = docSnap.data();
@@ -66,7 +79,7 @@ export async function initTikshurimNotes(tikId) {
         const id = e.target.getAttribute("data-id");
 
         try {
-            await deleteDoc(doc(db, "tikshurim", tikId, "notes", id));
+            await deleteDoc(doc(db, collectionName, id));
             e.target.closest(".note-card").remove();
         } catch (error) {
             console.error("שגיאה במחיקה:", error);
@@ -76,17 +89,19 @@ export async function initTikshurimNotes(tikId) {
 }
 
 // ⭐ שמירת הערה חדשה
-export async function saveTikshurimNote(name, tik, note, tikId) {
+export async function saveTikshurimNote(name, tik, note) {
     if (!name || !note) {
         alert("נא למלא שם והערה.");
         return null;
     }
 
+    const tikId = detectTikId();
+    const collectionName = "notes_" + tikId;
     const now = new Date();
     const dateString = now.toLocaleString("he-IL");
 
     try {
-        const docRef = await addDoc(collection(db, "tikshurim", tikId, "notes"), {
+        const docRef = await addDoc(collection(db, collectionName), {
             name,
             tik,
             note,
@@ -106,3 +121,4 @@ export async function saveTikshurimNote(name, tik, note, tikId) {
         return null;
     }
 }
+
