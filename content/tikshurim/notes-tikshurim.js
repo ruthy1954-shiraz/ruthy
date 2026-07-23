@@ -1,4 +1,4 @@
-// notes-tikshurim.js — גרסה מתוקנת, עקבית עם מערכת השירים
+// notes-tikshurim.js — גרסה מתוקנת ויציבה
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import {
@@ -10,7 +10,7 @@ import {
     doc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-// ⭐ הגדרות Firebase
+// ⭐ הגדרות Firebase — החליפי לערכים האמיתיים שלך
 const firebaseConfig = {
     apiKey: "AIzaSyC-7mYVgYc8YVYVYVYVYVYVYVYVYVY",
     authDomain: "ruthy1954-shiraz.firebaseapp.com",
@@ -77,6 +77,7 @@ export async function initTikshurimNotes() {
         if (!e.target.classList.contains("delete-btn")) return;
 
         const id = e.target.getAttribute("data-id");
+        const collectionName = "notes_" + detectTikId();
 
         try {
             await deleteDoc(doc(db, collectionName, id));
@@ -121,5 +122,3 @@ export async function saveTikshurimNote(name, tik, note) {
         return null;
     }
 }
-
-
