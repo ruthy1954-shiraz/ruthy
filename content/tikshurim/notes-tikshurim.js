@@ -26,7 +26,7 @@ export const db = getFirestore(app);
 
 // ⭐ זיהוי אוטומטי של תקשור לפי שם הקובץ
 export function detectTikId() {
-    const file = window.location.pathname.split("/").pop(); // לדוגמה: 03-09-2023.html
+    const file = window.location.pathname.split("/").pop(); // לדוגמה: 03-09-2026.html
     return file.replace(".html", ""); // מחזיר את השם בלי הסיומת
 }
 
@@ -121,4 +121,5 @@ export async function saveTikshurimNote(name, tik, note) {
         return null;
     }
 }
+
 
