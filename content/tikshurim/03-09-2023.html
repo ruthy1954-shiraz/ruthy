@@ -14,12 +14,10 @@
     <h1 class="tik-title">אזהרת מלחמה</h1>
     <h3 class="tik-subtitle">03-09-2026</h3>
 
-    <!-- תמונת האלה -->
     <div class="haela-center">
         <img src="images/or_haela.jpeg" alt="אור האלה" class="haela-img">
     </div>
 
-    <!-- תקשור קצר -->
     <div class="tik-box">
         <p>
             כאן אור האלה ממלכת האור האלוהי, לשאלתך האם תפרוץ מלחמה עם חיזבלה וחמס?
@@ -97,10 +95,8 @@
         </div>
     </div>
 
-    <!-- כפתור פתיחה/סגירה -->
     <button class="toggle-notes">הערות והארות</button>
 
-    <!-- תיבת הערות -->
     <div class="notes-box hidden">
         <h3>כתיבת הערות והארות</h3>
 
@@ -117,7 +113,6 @@
         <div id="notes"></div>
     </div>
 
-    <!-- ניווט -->
     <div class="footer-nav">
         <a href="../../index.html">דף ראשי</a> |
         <a href="tikshurim-list.html">חזרה לרשימת התקשורים</a>
@@ -138,18 +133,16 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 
-<!-- ⭐ מערכת ההערות — גרסה מתוקנת -->
+<!-- מערכת ההערות -->
 <script type="module">
     import { initTikshurimNotes, saveTikshurimNote } from "./notes-tikshurim.js?v=7";
 
-    // טעינת הערות אוטומטית לפי שם הקובץ
     initTikshurimNotes();
 
     const waLink = document.getElementById("waLink");
     const saveLink = document.getElementById("saveLink");
     const phone = "972545305123";
 
-    // שליחת הערה בווצאפ
     waLink.addEventListener("click", () => {
         const name = document.getElementById("userName").value.trim();
         const tik = document.getElementById("userSong").value.trim();
@@ -168,7 +161,6 @@ document.addEventListener("DOMContentLoaded", function() {
         window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
     });
 
-    // שמירת הערה בענן
     saveLink.addEventListener("click", async () => {
         const name = document.getElementById("userName").value.trim();
         const tik = document.getElementById("userSong").value.trim();
