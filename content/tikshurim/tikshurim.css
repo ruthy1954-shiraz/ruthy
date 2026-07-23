@@ -1,134 +1,9 @@
-body {
-    background: linear-gradient(to bottom, #fffaf3, #fef9e7);
-    font-family: "Alef", sans-serif;
-    color: #4a3b2a;
-    text-align: center;
-}
-
-/* תמונת האלה */
-.haela-center {
-    margin: 30px auto;
-}
-
-.haela-img {
-    width: 300px;
-    border-radius: 20px;
-    animation: softGlow 6s ease-in-out infinite;
-}
-
-@keyframes softGlow {
-    0% { box-shadow: 0 0 20px rgba(255, 240, 200, 0.6); }
-    50% { box-shadow: 0 0 40px rgba(255, 240, 200, 0.9); }
-    100% { box-shadow: 0 0 20px rgba(255, 240, 200, 0.6); }
-}
-
-/* כותרות */
-.tik-title {
-    font-size: 2.5em;
-    color: #b48a3c;
-    text-shadow: 0 0 10px #fff6d9;
-}
-
-.tik-subtitle {
-    font-size: 1.4em;
-    color: #a67c52;
-    margin-bottom: 20px;
-}
-
-/* תיבת התקשור */
-.tik-box {
-    background-color: rgba(255, 255, 255, 0.7);
-    border: 1px solid #f1e2c6;
-    border-radius: 12px;
-    padding: 20px;
-    margin: 20px auto;
-    max-width: 700px;
-    box-shadow: 0 0 15px rgba(255, 240, 200, 0.5);
-}
-
-/* שלוש נקודות */
-.more-link {
-    font-size: 2em;
-    color: #b48a3c;
-    cursor: pointer;
-}
-
-/* תיבת הערות */
-.notes-box input,
-.notes-box textarea {
-    width: 100%;
-    max-width: 600px;
-    padding: 14px 18px;
-    margin: 10px auto;
-    display: block;
-    font-size: 18px;
-    border: 1px solid #d3b8ff;
-    border-radius: 12px;
-    background-color: #faf6ff;
-    color: #4a2c6b;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.08);
-}
-
-.notes-box textarea {
-    min-height: 140px;
-}
-
-/* כפתורים */
-.footer-nav a {
-    font-size: 18px;
-    padding: 10px 16px;
-    background-color: #f2e6ff;
-    border: 1px solid #d3b8ff;
-    border-radius: 10px;
-    color: #4a2c6b;
-    text-decoration: none;
-    margin: 5px;
-    display: inline-block;
-}
-
-/* כרטיסי הערות */
-.note-card {
-    background-color: #fff9f6;
-    border: 1px solid #e0c9b6;
-    border-radius: 12px;
-    padding: 16px 20px;
-    margin: 12px 0;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.08);
-    font-size: 17px;
-    color: #4a2c6b;
-    position: relative;
-}
-
-.note-card::before {
-    content: "💬";
-    position: absolute;
-    left: 12px;
-    top: 12px;
-    font-size: 20px;
-    color: #d3b8ff;
-}
-
-.note-date {
-    font-size: 14px;
-    color: #8b7b9b;
-    margin-top: 6px;
-    display: block;
-}
-
-#notes {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 12px;
-}
-
-/* מייצב את הדף במרכז */
 .wrapper {
     max-width: 650px;
     margin: 0 auto;
     padding: 20px;
 }
 
-/* מייצב את תמונת האלה */
 .haela-center {
     text-align: center;
 }
@@ -138,9 +13,45 @@ body {
     margin: 0 auto;
 }
 
-/* מייצב את תיבת התקשור */
 .tik-box {
     text-align: right;
     margin: 0 auto;
 }
+
+.more-link {
+    cursor: pointer;
+    font-size: 28px;
+    color: #7a4ba0;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 10px;
+}
+.more-link:hover {
+    color: #a86cd1;
+}
+
+.note-card {
+    background: #f8f2ff;
+    border-right: 4px solid #d3b8ff;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.note-date {
+    font-size: 13px;
+    color: #6a4a8a;
+}
+
+.notes-box {
+    border: 2px solid #d3b8ff;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #faf6ff;
+    margin-top: 20px;
+}
+
 
