@@ -26,8 +26,10 @@
             ממשלת נתניהו תעשה הכול כדי להבעיר אש...
         </p>
 
+        <!-- שלוש נקודות -->
         <a id="moreBtn" class="more-link">...</a>
 
+        <!-- המשך התקשור -->
         <div id="moreText" style="display:none; margin-top:15px;">
             <p>
                 הוא מאמין בחסות האש הוא ימלט מאחריות וממשפטו. בנימין נתניהו יודע שזה יהיה הרגע שכל הכוחות העם יתאחדו והפגנות יפסקו.
@@ -93,10 +95,8 @@
         </div>
     </div>
 
-    <!-- כפתור פתיחה/סגירה -->
     <button class="toggle-notes">הערות והארות</button>
 
-    <!-- תיבת הערות -->
     <div class="notes-box hidden">
         <h3>כתיבת הערות והארות</h3>
 
@@ -120,10 +120,7 @@
 
 </div>
 
-<script>
-    var songId = "tik_03_09_2026";
-</script>
-
+<!-- פתיחת ההמשך -->
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     const btn = document.getElementById("moreBtn");
@@ -136,86 +133,59 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 
-<!-- ⭐ מערכת הערות — הפורמט הישן -->
-<script>
-const phone = "972545305123";
+<!-- מערכת ההערות -->
+<script type="module">
+    import { initTikshurimNotes, saveTikshurimNote } from "./notes-tikshurim.js?v=7";
 
-/* שליחת הערה בווצאפ */
-document.getElementById("waLink").addEventListener("click", function() {
-    const name = document.getElementById("userName").value.trim();
-    const tik = document.getElementById("userSong").value.trim();
-    const note = document.getElementById("userNote").value.trim();
+    initTikshurimNotes();
 
-    const now = new Date();
-    const dateString = now.toLocaleString("he-IL");
+    const waLink = document.getElementById("waLink");
+    const saveLink = document.getElementById("saveLink");
+    const phone = "972545305123";
 
-    const message =
-        `שם הכותב: ${name}\n` +
-        `תקשור: ${tik}\n` +
-        `הערה: ${note}\n` +
-        `תאריך: ${dateString}`;
+    waLink.addEventListener("click", () => {
+        const name = document.getElementById("userName").value.trim();
+        const tik = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
 
-    const encoded = encodeURIComponent(message);
-    window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
-});
+        const now = new Date();
+        const dateString = now.toLocaleString("he-IL");
 
-/* שמירת הערה בלוקאל סטורג' */
-document.getElementById("saveLink").addEventListener("click", function() {
-    const name = document.getElementById("userName").value.trim();
-    const tik = document.getElementById("userSong").value.trim();
-    const note = document.getElementById("userNote").value.trim();
+        const message =
+            `שם הכותב: ${name}\n` +
+            `תקשור: ${tik}\n` +
+            `הערה: ${note}\n` +
+            `תאריך: ${dateString}`;
 
-    if (!note) return;
-
-    const now = new Date();
-    const savedNote = {
-        id: Date.now(),
-        name,
-        tik,
-        note,
-        date: now.toLocaleString("he-IL")
-    };
-
-    let notes = JSON.parse(localStorage.getItem(songId) || "[]");
-    notes.unshift(savedNote);
-    localStorage.setItem(songId, JSON.stringify(notes));
-
-    addNoteToPage(savedNote);
-    document.getElementById("userNote").value = "";
-});
-
-/* הצגת הערות קיימות */
-document.addEventListener("DOMContentLoaded", function() {
-    let notes = JSON.parse(localStorage.getItem(songId) || "[]");
-    notes.forEach(addNoteToPage);
-});
-
-/* פונקציה להוספת הערה לדף */
-function addNoteToPage(saved) {
-    const card = document.createElement("div");
-    card.className = "note-card";
-    card.innerHTML = `
-        <strong>${saved.name}</strong><br>
-        ${saved.note}<br>
-        <span class="note-date">${saved.date}</span>
-        <button class="delete-btn" data-id="${saved.id}">✖</button>
-    `;
-    document.getElementById("notes").prepend(card);
-
-    card.querySelector(".delete-btn").addEventListener("click", function() {
-        deleteNote(saved.id);
-        card.remove();
+        const encoded = encodeURIComponent(message);
+        window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
     });
-}
 
-/* מחיקת הערה */
-function deleteNote(id) {
-    let notes = JSON.parse(localStorage.getItem(songId) || "[]");
-    notes = notes.filter(n => n.id !== id);
-    localStorage.setItem(songId, JSON.stringify(notes));
-}
+    saveLink.addEventListener("click", async () => {
+        const name = document.getElementById("userName").value.trim();
+        const tik = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
 
-/* פתיחה/סגירה של תיבת הערות */
+        const saved = await saveTikshurimNote(name, tik, note);
+
+        if (saved) {
+            const card = document.createElement("div");
+            card.className = "note-card";
+            card.innerHTML = `
+                <strong>${saved.name}</strong><br>
+                ${saved.note}<br>
+                <span class="note-date">${saved.date}</span>
+                <button class="delete-btn" data-id="${saved.id}">✖</button>
+            `;
+            document.getElementById("notes").prepend(card);
+        }
+
+        document.getElementById("userNote").value = "";
+    });
+</script>
+
+<!-- פתיחה/סגירה של תיבת הערות -->
+<script>
 document.addEventListener("DOMContentLoaded", () => {
     const toggleBtn = document.querySelector(".toggle-notes");
     const notesBox = document.querySelector(".notes-box");
@@ -232,33 +202,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
