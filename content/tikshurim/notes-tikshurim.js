@@ -1,4 +1,4 @@
-// notes-tikshurim.js — גרסה יציבה, תואמת לשירים
+// notes-tikshurim.js — גרסה יציבה לתקשורים
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import {
@@ -10,7 +10,7 @@ import {
     doc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-// ⭐ הגדרות Firebase — ודאי שהערכים אמיתיים
+// ⭐ הגדרות Firebase — חייבים להיות אמיתיים!
 const firebaseConfig = {
     apiKey: "AIzaSyC-7mYVgYc8YVYVYVYVYVYVYVYVYVY",
     authDomain: "ruthy1954-shiraz.firebaseapp.com",
@@ -22,7 +22,7 @@ const firebaseConfig = {
 
 // ⭐ אתחול Firebase
 const app = initializeApp(firebaseConfig);
-export const db = getFirestore(app);
+const db = getFirestore(app);
 
 // ⭐ טעינת הערות
 export async function initTikshurimNotes(tikId) {
@@ -103,4 +103,5 @@ export async function saveTikshurimNote(name, tik, note, tikId) {
         return null;
     }
 }
+
 
