@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>לאחר לכתי / רותי שנן</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <!-- תמונת השיר -->
+    <div class="song-image">
+        <img src="images/shir81.jpeg" alt="ציור לשיר לאחר לכתי">
+    </div>
+
+    <!-- ⭐ פתיח השיר -->
+    <div class="song-intro">
+        <p>
+            ישנם שירים שנכתבים מתוך מבט פנימי אל מה שנשאר אחרי שהאדם ממשיך בדרכו —
+            עקבות של אור, זיכרון, נדיבות שממשיכה לצמוח.
+            זהו שיר על המשכיות, על שורשים, על מסע הרוח.
+        </p>
+    </div>
+
+    <!-- כותרות -->
+    <h1 class="song-title">לאחר לכתי</h1>
+    <h2 class="song-author">רותי שנן</h2>
+
+    <!-- טקסט השיר -->
+    <div class="song-box">
+        <p>
+        לאחר לכתי,<br>
+        יישארו עקבותיי כרסיסי אור.<br>
+        הד צחוקי יתגלגל בין הקירות<br>
+        כמו כדור זכוכית צבעוני,<br>
+        ניחוחו הראשון של בוקר<br>
+        יעלה מן האדמה הלחה,<br>
+        וציפורי השחר יפרשו כנפיים<br>
+        כדי לברך את היום<br>
+        במנגינת פרידה.
+        </p>
+
+        <p>
+        לאחר לכתי,<br>
+        העץ שבחצר יוסיף לגדול,<br>
+        שורשיו יעמיקו אל האדמה<br>
+        כמו מי שמחפש זיכרון עתיק,<br>
+        וענפיו ייטו ברוח<br>
+        כדי לסמן את הזמן<br>
+        המתחלף לאט<br>
+        כמו ים בנסיגה.
+        </p>
+
+        <p>
+        לאחר לכתי,<br>
+        יישארו שיריי,<br>
+        שברי מחשבות שנפלו ממני<br>
+        כעלים זהובים בסתיו,<br>
+        נאספו בידי אנשים<br>
+        שחיפשו בהם נחמה.<br>
+        כעדות לחיים<br>
+        כנהר חיים,<br>
+        אשר זרמו בי.
+        </p>
+
+        <p>
+        כאשר אפרוש מן העולם הזה,<br>
+        רוחי תצא למסעות רחוקים,<br>
+        תלבש צורות של אור,<br>
+        של מים,<br>
+        של צללים נעים.
+        </p>
+
+        <p>
+        גופי ישוב אל העפר<br>
+        הנישא על פני הים,<br>
+        יהפוך מצע לעץ מנגו צעיר<br>
+        אשר יצמיח צל<br>
+        ופרי מתוק,<br>
+        עדות לנדיבות<br>
+        של התחלה חדשה.
+        </p>
+    </div>
+
+    <!-- כפתור הערות -->
+    <button class="toggle-notes">הערות והארות</button>
+
+    <!-- תיבת הערות -->
+    <div class="notes-box hidden">
+        <h3>כתיבת הערות והארות</h3>
+
+        <input id="userName" placeholder="השם שלכם..." />
+        <input id="userMail" placeholder="כתובת המייל שלכם..." />
+        <input id="userSong" placeholder="שם השיר..." value="לאחר לכתי" />
+        <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
+
+        <div class="footer-nav" style="margin-top:15px;">
+            <a id="waLink">ווצאפ לכותבת</a> |
+            <a id="saveLink">שמירת הערה</a>
+        </div>
+
+        <h4>הערות קוראים שנשמרו:</h4>
+        <div id="notes"></div>
+    </div>
+
+    <!-- ניווט -->
+    <div class="footer-nav">
+        <a href="../index.html">עמוד ראשי</a> |
+        <a href="song.html">חזרה לשירים</a>
+    </div>
+
+    <!-- כפתור שיתוף -->
+    <button class="share-btn" onclick="shareSong()">שתפו את השיר</button>
+
+</div>
+
+<!-- מזהה ייחודי לשיר -->
+<script>
+    var songId = "shir81";
+</script>
+
+<!-- מערכת ההערות + ווצאפ -->
+<script type="module">
+    import { initNoteSystem, saveNoteToFirestore } from "../notes.js";
+
+    initNoteSystem(songId);
+
+    const waLink = document.getElementById("waLink");
+    const saveLink = document.getElementById("saveLink");
+    const phone = "972545305123";
+
+    saveLink.addEventListener("click", function() {
+        const name = document.getElementById("userName").value.trim();
+        const email = document.getElementById("userMail").value.trim();
+        const song = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
+        const date = new Date().toLocaleString("he-IL");
+        const link = window.location.href;
+
+        saveNoteToFirestore(name, email, song, note, songId, date, link);
+    });
+
+    waLink.addEventListener("click", function() {
+        const name = document.getElementById("userName").value.trim();
+        const song = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
+
+        const message =
+            `שם הכותב: ${name}\n` +
+            `שם השיר: ${song}\n` +
+            `הערה: ${note}`;
+
+        const encoded = encodeURIComponent(message);
+        window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
+    });
+</script>
+
+<!-- שיתוף -->
+<script>
+function shareSong() {
+    if (navigator.share) {
+        navigator.share({
+            title: document.title,
+            text: "רציתי לשתף את השיר הזה:",
+            url: window.location.href
+        });
+    } else {
+        alert("הדפדפן לא תומך בשיתוף אוטומטי");
+    }
+}
+</script>
+
+<!-- פתיחה/סגירה של תיבת הערות -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const toggleBtn = document.querySelector(".toggle-notes");
+    const notesBox = document.querySelector(".notes-box");
+
+    toggleBtn.addEventListener("click", () => {
+        notesBox.classList.toggle("hidden");
+
+        toggleBtn.textContent = notesBox.classList.contains("hidden")
+            ? "הערות והארות"
+            : "הסתרת הערות";
+    });
+});
+</script>
+
+<!-- עיצוב פתיח -->
+<style>
+.song-intro {
+    background: #f8f2ff;
+    border-right: 4px solid #d3b8ff;
+    padding: 18px 22px;
+    margin: 20px 0 25px 0;
+    border-radius: 8px;
+    font-size: 20px;
+    line-height: 1.8;
+    color: #4a2c6b;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+.song-intro p {
+    margin: 0;
+    white-space: pre-line;
+}
+</style>
+
+</body>
+</html>
