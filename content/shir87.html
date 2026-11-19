@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דרכה של שכינה / רות שנן</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <!-- תמונת השיר -->
+    <div class="song-image">
+        <img src="images/shir87.jpeg" alt="ציור לשיר דרכה של שכינה">
+    </div>
+
+    <!-- פתיח השיר -->
+    <div class="song-intro">
+        <p>
+            השיר עוסק בדרך שבה השברים והכאבים בחיינו
+            אינם רק מקור לסבל, אלא גם שער להתגלות פנימית.
+            מתוך המקומות הפגועים, שבהם נדמה שאיבדנו הכול,
+            מתחילים לחלחל אור, משמעות וחסד,
+            עד שהלב מגלה כי דווקא דרך הסדקים
+            נכנסת השכינה אל תוך חייו.
+        </p>
+    </div>
+
+    <!-- כותרות -->
+    <h1 class="song-title">דרכה של שכינה</h1>
+    <h2 class="song-author">רות שנן</h2>
+
+    <!-- טקסט השיר -->
+    <div class="song-box">
+
+        <p>
+        בלילה שבו נשברה הקערה,<br>
+        חשבתי שהמים יאבדו לעד.<br>
+        לא ידעתי שהסדק שנפער<br>
+        נכתב מראש באצבע של חסד.
+        </p>
+
+        <p>
+        שנים נשאתי אבן בחיקי,<br>
+        קראתי לה כאב,<br>
+        קראתי לה גורל,<br>
+        ולא שמעתי שבתוכה ישן מעיין.
+        </p>
+
+        <p>
+        השתיקה הגדולה,<br>
+        שאין בה מילים ואין לה פנים,<br>
+        הראתה לי איך מתוך הפצע<br>
+        עולה קרן דקה של אור.
+        </p>
+
+        <p>
+        היא לא באה לכבוש את החושך,<br>
+        זהו אור של אחווה עתיקה,<br>
+        בו הלילה עצמו התפלל<br>
+        להיות שחר.
+        </p>
+
+        <p>
+        היו שנים של הסתרה,<br>
+        אבל הנשמה ידעה:<br>
+        המקום הפגוע<br>
+        הוא המקום שדרכו עוברת השכינה.
+        </p>
+
+        <p>
+        כי כלי שאין בו סדק<br>
+        נותר סגור בתוך עצמו,<br>
+        ורק הלב שנבקע<br>
+        לומד את סוד ההשפעה.
+        </p>
+
+        <p>
+        עתה אני יושבת,<br>
+        ומקשיבה לקרני האור<br>
+        הנכנסות דרך פצעיי.
+        </p>
+
+        <p>
+        עדיין כואב,<br>
+        אבל אני מבינה:<br>
+        זו הייתה הדרך שבה<br>
+        מצא אותי האינסוף.
+        </p>
+
+    </div>
+
+    <!-- כפתור הערות -->
+    <button class="toggle-notes">הערות והארות</button>
+
+    <!-- תיבת הערות -->
+    <div class="notes-box hidden">
+        <h3>כתיבת הערות והארות</h3>
+
+        <input id="userName" placeholder="השם שלכם...">
+        <input type="email" id="userMail" placeholder="כתובת המייל שלכם...">
+        <input id="userSong" placeholder="שם השיר..." value="דרכה של שכינה">
+        <textarea id="userNote" placeholder="כתבו כאן את מחשבותיכם על השיר..."></textarea>
+
+        <div class="footer-nav" style="margin-top:15px;">
+            <a id="waLink" href="javascript:void(0)">ווצאפ לכותבת</a> |
+            <a id="saveLink" href="javascript:void(0)">שמירת הערה</a>
+        </div>
+
+        <h4>הערות קוראים שנשמרו:</h4>
+        <div id="notes"></div>
+    </div>
+
+    <!-- ניווט -->
+    <div class="footer-nav">
+        <a href="../index.html">עמוד ראשי</a> |
+        <a href="song.html">חזרה לשירים</a>
+    </div>
+
+    <!-- כפתור שיתוף -->
+    <button class="share-btn" onclick="shareSong()">שתפו את השיר</button>
+
+</div>
+
+<!-- מזהה השיר -->
+<script>
+    var songId = "shir87";
+</script>
+
+<!-- מערכת ההערות -->
+<script type="module">
+    import { initNoteSystem, saveNoteToFirestore } from "../notes.js";
+
+    initNoteSystem(songId);
+
+    const waLink = document.getElementById("waLink");
+    const saveLink = document.getElementById("saveLink");
+    const phone = "972545305123";
+
+    saveLink.addEventListener("click", function() {
+
+        const name = document.getElementById("userName").value.trim();
+        const email = document.getElementById("userMail").value.trim();
+        const song = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
+
+       
