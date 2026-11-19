@@ -19,12 +19,11 @@
     <!-- פתיח השיר -->
     <div class="song-intro">
         <p>
-            השיר עוסק בדרך שבה השברים והכאבים בחיינו
-            אינם רק מקור לסבל, אלא גם שער להתגלות פנימית.
-            מתוך המקומות הפגועים, שבהם נדמה שאיבדנו הכול,
-            מתחילים לחלחל אור, משמעות וחסד,
-            עד שהלב מגלה כי דווקא דרך הסדקים
-            נכנסת השכינה אל תוך חייו.
+            השיר עוסק בדרך שבה הכאב והשבר אינם סוף הדרך,
+            אלא פתח להתגלות עמוקה יותר של הנשמה.
+            הוא מזכיר כי דווקא המקומות הסדוקים והפגיעים שלנו
+            מאפשרים לאור, לחסד ולשכינה להיכנס,
+            וכי דרך הפצע מתאפשר לעיתים המפגש עם האינסוף.
         </p>
     </div>
 
@@ -145,5 +144,101 @@
         const email = document.getElementById("userMail").value.trim();
         const song = document.getElementById("userSong").value.trim();
         const note = document.getElementById("userNote").value.trim();
+
+        if (!note) {
+            alert("אנא כתבו הערה לפני השמירה");
+            return;
+        }
+
+        const date = new Date().toLocaleString("he-IL");
+        const link = window.location.href;
+
+        saveNoteToFirestore(
+            name,
+            email,
+            song,
+            note,
+            songId,
+            date,
+            link
+        );
+    });
+
+    waLink.addEventListener("click", function() {
+
+        const name = document.getElementById("userName").value.trim();
+        const song = document.getElementById("userSong").value.trim();
+        const note = document.getElementById("userNote").value.trim();
+
+        const message =
+            `שם הכותב: ${name}\n` +
+            `שם השיר: ${song}\n` +
+            `הערה: ${note}`;
+
+        const encoded = encodeURIComponent(message);
+
+        window.open(
+            `https://wa.me/${phone}?text=${encoded}`,
+            "_blank",
+            "noopener,noreferrer"
+        );
+    });
+</script>
+
+<!-- שיתוף -->
+<script>
+function shareSong() {
+    if (navigator.share) {
+        navigator.share({
+            title: document.title,
+            text: "רציתי לשתף את השיר הזה:",
+            url: window.location.href
+        });
+    } else {
+        alert("הדפדפן לא תומך בשיתוף אוטומטי");
+    }
+}
+</script>
+
+<!-- פתיחה וסגירה של אזור ההערות -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    const toggleBtn = document.querySelector(".toggle-notes");
+    const notesBox = document.querySelector(".notes-box");
+
+    toggleBtn.addEventListener("click", () => {
+
+        notesBox.classList.toggle("hidden");
+
+        toggleBtn.textContent = notesBox.classList.contains("hidden")
+            ? "הערות והארות"
+            : "הסתרת הערות";
+    });
+});
+</script>
+
+<!-- עיצוב פתיח -->
+<style>
+.song-intro {
+    background: #fff5f7;
+    border-right: 4px solid #e7b0bc;
+    padding: 18px 22px;
+    margin: 20px 0 25px 0;
+    border-radius: 8px;
+    font-size: 20px;
+    line-height: 1.8;
+    color: #7a3950;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.song-intro p {
+    margin: 0;
+    white-space: pre-line;
+}
+</style>
+
+</body>
+</html>
 
        
